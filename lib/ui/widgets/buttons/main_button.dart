@@ -21,10 +21,10 @@ class MainButton extends StatelessWidget {
         onPressed: callback,
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary: AppColors.mainBlueColor,
+          primary: AppColors.secondAccent,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: Text(
             label,
             style: const TextStyle(
@@ -38,4 +38,3 @@ class MainButton extends StatelessWidget {
     );
   }
 }
-

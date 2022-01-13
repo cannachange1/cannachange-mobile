@@ -5,7 +5,7 @@ import 'package:cannachange/data/exceptions/general_exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-class UserRepository {
+class PersonalDataRepository {
   final dio = GetIt.I<Dio>();
 
   // Future<List<UserRepository>> getUsers() async {

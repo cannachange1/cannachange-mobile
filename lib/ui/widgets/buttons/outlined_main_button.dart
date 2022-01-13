@@ -38,7 +38,7 @@ class OutlinedMainButton extends StatelessWidget {
               Text(
                 label,
                 style: const TextStyle(
-                  color: AppColors.mainBlueColor,
+                  color: AppColors.mainLogoColor,
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
                 ),
@@ -46,7 +46,7 @@ class OutlinedMainButton extends StatelessWidget {
               Text(
                 smallText,
                 style: const TextStyle(
-                  color: AppColors.mainBlueColor,
+                  color: AppColors.mainLogoColor,
                   fontSize: 10,
                   // fontWeight: FontWeight.w800,
                 ),

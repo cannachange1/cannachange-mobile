@@ -1,12 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:cannachange/data/repository/user_repository.dart';
-import 'package:cannachange/helpers/overlay_helper.dart';
-import 'package:cannachange/helpers/storage_helper.dart';
+import 'package:cannachange/data/repository/personal_data_repository.dart';
+import 'package:cannachange/model/client/client_model.dart';
+import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/model/user/user_model.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
 part 'personal_data_state.g.dart';
@@ -14,12 +12,16 @@ part 'personal_data_state.g.dart';
 class PersonalDataState = _PersonalDataState with _$PersonalDataState;
 
 abstract class _PersonalDataState with Store {
-  final UserRepository userRepository = UserRepository();
+  final personalDataRepository = PersonalDataRepository();
+
   //final loadingState = LoadingState();
 
   @observable
-  UserModel? user;
+  ClientModel? clientModel;
 
+  @observable
+  DispensaryModel? dispensaryModel = DispensaryModel(id: 2);
+  
   Observable<UserModel?> _currentUser = Observable<UserModel?>(null);
 
   @computed
@@ -29,34 +31,71 @@ abstract class _PersonalDataState with Store {
   set currentUser(currentUser) => _currentUser.value = currentUser;
 
   @observable
-  String gender = 'male';
+  String dispensaryName = '';
 
   @observable
-  DateTime? birthDate;
+  String dispensaryAddress = '';
 
   @observable
-  File? selectedImage;
+  String? dispensaryWorkingHours = '';
+
+  @observable
+  String? dispensaryEmail = '';
+
+  @observable
+  String? dispensaryPhone = '';
+
+  @observable
+  File? clientSelectedImage;
 
   @action
-  void setFirstName(String value) {
+  void setDispensaryName(String value) {
     if (value.isNotEmpty) {
-      user = user!.copyWith(firstName: value);
+      dispensaryModel = dispensaryModel!.copyWith(name: value);
     }
   }
 
   @action
-  void setLastName(String value) {
+  void setDispensaryHours(String value) {
     if (value.isNotEmpty) {
-      user = user!.copyWith(lastName: value);
+      dispensaryModel = dispensaryModel!.copyWith(workingHours: value);
     }
   }
 
   @action
-  void setEmail(String value) {
+  void setDispensaryAddressLine1(String value) {
     if (value.isNotEmpty) {
-      user = user!.copyWith(email: value);
+      dispensaryModel = dispensaryModel!.copyWith(addressLine1: value);
     }
   }
+
+  @action
+  void setDispensaryAddressLine2(String value) {
+    if (value.isNotEmpty) {
+      dispensaryModel = dispensaryModel!.copyWith(addressLine2: value);
+    }
+  }
+
+  @action
+  void setDispensaryPhone(String value) {
+    if (value.isNotEmpty) {
+      dispensaryModel = dispensaryModel!.copyWith(phone: value);
+    }
+  }
+
+  @action
+  void setDispensaryEmail(String value) {
+    if (value.isNotEmpty) {
+      dispensaryModel = dispensaryModel!.copyWith(email: value);
+    }
+  }
+
+  // @action
+  // void setDispensaryPhone(String value) {
+  //   if (value.isNotEmpty) {
+  //     dispensaryModel = dispensaryModel!.copyWith(phone: value);
+  //   }
+  // }
 
   // @action
   // void setPhoneNumber(String value) {
@@ -98,34 +137,34 @@ abstract class _PersonalDataState with Store {
     // }
   }
 
-  // @action
-  // Future<void> getUser() async {
-  //   try {
-  //     loadingState.startLoading();
-  //     user = await userRepository.getUser();
-  //     if (user != null) {
-  //       StorageHelper.setUserName(user!.firstName);
-  //       StorageHelper.setUseSurname(user!.lastName);
-  //       StorageHelper.setPhoneNumber(user!.login);
-  //       StorageHelper.setEmail(user!.email);
-  //     }
-  //     loadingState.stopLoading();
-  //   } on DioError catch (e) {
-  //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-  //     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-  //   } finally {
-  //     loadingState.stopLoading();
-  //   }
-  // }
+// @action
+// Future<void> getUser() async {
+//   try {
+//     loadingState.startLoading();
+//     user = await userRepository.getUser();
+//     if (user != null) {
+//       StorageHelper.setUserName(user!.firstName);
+//       StorageHelper.setUseSurname(user!.lastName);
+//       StorageHelper.setPhoneNumber(user!.login);
+//       StorageHelper.setEmail(user!.email);
+//     }
+//     loadingState.stopLoading();
+//   } on DioError catch (e) {
+//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
+//     showCustomOverlayNotification(color: Colors.red, text: map['title']);
+//   } finally {
+//     loadingState.stopLoading();
+//   }
+// }
 
-  // Future<void> updateUser() async {
-  //   try {
-  //     loadingState.startLoading();
-  //     await userRepository.updateUser(user!);
-  //     loadingState.stopLoading();
-  //   } on DioError catch (e) {
-  //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-  //     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-  //   }
-  // }
+// Future<void> updateUser() async {
+//   try {
+//     loadingState.startLoading();
+//     await userRepository.updateUser(user!);
+//     loadingState.stopLoading();
+//   } on DioError catch (e) {
+//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
+//     showCustomOverlayNotification(color: Colors.red, text: map['title']);
+//   }
+// }
 }

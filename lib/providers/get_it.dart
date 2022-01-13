@@ -1,3 +1,5 @@
+import 'package:cannachange/data/repository/personal_data_repository.dart';
+import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -11,12 +13,8 @@ void registerGetIt() {
   GetIt.I.registerSingleton(DashboardState());
   GetIt.I.registerSingleton(DashboardRepository());
 
-  // GetIt.I.registerSingleton(DriversState());
-  // GetIt.I.registerSingleton(DriverRepository());
-  //
-  // GetIt.I.registerSingleton(SessionsState());
-  // GetIt.I.registerSingleton(SessionsRepository());
-
+  GetIt.I.registerSingleton(PersonalDataState());
+  GetIt.I.registerSingleton(PersonalDataRepository());
 
 }
 

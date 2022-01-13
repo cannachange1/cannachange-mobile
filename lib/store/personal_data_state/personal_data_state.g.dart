@@ -17,63 +17,114 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
               name: '_PersonalDataState.currentUser'))
           .value;
 
-  final _$userAtom = Atom(name: '_PersonalDataState.user');
+  final _$clientModelAtom = Atom(name: '_PersonalDataState.clientModel');
 
   @override
-  UserModel? get user {
-    _$userAtom.reportRead();
-    return super.user;
+  ClientModel? get clientModel {
+    _$clientModelAtom.reportRead();
+    return super.clientModel;
   }
 
   @override
-  set user(UserModel? value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
+  set clientModel(ClientModel? value) {
+    _$clientModelAtom.reportWrite(value, super.clientModel, () {
+      super.clientModel = value;
     });
   }
 
-  final _$genderAtom = Atom(name: '_PersonalDataState.gender');
+  final _$dispensaryModelAtom =
+      Atom(name: '_PersonalDataState.dispensaryModel');
 
   @override
-  String get gender {
-    _$genderAtom.reportRead();
-    return super.gender;
+  DispensaryModel? get dispensaryModel {
+    _$dispensaryModelAtom.reportRead();
+    return super.dispensaryModel;
   }
 
   @override
-  set gender(String value) {
-    _$genderAtom.reportWrite(value, super.gender, () {
-      super.gender = value;
+  set dispensaryModel(DispensaryModel? value) {
+    _$dispensaryModelAtom.reportWrite(value, super.dispensaryModel, () {
+      super.dispensaryModel = value;
     });
   }
 
-  final _$birthDateAtom = Atom(name: '_PersonalDataState.birthDate');
+  final _$dispensaryNameAtom = Atom(name: '_PersonalDataState.dispensaryName');
 
   @override
-  DateTime? get birthDate {
-    _$birthDateAtom.reportRead();
-    return super.birthDate;
+  String get dispensaryName {
+    _$dispensaryNameAtom.reportRead();
+    return super.dispensaryName;
   }
 
   @override
-  set birthDate(DateTime? value) {
-    _$birthDateAtom.reportWrite(value, super.birthDate, () {
-      super.birthDate = value;
+  set dispensaryName(String value) {
+    _$dispensaryNameAtom.reportWrite(value, super.dispensaryName, () {
+      super.dispensaryName = value;
     });
   }
 
-  final _$selectedImageAtom = Atom(name: '_PersonalDataState.selectedImage');
+  final _$dispensaryAddressAtom =
+      Atom(name: '_PersonalDataState.dispensaryAddress');
 
   @override
-  File? get selectedImage {
-    _$selectedImageAtom.reportRead();
-    return super.selectedImage;
+  String get dispensaryAddress {
+    _$dispensaryAddressAtom.reportRead();
+    return super.dispensaryAddress;
   }
 
   @override
-  set selectedImage(File? value) {
-    _$selectedImageAtom.reportWrite(value, super.selectedImage, () {
-      super.selectedImage = value;
+  set dispensaryAddress(String value) {
+    _$dispensaryAddressAtom.reportWrite(value, super.dispensaryAddress, () {
+      super.dispensaryAddress = value;
+    });
+  }
+
+  final _$dispensaryWorkingHoursAtom =
+      Atom(name: '_PersonalDataState.dispensaryWorkingHours');
+
+  @override
+  String? get dispensaryWorkingHours {
+    _$dispensaryWorkingHoursAtom.reportRead();
+    return super.dispensaryWorkingHours;
+  }
+
+  @override
+  set dispensaryWorkingHours(String? value) {
+    _$dispensaryWorkingHoursAtom
+        .reportWrite(value, super.dispensaryWorkingHours, () {
+      super.dispensaryWorkingHours = value;
+    });
+  }
+
+  final _$dispensaryEmailAtom =
+      Atom(name: '_PersonalDataState.dispensaryEmail');
+
+  @override
+  String? get dispensaryEmail {
+    _$dispensaryEmailAtom.reportRead();
+    return super.dispensaryEmail;
+  }
+
+  @override
+  set dispensaryEmail(String? value) {
+    _$dispensaryEmailAtom.reportWrite(value, super.dispensaryEmail, () {
+      super.dispensaryEmail = value;
+    });
+  }
+
+  final _$dispensaryPhoneAtom =
+      Atom(name: '_PersonalDataState.dispensaryPhone');
+
+  @override
+  String? get dispensaryPhone {
+    _$dispensaryPhoneAtom.reportRead();
+    return super.dispensaryPhone;
+  }
+
+  @override
+  set dispensaryPhone(String? value) {
+    _$dispensaryPhoneAtom.reportWrite(value, super.dispensaryPhone, () {
+      super.dispensaryPhone = value;
     });
   }
 
@@ -112,33 +163,66 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
       ActionController(name: '_PersonalDataState');
 
   @override
-  void setFirstName(String value) {
+  void setDispensaryName(String value) {
     final _$actionInfo = _$_PersonalDataStateActionController.startAction(
-        name: '_PersonalDataState.setFirstName');
+        name: '_PersonalDataState.setDispensaryName');
     try {
-      return super.setFirstName(value);
+      return super.setDispensaryName(value);
     } finally {
       _$_PersonalDataStateActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setLastName(String value) {
+  void setDispensaryHours(String value) {
     final _$actionInfo = _$_PersonalDataStateActionController.startAction(
-        name: '_PersonalDataState.setLastName');
+        name: '_PersonalDataState.setDispensaryHours');
     try {
-      return super.setLastName(value);
+      return super.setDispensaryHours(value);
     } finally {
       _$_PersonalDataStateActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setEmail(String value) {
+  void setDispensaryAddressLine1(String value) {
     final _$actionInfo = _$_PersonalDataStateActionController.startAction(
-        name: '_PersonalDataState.setEmail');
+        name: '_PersonalDataState.setDispensaryAddressLine1');
     try {
-      return super.setEmail(value);
+      return super.setDispensaryAddressLine1(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDispensaryAddressLine2(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setDispensaryAddressLine2');
+    try {
+      return super.setDispensaryAddressLine2(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDispensaryPhone(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setDispensaryPhone');
+    try {
+      return super.setDispensaryPhone(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDispensaryEmail(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setDispensaryEmail');
+    try {
+      return super.setDispensaryEmail(value);
     } finally {
       _$_PersonalDataStateActionController.endAction(_$actionInfo);
     }
@@ -147,10 +231,13 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   @override
   String toString() {
     return '''
-user: ${user},
-gender: ${gender},
-birthDate: ${birthDate},
-selectedImage: ${selectedImage},
+clientModel: ${clientModel},
+dispensaryModel: ${dispensaryModel},
+dispensaryName: ${dispensaryName},
+dispensaryAddress: ${dispensaryAddress},
+dispensaryWorkingHours: ${dispensaryWorkingHours},
+dispensaryEmail: ${dispensaryEmail},
+dispensaryPhone: ${dispensaryPhone},
 imageUrl: ${imageUrl},
 currentUser: ${currentUser}
     ''';

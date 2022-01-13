@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cannachange/data/repository/user_repository.dart';
+import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class SendEmailDialog extends StatefulWidget {
 }
 
 class _SendEmailDialogState extends State<SendEmailDialog> {
-  final UserRepository userRepository = UserRepository();
+  final PersonalDataRepository personalDataRepository = PersonalDataRepository();
   final TextEditingController emailTextController = TextEditingController();
 
   @override

@@ -38,7 +38,7 @@ abstract class _StoreState with Store {
   void showSuccessOverlay() {
     if (successMessage != null && successMessage!.isNotEmpty) {
       showCustomOverlayNotification(
-          color: AppColors.lightGreenColor, text: successMessage!);
+          color: AppColors.secondAccent, text: successMessage!);
     }
   }
 

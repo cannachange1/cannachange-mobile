@@ -25,7 +25,7 @@ void showCustomOverlayNotification({
               color: color,
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.mainBlueColor.withOpacity(0.3),
+                  color: AppColors.mainLogoColor.withOpacity(0.3),
                   blurRadius: 30, // changes position of shadow
                 ),
               ],
