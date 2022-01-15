@@ -166,6 +166,24 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     return _$pickImageAsyncAction.run(() => super.pickImage());
   }
 
+  final _$forgetPasswordInitAsyncAction =
+      AsyncAction('_PersonalDataState.forgetPasswordInit');
+
+  @override
+  Future<void> forgetPasswordInit(String email) {
+    return _$forgetPasswordInitAsyncAction
+        .run(() => super.forgetPasswordInit(email));
+  }
+
+  final _$forgetPasswordFinishAsyncAction =
+      AsyncAction('_PersonalDataState.forgetPasswordFinish');
+
+  @override
+  Future<void> forgetPasswordFinish(String code, String newPassword) {
+    return _$forgetPasswordFinishAsyncAction
+        .run(() => super.forgetPasswordFinish(code, newPassword));
+  }
+
   final _$changePasswordAsyncAction =
       AsyncAction('_PersonalDataState.changePassword');
 

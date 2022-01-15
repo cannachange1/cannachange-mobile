@@ -181,15 +181,6 @@ mixin _$RegistrationState on _RegistrationState, Store {
     });
   }
 
-  final _$forgetPasswordInitAsyncAction =
-      AsyncAction('_RegistrationState.forgetPasswordInit');
-
-  @override
-  Future<RegisterResponse> forgetPasswordInit(BuildContext context) {
-    return _$forgetPasswordInitAsyncAction
-        .run(() => super.forgetPasswordInit(context));
-  }
-
   final _$activateAccountAsyncAction =
       AsyncAction('_RegistrationState.activateAccount');
 

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -10,13 +11,13 @@ import '../loading.dart';
 import '../text_input.dart';
 
 class ResetPasswordCodeDialog extends StatefulWidget {
-
   const ResetPasswordCodeDialog({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ResetPasswordCodeDialog> createState() => _ResetPasswordCodeDialogState();
+  State<ResetPasswordCodeDialog> createState() =>
+      _ResetPasswordCodeDialogState();
 }
 
 class _ResetPasswordCodeDialogState extends State<ResetPasswordCodeDialog> {
@@ -59,8 +60,9 @@ class _ResetPasswordCodeDialogState extends State<ResetPasswordCodeDialog> {
                 const SizedBox(
                   height: 20,
                 ),
-                CommonButton(
-                  horizontalPadding: 40,
+                MainButton(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   callback: () async {
                     if (newPasswordTextController.text.length >= 6 &&
                         activationCodeTextController.text.isNotEmpty) {
@@ -75,8 +77,7 @@ class _ResetPasswordCodeDialogState extends State<ResetPasswordCodeDialog> {
                       );
                     }
                   },
-                  text: 'DONE',
-                  color: AppColors.secondAccent,
+                  label: 'DONE',
                 ),
                 const SizedBox(
                   height: 30,
