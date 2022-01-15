@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
+import 'package:cannachange/model/register_response/register_response.dart';
 import 'package:cannachange/model/user/user_model.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
@@ -13,15 +15,14 @@ class PersonalDataState = _PersonalDataState with _$PersonalDataState;
 
 abstract class _PersonalDataState with Store {
   final personalDataRepository = PersonalDataRepository();
-
-  //final loadingState = LoadingState();
+  final StoreState storeState = StoreState();
 
   @observable
   ClientModel? clientModel;
 
   @observable
   DispensaryModel? dispensaryModel = DispensaryModel(id: 2);
-  
+
   Observable<UserModel?> _currentUser = Observable<UserModel?>(null);
 
   @computed
@@ -125,16 +126,41 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
+  Future<void> forgetPasswordInit(String email) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.forgetPasswordInit(email);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+      rethrow;
+    }
+  }
+
+  @action
+  Future<void> forgetPasswordFinish(String code, String newPassword) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      final res =
+          await personalDataRepository.forgetPasswordFinish(code, newPassword);
+      return res;
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+      rethrow;
+    }
+  }
+
+  @action
   Future<void> changePassword(String oldPassword, String newPassword) async {
-    // try {
-    //   loadingState.startLoading();
-    //   await userRepository.changePassword(newPassword, oldPassword);
-    // } on DioError catch (e) {
-    //   final Map<String, dynamic> map = jsonDecode(e.response!.data);
-    //   showCustomOverlayNotification(color: Colors.red, text: map['title']);
-    // } finally {
-    //   loadingState.stopLoading();
-    // }
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.changePassword(newPassword, oldPassword);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+      rethrow;
+    }
   }
 
 // @action

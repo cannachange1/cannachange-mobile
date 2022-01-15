@@ -16,9 +16,9 @@ class Styles {
       color: AppColors.mainLogoColor);
 
   static const TextStyle boldTextStyle = TextStyle(
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w900,
     color: AppColors.mainLogoColor,
-    fontSize: 22,
+    fontSize: 24,
     fontFamily: 'Lato',
   );
 

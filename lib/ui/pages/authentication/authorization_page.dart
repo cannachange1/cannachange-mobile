@@ -106,6 +106,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                 if (snap.hasData) {
                                   return Observer(
                                     builder: (_) => MainButton(
+                                      padding: const EdgeInsets.symmetric(horizontal: 40),
                                       callback: _controller.hasClients &&
                                               _controller.page == 0
                                           ? !loginState.errors.hasErrors &&
@@ -161,7 +162,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                                   ? 'Do not have an account?'
                                                   : 'Have an account?'
                                               : '',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: AppColors.pastelGreenColor,
                                               fontSize: 14),
                                           children: <TextSpan>[

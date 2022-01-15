@@ -26,12 +26,6 @@ class AuthenticationRepo {
     await dio.put('activate', data: {"key": code});
   }
 
-  Future<RegisterResponse> forgetPassword(String email) async {
-    final res =
-    await dio.post('account/reset-password/init', data: {"email": email});
-    return RegisterResponse.fromJson(res.data);
-  }
-
 
 
 

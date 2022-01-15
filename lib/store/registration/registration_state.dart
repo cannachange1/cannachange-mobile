@@ -21,7 +21,7 @@ abstract class _RegistrationState with Store {
   final authorizationRepo = AuthenticationRepo();
   List<ReactionDisposer> _disposers = [];
 
- // final loadingState = LoadingState();
+  // final loadingState = LoadingState();
   final RegistrationStateErrors errors = RegistrationStateErrors();
 
   @observable
@@ -67,59 +67,38 @@ abstract class _RegistrationState with Store {
     agreedToTermsAndConditions = !agreedToTermsAndConditions;
   }
 
-
-
-  @action
-  Future<RegisterResponse> forgetPasswordInit(BuildContext context) async {
-   // loadingState.startLoading();
-    try {
-      final res = await authorizationRepo.forgetPassword(email!);
-
-      return res;
-    } on DioError catch (e) {
-      showCustomOverlayNotification(
-          color: Colors.red, text: e.response!.data['message']);
-      return Future.error(e.response!.data('message'));
-    } finally {
-     // loadingState.stopLoading();
-    }
-  }
-
   @action
   Future<void> activateAccount(BuildContext context, String code) async {
-   // loadingState.startLoading();
     try {
       await authorizationRepo.sendOTPCode(code);
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
       showCustomOverlayNotification(color: Colors.red, text: map['title']);
       return Future.error(map['title']);
-    } finally {
-     // loadingState.stopLoading();
-    }
+    } finally {}
   }
 
   @action
   Future<void> register(BuildContext context) async {
-  //  loadingState.startLoading();
-  //   try {
-  //     await authorizationRepo.register({
-  //       "password": password!,
-  //       "firstName": firstName!,
-  //       "login": phoneNumber!.replaceAll('+', '00'),
-  //       "email": email!.trim(),
-  //       "lastName": lastName!,
-  //       "mainSource": describeEnum(mainDocumentCategory!.key)
-  //     });
-  //     resetValidationErrors();
-  //     AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
-  //   } on DioError catch (e) {
-  //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-  //     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-  //     return Future.error(map['title']);
-  //   } finally {
-  //     loadingState.stopLoading();
-  //   }
+    //  loadingState.startLoading();
+    //   try {
+    //     await authorizationRepo.register({
+    //       "password": password!,
+    //       "firstName": firstName!,
+    //       "login": phoneNumber!.replaceAll('+', '00'),
+    //       "email": email!.trim(),
+    //       "lastName": lastName!,
+    //       "mainSource": describeEnum(mainDocumentCategory!.key)
+    //     });
+    //     resetValidationErrors();
+    //     AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+    //   } on DioError catch (e) {
+    //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
+    //     showCustomOverlayNotification(color: Colors.red, text: map['title']);
+    //     return Future.error(map['title']);
+    //   } finally {
+    //     loadingState.stopLoading();
+    //   }
   }
 
   @action

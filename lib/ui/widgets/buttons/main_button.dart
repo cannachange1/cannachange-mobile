@@ -26,10 +26,11 @@ class MainButton extends StatelessWidget {
           primary: AppColors.secondAccent,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
+          padding: padding ?? const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon),
+              if (icon != null) Icon(icon),
               Text(
                 label,
                 style: const TextStyle(
@@ -37,6 +38,7 @@ class MainButton extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
                 ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
