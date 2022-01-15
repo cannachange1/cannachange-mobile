@@ -1,1 +1,1 @@
-enum Flavor { USER, RETAILER }
+enum Flavor {consumer, dispensary}

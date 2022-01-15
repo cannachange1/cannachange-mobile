@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../helpers/screen_size_accessor.dart';
@@ -16,14 +17,15 @@ import '../../widgets/buttons/main_button.dart';
 import '../../widgets/login_section.dart';
 import '../../widgets/signup_section.dart';
 
-class AuthorizationPage extends StatefulWidget {
-  const AuthorizationPage({Key? key}) : super(key: key);
+class ClientAuthorizationPage extends StatefulWidget {
+  const ClientAuthorizationPage({Key? key}) : super(key: key);
 
   @override
-  _AuthorizationPageState createState() => _AuthorizationPageState();
+  _ClientAuthorizationPageState createState() =>
+      _ClientAuthorizationPageState();
 }
 
-class _AuthorizationPageState extends State<AuthorizationPage> {
+class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
   DashboardState dashboardState = GetIt.I<DashboardState>();
   final registrationState = GetIt.I<RegistrationState>();
   LoginState loginState = LoginState();
@@ -67,45 +69,43 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               SingleChildScrollView(
             child: SizedBox(
               height: screenHeight(context),
-              child: Stack(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/illustrations/ill_back.png',
-                    fit: BoxFit.fitHeight,
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight(context) * .07),
+                    child: SvgPicture.asset(
+                      "assets/images/ic_logo.svg",
+                      width: screenWidth(context) * .45,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Expanded(
+                    child: PageView(
+                      controller: _controller,
+                      children: [
+                        LoginSection(
+                          loginState: loginState,
+                        ),
+                        const SignUpSection(),
+                      ],
+                    ),
                   ),
                   Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: screenHeight(context) * .07),
-                        child: Image.asset(
-                          "assets/icons/ic_logo.jpg",
-                          height: 50,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Expanded(
-                        child: PageView(
-                          controller: _controller,
-                          children: [
-                            LoginSection(
-                              loginState: loginState,
-                            ),
-                            const SignUpSection(),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          FutureBuilder(
-                              future: initializeController(),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<void> snap) {
-                                if (snap.hasData) {
-                                  return Observer(
-                                    builder: (_) => MainButton(
+                      FutureBuilder(
+                          future: initializeController(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot<void> snap) {
+                            if (snap.hasData) {
+                              return Observer(
+                                builder: (_) => Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: MainButton(
                                       callback: _controller.hasClients &&
                                               _controller.page == 0
                                           ? !loginState.errors.hasErrors &&
@@ -138,61 +138,57 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                               : 'SIGN UP'
                                           : '',
                                     ),
-                                  );
-                                } else {
-                                  return const SizedBox();
-                                }
-                              }),
-                          FutureBuilder(
-                            future: initializeController(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<void> snap) {
-                              if (snap.hasData) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (_controller.page == 0) {}
-                                    },
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: _controller.hasClients
-                                              ? _controller.page == 0
-                                                  ? 'Do not have an account?'
-                                                  : 'Have an account?'
-                                              : '',
-                                          style: TextStyle(
-                                              color: AppColors.pastelGreenColor,
-                                              fontSize: 14),
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: _controller.hasClients
-                                                    ? _controller.page == 0
-                                                        ? ' ${'SIGN UP'}'
-                                                        : ' ${'LOGIN'}'
-                                                    : '',
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    //fontWeight: FontWeight.w600,
-                                                    color: AppColors
-                                                        .pastelGreenColor),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap =
-                                                          animateToCurrentPage),
-                                          ]),
-                                    ),
                                   ),
-                                );
-                              } else {
-                                return const SizedBox();
-                              }
-                            },
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                        ],
+                                ),
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          }),
+                      FutureBuilder(
+                        future: initializeController(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot<void> snap) {
+                          if (snap.hasData) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: GestureDetector(
+                                onTap: () {
+                                  if (_controller.page == 0) {}
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: _controller.hasClients
+                                          ? _controller.page == 0
+                                              ? 'Do not have an account?'
+                                              : 'Have an account?'
+                                          : '',
+                                      style: const TextStyle(
+                                          color: AppColors.secondAccent,
+                                          fontSize: 14),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: _controller.hasClients
+                                                ? _controller.page == 0
+                                                    ? ' ${'SIGN UP'}'
+                                                    : ' ${'LOGIN'}'
+                                                : '',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w900,
+                                                color: AppColors.secondAccent),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = animateToCurrentPage),
+                                      ]),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 40,
                       ),
                     ],
                   ),

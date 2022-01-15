@@ -5,12 +5,14 @@ class MainButton extends StatelessWidget {
   final String label;
   final VoidCallback? callback;
   final EdgeInsets? padding;
+  final IconData? icon;
 
   const MainButton({
     Key? key,
     required this.label,
     this.callback,
     this.padding,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -24,14 +26,19 @@ class MainButton extends StatelessWidget {
           primary: AppColors.secondAccent,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-          child: Text(
-            label,
-            style: const TextStyle(
-              color: AppColors.lightGrayColor,
-              fontSize: 18,
-              fontWeight: FontWeight.w800,
-            ),
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
+          child: Row(
+            children: [
+              Icon(icon),
+              Text(
+                label,
+                style: const TextStyle(
+                  color: AppColors.lightGrayColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
           ),
         ),
       ),

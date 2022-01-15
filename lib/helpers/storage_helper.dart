@@ -1,12 +1,14 @@
 import 'dart:async';
 
+import 'package:cannachange/constants/flavor.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Preferences {
   Preferences._();
 
   static const authToken = 'authToken';
-  static const firstName = 'firstName';
+  static const accessType = 'accessType';
+  static const flavor = 'flavor';
   static const lastName = 'lastName';
   static const phone = 'phone';
   static const email = 'email';
@@ -17,8 +19,12 @@ class Preferences {
 class StorageHelper {
   static final storage = GetStorage();
 
-  static Future<String> getUserName() async {
-    return await storage.read(Preferences.firstName);
+  static Future<Flavor> getAccessType() async {
+    return await storage.read(Preferences.accessType);
+  }
+
+  static Future<String> getFlavor() async {
+    return await storage.read(Preferences.flavor);
   }
 
   static Future<String> getUserSurname() async {
@@ -44,8 +50,11 @@ class StorageHelper {
   static Future<void> setBiometrics(bool biometrics) async =>
       storage.write(Preferences.biometrics, biometrics);
 
-  static Future<void> setUserName(String firstName) async =>
-      storage.write(Preferences.firstName, firstName);
+  static Future<void> setAccessType(String accessType) async =>
+      storage.write(Preferences.accessType, accessType);
+
+  static Future<void> setFlavor(Flavor flavor) async =>
+      storage.write(Preferences.flavor, flavor);
 
   static Future<void> setUseSurname(String lastName) async =>
       storage.write(Preferences.lastName, lastName);

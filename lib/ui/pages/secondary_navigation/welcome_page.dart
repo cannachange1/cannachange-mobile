@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:cannachange/constants/flavor.dart';
 import 'package:cannachange/helpers/screen_size_accessor.dart';
+import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:cannachange/router.gr.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -13,7 +16,7 @@ class WelcomePage extends StatelessWidget {
         backgroundColor: AppColors.lightGrayColor,
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -23,10 +26,6 @@ class WelcomePage extends StatelessWidget {
                   width: screenWidth(context) * .4,
                   height: screenWidth(context) * .4,
                 ),
-                // SvgPicture.asset(
-                //   'assets/images/ic_logo_.svg',
-                //   width: screenWidth(context) * .4,
-                // ),
                 const SizedBox(
                   height: 40,
                 ),
@@ -68,11 +67,22 @@ class WelcomePage extends StatelessWidget {
                   children: [
                     MainButton(
                       label: 'Dispensary',
-                      callback: () {},
+                      icon: Icons.apartment,
+                      callback: () {
+                        StorageHelper.setAccessType('Dispensary');
+                        StorageHelper.setFlavor(Flavor.dispensary);
+                        AutoRouter.of(context)
+                            .push(const ClientAuthorizationRoute());
+                      },
                     ),
                     MainButton(
                       label: 'Consumer',
-                      callback: () {},
+                      icon: Icons.person,
+                      callback: () {
+                        StorageHelper.setAccessType('Consumer');
+                        StorageHelper.setFlavor(Flavor.consumer);
+                        AutoRouter.of(context).push(const AuthorizationRoute());
+                      },
                     )
                   ],
                 ),
