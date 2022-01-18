@@ -18,11 +18,12 @@ class ClientSignUpSection extends StatefulWidget {
 }
 
 class _ClientSignUpSectionState extends State<ClientSignUpSection> {
-  TextEditingController fullNameTextController = TextEditingController();
-  TextEditingController phoneTextController = TextEditingController();
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController passwordTextController = TextEditingController();
-  TextEditingController confirmPasswordTextController = TextEditingController();
+  TextEditingController clientNameTextController = TextEditingController();
+  TextEditingController clientEmailTextController = TextEditingController();
+  TextEditingController clientPhoneTextController = TextEditingController();
+  TextEditingController clientPasswordTextController = TextEditingController();
+  TextEditingController clientConfirmPasswordTextController =
+      TextEditingController();
 
   final String _url =
       'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
@@ -49,51 +50,53 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: fullNameTextController,
-                onChanged: (value) => registrationState.lastName = value,
+                controller: clientNameTextController,
+                onChanged: (value) => registrationState.consumerName = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.fullName,
-                errorText: registrationState.errors.lastName,
+                errorText: registrationState.errors.consumerName,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: emailTextController,
-                onChanged: (value) => registrationState.email = value,
+                controller: clientEmailTextController,
+                onChanged: (value) => registrationState.consumerEmail = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.email,
-                errorText: registrationState.errors.email,
+                errorText: registrationState.errors.consumerEmail,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: phoneTextController,
-                onChanged: (value) => registrationState.phoneNumber = value,
+                controller: clientPhoneTextController,
+                onChanged: (value) =>
+                    registrationState.consumerPhoneNumber = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.phoneNumber,
                 keyboardType: TextInputType.phone,
-                errorText: registrationState.errors.phoneNumber,
+                errorText: registrationState.errors.consumerPhone,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: passwordTextController,
-                hasSuffix: true,
-                onChanged: (value) => registrationState.password = value,
-                textInputAction: TextInputAction.next,
-                hintText: StringConst.password,
-                errorText: registrationState.errors.password,
-              ),
-            ),
-            Observer(
-              builder: (_) => TextInput(
-                controller: confirmPasswordTextController,
+                controller: clientPasswordTextController,
                 hasSuffix: true,
                 onChanged: (value) =>
-                    registrationState.passwordConfirmation = value,
+                    registrationState.consumerPassword = value,
+                textInputAction: TextInputAction.next,
+                hintText: StringConst.password,
+                errorText: registrationState.errors.consumerPassword,
+              ),
+            ),
+            Observer(
+              builder: (_) => TextInput(
+                controller: clientConfirmPasswordTextController,
+                hasSuffix: true,
+                onChanged: (value) =>
+                    registrationState.consumerPasswordConfirmation = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.confirmPassword,
-                errorText: registrationState.errors.confirmPassword,
+                errorText: registrationState.errors.consumerConfirmPassword,
               ),
             ),
             Padding(
@@ -156,11 +159,11 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
   }
 
   void resetControllers() {
-    phoneTextController.clear();
-    confirmPasswordTextController.clear();
-    passwordTextController.clear();
-    emailTextController.clear();
-    fullNameTextController.clear();
+    clientConfirmPasswordTextController.clear();
+    clientPasswordTextController.clear();
+    clientPhoneTextController.clear();
+    clientEmailTextController.clear();
+    clientNameTextController.clear();
   }
 
   void _launchURL() async => await canLaunch(_url)

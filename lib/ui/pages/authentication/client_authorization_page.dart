@@ -39,7 +39,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
   void initState() {
     super.initState();
     loginState.setupValidations();
-    registrationState.setupValidations();
+    registrationState.setupConsumerValidations();
 
     _controller.addListener(() => setState(() {}));
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
@@ -113,20 +113,13 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                                       }
                                                     : null
                                                 : !registrationState
-                                                            .errors.hasSignUpErrors &&
-                                                        registrationState
-                                                            .password!
-                                                            .isNotEmpty &&
-                                                        registrationState
-                                                            .firstName!.isNotEmpty &&
-                                                        registrationState
-                                                            .agreedToTermsAndConditions &&
+                                                            .errors.hasConsumerSignUpErrors &&
                                                         registrationState
                                                             .agreedToSmsNotification
                                                     ? () {
                                                         authorize();
                                                         registrationState
-                                                            .resetValidationErrors();
+                                                            .resetConsumerValidationErrors();
                                                       }
                                                     : null,
                                             label: _controller.hasClients

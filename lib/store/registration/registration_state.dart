@@ -20,31 +20,67 @@ class RegistrationState = _RegistrationState with _$RegistrationState;
 
 abstract class _RegistrationState with Store {
   final authorizationRepo = AuthenticationRepo();
-  List<ReactionDisposer> _disposers = [];
+  List<ReactionDisposer> _dispensaryDisposers = [];
+  List<ReactionDisposer> _consumerDisposers = [];
 
   final StoreState storeState = StoreState();
   final RegistrationStateErrors errors = RegistrationStateErrors();
 
   @observable
-  String? firstName = '';
+  String? dispensaryName = '';
+  @observable
+  String? consumerName = '';
+
+  ///////////////////////////////////
 
   @observable
-  String? lastName = '';
+  String? dispensaryShippingAddress = '';
+  @observable
+  String? dispensaryAddress = '';
+
+  ///////////////////////////////////
 
   @observable
-  String? email = '';
+  String? consumerEmail = '';
+  @observable
+  String? dispensaryEmail = '';
+
+  ///////////////////////////////////
 
   @observable
-  String? phoneNumber = '';
+  String? consumerPhoneNumber = '';
+  @observable
+  String? dispensaryPhoneNumber = '';
+
+  ///////////////////////////////////
 
   @observable
-  bool hasObscurePassword = true;
+  String? consumerPassword = '';
+  @observable
+  String? dispensaryPassword = '';
+
+  ///////////////////////////////////
 
   @observable
-  String? password = '';
+  String? consumerPasswordConfirmation = '';
+  @observable
+  String? dispensaryPasswordConfirmation = '';
+
+  ///////////////////////////////////
 
   @observable
-  String? passwordConfirmation = '';
+  bool hasConsumerObscurePassword = true;
+  @observable
+  bool hasDispensaryObscurePassword = true;
+
+  ///////////////////////////////////
+
+  @observable
+  bool agreedToDispensaryTermsAndConditions = false;
+  @observable
+  bool agreedToConsumerTermsAndConditions = false;
+  ///////////////////////////////////
+
 
   @observable
   String? otp = '';
@@ -52,20 +88,15 @@ abstract class _RegistrationState with Store {
   @observable
   bool agreeToTerms = false;
 
-  @observable
-  bool agreedToSmsNotification = false;
-
-  @observable
-  bool agreedToTermsAndConditions = false;
 
   @action
-  void setAgreedToSmsNotification() {
-    agreedToSmsNotification = !agreedToSmsNotification;
+  void setAgreedToDispensaryTermsAndConditions() {
+    agreedToDispensaryTermsAndConditions = !agreedToDispensaryTermsAndConditions;
   }
 
   @action
-  void setAgreedToTermsAndConditions() {
-    agreedToTermsAndConditions = !agreedToTermsAndConditions;
+  void setAgreedToConsumerTermsAndConditions() {
+    agreedToConsumerTermsAndConditions = !agreedToConsumerTermsAndConditions;
   }
 
   @action
@@ -102,93 +133,185 @@ abstract class _RegistrationState with Store {
     //   }
   }
 
+  /////////////*** NAME  ***//////////////////////
+
   @action
-  void validateFirstName(_) {
-    final firstName = this.firstName!.trim();
-    if (firstName.isEmpty) {
-      errors.firstName = "First name can't be empty";
+  void validateConsumerName(_) {
+    final consumerName = this.consumerName!.trim();
+    if (consumerName.isEmpty) {
+      errors.consumerName = "Name can't be empty";
     } else {
-      errors.firstName = null;
+      errors.consumerName = null;
     }
   }
 
   @action
-  void validateLastName(_) {
-    final lastName = this.lastName!.trim();
-    if (lastName.isEmpty) {
-      errors.lastName = "Last name can't be empty";
+  void validateDispensaryName(_) {
+    final dispensaryName = this.dispensaryName!.trim();
+    if (dispensaryName.isEmpty) {
+      errors.dispensaryName = "Name can't be empty";
     } else {
-      errors.lastName = null;
+      errors.dispensaryName = null;
+    }
+  }
+
+  /////////////*** NAME  ***//////////////////////
+  /////////////*** PASSWORD  ***//////////////////////
+
+  @action
+  void validateConsumerPassword(_) {
+    final consumerPassword = this.consumerPassword!.trim();
+    if (consumerPassword.length < 6) {
+      errors.consumerPassword = 'Too short (more than 5)';
+    } else {
+      errors.consumerPassword = null;
     }
   }
 
   @action
-  void validatePassword(_) {
-    final password = this.password!.trim();
-    if (password.length < 6) {
-      errors.password = 'Too short (more than 5)';
+  void validateDispensaryPassword(_) {
+    final dispensaryPassword = this.dispensaryPassword!.trim();
+    if (dispensaryPassword.length < 6) {
+      errors.dispensaryPassword = 'Too short (more than 5)';
     } else {
-      errors.password = null;
+      errors.dispensaryPassword = null;
+    }
+  }
+
+  /////////////*** PASSWORD  ***//////////////////////
+  /////////////*** CONFIRM PASSWORD  ***//////////////////////
+
+  @action
+  void validateConsumerConfirmPassword(_) {
+    if (consumerPasswordConfirmation!.trim().length < 6) {
+      errors.consumerConfirmPassword = 'Too short (more than 5)';
+    } else if (consumerPasswordConfirmation!.trim() != consumerPassword) {
+      errors.consumerConfirmPassword = 'Password is not identical';
+    } else {
+      errors.consumerConfirmPassword = null;
     }
   }
 
   @action
-  void validateConfirmPassword(_) {
-    if (passwordConfirmation!.trim().length < 6) {
-      errors.confirmPassword = 'Too short (more than 5)';
-    } else if (passwordConfirmation!.trim() != password) {
-      errors.confirmPassword = 'Password is not identical';
+  void validateDispensaryConfirmPassword(_) {
+    if (dispensaryPasswordConfirmation!.trim().length < 6) {
+      errors.dispensaryConfirmPassword = 'Too short (more than 5)';
+    } else if (dispensaryPasswordConfirmation!.trim() != dispensaryPassword) {
+      errors.dispensaryConfirmPassword = 'Password is not identical';
     } else {
-      errors.confirmPassword = null;
+      errors.dispensaryConfirmPassword = null;
+    }
+  }
+
+  /////////////*** CONFIRM PASSWORD  ***//////////////////////
+  /////////////*** EMAIL  ***//////////////////////
+
+  @action
+  void validateConsumerEmail(_) {
+    final consumerEmail = this.consumerEmail!.trim();
+    if (consumerEmail.isEmpty) {
+      errors.consumerEmail = "Email can't be empty";
+    } else if (!RegExp(emailRegExp).hasMatch(consumerEmail)) {
+      errors.consumerEmail = 'Invalid email address';
+    } else {
+      errors.consumerEmail = null;
     }
   }
 
   @action
-  void validateEmail(_) {
-    final email = this.email!.trim();
-    if (email.isEmpty) {
-      errors.email = "Email can't be empty";
-    } else if (!RegExp(emailRegExp).hasMatch(email)) {
-      errors.email = 'Invalid email address';
+  void validateDispensaryEmail(_) {
+    final dispensaryEmail = this.dispensaryEmail!.trim();
+    if (dispensaryEmail.isEmpty) {
+      errors.dispensaryEmail = "Email can't be empty";
+    } else if (!RegExp(emailRegExp).hasMatch(dispensaryEmail)) {
+      errors.dispensaryEmail = 'Invalid email address';
     } else {
-      errors.email = null;
+      errors.dispensaryEmail = null;
+    }
+  }
+
+  /////////////*** EMAIL  ***//////////////////////
+  /////////////*** PHONE NUMBER  ***//////////////////////
+
+  @action
+  void validateConsumerPhone(_) {
+    final consumerPhone = consumerPhoneNumber!.trim();
+    if (consumerPhone.isEmpty) {
+      errors.consumerPhone = "Phone number can't be empty";
+    } else if (!consumerPhone.startsWith('+')) {
+      errors.consumerPhone = 'Phone number should start with "+"';
+    } else {
+      errors.consumerPhone = null;
     }
   }
 
   @action
-  void validatePhone(_) {
-    final phone = phoneNumber!.trim();
-    if (phone.isEmpty) {
-      errors.phoneNumber = "Phone number can't be empty";
-    } else if (!phone.startsWith('+')) {
-      errors.phoneNumber = 'Phone number should start with "+"';
+  void validateDispensaryPhone(_) {
+    final dispensaryPhone = dispensaryPhoneNumber!.trim();
+    if (dispensaryPhone.isEmpty) {
+      errors.dispensaryPhone = "Phone number can't be empty";
+    } else if (!dispensaryPhone.startsWith('+')) {
+      errors.dispensaryPhone = 'Phone number should start with "+"';
     } else {
-      errors.phoneNumber = null;
+      errors.dispensaryPhone = null;
     }
   }
 
+  /////////////*** PHONE NUMBER  ***//////////////////////
+
   @action
-  void setupValidations({bool immediately = false}) {
-    if (_disposers.isNotEmpty) {
-      for (final dispose in _disposers) {
+  void setupDispensaryValidations({bool immediately = false}) {
+    if (_dispensaryDisposers.isNotEmpty) {
+      for (final dispose in _dispensaryDisposers) {
         dispose();
       }
     }
-    _disposers = [
-      reaction((_) => firstName, validateFirstName,
+    _dispensaryDisposers = [
+      reaction((_) => dispensaryName, validateDispensaryName,
           fireImmediately: immediately),
-      reaction((_) => lastName, validateLastName, fireImmediately: immediately),
-      reaction((_) => email, validateEmail, fireImmediately: immediately),
-      reaction((_) => password, validatePassword, fireImmediately: immediately),
-      reaction((_) => phoneNumber, validatePhone, fireImmediately: immediately),
-      reaction((_) => passwordConfirmation, validateConfirmPassword,
+      // reaction((_) => dispensaryEmail, validateLastName, fireImmediately: immediately),
+      reaction((_) => dispensaryEmail, validateDispensaryEmail,
+          fireImmediately: immediately),
+      reaction((_) => dispensaryPassword, validateDispensaryPassword,
+          fireImmediately: immediately),
+      reaction((_) => dispensaryPhoneNumber, validateDispensaryPhone,
+          fireImmediately: immediately),
+      reaction((_) => dispensaryPasswordConfirmation,
+          validateDispensaryConfirmPassword,
+          fireImmediately: immediately),
+    ];
+  }
+
+
+  @action
+  void setupConsumerValidations({bool immediately = false}) {
+    if (_consumerDisposers.isNotEmpty) {
+      for (final dispose in _consumerDisposers) {
+        dispose();
+      }
+    }
+    _consumerDisposers = [
+      reaction((_) => consumerName, validateConsumerName,
+          fireImmediately: immediately),
+      reaction((_) => consumerEmail, validateConsumerEmail,
+          fireImmediately: immediately),
+      reaction((_) => consumerPassword, validateConsumerPassword,
+          fireImmediately: immediately),
+      reaction((_) => consumerPhoneNumber, validateConsumerPhone,
+          fireImmediately: immediately),
+      reaction(
+          (_) => consumerPasswordConfirmation, validateConsumerConfirmPassword,
           fireImmediately: immediately),
     ];
   }
 
   @action
-  void changeObscure() {
-    hasObscurePassword = !hasObscurePassword;
+  void changeConsumerObscure() {
+    hasConsumerObscurePassword = !hasConsumerObscurePassword;
+  }
+  @action
+  void changeDispensaryObscure() {
+    hasDispensaryObscurePassword = !hasDispensaryObscurePassword;
   }
 
   @action
@@ -196,32 +319,45 @@ abstract class _RegistrationState with Store {
     agreeToTerms = !agreeToTerms;
   }
 
-  void validateAllSignUpPage() {
-    validateEmail(email);
-    validatePassword(password);
-    validateFirstName(firstName);
-    validateLastName(lastName);
+  // void validateAllSignUpPage() {
+  //   validateEmail(email);
+  //   validatePassword(password);
+  //   validateFirstName(firstName);
+  //   validateLastName(lastName);
+  // }
+
+  @action
+  Future<void> resetDispensaryValidationErrors() async {
+    dispensaryName = '';
+    dispensaryEmail = '';
+    dispensaryPhoneNumber = '';
+    dispensaryPassword = '';
+    dispensaryShippingAddress = '';
+    dispensaryAddress = '';
+    dispensaryPasswordConfirmation = '';
   }
 
   @action
-  Future<void> resetValidationErrors() async {
-    firstName = '';
-    lastName = '';
-    email = '';
-    password = '';
-    passwordConfirmation = '';
-    phoneNumber = '';
+  Future<void> resetConsumerValidationErrors() async {
+    consumerName = '';
+    consumerEmail = '';
+    consumerPhoneNumber = '';
+    consumerPassword = '';
+    consumerPasswordConfirmation = '';
   }
 
-  bool checkSignUpTypingOccurred() {
-    return password!.isNotEmpty &&
-        email!.isNotEmpty &&
-        firstName!.isNotEmpty &&
-        lastName!.isNotEmpty;
-  }
+  // bool checkSignUpTypingOccurred() {
+  //   return password!.isNotEmpty &&
+  //       email!.isNotEmpty &&
+  //       firstName!.isNotEmpty &&
+  //       lastName!.isNotEmpty;
+  // }
 
   void dispose() {
-    for (final dispose in _disposers) {
+    for (final dispose in _dispensaryDisposers) {
+      dispose();
+    }
+    for (final dispose in _consumerDisposers) {
       dispose();
     }
   }
@@ -232,32 +368,47 @@ class RegistrationStateErrors = _RegistrationStateErrors
 
 abstract class _RegistrationStateErrors with Store {
   @observable
-  String? firstName;
+  String? dispensaryName;
 
   @observable
-  String? email;
+  String? consumerName;
 
   @observable
-  String? lastName;
+  String? dispensaryEmail;
 
   @observable
-  String? password;
+  String? consumerEmail;
 
   @observable
-  String? confirmPassword;
+  String? dispensaryPhone;
 
   @observable
-  String? county;
+  String? consumerPhone;
 
   @observable
-  String? phoneNumber;
+  String? dispensaryPassword;
+
+  @observable
+  String? dispensaryConfirmPassword;
+
+  @observable
+  String? consumerPassword;
+
+  @observable
+  String? consumerConfirmPassword;
 
   @computed
-  bool get hasSignUpErrors =>
-      email != null ||
-      password != null ||
-      firstName != null ||
-      county != null ||
-      confirmPassword != null ||
-      lastName != null;
+  bool get hasDispenserSignUpErrors =>
+      dispensaryName != null ||
+      dispensaryEmail != null ||
+      dispensaryConfirmPassword != null ||
+      dispensaryPassword != null;
+
+  @computed
+  bool get hasConsumerSignUpErrors =>
+      consumerEmail != null ||
+      consumerPassword != null ||
+      consumerConfirmPassword != null ||
+      consumerPhone != null ||
+      consumerName != null;
 }

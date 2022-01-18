@@ -39,7 +39,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   void initState() {
     super.initState();
     loginState.setupValidations();
-    registrationState.setupValidations();
+    registrationState.setupDispensaryValidations();
 
     _controller.addListener(() => setState(() {}));
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
@@ -69,11 +69,14 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
               ? const Loading(color: Colors.transparent)
               : SingleChildScrollView(
                   child: SizedBox(
-                    height: screenHeight(context),
+                    height: screenHeight(context) * .85,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
                         Expanded(
                           child: PageView(
                             controller: _controller,
@@ -107,19 +110,11 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                                   }
                                                 : null
                                             : !registrationState.errors
-                                                        .hasSignUpErrors &&
-                                                    registrationState
-                                                        .password!.isNotEmpty &&
-                                                    registrationState.firstName!
-                                                        .isNotEmpty &&
-                                                    registrationState
-                                                        .agreedToTermsAndConditions &&
-                                                    registrationState
-                                                        .agreedToSmsNotification
+                                                        .hasDispenserSignUpErrors
                                                 ? () {
                                                     authorize();
                                                     registrationState
-                                                        .resetValidationErrors();
+                                                        .resetDispensaryValidationErrors();
                                                   }
                                                 : null,
                                         label: _controller.hasClients
@@ -152,8 +147,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                                     : 'Have an account?'
                                                 : '',
                                             style: const TextStyle(
-                                                color:
-                                                    AppColors.pastelGreenColor,
+                                                color: AppColors.secondAccent,
                                                 fontSize: 14),
                                             children: <TextSpan>[
                                               TextSpan(
@@ -167,7 +161,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                                           .w700,
                                                       //fontWeight: FontWeight.w600,
                                                       color: AppColors
-                                                          .pastelGreenColor),
+                                                          .secondAccent),
                                                   recognizer:
                                                       TapGestureRecognizer()
                                                         ..onTap =

@@ -18,11 +18,16 @@ class SignUpSection extends StatefulWidget {
 }
 
 class _SignUpSectionState extends State<SignUpSection> {
-  TextEditingController fullNameTextController = TextEditingController();
-  TextEditingController phoneTextController = TextEditingController();
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController passwordTextController = TextEditingController();
-  TextEditingController confirmPasswordTextController = TextEditingController();
+  TextEditingController dispensaryNameTextController = TextEditingController();
+  TextEditingController dispensaryAddressTextController =
+      TextEditingController();
+  TextEditingController dispensaryHoursTextController = TextEditingController();
+  TextEditingController dispensaryEmailTextController = TextEditingController();
+  TextEditingController dispensaryPhoneTextController = TextEditingController();
+  TextEditingController dispensaryPasswordTextController =
+      TextEditingController();
+  TextEditingController dispensaryConfirmPasswordTextController =
+      TextEditingController();
 
   final String _url =
       'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
@@ -46,51 +51,53 @@ class _SignUpSectionState extends State<SignUpSection> {
           children: [
             Observer(
               builder: (_) => TextInput(
-                controller: fullNameTextController,
-                onChanged: (value) => registrationState.lastName = value,
+                controller: dispensaryNameTextController,
+                onChanged: (value) => registrationState.dispensaryName = value,
                 textInputAction: TextInputAction.next,
-                hintText: StringConst.fullName,
-                errorText: registrationState.errors.lastName,
+                hintText: StringConst.dispensaryName,
+                errorText: registrationState.errors.dispensaryName,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: emailTextController,
-                onChanged: (value) => registrationState.email = value,
+                controller: dispensaryEmailTextController,
+                onChanged: (value) => registrationState.dispensaryEmail = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.email,
-                errorText: registrationState.errors.email,
+                errorText: registrationState.errors.dispensaryEmail,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: phoneTextController,
-                onChanged: (value) => registrationState.phoneNumber = value,
+                controller: dispensaryPhoneTextController,
+                onChanged: (value) =>
+                    registrationState.dispensaryPhoneNumber = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.phoneNumber,
                 keyboardType: TextInputType.phone,
-                errorText: registrationState.errors.phoneNumber,
+                errorText: registrationState.errors.dispensaryPhone,
               ),
             ),
             Observer(
               builder: (_) => TextInput(
-                controller: passwordTextController,
-                hasSuffix: true,
-                onChanged: (value) => registrationState.password = value,
-                textInputAction: TextInputAction.next,
-                hintText: StringConst.password,
-                errorText: registrationState.errors.password,
-              ),
-            ),
-            Observer(
-              builder: (_) => TextInput(
-                controller: confirmPasswordTextController,
+                controller: dispensaryPasswordTextController,
                 hasSuffix: true,
                 onChanged: (value) =>
-                    registrationState.passwordConfirmation = value,
+                    registrationState.dispensaryPassword = value,
+                textInputAction: TextInputAction.next,
+                hintText: StringConst.password,
+                errorText: registrationState.errors.dispensaryPassword,
+              ),
+            ),
+            Observer(
+              builder: (_) => TextInput(
+                controller: dispensaryConfirmPasswordTextController,
+                hasSuffix: true,
+                onChanged: (value) =>
+                    registrationState.dispensaryPasswordConfirmation = value,
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.confirmPassword,
-                errorText: registrationState.errors.confirmPassword,
+                errorText: registrationState.errors.dispensaryConfirmPassword,
               ),
             ),
             Padding(
@@ -153,11 +160,13 @@ class _SignUpSectionState extends State<SignUpSection> {
   }
 
   void resetControllers() {
-    phoneTextController.clear();
-    confirmPasswordTextController.clear();
-    passwordTextController.clear();
-    emailTextController.clear();
-    fullNameTextController.clear();
+    dispensaryNameTextController.clear();
+    dispensaryAddressTextController.clear();
+    dispensaryHoursTextController.clear();
+    dispensaryEmailTextController.clear();
+    dispensaryPhoneTextController.clear();
+    dispensaryPasswordTextController.clear();
+    dispensaryConfirmPasswordTextController.clear();
   }
 
   void _launchURL() async => await canLaunch(_url)
