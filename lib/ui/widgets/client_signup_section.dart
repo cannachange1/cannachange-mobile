@@ -110,9 +110,9 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
                       child: Checkbox(
                         activeColor: AppColors.secondAccent,
                         checkColor: AppColors.lightGrayColor,
-                        value: registrationState.agreedToTermsAndConditions,
+                        value: registrationState.agreedToConsumerTermsAndConditions,
                         onChanged: (_) {
-                          registrationState.setAgreedToTermsAndConditions();
+                          registrationState.setAgreedToConsumerTermsAndConditions();
                         },
                       ),
                     ),

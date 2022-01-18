@@ -104,18 +104,16 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                                     _controller.page == 0
                                                 ? !loginState
                                                             .errors.hasErrors &&
-                                                        loginState
-                                                            .password!.isNotEmpty
+                                                        loginState.password!
+                                                            .isNotEmpty
                                                     ? () async {
                                                         authorize();
                                                         loginState
                                                             .resetValues();
                                                       }
                                                     : null
-                                                : !registrationState
-                                                            .errors.hasConsumerSignUpErrors &&
-                                                        registrationState
-                                                            .agreedToSmsNotification
+                                                : !registrationState.errors
+                                                        .hasConsumerSignUpErrors
                                                     ? () {
                                                         authorize();
                                                         registrationState

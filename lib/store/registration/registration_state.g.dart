@@ -236,6 +236,40 @@ mixin _$RegistrationState on _RegistrationState, Store {
     });
   }
 
+  final _$agreedToDispensaryTermsAndConditionsAtom =
+      Atom(name: '_RegistrationState.agreedToDispensaryTermsAndConditions');
+
+  @override
+  bool get agreedToDispensaryTermsAndConditions {
+    _$agreedToDispensaryTermsAndConditionsAtom.reportRead();
+    return super.agreedToDispensaryTermsAndConditions;
+  }
+
+  @override
+  set agreedToDispensaryTermsAndConditions(bool value) {
+    _$agreedToDispensaryTermsAndConditionsAtom
+        .reportWrite(value, super.agreedToDispensaryTermsAndConditions, () {
+      super.agreedToDispensaryTermsAndConditions = value;
+    });
+  }
+
+  final _$agreedToConsumerTermsAndConditionsAtom =
+      Atom(name: '_RegistrationState.agreedToConsumerTermsAndConditions');
+
+  @override
+  bool get agreedToConsumerTermsAndConditions {
+    _$agreedToConsumerTermsAndConditionsAtom.reportRead();
+    return super.agreedToConsumerTermsAndConditions;
+  }
+
+  @override
+  set agreedToConsumerTermsAndConditions(bool value) {
+    _$agreedToConsumerTermsAndConditionsAtom
+        .reportWrite(value, super.agreedToConsumerTermsAndConditions, () {
+      super.agreedToConsumerTermsAndConditions = value;
+    });
+  }
+
   final _$otpAtom = Atom(name: '_RegistrationState.otp');
 
   @override
@@ -263,23 +297,6 @@ mixin _$RegistrationState on _RegistrationState, Store {
   set agreeToTerms(bool value) {
     _$agreeToTermsAtom.reportWrite(value, super.agreeToTerms, () {
       super.agreeToTerms = value;
-    });
-  }
-
-  final _$agreedToTermsAndConditionsAtom =
-      Atom(name: '_RegistrationState.agreedToTermsAndConditions');
-
-  @override
-  bool get agreedToTermsAndConditions {
-    _$agreedToTermsAndConditionsAtom.reportRead();
-    return super.agreedToTermsAndConditions;
-  }
-
-  @override
-  set agreedToTermsAndConditions(bool value) {
-    _$agreedToTermsAndConditionsAtom
-        .reportWrite(value, super.agreedToTermsAndConditions, () {
-      super.agreedToTermsAndConditions = value;
     });
   }
 
@@ -321,11 +338,22 @@ mixin _$RegistrationState on _RegistrationState, Store {
       ActionController(name: '_RegistrationState');
 
   @override
-  void setAgreedToTermsAndConditions() {
+  void setAgreedToDispensaryTermsAndConditions() {
     final _$actionInfo = _$_RegistrationStateActionController.startAction(
-        name: '_RegistrationState.setAgreedToTermsAndConditions');
+        name: '_RegistrationState.setAgreedToDispensaryTermsAndConditions');
     try {
-      return super.setAgreedToTermsAndConditions();
+      return super.setAgreedToDispensaryTermsAndConditions();
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAgreedToConsumerTermsAndConditions() {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.setAgreedToConsumerTermsAndConditions');
+    try {
+      return super.setAgreedToConsumerTermsAndConditions();
     } finally {
       _$_RegistrationStateActionController.endAction(_$actionInfo);
     }
@@ -513,9 +541,10 @@ consumerPasswordConfirmation: ${consumerPasswordConfirmation},
 dispensaryPasswordConfirmation: ${dispensaryPasswordConfirmation},
 hasConsumerObscurePassword: ${hasConsumerObscurePassword},
 hasDispensaryObscurePassword: ${hasDispensaryObscurePassword},
+agreedToDispensaryTermsAndConditions: ${agreedToDispensaryTermsAndConditions},
+agreedToConsumerTermsAndConditions: ${agreedToConsumerTermsAndConditions},
 otp: ${otp},
-agreeToTerms: ${agreeToTerms},
-agreedToTermsAndConditions: ${agreedToTermsAndConditions}
+agreeToTerms: ${agreeToTerms}
     ''';
   }
 }

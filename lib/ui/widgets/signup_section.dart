@@ -111,9 +111,9 @@ class _SignUpSectionState extends State<SignUpSection> {
                       child: Checkbox(
                         activeColor: AppColors.secondAccent,
                         checkColor: AppColors.lightGrayColor,
-                        value: registrationState.agreedToTermsAndConditions,
+                        value: registrationState.agreedToDispensaryTermsAndConditions,
                         onChanged: (_) {
-                          registrationState.setAgreedToTermsAndConditions();
+                          registrationState.setAgreedToDispensaryTermsAndConditions();
                         },
                       ),
                     ),
