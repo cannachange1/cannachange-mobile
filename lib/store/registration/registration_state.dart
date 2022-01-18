@@ -1,18 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
-import 'package:cannachange/model/register_response/register_response.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../constants/regexp.dart';
 import '../../helpers/overlay_helper.dart';
-import '../../router.gr.dart';
 
 part 'registration_state.g.dart';
 
@@ -37,6 +33,8 @@ abstract class _RegistrationState with Store {
   String? dispensaryShippingAddress = '';
   @observable
   String? dispensaryAddress = '';
+  @observable
+  String? dispensaryHours = '';
 
   ///////////////////////////////////
 
@@ -377,6 +375,9 @@ abstract class _RegistrationStateErrors with Store {
   String? dispensaryEmail;
 
   @observable
+  String? dispensaryHours;
+
+  @observable
   String? consumerEmail;
 
   @observable
@@ -387,6 +388,9 @@ abstract class _RegistrationStateErrors with Store {
 
   @observable
   String? dispensaryPassword;
+
+  @observable
+  String? dispensaryAddress;
 
   @observable
   String? dispensaryConfirmPassword;

@@ -2,7 +2,6 @@ import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nil/nil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
@@ -49,6 +48,9 @@ class _SignUpSectionState extends State<SignUpSection> {
         ),
         Column(
           children: [
+            const SizedBox(
+              height: 20,
+            ),
             Observer(
               builder: (_) => TextInput(
                 controller: dispensaryNameTextController,
@@ -56,6 +58,25 @@ class _SignUpSectionState extends State<SignUpSection> {
                 textInputAction: TextInputAction.next,
                 hintText: StringConst.dispensaryName,
                 errorText: registrationState.errors.dispensaryName,
+              ),
+            ),
+            Observer(
+              builder: (_) => TextInput(
+                controller: dispensaryAddressTextController,
+                onChanged: (value) =>
+                    registrationState.dispensaryAddress = value,
+                textInputAction: TextInputAction.next,
+                hintText: StringConst.dispensaryAddress,
+                errorText: registrationState.errors.dispensaryAddress,
+              ),
+            ),
+            Observer(
+              builder: (_) => TextInput(
+                controller: dispensaryHoursTextController,
+                onChanged: (value) => registrationState.dispensaryHours = value,
+                textInputAction: TextInputAction.next,
+                hintText: StringConst.dispensaryHours,
+                errorText: registrationState.errors.dispensaryHours,
               ),
             ),
             Observer(
@@ -111,9 +132,11 @@ class _SignUpSectionState extends State<SignUpSection> {
                       child: Checkbox(
                         activeColor: AppColors.secondAccent,
                         checkColor: AppColors.lightGrayColor,
-                        value: registrationState.agreedToDispensaryTermsAndConditions,
+                        value: registrationState
+                            .agreedToDispensaryTermsAndConditions,
                         onChanged: (_) {
-                          registrationState.setAgreedToDispensaryTermsAndConditions();
+                          registrationState
+                              .setAgreedToDispensaryTermsAndConditions();
                         },
                       ),
                     ),
