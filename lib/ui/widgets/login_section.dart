@@ -1,11 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/login/login_state.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' hide TextInput;
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../router.gr.dart';
 import '../../values/values.dart';
 import 'dialogs/send_email_dialog.dart';
 import 'text_input.dart';
@@ -26,14 +21,6 @@ class _LoginSectionState extends State<LoginSection> {
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
 
-  // // PaymentRepository paymentRepository = PaymentRepository();
-  //
-  // // SupportState _supportState = SupportState.unknown;
-  // // bool? _canCheckBiometrics;
-  // String _authorized = 'Not Authorized';
-  // bool _isAuthenticating = false;
-  // bool isAgreedToUseBiometrics = false;
-  // bool hasSavedToken = false;
 
   @override
   void initState() {

@@ -10,7 +10,6 @@ import 'package:cannachange/ui/widgets/loading.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../helpers/screen_size_accessor.dart';
@@ -70,19 +69,11 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
               ? const Loading(color: Colors.transparent)
               : SingleChildScrollView(
                   child: SizedBox(
-                    height: screenHeight(context),
+                    height: screenHeight(context) * .9,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: screenHeight(context) * .07),
-                          child: SvgPicture.asset(
-                            "assets/images/ic_logo.svg",
-                            width: screenWidth(context) * .45,
-                          ),
-                        ),
                         const SizedBox(
                           height: 40,
                         ),
