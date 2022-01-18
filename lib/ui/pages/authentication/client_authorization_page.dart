@@ -113,7 +113,9 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                                       }
                                                     : null
                                                 : !registrationState.errors
-                                                        .hasConsumerSignUpErrors
+                                                            .hasConsumerSignUpErrors &
+                                                        registrationState
+                                                            .agreedToDispensaryTermsAndConditions
                                                     ? () {
                                                         authorize();
                                                         registrationState

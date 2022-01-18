@@ -104,7 +104,8 @@ class _TextInputState extends State<TextInput> {
             ),
             hintMaxLines: 1,
             hintStyle: TextStyle(
-              color: widget.hintColor ?? AppColors.secondAccent.withOpacity(.85),
+              color:
+                  widget.hintColor ?? AppColors.secondAccent.withOpacity(.85),
               fontSize: 14,
               height: 2,
             ),
@@ -113,7 +114,7 @@ class _TextInputState extends State<TextInput> {
             errorStyle: const TextStyle(
               fontSize: 10,
               height: .4,
-              color: AppColors.dasrkGrey,
+              color: AppColors.errorRed,
             ),
             hintText: widget.hintText,
             suffixIcon: widget.hasSuffix
@@ -125,9 +126,7 @@ class _TextInputState extends State<TextInput> {
                     },
                     iconSize: 16,
                     icon: Icon(
-                      isObscure
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                      isObscure ? Icons.visibility_off : Icons.visibility,
                     ),
                     color: AppColors.secondAccent,
                   )

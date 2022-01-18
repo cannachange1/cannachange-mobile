@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/values/values.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -77,8 +78,8 @@ abstract class _RegistrationState with Store {
   bool agreedToDispensaryTermsAndConditions = false;
   @observable
   bool agreedToConsumerTermsAndConditions = false;
-  ///////////////////////////////////
 
+  ///////////////////////////////////
 
   @observable
   String? otp = '';
@@ -86,10 +87,10 @@ abstract class _RegistrationState with Store {
   @observable
   bool agreeToTerms = false;
 
-
   @action
   void setAgreedToDispensaryTermsAndConditions() {
-    agreedToDispensaryTermsAndConditions = !agreedToDispensaryTermsAndConditions;
+    agreedToDispensaryTermsAndConditions =
+        !agreedToDispensaryTermsAndConditions;
   }
 
   @action
@@ -110,25 +111,25 @@ abstract class _RegistrationState with Store {
 
   @action
   Future<void> register(BuildContext context) async {
-    //  loadingState.startLoading();
-    //   try {
-    //     await authorizationRepo.register({
-    //       "password": password!,
-    //       "firstName": firstName!,
-    //       "login": phoneNumber!.replaceAll('+', '00'),
-    //       "email": email!.trim(),
-    //       "lastName": lastName!,
-    //       "mainSource": describeEnum(mainDocumentCategory!.key)
-    //     });
-    //     resetValidationErrors();
-    //     AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
-    //   } on DioError catch (e) {
-    //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-    //     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-    //     return Future.error(map['title']);
-    //   } finally {
-    //     loadingState.stopLoading();
-    //   }
+    storeState.changeState(StoreStates.loading);
+      try {
+        // await authorizationRepo.register({
+        //   "password": password!,
+        //   "firstName": firstName!,
+        //   "login": phoneNumber!.replaceAll('+', '00'),
+        //   "email": email!.trim(),
+        //   "lastName": lastName!,
+        //   "mainSource": describeEnum(mainDocumentCategory!.key)
+        // });
+        // resetValidationErrors();
+        // AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+      } on Exception catch (e) {
+        storeState.changeState(StoreStates.error);
+        showCustomOverlayNotification(
+          color: AppColors.errorRed,
+          text: e.toString(),
+        );
+      }
   }
 
   /////////////*** NAME  ***//////////////////////
@@ -256,6 +257,29 @@ abstract class _RegistrationState with Store {
   }
 
   /////////////*** PHONE NUMBER  ***//////////////////////
+  /////////////*** DISPENSARY PRIVATE  ***//////////////////////
+
+  @action
+  void validateDispensaryAddress(_) {
+    final dispensaryAddress = this.dispensaryAddress!.trim();
+    if (dispensaryAddress.isEmpty) {
+      errors.dispensaryAddress = "Dispensary address can't be empty";
+    } else {
+      errors.dispensaryAddress = null;
+    }
+  }
+
+  @action
+  void validateDispensaryHours(_) {
+    final dispensaryHours = this.dispensaryHours!.trim();
+    if (dispensaryHours.isEmpty) {
+      errors.dispensaryHours = "Dispensary hours can't be empty";
+    } else {
+      errors.dispensaryHours = null;
+    }
+  }
+
+  /////////////*** DISPENSARY PRIVATE  ***//////////////////////
 
   @action
   void setupDispensaryValidations({bool immediately = false}) {
@@ -267,7 +291,10 @@ abstract class _RegistrationState with Store {
     _dispensaryDisposers = [
       reaction((_) => dispensaryName, validateDispensaryName,
           fireImmediately: immediately),
-      // reaction((_) => dispensaryEmail, validateLastName, fireImmediately: immediately),
+      reaction((_) => dispensaryAddress, validateDispensaryAddress,
+          fireImmediately: immediately),
+      reaction((_) => dispensaryHours, validateDispensaryHours,
+          fireImmediately: immediately),
       reaction((_) => dispensaryEmail, validateDispensaryEmail,
           fireImmediately: immediately),
       reaction((_) => dispensaryPassword, validateDispensaryPassword,
@@ -279,7 +306,6 @@ abstract class _RegistrationState with Store {
           fireImmediately: immediately),
     ];
   }
-
 
   @action
   void setupConsumerValidations({bool immediately = false}) {
@@ -307,6 +333,7 @@ abstract class _RegistrationState with Store {
   void changeConsumerObscure() {
     hasConsumerObscurePassword = !hasConsumerObscurePassword;
   }
+
   @action
   void changeDispensaryObscure() {
     hasDispensaryObscurePassword = !hasDispensaryObscurePassword;
@@ -329,9 +356,10 @@ abstract class _RegistrationState with Store {
     dispensaryName = '';
     dispensaryEmail = '';
     dispensaryPhoneNumber = '';
-    dispensaryPassword = '';
     dispensaryShippingAddress = '';
     dispensaryAddress = '';
+    dispensaryHours = '';
+    dispensaryPassword = '';
     dispensaryPasswordConfirmation = '';
   }
 
@@ -372,10 +400,10 @@ abstract class _RegistrationStateErrors with Store {
   String? consumerName;
 
   @observable
-  String? dispensaryEmail;
+  String? dispensaryHours;
 
   @observable
-  String? dispensaryHours;
+  String? dispensaryEmail;
 
   @observable
   String? consumerEmail;
@@ -387,16 +415,16 @@ abstract class _RegistrationStateErrors with Store {
   String? consumerPhone;
 
   @observable
-  String? dispensaryPassword;
-
-  @observable
   String? dispensaryAddress;
 
   @observable
-  String? dispensaryConfirmPassword;
+  String? dispensaryPassword;
 
   @observable
   String? consumerPassword;
+
+  @observable
+  String? dispensaryConfirmPassword;
 
   @observable
   String? consumerConfirmPassword;

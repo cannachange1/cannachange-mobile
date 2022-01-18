@@ -72,6 +72,22 @@ mixin _$RegistrationState on _RegistrationState, Store {
     });
   }
 
+  final _$dispensaryHoursAtom =
+      Atom(name: '_RegistrationState.dispensaryHours');
+
+  @override
+  String? get dispensaryHours {
+    _$dispensaryHoursAtom.reportRead();
+    return super.dispensaryHours;
+  }
+
+  @override
+  set dispensaryHours(String? value) {
+    _$dispensaryHoursAtom.reportWrite(value, super.dispensaryHours, () {
+      super.dispensaryHours = value;
+    });
+  }
+
   final _$consumerEmailAtom = Atom(name: '_RegistrationState.consumerEmail');
 
   @override
@@ -470,6 +486,28 @@ mixin _$RegistrationState on _RegistrationState, Store {
   }
 
   @override
+  void validateDispensaryAddress(dynamic _) {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.validateDispensaryAddress');
+    try {
+      return super.validateDispensaryAddress(_);
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateDispensaryHours(dynamic _) {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.validateDispensaryHours');
+    try {
+      return super.validateDispensaryHours(_);
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setupDispensaryValidations({bool immediately = false}) {
     final _$actionInfo = _$_RegistrationStateActionController.startAction(
         name: '_RegistrationState.setupDispensaryValidations');
@@ -531,6 +569,7 @@ dispensaryName: ${dispensaryName},
 consumerName: ${consumerName},
 dispensaryShippingAddress: ${dispensaryShippingAddress},
 dispensaryAddress: ${dispensaryAddress},
+dispensaryHours: ${dispensaryHours},
 consumerEmail: ${consumerEmail},
 dispensaryEmail: ${dispensaryEmail},
 consumerPhoneNumber: ${consumerPhoneNumber},
@@ -594,6 +633,22 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
   set consumerName(String? value) {
     _$consumerNameAtom.reportWrite(value, super.consumerName, () {
       super.consumerName = value;
+    });
+  }
+
+  final _$dispensaryHoursAtom =
+      Atom(name: '_RegistrationStateErrors.dispensaryHours');
+
+  @override
+  String? get dispensaryHours {
+    _$dispensaryHoursAtom.reportRead();
+    return super.dispensaryHours;
+  }
+
+  @override
+  set dispensaryHours(String? value) {
+    _$dispensaryHoursAtom.reportWrite(value, super.dispensaryHours, () {
+      super.dispensaryHours = value;
     });
   }
 
@@ -661,6 +716,22 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
     });
   }
 
+  final _$dispensaryAddressAtom =
+      Atom(name: '_RegistrationStateErrors.dispensaryAddress');
+
+  @override
+  String? get dispensaryAddress {
+    _$dispensaryAddressAtom.reportRead();
+    return super.dispensaryAddress;
+  }
+
+  @override
+  set dispensaryAddress(String? value) {
+    _$dispensaryAddressAtom.reportWrite(value, super.dispensaryAddress, () {
+      super.dispensaryAddress = value;
+    });
+  }
+
   final _$dispensaryPasswordAtom =
       Atom(name: '_RegistrationStateErrors.dispensaryPassword');
 
@@ -674,6 +745,22 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
   set dispensaryPassword(String? value) {
     _$dispensaryPasswordAtom.reportWrite(value, super.dispensaryPassword, () {
       super.dispensaryPassword = value;
+    });
+  }
+
+  final _$consumerPasswordAtom =
+      Atom(name: '_RegistrationStateErrors.consumerPassword');
+
+  @override
+  String? get consumerPassword {
+    _$consumerPasswordAtom.reportRead();
+    return super.consumerPassword;
+  }
+
+  @override
+  set consumerPassword(String? value) {
+    _$consumerPasswordAtom.reportWrite(value, super.consumerPassword, () {
+      super.consumerPassword = value;
     });
   }
 
@@ -691,22 +778,6 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
     _$dispensaryConfirmPasswordAtom
         .reportWrite(value, super.dispensaryConfirmPassword, () {
       super.dispensaryConfirmPassword = value;
-    });
-  }
-
-  final _$consumerPasswordAtom =
-      Atom(name: '_RegistrationStateErrors.consumerPassword');
-
-  @override
-  String? get consumerPassword {
-    _$consumerPasswordAtom.reportRead();
-    return super.consumerPassword;
-  }
-
-  @override
-  set consumerPassword(String? value) {
-    _$consumerPasswordAtom.reportWrite(value, super.consumerPassword, () {
-      super.consumerPassword = value;
     });
   }
 
@@ -732,13 +803,15 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
     return '''
 dispensaryName: ${dispensaryName},
 consumerName: ${consumerName},
+dispensaryHours: ${dispensaryHours},
 dispensaryEmail: ${dispensaryEmail},
 consumerEmail: ${consumerEmail},
 dispensaryPhone: ${dispensaryPhone},
 consumerPhone: ${consumerPhone},
+dispensaryAddress: ${dispensaryAddress},
 dispensaryPassword: ${dispensaryPassword},
-dispensaryConfirmPassword: ${dispensaryConfirmPassword},
 consumerPassword: ${consumerPassword},
+dispensaryConfirmPassword: ${dispensaryConfirmPassword},
 consumerConfirmPassword: ${consumerConfirmPassword},
 hasDispenserSignUpErrors: ${hasDispenserSignUpErrors},
 hasConsumerSignUpErrors: ${hasConsumerSignUpErrors}
