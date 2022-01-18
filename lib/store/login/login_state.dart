@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/foundation.dart';
@@ -20,6 +21,7 @@ class LoginState = _LoginState with _$LoginState;
 abstract class _LoginState with Store {
   final authorizationRepo = AuthenticationRepo();
   final LoginStateErrors errors = LoginStateErrors();
+  final StoreState storeState = StoreState();
 
   @observable
   String? password = '';

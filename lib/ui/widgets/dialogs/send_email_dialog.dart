@@ -26,7 +26,7 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: AppColors.mainLogoColor,
+    //  backgroundColor: AppColors.mainLogoColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -41,13 +41,13 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
                 height: 2,
               ),
               const Padding(
-                padding: EdgeInsets.only(right: 12, left: 12),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  'Please enter an email which you have used during registration',
+                  'Please enter the email registered under your cannachange account',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 18,
-                      color: AppColors.lightGrayColor,
+                      color: AppColors.mainLogoColor,
                       fontWeight: FontWeight.w700),
                 ),
               ),
@@ -55,7 +55,7 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
                 controller: emailTextController,
                 textInputAction: TextInputAction.next,
                 hintText: 'Enter your email',
-                hintColor: AppColors.lightGrayColor,
+                hintColor: AppColors.secondAccent,
               ),
               CommonButton(
                 horizontalPadding: 20,
@@ -71,7 +71,7 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
                   ),
                 },
                 text: 'Send',
-                color: AppColors.mainLogoColor,
+                color: AppColors.secondAccent,
               ),
               const SizedBox(
                 height: 2,

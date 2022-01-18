@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:cannachange/store/login/login_state.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/widgets/loading.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -61,144 +63,151 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: Observer(
-          builder: (_) =>
-              // registrationState.loadingState.loading ||
-              //         loginState.loadingState.loading
-              //     ? const Loading(color: Colors.transparent)
-              //     :
-              SingleChildScrollView(
-            child: SizedBox(
-              height: screenHeight(context),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: screenHeight(context) * .07),
-                    child: SvgPicture.asset(
-                      "assets/images/ic_logo.svg",
-                      width: screenWidth(context) * .45,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Expanded(
-                    child: PageView(
-                      controller: _controller,
+          builder: (_) => registrationState.storeState.state ==
+                      StoreStates.loading ||
+                  loginState.storeState.state == StoreStates.loading
+              ? const Loading(color: Colors.transparent)
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    height: screenHeight(context),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        LoginSection(
-                          loginState: loginState,
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: screenHeight(context) * .07),
+                          child: SvgPicture.asset(
+                            "assets/images/ic_logo.svg",
+                            width: screenWidth(context) * .45,
+                          ),
                         ),
-                        const SignUpSection(),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Expanded(
+                          child: PageView(
+                            controller: _controller,
+                            children: [
+                              LoginSection(
+                                loginState: loginState,
+                              ),
+                              const SignUpSection(),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            FutureBuilder(
+                                future: initializeController(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<void> snap) {
+                                  if (snap.hasData) {
+                                    return Observer(
+                                      builder: (_) => Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(20),
+                                          child: MainButton(
+                                            callback: _controller.hasClients &&
+                                                    _controller.page == 0
+                                                ? !loginState
+                                                            .errors.hasErrors &&
+                                                        loginState
+                                                            .password!.isNotEmpty
+                                                    ? () async {
+                                                        authorize();
+                                                        loginState
+                                                            .resetValues();
+                                                      }
+                                                    : null
+                                                : !registrationState
+                                                            .errors.hasSignUpErrors &&
+                                                        registrationState
+                                                            .password!
+                                                            .isNotEmpty &&
+                                                        registrationState
+                                                            .firstName!.isNotEmpty &&
+                                                        registrationState
+                                                            .agreedToTermsAndConditions &&
+                                                        registrationState
+                                                            .agreedToSmsNotification
+                                                    ? () {
+                                                        authorize();
+                                                        registrationState
+                                                            .resetValidationErrors();
+                                                      }
+                                                    : null,
+                                            label: _controller.hasClients
+                                                ? _controller.page == 0
+                                                    ? 'LOGIN'
+                                                    : 'SIGN UP'
+                                                : '',
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return const SizedBox();
+                                  }
+                                }),
+                            FutureBuilder(
+                              future: initializeController(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<void> snap) {
+                                if (snap.hasData) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        if (_controller.page == 0) {}
+                                      },
+                                      child: RichText(
+                                        text: TextSpan(
+                                            text: _controller.hasClients
+                                                ? _controller.page == 0
+                                                    ? 'Do not have an account?'
+                                                    : 'Have an account?'
+                                                : '',
+                                            style: const TextStyle(
+                                                color: AppColors.secondAccent,
+                                                fontSize: 14),
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                  text: _controller.hasClients
+                                                      ? _controller.page == 0
+                                                          ? ' ${'SIGN UP'}'
+                                                          : ' ${'LOGIN'}'
+                                                      : '',
+                                                  style: const TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .w900,
+                                                      color: AppColors
+                                                          .secondAccent),
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap =
+                                                            animateToCurrentPage),
+                                            ]),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return const SizedBox();
+                                }
+                              },
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      FutureBuilder(
-                          future: initializeController(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot<void> snap) {
-                            if (snap.hasData) {
-                              return Observer(
-                                builder: (_) => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20),
-                                    child: MainButton(
-                                      callback: _controller.hasClients &&
-                                              _controller.page == 0
-                                          ? !loginState.errors.hasErrors &&
-                                                  loginState
-                                                      .password!.isNotEmpty
-                                              ? () async {
-                                                  authorize();
-                                                  loginState.resetValues();
-                                                }
-                                              : null
-                                          : !registrationState
-                                                      .errors.hasSignUpErrors &&
-                                                  registrationState
-                                                      .password!.isNotEmpty &&
-                                                  registrationState
-                                                      .firstName!.isNotEmpty &&
-                                                  registrationState
-                                                      .agreedToTermsAndConditions &&
-                                                  registrationState
-                                                      .agreedToSmsNotification
-                                              ? () {
-                                                  authorize();
-                                                  registrationState
-                                                      .resetValidationErrors();
-                                                }
-                                              : null,
-                                      label: _controller.hasClients
-                                          ? _controller.page == 0
-                                              ? 'LOGIN'
-                                              : 'SIGN UP'
-                                          : '',
-                                    ),
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return const SizedBox();
-                            }
-                          }),
-                      FutureBuilder(
-                        future: initializeController(),
-                        builder:
-                            (BuildContext context, AsyncSnapshot<void> snap) {
-                          if (snap.hasData) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: GestureDetector(
-                                onTap: () {
-                                  if (_controller.page == 0) {}
-                                },
-                                child: RichText(
-                                  text: TextSpan(
-                                      text: _controller.hasClients
-                                          ? _controller.page == 0
-                                              ? 'Do not have an account?'
-                                              : 'Have an account?'
-                                          : '',
-                                      style: const TextStyle(
-                                          color: AppColors.secondAccent,
-                                          fontSize: 14),
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: _controller.hasClients
-                                                ? _controller.page == 0
-                                                    ? ' ${'SIGN UP'}'
-                                                    : ' ${'LOGIN'}'
-                                                : '',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w900,
-                                                color: AppColors.secondAccent),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = animateToCurrentPage),
-                                      ]),
-                                ),
-                              ),
-                            );
-                          } else {
-                            return const SizedBox();
-                          }
-                        },
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
-            ),
-          ),
+                ),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/model/register_response/register_response.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ abstract class _RegistrationState with Store {
   final authorizationRepo = AuthenticationRepo();
   List<ReactionDisposer> _disposers = [];
 
-  // final loadingState = LoadingState();
+  final StoreState storeState = StoreState();
   final RegistrationStateErrors errors = RegistrationStateErrors();
 
   @observable

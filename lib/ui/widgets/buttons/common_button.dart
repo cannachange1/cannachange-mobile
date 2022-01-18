@@ -23,7 +23,7 @@ class CommonButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(color),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(4),
                   side: BorderSide(color: color)))),
       child: Padding(
         padding:
