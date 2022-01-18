@@ -8,13 +8,13 @@ class StringConst {
   static const String password = 'Password';
   static const String confirmPassword = 'Confirm password';
   static const String email = 'Email';
-  static const String name = 'First name';
+  static const String fullName = 'First and Last Name';
   static const String surname = 'Last name';
   static const String settings = 'Settings';
   static const String forgotPassword = 'Forgot Your Password?';
   static const String viewDocs = 'View Docs';
   static const String uploadDocs = 'Upload Docs';
-  static const String newGroup = 'New Group';
+  static const String welcomeText = 'Hi there! nice to see you again';
   static const String myProfile = 'My Profile';
   static const String MAP_STYLE = '''
     [

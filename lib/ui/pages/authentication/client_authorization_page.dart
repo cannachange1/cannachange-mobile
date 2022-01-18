@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:cannachange/store/login/login_state.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/widgets/client_signup_section.dart';
+import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/ui/widgets/loading.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
@@ -17,7 +18,6 @@ import '../../../store/dashboard/dashboard_state.dart';
 import '../../../values/values.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/login_section.dart';
-import '../../widgets/signup_section.dart';
 
 class ClientAuthorizationPage extends StatefulWidget {
   const ClientAuthorizationPage({Key? key}) : super(key: key);
@@ -61,6 +61,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        appBar: CustomAppBar(),
         resizeToAvoidBottomInset: true,
         body: Observer(
           builder: (_) => registrationState.storeState.state ==
@@ -92,7 +93,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                               LoginSection(
                                 loginState: loginState,
                               ),
-                              const SignUpSection(),
+                              const ClientSignUpSection(),
                             ],
                           ),
                         ),
@@ -165,7 +166,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                         text: TextSpan(
                                             text: _controller.hasClients
                                                 ? _controller.page == 0
-                                                    ? 'Do not have an account?'
+                                                    ? "Don't have an account yet?"
                                                     : 'Have an account?'
                                                 : '',
                                             style: const TextStyle(

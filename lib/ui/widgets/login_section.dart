@@ -56,10 +56,19 @@ class _LoginSectionState extends State<LoginSection> {
           ),
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         Column(
           children: [
+            const Center(
+              child: Text(
+                StringConst.welcomeText,
+                style: Styles.mainTextStyle,
+              ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
             Observer(
               builder: (_) => TextInput(
                 onChanged: (value) => widget.loginState.setPhoneNumber(value),

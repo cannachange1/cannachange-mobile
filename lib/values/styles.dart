@@ -31,7 +31,7 @@ class Styles {
 
   static const TextStyle mainTextStyle = TextStyle(
     fontWeight: FontWeight.w400,
-    color: AppColors.mainLogoColor,
+    color: AppColors.darkGrey,
     fontSize: 16,
     fontFamily: 'Lato',
   );

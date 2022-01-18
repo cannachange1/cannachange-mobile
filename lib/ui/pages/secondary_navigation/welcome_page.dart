@@ -71,8 +71,7 @@ class WelcomePage extends StatelessWidget {
                       callback: () {
                         StorageHelper.setAccessType('Dispensary');
                         StorageHelper.setFlavor(Flavor.dispensary);
-                        AutoRouter.of(context)
-                            .push(const ClientAuthorizationRoute());
+                        AutoRouter.of(context).push(const AuthorizationRoute());
                       },
                     ),
                     MainButton(
@@ -81,7 +80,8 @@ class WelcomePage extends StatelessWidget {
                       callback: () {
                         StorageHelper.setAccessType('Consumer');
                         StorageHelper.setFlavor(Flavor.consumer);
-                        AutoRouter.of(context).push(const AuthorizationRoute());
+                        AutoRouter.of(context)
+                            .push(const ClientAuthorizationRoute());
                       },
                     )
                   ],

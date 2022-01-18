@@ -2,6 +2,7 @@ import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
+import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,14 +29,6 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 2,
-        backgroundColor: AppColors.lightGrayColor,
-        title: SvgPicture.asset(
-          'assets/images/ic_logo.svg',
-          width: screenWidth(context) * .45,
-        ),
-      ),
       body: TabBarView(
         controller: _controller,
         children: const [
@@ -71,3 +64,4 @@ class _DashboardPageState extends State<DashboardPage>
     );
   }
 }
+

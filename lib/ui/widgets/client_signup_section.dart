@@ -8,16 +8,16 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../values/values.dart';
 import 'text_input.dart';
 
-class SignUpSection extends StatefulWidget {
-  const SignUpSection({
+class ClientSignUpSection extends StatefulWidget {
+  const ClientSignUpSection({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignUpSection> createState() => _SignUpSectionState();
+  State<ClientSignUpSection> createState() => _ClientSignUpSectionState();
 }
 
-class _SignUpSectionState extends State<SignUpSection> {
+class _ClientSignUpSectionState extends State<ClientSignUpSection> {
   TextEditingController fullNameTextController = TextEditingController();
   TextEditingController phoneTextController = TextEditingController();
   TextEditingController emailTextController = TextEditingController();
@@ -44,6 +44,9 @@ class _SignUpSectionState extends State<SignUpSection> {
         ),
         Column(
           children: [
+            const SizedBox(
+              height: 30,
+            ),
             Observer(
               builder: (_) => TextInput(
                 controller: fullNameTextController,
