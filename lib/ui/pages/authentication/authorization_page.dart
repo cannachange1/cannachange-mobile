@@ -4,6 +4,7 @@ import 'package:cannachange/store/login/login_state.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
+import 'package:cannachange/ui/widgets/dialogs/registration_details_shipping_address_dialog.dart';
 import 'package:cannachange/ui/widgets/loading.dart';
 
 import 'package:flutter/gestures.dart';
@@ -105,15 +106,17 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
                                                         .password!.isNotEmpty
                                                 ? () async {
                                                     authorize();
-                                                    loginState.resetValues();
+                                                    //loginState.resetValues();
                                                   }
                                                 : null
                                             : !registrationState.errors
-                                                        .hasDispenserSignUpErrors
+                                                        .hasDispenserSignUpErrors &&
+                                                    registrationState
+                                                        .agreedToDispensaryTermsAndConditions
                                                 ? () {
                                                     authorize();
-                                                    registrationState
-                                                        .resetDispensaryValidationErrors();
+                                                    // registrationState
+                                                    //     .resetDispensaryValidationErrors();
                                                   }
                                                 : null,
                                         label: _controller.hasClients
@@ -210,7 +213,11 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       //   _controller.jumpToPage(1);
       // });
     } else {
-      await registrationState.register(context);
+      showDialog(
+          context: context,
+          useRootNavigator: false,
+          builder: (context) =>  const RegistrationDetailsShippingAddressDialog());
+     // await registrationState.register(context);
     }
   }
 

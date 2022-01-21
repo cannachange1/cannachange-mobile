@@ -39,52 +39,102 @@ mixin _$RegistrationState on _RegistrationState, Store {
     });
   }
 
-  final _$dispensaryShippingAddressAtom =
-      Atom(name: '_RegistrationState.dispensaryShippingAddress');
+  final _$dispensaryShippingAddress1Atom =
+      Atom(name: '_RegistrationState.dispensaryShippingAddress1');
 
   @override
-  String? get dispensaryShippingAddress {
-    _$dispensaryShippingAddressAtom.reportRead();
-    return super.dispensaryShippingAddress;
+  String? get dispensaryShippingAddress1 {
+    _$dispensaryShippingAddress1Atom.reportRead();
+    return super.dispensaryShippingAddress1;
   }
 
   @override
-  set dispensaryShippingAddress(String? value) {
-    _$dispensaryShippingAddressAtom
-        .reportWrite(value, super.dispensaryShippingAddress, () {
-      super.dispensaryShippingAddress = value;
+  set dispensaryShippingAddress1(String? value) {
+    _$dispensaryShippingAddress1Atom
+        .reportWrite(value, super.dispensaryShippingAddress1, () {
+      super.dispensaryShippingAddress1 = value;
     });
   }
 
-  final _$dispensaryAddressAtom =
-      Atom(name: '_RegistrationState.dispensaryAddress');
+  final _$dispensaryShippingAddress2Atom =
+      Atom(name: '_RegistrationState.dispensaryShippingAddress2');
 
   @override
-  String? get dispensaryAddress {
-    _$dispensaryAddressAtom.reportRead();
-    return super.dispensaryAddress;
+  String? get dispensaryShippingAddress2 {
+    _$dispensaryShippingAddress2Atom.reportRead();
+    return super.dispensaryShippingAddress2;
   }
 
   @override
-  set dispensaryAddress(String? value) {
-    _$dispensaryAddressAtom.reportWrite(value, super.dispensaryAddress, () {
-      super.dispensaryAddress = value;
+  set dispensaryShippingAddress2(String? value) {
+    _$dispensaryShippingAddress2Atom
+        .reportWrite(value, super.dispensaryShippingAddress2, () {
+      super.dispensaryShippingAddress2 = value;
     });
   }
 
-  final _$dispensaryHoursAtom =
-      Atom(name: '_RegistrationState.dispensaryHours');
+  final _$dispensaryAddress1Atom =
+      Atom(name: '_RegistrationState.dispensaryAddress1');
 
   @override
-  String? get dispensaryHours {
-    _$dispensaryHoursAtom.reportRead();
-    return super.dispensaryHours;
+  String? get dispensaryAddress1 {
+    _$dispensaryAddress1Atom.reportRead();
+    return super.dispensaryAddress1;
   }
 
   @override
-  set dispensaryHours(String? value) {
-    _$dispensaryHoursAtom.reportWrite(value, super.dispensaryHours, () {
-      super.dispensaryHours = value;
+  set dispensaryAddress1(String? value) {
+    _$dispensaryAddress1Atom.reportWrite(value, super.dispensaryAddress1, () {
+      super.dispensaryAddress1 = value;
+    });
+  }
+
+  final _$dispensaryAddress2Atom =
+      Atom(name: '_RegistrationState.dispensaryAddress2');
+
+  @override
+  String? get dispensaryAddress2 {
+    _$dispensaryAddress2Atom.reportRead();
+    return super.dispensaryAddress2;
+  }
+
+  @override
+  set dispensaryAddress2(String? value) {
+    _$dispensaryAddress2Atom.reportWrite(value, super.dispensaryAddress2, () {
+      super.dispensaryAddress2 = value;
+    });
+  }
+
+  final _$dispensaryStartHoursAtom =
+      Atom(name: '_RegistrationState.dispensaryStartHours');
+
+  @override
+  String? get dispensaryStartHours {
+    _$dispensaryStartHoursAtom.reportRead();
+    return super.dispensaryStartHours;
+  }
+
+  @override
+  set dispensaryStartHours(String? value) {
+    _$dispensaryStartHoursAtom.reportWrite(value, super.dispensaryStartHours,
+        () {
+      super.dispensaryStartHours = value;
+    });
+  }
+
+  final _$dispensaryEndHoursAtom =
+      Atom(name: '_RegistrationState.dispensaryEndHours');
+
+  @override
+  String? get dispensaryEndHours {
+    _$dispensaryEndHoursAtom.reportRead();
+    return super.dispensaryEndHours;
+  }
+
+  @override
+  set dispensaryEndHours(String? value) {
+    _$dispensaryEndHoursAtom.reportWrite(value, super.dispensaryEndHours, () {
+      super.dispensaryEndHours = value;
     });
   }
 
@@ -286,6 +336,23 @@ mixin _$RegistrationState on _RegistrationState, Store {
     });
   }
 
+  final _$isShippingAddressTheSameAtom =
+      Atom(name: '_RegistrationState.isShippingAddressTheSame');
+
+  @override
+  bool get isShippingAddressTheSame {
+    _$isShippingAddressTheSameAtom.reportRead();
+    return super.isShippingAddressTheSame;
+  }
+
+  @override
+  set isShippingAddressTheSame(bool value) {
+    _$isShippingAddressTheSameAtom
+        .reportWrite(value, super.isShippingAddressTheSame, () {
+      super.isShippingAddressTheSame = value;
+    });
+  }
+
   final _$otpAtom = Atom(name: '_RegistrationState.otp');
 
   @override
@@ -359,6 +426,17 @@ mixin _$RegistrationState on _RegistrationState, Store {
         name: '_RegistrationState.setAgreedToDispensaryTermsAndConditions');
     try {
       return super.setAgreedToDispensaryTermsAndConditions();
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAgreedToShipSameAddress() {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.setAgreedToShipSameAddress');
+    try {
+      return super.setAgreedToShipSameAddress();
     } finally {
       _$_RegistrationStateActionController.endAction(_$actionInfo);
     }
@@ -497,11 +575,22 @@ mixin _$RegistrationState on _RegistrationState, Store {
   }
 
   @override
-  void validateDispensaryHours(dynamic _) {
+  void validateDispensaryStartHours(dynamic _) {
     final _$actionInfo = _$_RegistrationStateActionController.startAction(
-        name: '_RegistrationState.validateDispensaryHours');
+        name: '_RegistrationState.validateDispensaryStartHours');
     try {
-      return super.validateDispensaryHours(_);
+      return super.validateDispensaryStartHours(_);
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateDispensaryEndHours(dynamic _) {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.validateDispensaryEndHours');
+    try {
+      return super.validateDispensaryEndHours(_);
     } finally {
       _$_RegistrationStateActionController.endAction(_$actionInfo);
     }
@@ -567,9 +656,12 @@ mixin _$RegistrationState on _RegistrationState, Store {
     return '''
 dispensaryName: ${dispensaryName},
 consumerName: ${consumerName},
-dispensaryShippingAddress: ${dispensaryShippingAddress},
-dispensaryAddress: ${dispensaryAddress},
-dispensaryHours: ${dispensaryHours},
+dispensaryShippingAddress1: ${dispensaryShippingAddress1},
+dispensaryShippingAddress2: ${dispensaryShippingAddress2},
+dispensaryAddress1: ${dispensaryAddress1},
+dispensaryAddress2: ${dispensaryAddress2},
+dispensaryStartHours: ${dispensaryStartHours},
+dispensaryEndHours: ${dispensaryEndHours},
 consumerEmail: ${consumerEmail},
 dispensaryEmail: ${dispensaryEmail},
 consumerPhoneNumber: ${consumerPhoneNumber},
@@ -582,6 +674,7 @@ hasConsumerObscurePassword: ${hasConsumerObscurePassword},
 hasDispensaryObscurePassword: ${hasDispensaryObscurePassword},
 agreedToDispensaryTermsAndConditions: ${agreedToDispensaryTermsAndConditions},
 agreedToConsumerTermsAndConditions: ${agreedToConsumerTermsAndConditions},
+isShippingAddressTheSame: ${isShippingAddressTheSame},
 otp: ${otp},
 agreeToTerms: ${agreeToTerms}
     ''';
@@ -636,19 +729,36 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
     });
   }
 
-  final _$dispensaryHoursAtom =
-      Atom(name: '_RegistrationStateErrors.dispensaryHours');
+  final _$dispensaryStartHoursAtom =
+      Atom(name: '_RegistrationStateErrors.dispensaryStartHours');
 
   @override
-  String? get dispensaryHours {
-    _$dispensaryHoursAtom.reportRead();
-    return super.dispensaryHours;
+  String? get dispensaryStartHours {
+    _$dispensaryStartHoursAtom.reportRead();
+    return super.dispensaryStartHours;
   }
 
   @override
-  set dispensaryHours(String? value) {
-    _$dispensaryHoursAtom.reportWrite(value, super.dispensaryHours, () {
-      super.dispensaryHours = value;
+  set dispensaryStartHours(String? value) {
+    _$dispensaryStartHoursAtom.reportWrite(value, super.dispensaryStartHours,
+        () {
+      super.dispensaryStartHours = value;
+    });
+  }
+
+  final _$dispensaryEndHoursAtom =
+      Atom(name: '_RegistrationStateErrors.dispensaryEndHours');
+
+  @override
+  String? get dispensaryEndHours {
+    _$dispensaryEndHoursAtom.reportRead();
+    return super.dispensaryEndHours;
+  }
+
+  @override
+  set dispensaryEndHours(String? value) {
+    _$dispensaryEndHoursAtom.reportWrite(value, super.dispensaryEndHours, () {
+      super.dispensaryEndHours = value;
     });
   }
 
@@ -803,7 +913,8 @@ mixin _$RegistrationStateErrors on _RegistrationStateErrors, Store {
     return '''
 dispensaryName: ${dispensaryName},
 consumerName: ${consumerName},
-dispensaryHours: ${dispensaryHours},
+dispensaryStartHours: ${dispensaryStartHours},
+dispensaryEndHours: ${dispensaryEndHours},
 dispensaryEmail: ${dispensaryEmail},
 consumerEmail: ${consumerEmail},
 dispensaryPhone: ${dispensaryPhone},

@@ -45,7 +45,7 @@ class PersonalDataRepository {
   Future<void> changePassword(String newPassword, String oldPassword) async {
     try {
       await dio.post(
-        'account/change-password',
+        'mobile/change-password',
         data: {"currentPassword": oldPassword, "newPassword": newPassword},
       );
     } on DioError catch (e) {
@@ -72,7 +72,7 @@ class PersonalDataRepository {
   ) async {
     try {
       await dio.post(
-        'account/reset-password/init',
+        'mobile/reset-password/init',
         data: {"email": email},
       );
     } on DioError catch (e) {
@@ -97,7 +97,7 @@ class PersonalDataRepository {
   Future<void> forgetPasswordFinish(String code, String newPassword) async {
     try {
       await dio.post(
-        'account/reset-password/finish',
+        'mobile/reset-password/finish',
         data: {
           "key": code,
           "newPassword": newPassword,

@@ -1,7 +1,10 @@
+import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
@@ -18,7 +21,9 @@ class SignUpSection extends StatefulWidget {
 
 class _SignUpSectionState extends State<SignUpSection> {
   TextEditingController dispensaryNameTextController = TextEditingController();
-  TextEditingController dispensaryAddressTextController =
+  TextEditingController dispensaryAddress1TextController =
+      TextEditingController();
+  TextEditingController dispensaryAddress2TextController =
       TextEditingController();
   TextEditingController dispensaryHoursTextController = TextEditingController();
   TextEditingController dispensaryEmailTextController = TextEditingController();
@@ -60,25 +65,52 @@ class _SignUpSectionState extends State<SignUpSection> {
                 errorText: registrationState.errors.dispensaryName,
               ),
             ),
-            Observer(
-              builder: (_) => TextInput(
-                controller: dispensaryAddressTextController,
-                onChanged: (value) =>
-                    registrationState.dispensaryAddress = value,
-                textInputAction: TextInputAction.next,
-                hintText: StringConst.dispensaryAddress,
-                errorText: registrationState.errors.dispensaryAddress,
+            Padding(
+              padding: const EdgeInsets.only(right: 40, left: 40, bottom: 10),
+              child: Align(
+                child: Text(
+                  StringConst.dispensaryAddress,
+                  style: TextStyle(
+                      color: AppColors.secondAccent.withOpacity(.85),
+                      height: 2,
+                      fontWeight: FontWeight.w600),
+                ),
+                alignment: Alignment.centerLeft,
               ),
             ),
-            Observer(
-              builder: (_) => TextInput(
-                controller: dispensaryHoursTextController,
-                onChanged: (value) => registrationState.dispensaryHours = value,
-                textInputAction: TextInputAction.next,
-                hintText: StringConst.dispensaryHours,
-                errorText: registrationState.errors.dispensaryHours,
-              ),
+            Row(
+              children: [
+                Observer(
+                  builder: (_) => SizedBox(
+                    width: screenWidth(context) * .5,
+                    child: TextInput(
+                      hasLightWeight: true,
+                      controller: dispensaryAddress1TextController,
+                      onChanged: (value) =>
+                          registrationState.dispensaryAddress1 = value,
+                      textInputAction: TextInputAction.next,
+                      hintText: StringConst.line1,
+                      errorText: registrationState.errors.dispensaryAddress?? '\n',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: screenWidth(context) * .5,
+                  child: TextInput(
+                    hasLightWeight: true,
+                    controller: dispensaryAddress2TextController,
+                    onChanged: (value) =>
+                        registrationState.dispensaryAddress2 = value,
+                    textInputAction: TextInputAction.next,
+                    hintText: StringConst.line2,
+                    errorText: '\n',
+
+                    //errorText: registrationState.errors.dispensaryAddress,
+                  ),
+                ),
+              ],
             ),
+
             Observer(
               builder: (_) => TextInput(
                 controller: dispensaryEmailTextController,
@@ -182,9 +214,11 @@ class _SignUpSectionState extends State<SignUpSection> {
     );
   }
 
+
   void resetControllers() {
     dispensaryNameTextController.clear();
-    dispensaryAddressTextController.clear();
+    dispensaryAddress1TextController.clear();
+    dispensaryAddress2TextController.clear();
     dispensaryHoursTextController.clear();
     dispensaryEmailTextController.clear();
     dispensaryPhoneTextController.clear();

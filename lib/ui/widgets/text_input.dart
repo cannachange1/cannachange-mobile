@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 class TextInput extends StatefulWidget {
   final String hintText;
   final bool hasSuffix;
+  final bool hasLightWeight;
   final TextInputAction? textInputAction;
   final TextEditingController? controller;
   final String? errorText;
@@ -36,6 +37,7 @@ class TextInput extends StatefulWidget {
     this.maxLines,
     this.textColor,
     this.hintColor,
+    this.hasLightWeight = false,
   }) : super(key: key);
 
   @override
@@ -104,16 +106,17 @@ class _TextInputState extends State<TextInput> {
             ),
             hintMaxLines: 1,
             hintStyle: TextStyle(
-              color:
-                  widget.hintColor ?? AppColors.secondAccent.withOpacity(.85),
-              fontSize: 14,
-              height: 2,
-            ),
+                color:
+                    widget.hintColor ?? AppColors.secondAccent.withOpacity(.85),
+                fontSize: 14,
+                height: 2,
+                fontWeight:
+                    widget.hasLightWeight ? FontWeight.w400 : FontWeight.w600),
             errorText: widget.errorText ?? ' ',
             errorMaxLines: 2,
             errorStyle: const TextStyle(
               fontSize: 10,
-              height: .4,
+              height: .8,
               color: AppColors.errorRed,
             ),
             hintText: widget.hintText,

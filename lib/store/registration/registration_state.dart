@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/values/values.dart';
@@ -10,6 +11,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../constants/regexp.dart';
 import '../../helpers/overlay_helper.dart';
+import '../../router.gr.dart';
 
 part 'registration_state.g.dart';
 
@@ -31,11 +33,17 @@ abstract class _RegistrationState with Store {
   ///////////////////////////////////
 
   @observable
-  String? dispensaryShippingAddress = '';
+  String? dispensaryShippingAddress1 = '';
   @observable
-  String? dispensaryAddress = '';
+  String? dispensaryShippingAddress2 = '';
   @observable
-  String? dispensaryHours = '';
+  String? dispensaryAddress1 = '';
+  @observable
+  String? dispensaryAddress2 = '';
+  @observable
+  String? dispensaryStartHours;
+  @observable
+  String? dispensaryEndHours;
 
   ///////////////////////////////////
 
@@ -78,6 +86,8 @@ abstract class _RegistrationState with Store {
   bool agreedToDispensaryTermsAndConditions = false;
   @observable
   bool agreedToConsumerTermsAndConditions = false;
+  @observable
+  bool isShippingAddressTheSame = false;
 
   ///////////////////////////////////
 
@@ -91,6 +101,11 @@ abstract class _RegistrationState with Store {
   void setAgreedToDispensaryTermsAndConditions() {
     agreedToDispensaryTermsAndConditions =
         !agreedToDispensaryTermsAndConditions;
+  }
+
+  @action
+  void setAgreedToShipSameAddress() {
+    isShippingAddressTheSame = !isShippingAddressTheSame;
   }
 
   @action
@@ -112,24 +127,22 @@ abstract class _RegistrationState with Store {
   @action
   Future<void> register(BuildContext context) async {
     storeState.changeState(StoreStates.loading);
-      try {
-        // await authorizationRepo.register({
-        //   "password": password!,
-        //   "firstName": firstName!,
-        //   "login": phoneNumber!.replaceAll('+', '00'),
-        //   "email": email!.trim(),
-        //   "lastName": lastName!,
-        //   "mainSource": describeEnum(mainDocumentCategory!.key)
-        // });
-        // resetValidationErrors();
-        // AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
-      } on Exception catch (e) {
-        storeState.changeState(StoreStates.error);
-        showCustomOverlayNotification(
-          color: AppColors.errorRed,
-          text: e.toString(),
-        );
-      }
+    try {
+      await authorizationRepo.registerDispensary({
+        "name": dispensaryName!,
+        "password": dispensaryPassword!,
+        "phoneNumber": dispensaryPhoneNumber!,
+        "email": dispensaryEmail!.trim(),
+        "startHour": dispensaryStartHours!,
+        "endHour": dispensaryEndHours!,
+        "address1": dispensaryAddress1!,
+        "address2": dispensaryAddress2!
+      });
+      resetDispensaryValidationErrors();
+      AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+    }
   }
 
   /////////////*** NAME  ***//////////////////////
@@ -261,7 +274,7 @@ abstract class _RegistrationState with Store {
 
   @action
   void validateDispensaryAddress(_) {
-    final dispensaryAddress = this.dispensaryAddress!.trim();
+    final dispensaryAddress = dispensaryAddress1!.trim();
     if (dispensaryAddress.isEmpty) {
       errors.dispensaryAddress = "Dispensary address can't be empty";
     } else {
@@ -270,12 +283,22 @@ abstract class _RegistrationState with Store {
   }
 
   @action
-  void validateDispensaryHours(_) {
-    final dispensaryHours = this.dispensaryHours!.trim();
+  void validateDispensaryStartHours(_) {
+    final dispensaryHours = dispensaryStartHours!.trim();
     if (dispensaryHours.isEmpty) {
-      errors.dispensaryHours = "Dispensary hours can't be empty";
+      errors.dispensaryStartHours = "Dispensary hours can't be empty";
     } else {
-      errors.dispensaryHours = null;
+      errors.dispensaryStartHours = null;
+    }
+  }
+
+  @action
+  void validateDispensaryEndHours(_) {
+    final dispensaryHours = dispensaryEndHours!.trim();
+    if (dispensaryHours.isEmpty) {
+      errors.dispensaryEndHours = "Dispensary hours can't be empty";
+    } else {
+      errors.dispensaryEndHours = null;
     }
   }
 
@@ -291,9 +314,11 @@ abstract class _RegistrationState with Store {
     _dispensaryDisposers = [
       reaction((_) => dispensaryName, validateDispensaryName,
           fireImmediately: immediately),
-      reaction((_) => dispensaryAddress, validateDispensaryAddress,
+      reaction((_) => dispensaryAddress1, validateDispensaryAddress,
           fireImmediately: immediately),
-      reaction((_) => dispensaryHours, validateDispensaryHours,
+      reaction((_) => dispensaryStartHours, validateDispensaryStartHours,
+          fireImmediately: immediately),
+      reaction((_) => dispensaryEndHours, validateDispensaryEndHours,
           fireImmediately: immediately),
       reaction((_) => dispensaryEmail, validateDispensaryEmail,
           fireImmediately: immediately),
@@ -356,9 +381,9 @@ abstract class _RegistrationState with Store {
     dispensaryName = '';
     dispensaryEmail = '';
     dispensaryPhoneNumber = '';
-    dispensaryShippingAddress = '';
-    dispensaryAddress = '';
-    dispensaryHours = '';
+    dispensaryAddress1 = '';
+    dispensaryStartHours = '';
+    dispensaryEndHours = '';
     dispensaryPassword = '';
     dispensaryPasswordConfirmation = '';
   }
@@ -400,7 +425,10 @@ abstract class _RegistrationStateErrors with Store {
   String? consumerName;
 
   @observable
-  String? dispensaryHours;
+  String? dispensaryStartHours;
+
+  @observable
+  String? dispensaryEndHours;
 
   @observable
   String? dispensaryEmail;
@@ -433,6 +461,8 @@ abstract class _RegistrationStateErrors with Store {
   bool get hasDispenserSignUpErrors =>
       dispensaryName != null ||
       dispensaryEmail != null ||
+      dispensaryStartHours != null ||
+      dispensaryEndHours != null ||
       dispensaryConfirmPassword != null ||
       dispensaryPassword != null;
 

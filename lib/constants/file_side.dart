@@ -1,4 +1,0 @@
-enum FileSide {
-  FRONT,
-  BACK,
-}

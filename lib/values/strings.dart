@@ -12,6 +12,9 @@ class StringConst {
   static const String fullName = 'First and Last Name';
   static const String dispensaryName = 'Dispensary Name';
   static const String dispensaryAddress = 'Dispensary Address';
+  static const String shippingAddress = 'Shipping Address';
+  static const String line1 = 'Line 1';
+  static const String line2 = 'Line 2';
   static const String surname = 'Last name';
   static const String settings = 'Settings';
   static const String forgotPassword = 'Forgot Your Password?';

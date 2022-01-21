@@ -10,51 +10,57 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i5;
-import 'package:flutter/material.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
 
 import 'ui/pages/authentication/authorization_page.dart' as _i2;
 import 'ui/pages/authentication/client_authorization_page.dart' as _i3;
 import 'ui/pages/main_navigation_consumer/dashboard_page.dart' as _i1;
 import 'ui/pages/secondary_navigation/welcome_page.dart' as _i4;
+import 'ui/pages/verify_account/verify_otp_code_page.dart' as _i5;
 
-class FlutterRouter extends _i5.RootStackRouter {
-  FlutterRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
+class FlutterRouter extends _i6.RootStackRouter {
+  FlutterRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i5.PageFactory> pagesMap = {
+  final Map<String, _i6.PageFactory> pagesMap = {
     DashboardRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.DashboardPage());
     },
     AuthorizationRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.AuthorizationPage());
     },
     ClientAuthorizationRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i3.ClientAuthorizationPage());
     },
     WelcomeRoute.name: (routeData) {
-      return _i5.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i4.WelcomePage());
+    },
+    VerifyOtpCodeRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i5.VerifyOtpCodePage());
     }
   };
 
   @override
-  List<_i5.RouteConfig> get routes => [
-        _i5.RouteConfig(DashboardRoute.name, path: '/dashboard-page'),
-        _i5.RouteConfig(AuthorizationRoute.name, path: '/authorization-page'),
-        _i5.RouteConfig(ClientAuthorizationRoute.name,
+  List<_i6.RouteConfig> get routes => [
+        _i6.RouteConfig(DashboardRoute.name, path: '/dashboard-page'),
+        _i6.RouteConfig(AuthorizationRoute.name, path: '/authorization-page'),
+        _i6.RouteConfig(ClientAuthorizationRoute.name,
             path: '/client-authorization-page'),
-        _i5.RouteConfig(WelcomeRoute.name, path: '/')
+        _i6.RouteConfig(WelcomeRoute.name, path: '/'),
+        _i6.RouteConfig(VerifyOtpCodeRoute.name, path: '/verify-otp-code-page')
       ];
 }
 
 /// generated route for
 /// [_i1.DashboardPage]
-class DashboardRoute extends _i5.PageRouteInfo<void> {
+class DashboardRoute extends _i6.PageRouteInfo<void> {
   const DashboardRoute() : super(DashboardRoute.name, path: '/dashboard-page');
 
   static const String name = 'DashboardRoute';
@@ -62,7 +68,7 @@ class DashboardRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AuthorizationPage]
-class AuthorizationRoute extends _i5.PageRouteInfo<void> {
+class AuthorizationRoute extends _i6.PageRouteInfo<void> {
   const AuthorizationRoute()
       : super(AuthorizationRoute.name, path: '/authorization-page');
 
@@ -71,7 +77,7 @@ class AuthorizationRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ClientAuthorizationPage]
-class ClientAuthorizationRoute extends _i5.PageRouteInfo<void> {
+class ClientAuthorizationRoute extends _i6.PageRouteInfo<void> {
   const ClientAuthorizationRoute()
       : super(ClientAuthorizationRoute.name,
             path: '/client-authorization-page');
@@ -81,8 +87,17 @@ class ClientAuthorizationRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.WelcomePage]
-class WelcomeRoute extends _i5.PageRouteInfo<void> {
+class WelcomeRoute extends _i6.PageRouteInfo<void> {
   const WelcomeRoute() : super(WelcomeRoute.name, path: '/');
 
   static const String name = 'WelcomeRoute';
+}
+
+/// generated route for
+/// [_i5.VerifyOtpCodePage]
+class VerifyOtpCodeRoute extends _i6.PageRouteInfo<void> {
+  const VerifyOtpCodeRoute()
+      : super(VerifyOtpCodeRoute.name, path: '/verify-otp-code-page');
+
+  static const String name = 'VerifyOtpCodeRoute';
 }
