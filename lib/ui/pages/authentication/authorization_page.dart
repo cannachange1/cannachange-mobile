@@ -216,8 +216,9 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       showDialog(
           context: context,
           useRootNavigator: false,
-          builder: (context) =>  const RegistrationDetailsShippingAddressDialog());
-     // await registrationState.register(context);
+          builder: (context) =>
+              const RegistrationDetailsShippingAddressDialog());
+      // await registrationState.register(context);
     }
   }
 

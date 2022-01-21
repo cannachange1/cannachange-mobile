@@ -220,7 +220,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
       //   _controller.jumpToPage(1);
       // });
     } else {
-      await registrationState.register(context);
+      await registrationState.registerConsumer(context);
     }
   }
 

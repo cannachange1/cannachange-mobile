@@ -69,8 +69,9 @@ class _TextInputState extends State<TextInput> {
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           inputFormatters: widget.inputFormatters,
-          minLines: widget.minLines,
+          minLines: widget.minLines?? 1,
           maxLines: widget.maxLines ?? 1,
+
           decoration: InputDecoration(
             disabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(

@@ -52,9 +52,10 @@ class _RegistrationDetailsWorkingHoursDialogState
                   style: TextStyle(
                       color: AppColors.secondAccent.withOpacity(.85),
                       height: 2,
+                      fontSize: 16,
                       fontWeight: FontWeight.w800),
                 ),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
               ),
             ),
             const SizedBox(
@@ -65,30 +66,22 @@ class _RegistrationDetailsWorkingHoursDialogState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    children: [
-                      GestureDetector(
-                        child: Observer(
-                          builder: (_) => Text(
-                            registrationState.dispensaryStartHours ?? 'Open at',
-                            style: TextStyle(
-                              color: AppColors.secondAccent.withOpacity(.85),
-                              height: 2,
-                            ),
-                          ),
+                  GestureDetector(
+                    child: Observer(
+                      builder: (_) => Text(
+                        registrationState.dispensaryStartHours ?? 'Open at',
+                        style: TextStyle(
+                          color: AppColors.secondAccent.withOpacity(.85),
+                          height: 2,
                         ),
-                        onTap: () => _selectTime(context, true),
                       ),
-                      const Divider(
-                        thickness: 2,
-                        color: AppColors.darkGrey,
-                      )
-                    ],
+                    ),
+                    onTap: () => _selectTime(context, true),
                   ),
                   GestureDetector(
                     child: Observer(
                       builder: (_) => Text(
-                        registrationState.dispensaryEndHours ??  'Close at',
+                        registrationState.dispensaryEndHours ?? 'Close at',
                         style: TextStyle(
                           color: AppColors.secondAccent.withOpacity(.85),
                           height: 2,
@@ -101,11 +94,12 @@ class _RegistrationDetailsWorkingHoursDialogState
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             MainButton(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
+                await AutoRouter.of(context).pop();
                 await registrationState.register(context);
               },
               label: 'DONE',

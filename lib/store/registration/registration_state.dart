@@ -125,20 +125,55 @@ abstract class _RegistrationState with Store {
   }
 
   @action
-  Future<void> register(BuildContext context) async {
+  Future<void> registerDispensary(BuildContext context) async {
     storeState.changeState(StoreStates.loading);
     try {
-      await authorizationRepo.registerDispensary({
-        "name": dispensaryName!,
-        "password": dispensaryPassword!,
-        "phoneNumber": dispensaryPhoneNumber!,
-        "email": dispensaryEmail!.trim(),
-        "startHour": dispensaryStartHours!,
-        "endHour": dispensaryEndHours!,
-        "address1": dispensaryAddress1!,
-        "address2": dispensaryAddress2!
+      if (isShippingAddressTheSame) {
+        await authorizationRepo.registerDispensary({
+          "name": dispensaryName!,
+          "password": dispensaryPassword!,
+          "phoneNumber": dispensaryPhoneNumber!,
+          "email": dispensaryEmail!.trim(),
+          "startHour": dispensaryStartHours!,
+          "endHour": dispensaryEndHours!,
+          "address1": dispensaryAddress1!,
+          "address2": dispensaryAddress2!,
+        });
+      } else {
+        await authorizationRepo.registerDispensary({
+          "name": dispensaryName!,
+          "password": dispensaryPassword!,
+          "phoneNumber": dispensaryPhoneNumber!,
+          "email": dispensaryEmail!.trim(),
+          "startHour": dispensaryStartHours!,
+          "endHour": dispensaryEndHours!,
+          "address1": dispensaryAddress1!,
+          "address2": dispensaryAddress2!,
+          "shippingAddress1": dispensaryShippingAddress1!,
+          "shippingAddress2": dispensaryShippingAddress2!,
+        });
+      }
+      storeState.changeState(StoreStates.success);
+      // resetDispensaryValidationErrors();
+      AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  @action
+  Future<void> registerConsumer(BuildContext context) async {
+    storeState.changeState(StoreStates.loading);
+    try {
+      await authorizationRepo.registerConsumer({
+        "name": consumerName!,
+        "password": consumerPassword!,
+        "phoneNumber": consumerPhoneNumber!,
+        "email": consumerEmail!.trim(),
       });
-      resetDispensaryValidationErrors();
+
+      storeState.changeState(StoreStates.success);
+      // resetDispensaryValidationErrors();
       AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);

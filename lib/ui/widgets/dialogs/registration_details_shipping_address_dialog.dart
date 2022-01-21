@@ -135,7 +135,7 @@ class _RegistrationDetailsShippingAddressDialogState
                 callback: registrationState.isShippingAddressTheSame ||
                         registrationState.dispensaryShippingAddress1!.isNotEmpty
                     ? () async {
-                        AutoRouter.of(context).pop();
+                        await AutoRouter.of(context).pop();
                         showDialog(
                             context: context,
                             useRootNavigator: false,
