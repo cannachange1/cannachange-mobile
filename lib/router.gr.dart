@@ -42,8 +42,12 @@ class FlutterRouter extends _i6.RootStackRouter {
           routeData: routeData, child: const _i4.WelcomePage());
     },
     VerifyOtpCodeRoute.name: (routeData) {
+      final args = routeData.argsAs<VerifyOtpCodeRouteArgs>(
+          orElse: () => const VerifyOtpCodeRouteArgs());
       return _i6.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.VerifyOtpCodePage());
+          routeData: routeData,
+          child: _i5.VerifyOtpCodePage(
+              key: args.key, isDispensary: args.isDispensary));
     }
   };
 
@@ -95,9 +99,24 @@ class WelcomeRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.VerifyOtpCodePage]
-class VerifyOtpCodeRoute extends _i6.PageRouteInfo<void> {
-  const VerifyOtpCodeRoute()
-      : super(VerifyOtpCodeRoute.name, path: '/verify-otp-code-page');
+class VerifyOtpCodeRoute extends _i6.PageRouteInfo<VerifyOtpCodeRouteArgs> {
+  VerifyOtpCodeRoute({_i7.Key? key, bool isDispensary = false})
+      : super(VerifyOtpCodeRoute.name,
+            path: '/verify-otp-code-page',
+            args: VerifyOtpCodeRouteArgs(key: key, isDispensary: isDispensary));
 
   static const String name = 'VerifyOtpCodeRoute';
+}
+
+class VerifyOtpCodeRouteArgs {
+  const VerifyOtpCodeRouteArgs({this.key, this.isDispensary = false});
+
+  final _i7.Key? key;
+
+  final bool isDispensary;
+
+  @override
+  String toString() {
+    return 'VerifyOtpCodeRouteArgs{key: $key, isDispensary: $isDispensary}';
+  }
 }

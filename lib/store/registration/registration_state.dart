@@ -155,7 +155,7 @@ abstract class _RegistrationState with Store {
       }
       storeState.changeState(StoreStates.success);
       // resetDispensaryValidationErrors();
-      AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+      AutoRouter.of(context).replace(VerifyOtpCodeRoute(isDispensary: true));
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
     }
@@ -174,7 +174,7 @@ abstract class _RegistrationState with Store {
 
       storeState.changeState(StoreStates.success);
       // resetDispensaryValidationErrors();
-      AutoRouter.of(context).replace(const VerifyOtpCodeRoute());
+      AutoRouter.of(context).replace(VerifyOtpCodeRoute());
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
     }

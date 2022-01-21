@@ -73,6 +73,7 @@ class _TextInputState extends State<TextInput> {
           maxLines: widget.maxLines ?? 1,
 
           decoration: InputDecoration(
+            isDense: true,
             disabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.dasrkGrey,

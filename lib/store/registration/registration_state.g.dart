@@ -392,11 +392,22 @@ mixin _$RegistrationState on _RegistrationState, Store {
         .run(() => super.activateAccount(context, code));
   }
 
-  final _$registerAsyncAction = AsyncAction('_RegistrationState.register');
+  final _$registerDispensaryAsyncAction =
+      AsyncAction('_RegistrationState.registerDispensary');
 
   @override
-  Future<void> register(BuildContext context) {
-    return _$registerAsyncAction.run(() => super.register(context));
+  Future<void> registerDispensary(BuildContext context) {
+    return _$registerDispensaryAsyncAction
+        .run(() => super.registerDispensary(context));
+  }
+
+  final _$registerConsumerAsyncAction =
+      AsyncAction('_RegistrationState.registerConsumer');
+
+  @override
+  Future<void> registerConsumer(BuildContext context) {
+    return _$registerConsumerAsyncAction
+        .run(() => super.registerConsumer(context));
   }
 
   final _$resetDispensaryValidationErrorsAsyncAction =
