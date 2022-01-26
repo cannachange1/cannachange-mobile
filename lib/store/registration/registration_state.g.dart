@@ -387,9 +387,10 @@ mixin _$RegistrationState on _RegistrationState, Store {
       AsyncAction('_RegistrationState.activateAccount');
 
   @override
-  Future<void> activateAccount(BuildContext context, String code) {
+  Future<void> activateAccount(
+      bool isDispensary, BuildContext context, String code) {
     return _$activateAccountAsyncAction
-        .run(() => super.activateAccount(context, code));
+        .run(() => super.activateAccount(isDispensary, context, code));
   }
 
   final _$registerDispensaryAsyncAction =

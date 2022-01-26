@@ -103,12 +103,12 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         cursorColor: AppColors.darkGrey,
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
-                        onCompleted: (_) {
-                          registrationState.activateAccount(
+                        onCompleted: (_) async {
+                         await registrationState.activateAccount(widget.isDispensary,
                               context, textEditingController.text);
                           // textEditingController.clear();
-                          AutoRouter.of(context)
-                              .replace(const AuthorizationRoute());
+                          // AutoRouter.of(context)
+                          //     .replace(const AuthorizationRoute());
                         },
                         onChanged: (value) {},
                         beforeTextPaste: (text) {

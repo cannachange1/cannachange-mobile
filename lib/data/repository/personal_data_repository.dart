@@ -111,8 +111,14 @@ class PersonalDataRepository {
         if (e.error == DioError401) {
           throw UnauhtorizedException();
         }
+        print('aaaaa ${e.response!.data!['title']}');
         throw BadRequestException(
-          message: e.response!.data!['message'],
+          message: e.response!.data!['title'],
+        );
+      }
+      if (is500StatusCodeFamily(e.error)) {
+        throw ServerException(
+          message: e.response!.data!['title'],
         );
       }
     } catch (e) {

@@ -3,7 +3,9 @@ import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
+import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/client/client_home_page.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -114,14 +116,29 @@ abstract class _RegistrationState with Store {
   }
 
   @action
-  Future<void> activateAccount(BuildContext context, String code) async {
+  Future<void> activateAccount(
+      bool isDispensary, BuildContext context, String code) async {
+    storeState.changeState(StoreStates.loading);
     try {
-      await authorizationRepo.sendOTPCode(code);
-    } on DioError catch (e) {
-      final Map<String, dynamic> map = jsonDecode(e.response!.data);
-      showCustomOverlayNotification(color: Colors.red, text: map['title']);
-      return Future.error(map['title']);
-    } finally {}
+      String? token = await authorizationRepo.sendOTPCode(
+          code,
+          isDispensary ? dispensaryEmail! : consumerEmail!,
+          isDispensary ? dispensaryPassword! : consumerPassword!);
+      StorageHelper.setToken(token!);
+
+      storeState.changeState(StoreStates.success);
+      if (isDispensary) {
+        AutoRouter.of(context).replace(const HomeRoute());
+        print('ssssss');
+      } else {
+        AutoRouter.of(context).replace(const ClientHomeRoute());
+        print('gggg');
+
+      }
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+    }
   }
 
   @action
@@ -176,6 +193,7 @@ abstract class _RegistrationState with Store {
       // resetDispensaryValidationErrors();
       AutoRouter.of(context).replace(VerifyOtpCodeRoute());
     } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
     }
   }

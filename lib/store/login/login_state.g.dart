@@ -47,18 +47,18 @@ mixin _$LoginState on _LoginState, Store {
     });
   }
 
-  final _$phoneNumberAtom = Atom(name: '_LoginState.phoneNumber');
+  final _$emailAtom = Atom(name: '_LoginState.email');
 
   @override
-  String get phoneNumber {
-    _$phoneNumberAtom.reportRead();
-    return super.phoneNumber;
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set phoneNumber(String value) {
-    _$phoneNumberAtom.reportWrite(value, super.phoneNumber, () {
-      super.phoneNumber = value;
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -98,11 +98,11 @@ mixin _$LoginState on _LoginState, Store {
   }
 
   @override
-  void setPhoneNumber(String value) {
-    final _$actionInfo = _$_LoginStateActionController.startAction(
-        name: '_LoginState.setPhoneNumber');
+  void setEmail(String value) {
+    final _$actionInfo =
+        _$_LoginStateActionController.startAction(name: '_LoginState.setEmail');
     try {
-      return super.setPhoneNumber(value);
+      return super.setEmail(value);
     } finally {
       _$_LoginStateActionController.endAction(_$actionInfo);
     }
@@ -120,11 +120,11 @@ mixin _$LoginState on _LoginState, Store {
   }
 
   @override
-  void validatePhone(dynamic _) {
+  void validateEmail(dynamic _) {
     final _$actionInfo = _$_LoginStateActionController.startAction(
-        name: '_LoginState.validatePhone');
+        name: '_LoginState.validateEmail');
     try {
-      return super.validatePhone(_);
+      return super.validateEmail(_);
     } finally {
       _$_LoginStateActionController.endAction(_$actionInfo);
     }
@@ -146,7 +146,7 @@ mixin _$LoginState on _LoginState, Store {
     return '''
 password: ${password},
 isObscurePassword: ${isObscurePassword},
-phoneNumber: ${phoneNumber},
+email: ${email},
 currentUser: ${currentUser}
     ''';
   }
@@ -176,18 +176,18 @@ mixin _$LoginStateErrors on _LoginStateErrors, Store {
     });
   }
 
-  final _$phoneNumberAtom = Atom(name: '_LoginStateErrors.phoneNumber');
+  final _$emailAtom = Atom(name: '_LoginStateErrors.email');
 
   @override
-  String? get phoneNumber {
-    _$phoneNumberAtom.reportRead();
-    return super.phoneNumber;
+  String? get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set phoneNumber(String? value) {
-    _$phoneNumberAtom.reportWrite(value, super.phoneNumber, () {
-      super.phoneNumber = value;
+  set email(String? value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -204,7 +204,7 @@ mixin _$LoginStateErrors on _LoginStateErrors, Store {
   String toString() {
     return '''
 password: ${password},
-phoneNumber: ${phoneNumber},
+email: ${email},
 hasErrors: ${hasErrors}
     ''';
   }

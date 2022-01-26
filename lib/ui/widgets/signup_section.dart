@@ -83,6 +83,7 @@ class _SignUpSectionState extends State<SignUpSection> {
                 Observer(
                   builder: (_) => SizedBox(
                     width: screenWidth(context) * .5,
+                    height: 43,
                     child: TextInput(
                       hasLightWeight: true,
                       controller: dispensaryAddress1TextController,
@@ -96,6 +97,7 @@ class _SignUpSectionState extends State<SignUpSection> {
                 ),
                 SizedBox(
                   width: screenWidth(context) * .5,
+                  height: 43,
                   child: TextInput(
                     hasLightWeight: true,
                     controller: dispensaryAddress2TextController,

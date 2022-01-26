@@ -1,11 +1,13 @@
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ClientHomePage extends StatefulWidget {
   const ClientHomePage({Key? key}) : super(key: key);
@@ -22,17 +24,55 @@ class _ClientHomePageState extends State<ClientHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Dispensary Name: ${personalDataState.dispensaryModel!.name}',
-              style: const TextStyle(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AvatarWidget(),
+                QrImage(
+                  data: "1234567890",
+                  version: QrVersions.auto,
+                  size: 120,
+                ),
+              ],
+            ),
+            const Text(
+              'Points Earned',
+              style: TextStyle(
                 fontSize: 16,
                 color: AppColors.darkGrey,
                 fontWeight: FontWeight.w600,
               ),
+            ),
+            ListView.builder(itemCount: 3,
+              itemBuilder: (context, position) {
+                return Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          'name',
+                          style: TextStyle(fontSize: 22.0),
+                        ),
+                        Stack(
+                          children: [
+                            Icon(Icons.filter_none),
+                            Positioned(
+                              child: Text('3'),
+                              right: 2,
+                              top: 2,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             Text(
               'Dispensary Address: ${personalDataState.dispensaryModel!.addressLine1}',
@@ -53,26 +93,7 @@ class _ClientHomePageState extends State<ClientHomePage> {
             const SizedBox(
               height: 40,
             ),
-            const Center(
-              child: Text(
-                'Scan QR',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Center(
-              child: Icon(
-                Icons.qr_code_scanner_rounded,
-                size: 100,
-                color: AppColors.secondAccent,
-              ),
-            ),
+
           ],
         ),
       ),

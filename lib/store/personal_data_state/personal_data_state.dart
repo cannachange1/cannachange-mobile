@@ -145,9 +145,10 @@ abstract class _PersonalDataState with Store {
           await personalDataRepository.forgetPasswordFinish(code, newPassword);
       return res;
     } on Exception catch (e) {
-      storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
-      rethrow;
+      storeState.setErrorMessage(e.toString());
+
+      // rethrow;
     }
   }
 
@@ -159,7 +160,7 @@ abstract class _PersonalDataState with Store {
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
-      rethrow;
+    //  rethrow;
     }
   }
 

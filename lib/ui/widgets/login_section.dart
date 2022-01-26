@@ -58,10 +58,10 @@ class _LoginSectionState extends State<LoginSection> {
             ),
             Observer(
               builder: (_) => TextInput(
-                onChanged: (value) => widget.loginState.setPhoneNumber(value),
+                onChanged: (value) => widget.loginState.setEmail(value),
                 textInputAction: TextInputAction.next,
-                hintText: StringConst.phoneNumber,
-                errorText: widget.loginState.errors.phoneNumber,
+                hintText: StringConst.email,
+                errorText: widget.loginState.errors.email,
               ),
             ),
             const SizedBox(

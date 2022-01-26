@@ -40,7 +40,6 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
     super.initState();
     loginState.setupValidations();
     registrationState.setupConsumerValidations();
-
     _controller.addListener(() => setState(() {}));
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       setState(() {});
@@ -64,8 +63,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
         resizeToAvoidBottomInset: true,
         body: Observer(
           builder: (_) => registrationState.storeState.state ==
-                      StoreStates.loading ||
-                  loginState.storeState.state == StoreStates.loading
+                      StoreStates.loading
               ? const Loading(color: Colors.transparent)
               : SingleChildScrollView(
                   child: SizedBox(
@@ -118,8 +116,6 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                                             .agreedToConsumerTermsAndConditions
                                                     ? () {
                                                         authorize();
-                                                        registrationState
-                                                            .resetConsumerValidationErrors();
                                                       }
                                                     : null,
                                             label: _controller.hasClients
@@ -207,7 +203,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
   @override
   void dispose() {
     loginState.dispose();
-    registrationState.dispose();
+    // registrationState.dispose();
     _controller.dispose();
     super.dispose();
   }

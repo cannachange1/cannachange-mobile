@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:cannachange/constants/regexp.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +13,6 @@ import 'package:mobx/mobx.dart';
 import '../../helpers/overlay_helper.dart';
 import '../../helpers/storage_helper.dart';
 import '../../model/user/user_model.dart';
-
 
 part 'login_state.g.dart';
 
@@ -30,7 +30,7 @@ abstract class _LoginState with Store {
   bool isObscurePassword = true;
 
   @observable
-  String phoneNumber = '';
+  String email = '';
 
   @observable
   UserModel? _currentUser;
@@ -47,8 +47,8 @@ abstract class _LoginState with Store {
   }
 
   @action
-  void setPhoneNumber(String value) {
-    phoneNumber = value;
+  void setEmail(String value) {
+    email = value;
   }
 
   @action
@@ -57,14 +57,14 @@ abstract class _LoginState with Store {
   }
 
   @action
-  void validatePhone(_) {
-    final phone = phoneNumber.trim();
-    if (phone.isEmpty) {
-      errors.phoneNumber = "Phone number can't be empty";
-    } else if (!phone.startsWith('+')) {
-      errors.phoneNumber = 'Phone number should start with "+"';
+  void validateEmail(_) {
+    final email = this.email.trim();
+    if (email.isEmpty) {
+      errors.email = "Email can't be empty";
+    } else if (!RegExp(emailRegExp).hasMatch(email)) {
+      errors.email = 'Invalid email address';
     } else {
-      errors.phoneNumber = null;
+      errors.email = null;
     }
   }
 
@@ -82,7 +82,7 @@ abstract class _LoginState with Store {
 
   void setupValidations() {
     _disposers = [
-      reaction((_) => phoneNumber, validatePhone),
+      reaction((_) => email, validateEmail),
       reaction((_) => password, validatePassword)
     ];
   }
@@ -95,50 +95,52 @@ abstract class _LoginState with Store {
 
   void validateAll() {
     validatePassword(password);
-    validatePhone(phoneNumber);
+    validateEmail(email);
   }
 
   void resetValues() {
     setPassword('');
-    setPhoneNumber('');
+    setEmail('');
   }
-
 
   @action
   Future<void> logIn(BuildContext cont) async {
-  //  try {
-  //     final res = await authorizationRepo.login(
-  //         phoneNumber.replaceAll('+', '00'), password!);
-  //     await StorageHelper.setToken(res.token);
-  //
-  //     // WidgetsBinding.instance!.addPostFrameCallback((_) async {
-  //     //
-  //     // });
-  //     //todo uncomment
-  //     if (res.status != describeEnum(PaymentStatus.PAID) &&
-  //         res.status != describeEnum(PaymentStatus.TRIAL)) {
-  //       print ('stttaaatttuuussss ${describeEnum(PaymentStatus.PAID)}');
-  //       await showDialog(
-  //           context: cont,
-  //           useRootNavigator: false,
-  //           barrierColor: AppColors.settingsBackground.withOpacity(.8),
-  //           builder: (ctx) => PromoteSubscriptionDialog(parentC: cont,));
-  //     } else {
-  //       await AutoRouter.of(cont).replace(const DashboardRoute());
-  //     }
-  //   } on DioError catch (e) {
-  //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-  //     errors.resetValidationErrors();
-  //     loadingState.stopLoading();
-  //     showCustomOverlayNotification(
-  //       color: Colors.red,
-  //       text: map['detail'],
-  //     );
-  //     await StorageHelper.removeAccessToken();
-  //   } finally {
-  //     loadingState.stopLoading();
-  //   }
-   }
+
+
+
+    //  try {
+    //     final res = await authorizationRepo.login(
+    //         phoneNumber.replaceAll('+', '00'), password!);
+    //     await StorageHelper.setToken(res.token);
+    //
+    //     // WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    //     //
+    //     // });
+    //     //todo uncomment
+    //     if (res.status != describeEnum(PaymentStatus.PAID) &&
+    //         res.status != describeEnum(PaymentStatus.TRIAL)) {
+    //       print ('stttaaatttuuussss ${describeEnum(PaymentStatus.PAID)}');
+    //       await showDialog(
+    //           context: cont,
+    //           useRootNavigator: false,
+    //           barrierColor: AppColors.settingsBackground.withOpacity(.8),
+    //           builder: (ctx) => PromoteSubscriptionDialog(parentC: cont,));
+    //     } else {
+    //       await AutoRouter.of(cont).replace(const DashboardRoute());
+    //     }
+    //   } on DioError catch (e) {
+    //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
+    //     errors.resetValidationErrors();
+    //     loadingState.stopLoading();
+    //     showCustomOverlayNotification(
+    //       color: Colors.red,
+    //       text: map['detail'],
+    //     );
+    //     await StorageHelper.removeAccessToken();
+    //   } finally {
+    //     loadingState.stopLoading();
+    //   }
+  }
 }
 
 class LoginStateErrors = _LoginStateErrors with _$LoginStateErrors;
@@ -148,14 +150,14 @@ abstract class _LoginStateErrors with Store {
   String? password;
 
   @observable
-  String? phoneNumber;
+  String? email;
 
   @action
   Future<void> resetValidationErrors() async {
-    phoneNumber = '';
     password = '';
+    email = '';
   }
 
   @computed
-  bool get hasErrors => phoneNumber != null || password != null;
+  bool get hasErrors => email != null || password != null;
 }

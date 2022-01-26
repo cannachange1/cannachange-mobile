@@ -1,5 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
+
+import 'dio_error_codes.dart';
+
 class NoInternetException implements Exception {
   final String? message;
+
   NoInternetException({this.message});
 
   @override
@@ -10,6 +18,7 @@ class NoInternetException implements Exception {
 
 class BadRequestException implements Exception {
   final String? message;
+
   BadRequestException({this.message});
 
   @override
@@ -20,6 +29,7 @@ class BadRequestException implements Exception {
 
 class UnauhtorizedException implements Exception {
   final String? message;
+
   UnauhtorizedException({this.message});
 
   @override
@@ -30,6 +40,7 @@ class UnauhtorizedException implements Exception {
 
 class EntityTooLargeException implements Exception {
   final String? message;
+
   EntityTooLargeException({this.message});
 
   @override
@@ -40,6 +51,7 @@ class EntityTooLargeException implements Exception {
 
 class UserNotFoundException implements Exception {
   final String? message;
+
   UserNotFoundException({this.message});
 
   @override
@@ -50,6 +62,7 @@ class UserNotFoundException implements Exception {
 
 class GoogleSignInException implements Exception {
   final String? message;
+
   GoogleSignInException({this.message});
 
   @override
@@ -60,6 +73,7 @@ class GoogleSignInException implements Exception {
 
 class FacebookSignInException implements Exception {
   final String? message;
+
   FacebookSignInException({this.message});
 
   @override
@@ -70,6 +84,7 @@ class FacebookSignInException implements Exception {
 
 class AppleSignInException implements Exception {
   final String? message;
+
   AppleSignInException({this.message});
 
   @override
@@ -80,6 +95,7 @@ class AppleSignInException implements Exception {
 
 class ServerException implements Exception {
   final String? message;
+
   ServerException({this.message});
 
   @override
@@ -90,10 +106,33 @@ class ServerException implements Exception {
 
 class UnknownException implements Exception {
   final String? message;
+
   UnknownException({this.message});
 
   @override
   String toString() {
     return message ?? 'Unknown Problem!! Contact support if it happens again';
+  }
+}
+
+void handleError(DioError e) {
+  final Map<String, dynamic> map = jsonDecode(e.response!.data);
+
+  if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
+    throw NoInternetException();
+  }
+  if (is400StatusCodeFamily(e.error)) {
+    if (e.error == DioError401) {
+      throw UnauhtorizedException();
+    }
+
+    throw BadRequestException(
+      message: map['title'],
+    );
+  }
+  if (is500StatusCodeFamily(e.error)) {
+    throw ServerException(
+      message: map['title'],
+    );
   }
 }
