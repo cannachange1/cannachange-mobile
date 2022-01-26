@@ -66,7 +66,7 @@ class AuthenticationRepo {
     try {
       final res = await dio.put('mobile/activate',
           data: {"key": code, "email": email, "password": password});
-      return res.data['result']['token'];
+      return res.data['token'];
     } on DioError catch (e) {
       handleError(e);
     } catch (e) {

@@ -1,24 +1,18 @@
-import 'package:cannachange/helpers/screen_size_accessor.dart';
-import 'package:cannachange/model/dispensary/dispensary_model.dart';
-import 'package:cannachange/model/user/user_model.dart';
-import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get_it/get_it.dart';
 
-class ClientSettingsPage extends StatefulWidget {
-  const ClientSettingsPage({Key? key}) : super(key: key);
+class ConsumerSettingsPage extends StatefulWidget {
+  const ConsumerSettingsPage({Key? key}) : super(key: key);
 
   @override
-  State<ClientSettingsPage> createState() => _ClientSettingsPageState();
+  State<ConsumerSettingsPage> createState() => _ConsumerSettingsPageState();
 }
 
-class _ClientSettingsPageState extends State<ClientSettingsPage> {
+class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController addressLine1 = TextEditingController();
   TextEditingController addressLine2 = TextEditingController();

@@ -9,14 +9,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ClientHomePage extends StatefulWidget {
-  const ClientHomePage({Key? key}) : super(key: key);
+class ConsumerHomePage extends StatefulWidget {
+  const ConsumerHomePage({Key? key}) : super(key: key);
 
   @override
-  State<ClientHomePage> createState() => _ClientHomePageState();
+  State<ConsumerHomePage> createState() => _ConsumerHomePageState();
 }
 
-class _ClientHomePageState extends State<ClientHomePage> {
+class _ConsumerHomePageState extends State<ConsumerHomePage> {
   final dashboardState = GetIt.I<DashboardState>();
   final personalDataState = GetIt.I<PersonalDataState>();
 
@@ -48,6 +48,7 @@ class _ClientHomePageState extends State<ClientHomePage> {
               ),
             ),
             ListView.builder(itemCount: 3,
+              shrinkWrap: true,
               itemBuilder: (context, position) {
                 return Card(
                   child: Padding(

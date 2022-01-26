@@ -1,18 +1,13 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
-import 'package:cannachange/ui/pages/main_navigation_consumer/client/client_home_page.dart';
-import 'package:cannachange/values/values.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../constants/regexp.dart';
-import '../../helpers/overlay_helper.dart';
 import '../../router.gr.dart';
 
 part 'registration_state.g.dart';
@@ -128,12 +123,9 @@ abstract class _RegistrationState with Store {
 
       storeState.changeState(StoreStates.success);
       if (isDispensary) {
-        AutoRouter.of(context).replace(const HomeRoute());
-        print('ssssss');
+        AutoRouter.of(context).replace(const DashboardRoute());
       } else {
-        AutoRouter.of(context).replace(const ClientHomeRoute());
-        print('gggg');
-
+        AutoRouter.of(context).replace(const ConsumerDashboardRoute());
       }
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);

@@ -1,21 +1,19 @@
-import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
-import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
-import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
-import 'package:cannachange/ui/widgets/custom_app_bar.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_home_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_settings_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/search_dispensary_page.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+class ConsumerDashboardPage extends StatefulWidget {
+  const ConsumerDashboardPage({Key? key}) : super(key: key);
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<ConsumerDashboardPage> createState() => _ConsumerDashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage>
+class _ConsumerDashboardPageState extends State<ConsumerDashboardPage>
     with SingleTickerProviderStateMixin {
   final dashboardState = GetIt.I<DashboardState>();
   TabController? _controller;
@@ -23,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 2, vsync: this);
+    _controller = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -32,8 +30,9 @@ class _DashboardPageState extends State<DashboardPage>
       body: TabBarView(
         controller: _controller,
         children: const [
-          HomePage(),
-          SettingsPage(),
+          ConsumerHomePage(),
+          ConsumerSettingsPage(),
+          SearchDispensaryPage(),
         ],
       ),
       bottomNavigationBar: TabBar(
@@ -54,6 +53,12 @@ class _DashboardPageState extends State<DashboardPage>
                 color: AppColors.secondAccent,
               )),
           Tab(
+              text: 'Search',
+              icon: Icon(
+                Icons.search,
+                color: AppColors.secondAccent,
+              )),
+          Tab(
               text: 'Settings',
               icon: Icon(
                 Icons.settings,
@@ -64,4 +69,3 @@ class _DashboardPageState extends State<DashboardPage>
     );
   }
 }
-
