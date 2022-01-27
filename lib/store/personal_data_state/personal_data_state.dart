@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
-import 'package:cannachange/model/register_response/register_response.dart';
 import 'package:cannachange/model/user/user_model.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
 part 'personal_data_state.g.dart';
@@ -59,7 +57,7 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryHours(String value) {
     if (value.isNotEmpty) {
-     // dispensaryModel = dispensaryModel!.copyWith(w: value);
+      // dispensaryModel = dispensaryModel!.copyWith(w: value);
     }
   }
 
@@ -160,7 +158,7 @@ abstract class _PersonalDataState with Store {
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
-    //  rethrow;
+      //  rethrow;
     }
   }
 

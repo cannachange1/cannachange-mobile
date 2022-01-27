@@ -1,10 +1,7 @@
-import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cannachange/constants/flavor.dart';
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
@@ -70,7 +69,6 @@ class WelcomePage extends StatelessWidget {
                       icon: Icons.apartment,
                       callback: () {
                         StorageHelper.setAccessType('Dispensary');
-                       // StorageHelper.setFlavor(Flavor.dispensary);
                         AutoRouter.of(context).push(const AuthorizationRoute());
                       },
                     ),

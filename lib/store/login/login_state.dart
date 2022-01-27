@@ -1,18 +1,13 @@
-import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/constants/regexp.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
-import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_dashboard_page.dart';
-import 'package:dio/dio.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../helpers/overlay_helper.dart';
 import '../../helpers/storage_helper.dart';
 import '../../model/user/user_model.dart';
 

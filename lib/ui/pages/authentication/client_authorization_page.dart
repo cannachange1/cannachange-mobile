@@ -63,8 +63,8 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
         resizeToAvoidBottomInset: true,
         body: Observer(
           builder: (_) => registrationState.storeState.state ==
-                      StoreStates.loading || loginState.storeState.state ==
-              StoreStates.loading
+                      StoreStates.loading ||
+                  loginState.storeState.state == StoreStates.loading
               ? const Loading(color: Colors.transparent)
               : SingleChildScrollView(
                   child: SizedBox(
