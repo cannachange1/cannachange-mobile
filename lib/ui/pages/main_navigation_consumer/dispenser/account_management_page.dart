@@ -11,14 +11,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../router.gr.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+class AccountManagementPage extends StatefulWidget {
+  const AccountManagementPage({Key? key}) : super(key: key);
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<AccountManagementPage> createState() => _AccountManagementPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _AccountManagementPageState extends State<AccountManagementPage> {
   PersonalDataState personalDataState = PersonalDataState();
 
   @override
@@ -52,7 +52,6 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar(
-          showBackButton: false,
         ),
         body: SafeArea(
           child: Padding(
@@ -65,17 +64,18 @@ class _SettingsPageState extends State<SettingsPage> {
                     height: 18,
                   ),
                   Card(
+                    color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () => AutoRouter.of(context)
-                          .push(const AccountDetailsRoute()),
-                      leading: const Icon(Icons.account_balance),
-                      title: const Text(
-                        'Account Details',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                      onTap: () {},
+                      leading: const Icon(
+                        Icons.delete,
+                        color: AppColors.lightGrayColor,
                       ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: AppColors.mainLogoColor,
+                      title: const Text(
+                        'Delete account',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.lightGrayColor),
                       ),
                     ),
                   ),
@@ -83,31 +83,18 @@ class _SettingsPageState extends State<SettingsPage> {
                     height: 8,
                   ),
                   Card(
+                    color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () => AutoRouter.of(context)
-                          .push(const AccountManagementRoute()),
-                      leading: const Icon(Icons.manage_accounts_outlined),
-                      title: const Text(
-                        'Account Management',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                      onTap: () {},
+                      leading: const Icon(
+                        Icons.cancel_rounded,
+                        color: AppColors.lightGrayColor,
                       ),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: AppColors.mainLogoColor,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Card(
-                    child: ListTile(
-                      onTap: () => AutoRouter.of(context)
-                          .replace(const AuthorizationRoute()),
-                      leading: const Icon(Icons.exit_to_app_outlined),
                       title: const Text(
-                        'Log out',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                        'Cancel subscription',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.lightGrayColor),
                       ),
                     ),
                   ),

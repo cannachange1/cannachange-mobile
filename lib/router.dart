@@ -3,6 +3,8 @@ import 'package:cannachange/ui/pages/authentication/authorization_page.dart';
 import 'package:cannachange/ui/pages/authentication/client_authorization_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_dashboard_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_home_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_details_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_management_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
 import 'ui/pages/main_navigation_consumer/consumer/consumer_settings_page.dart';
@@ -19,8 +21,10 @@ import 'ui/pages/verify_account/verify_otp_code_page.dart';
     AutoRoute(page: ConsumerHomePage),
     AutoRoute(page: SettingsPage),
     AutoRoute(page: ConsumerSettingsPage),
+    AutoRoute(page: AccountManagementPage),
     AutoRoute(page: DashboardPage),
     AutoRoute(page: ConsumerDashboardPage),
+    AutoRoute(page: AccountDetailsPage),
     AutoRoute(page: ClientAuthorizationPage),
     AutoRoute(page: WelcomePage, initial: true),
     AutoRoute(page: VerifyOtpCodePage),
