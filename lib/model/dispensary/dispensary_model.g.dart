@@ -17,8 +17,8 @@ _$_DispensaryModel _$$_DispensaryModelFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       name: json['name'] as String?,
       phone: json['phone'] as String?,
-      startHours: json['startHours'] as String?,
-      endHours: json['endHours'] as String?,
+      startHour: json['startHour'] as String?,
+      endHour: json['endHour'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
@@ -34,8 +34,8 @@ Map<String, dynamic> _$$_DispensaryModelToJson(_$_DispensaryModel instance) =>
       'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
-      'startHours': instance.startHours,
-      'endHours': instance.endHours,
+      'startHour': instance.startHour,
+      'endHour': instance.endHour,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
     };

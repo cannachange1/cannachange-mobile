@@ -84,21 +84,45 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                   );
                 },
               ),
-              Text(
-                'Dispensary Address: ${personalDataState.dispensaryModel!.address1}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w600,
-                ),
+              Row(
+                children: [
+                  const Text(
+                    'Dispensary Address: ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.darkGrey,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    personalDataState.dispensaryModel!.address1!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.secondAccent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                'Dispensary Hours: ${personalDataState.dispensaryModel!.startHours} - ${personalDataState.dispensaryModel!.endHours}',
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w600,
-                ),
+              Row(
+                children: [
+                  const Text(
+                    'Dispensary Hours:',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.darkGrey,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    '${personalDataState.dispensaryModel!.startHour} - ${personalDataState.dispensaryModel!.endHour}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.secondAccent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 40,

@@ -1,11 +1,12 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/constants/regexp.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/router.gr.dart';
+import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../helpers/storage_helper.dart';
@@ -18,6 +19,7 @@ class LoginState = _LoginState with _$LoginState;
 abstract class _LoginState with Store {
   final authorizationRepo = AuthenticationRepo();
   final LoginStateErrors errors = LoginStateErrors();
+  final personalDataState = GetIt.I<PersonalDataState>();
   final StoreState storeState = StoreState();
 
   @observable
@@ -106,10 +108,18 @@ abstract class _LoginState with Store {
     try {
       final res = await authorizationRepo.login(email, password!);
       await StorageHelper.setToken(res!.token);
-
-      res.role != "DISPENSARY"
-          ? await AutoRouter.of(cont).replace(const ConsumerDashboardRoute())
-          : await AutoRouter.of(cont).replace(const DashboardRoute());
+      if (res.role == 'DISPENSARY') {
+        print('aaaaaaaa ${res.dispensary.toString()}');
+        personalDataState.dispensaryName = res.dispensary!.name!;
+        personalDataState.dispensaryAddress =
+            res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
+        personalDataState.dispensaryWorkingHours =
+            res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
+        await AutoRouter.of(cont).replace(const DashboardRoute());
+      } else {
+        personalDataState.clientModel = res.consumer;
+        await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
+      }
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);

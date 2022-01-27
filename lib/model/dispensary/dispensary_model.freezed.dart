@@ -31,8 +31,8 @@ class _$DispensaryModelTearOff {
       String? email,
       String? name,
       String? phone,
-      String? startHours,
-      String? endHours,
+      String? startHour,
+      String? endHour,
       double? latitude,
       double? longitude}) {
     return _DispensaryModel(
@@ -45,8 +45,8 @@ class _$DispensaryModelTearOff {
       email: email,
       name: name,
       phone: phone,
-      startHours: startHours,
-      endHours: endHours,
+      startHour: startHour,
+      endHour: endHour,
       latitude: latitude,
       longitude: longitude,
     );
@@ -71,8 +71,8 @@ mixin _$DispensaryModel {
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  String? get startHours => throw _privateConstructorUsedError;
-  String? get endHours => throw _privateConstructorUsedError;
+  String? get startHour => throw _privateConstructorUsedError;
+  String? get endHour => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
 
@@ -97,8 +97,8 @@ abstract class $DispensaryModelCopyWith<$Res> {
       String? email,
       String? name,
       String? phone,
-      String? startHours,
-      String? endHours,
+      String? startHour,
+      String? endHour,
       double? latitude,
       double? longitude});
 }
@@ -123,8 +123,8 @@ class _$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? startHours = freezed,
-    Object? endHours = freezed,
+    Object? startHour = freezed,
+    Object? endHour = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
@@ -165,13 +165,13 @@ class _$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      startHours: startHours == freezed
-          ? _value.startHours
-          : startHours // ignore: cast_nullable_to_non_nullable
+      startHour: startHour == freezed
+          ? _value.startHour
+          : startHour // ignore: cast_nullable_to_non_nullable
               as String?,
-      endHours: endHours == freezed
-          ? _value.endHours
-          : endHours // ignore: cast_nullable_to_non_nullable
+      endHour: endHour == freezed
+          ? _value.endHour
+          : endHour // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: latitude == freezed
           ? _value.latitude
@@ -202,8 +202,8 @@ abstract class _$DispensaryModelCopyWith<$Res>
       String? email,
       String? name,
       String? phone,
-      String? startHours,
-      String? endHours,
+      String? startHour,
+      String? endHour,
       double? latitude,
       double? longitude});
 }
@@ -230,8 +230,8 @@ class __$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? startHours = freezed,
-    Object? endHours = freezed,
+    Object? startHour = freezed,
+    Object? endHour = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
@@ -272,13 +272,13 @@ class __$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      startHours: startHours == freezed
-          ? _value.startHours
-          : startHours // ignore: cast_nullable_to_non_nullable
+      startHour: startHour == freezed
+          ? _value.startHour
+          : startHour // ignore: cast_nullable_to_non_nullable
               as String?,
-      endHours: endHours == freezed
-          ? _value.endHours
-          : endHours // ignore: cast_nullable_to_non_nullable
+      endHour: endHour == freezed
+          ? _value.endHour
+          : endHour // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: latitude == freezed
           ? _value.latitude
@@ -305,8 +305,8 @@ class _$_DispensaryModel implements _DispensaryModel {
       this.email,
       this.name,
       this.phone,
-      this.startHours,
-      this.endHours,
+      this.startHour,
+      this.endHour,
       this.latitude,
       this.longitude});
 
@@ -332,9 +332,9 @@ class _$_DispensaryModel implements _DispensaryModel {
   @override
   final String? phone;
   @override
-  final String? startHours;
+  final String? startHour;
   @override
-  final String? endHours;
+  final String? endHour;
   @override
   final double? latitude;
   @override
@@ -342,7 +342,7 @@ class _$_DispensaryModel implements _DispensaryModel {
 
   @override
   String toString() {
-    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, startHours: $startHours, endHours: $endHours, latitude: $latitude, longitude: $longitude)';
+    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, startHour: $startHour, endHour: $endHour, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -372,12 +372,12 @@ class _$_DispensaryModel implements _DispensaryModel {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.startHours, startHours) ||
+            (identical(other.startHour, startHour) ||
                 const DeepCollectionEquality()
-                    .equals(other.startHours, startHours)) &&
-            (identical(other.endHours, endHours) ||
+                    .equals(other.startHour, startHour)) &&
+            (identical(other.endHour, endHour) ||
                 const DeepCollectionEquality()
-                    .equals(other.endHours, endHours)) &&
+                    .equals(other.endHour, endHour)) &&
             (identical(other.latitude, latitude) ||
                 const DeepCollectionEquality()
                     .equals(other.latitude, latitude)) &&
@@ -398,8 +398,8 @@ class _$_DispensaryModel implements _DispensaryModel {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(startHours) ^
-      const DeepCollectionEquality().hash(endHours) ^
+      const DeepCollectionEquality().hash(startHour) ^
+      const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(latitude) ^
       const DeepCollectionEquality().hash(longitude);
 
@@ -425,8 +425,8 @@ abstract class _DispensaryModel implements DispensaryModel {
       String? email,
       String? name,
       String? phone,
-      String? startHours,
-      String? endHours,
+      String? startHour,
+      String? endHour,
       double? latitude,
       double? longitude}) = _$_DispensaryModel;
 
@@ -452,9 +452,9 @@ abstract class _DispensaryModel implements DispensaryModel {
   @override
   String? get phone => throw _privateConstructorUsedError;
   @override
-  String? get startHours => throw _privateConstructorUsedError;
+  String? get startHour => throw _privateConstructorUsedError;
   @override
-  String? get endHours => throw _privateConstructorUsedError;
+  String? get endHour => throw _privateConstructorUsedError;
   @override
   double? get latitude => throw _privateConstructorUsedError;
   @override

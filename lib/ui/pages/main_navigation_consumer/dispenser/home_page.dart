@@ -1,5 +1,7 @@
+import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -18,59 +20,106 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Dispensary Name: ${personalDataState.dispensaryModel!.name}',
-              style: const TextStyle(
-                fontSize: 16,
-                color: AppColors.darkGrey,
-                fontWeight: FontWeight.w600,
+      appBar: CustomAppBar(
+        showBackButton: false,
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    'Dispensary Name: ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.darkGrey,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    personalDataState.dispensaryName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.secondAccent,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Text(
-              'Dispensary Address: ${personalDataState.dispensaryModel!.address1}',
-              style: const TextStyle(
-                fontSize: 16,
-                color: AppColors.darkGrey,
-                fontWeight: FontWeight.w600,
+              const SizedBox(
+                height: 8,
               ),
-            ),
-            Text(
-              'Dispensary Hours: ${personalDataState.dispensaryModel!.endHours}',
-              style: const TextStyle(
-                fontSize: 16,
-                color: AppColors.darkGrey,
-                fontWeight: FontWeight.w600,
+              Row(
+                children: [
+                  const Text(
+                    'Dispensary Address: ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.darkGrey,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    personalDataState.dispensaryAddress,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.secondAccent,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            const Center(
-              child: Text(
-                'Scan QR',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w600,
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    'Dispensary Hours: ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.darkGrey,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    personalDataState.dispensaryWorkingHours!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColors.secondAccent,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Center(
+                child: Text(
+                  'Scan QR',
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: AppColors.mainLogoColor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Center(
-              child: Icon(
-                Icons.qr_code_scanner_rounded,
-                size: 100,
-                color: AppColors.secondAccent,
+              const SizedBox(
+                height: 20,
               ),
-            ),
-          ],
+              Center(
+                child: Icon(
+                  Icons.qr_code_scanner_rounded,
+                  size: screenWidth(context) * .5,
+                  color: AppColors.secondAccent,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
