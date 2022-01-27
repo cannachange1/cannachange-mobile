@@ -23,20 +23,30 @@ class _$DispensaryModelTearOff {
 
   _DispensaryModel call(
       {required int id,
+      String? businessName,
+      String? shippingAddress1,
+      String? shippingAddress2,
+      String? address1,
+      String? address2,
+      String? email,
       String? name,
       String? phone,
-      String? addressLine1,
-      String? addressLine2,
       String? workingHours,
-      String? email}) {
+      double? latitude,
+      double? longitude}) {
     return _DispensaryModel(
       id: id,
+      businessName: businessName,
+      shippingAddress1: shippingAddress1,
+      shippingAddress2: shippingAddress2,
+      address1: address1,
+      address2: address2,
+      email: email,
       name: name,
       phone: phone,
-      addressLine1: addressLine1,
-      addressLine2: addressLine2,
       workingHours: workingHours,
-      email: email,
+      latitude: latitude,
+      longitude: longitude,
     );
   }
 
@@ -51,12 +61,17 @@ const $DispensaryModel = _$DispensaryModelTearOff();
 /// @nodoc
 mixin _$DispensaryModel {
   int get id => throw _privateConstructorUsedError;
+  String? get businessName => throw _privateConstructorUsedError;
+  String? get shippingAddress1 => throw _privateConstructorUsedError;
+  String? get shippingAddress2 => throw _privateConstructorUsedError;
+  String? get address1 => throw _privateConstructorUsedError;
+  String? get address2 => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  String? get addressLine1 => throw _privateConstructorUsedError;
-  String? get addressLine2 => throw _privateConstructorUsedError;
   String? get workingHours => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,12 +86,17 @@ abstract class $DispensaryModelCopyWith<$Res> {
       _$DispensaryModelCopyWithImpl<$Res>;
   $Res call(
       {int id,
+      String? businessName,
+      String? shippingAddress1,
+      String? shippingAddress2,
+      String? address1,
+      String? address2,
+      String? email,
       String? name,
       String? phone,
-      String? addressLine1,
-      String? addressLine2,
       String? workingHours,
-      String? email});
+      double? latitude,
+      double? longitude});
 }
 
 /// @nodoc
@@ -91,18 +111,47 @@ class _$DispensaryModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? businessName = freezed,
+    Object? shippingAddress1 = freezed,
+    Object? shippingAddress2 = freezed,
+    Object? address1 = freezed,
+    Object? address2 = freezed,
+    Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? addressLine1 = freezed,
-    Object? addressLine2 = freezed,
     Object? workingHours = freezed,
-    Object? email = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      businessName: businessName == freezed
+          ? _value.businessName
+          : businessName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingAddress1: shippingAddress1 == freezed
+          ? _value.shippingAddress1
+          : shippingAddress1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingAddress2: shippingAddress2 == freezed
+          ? _value.shippingAddress2
+          : shippingAddress2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address1: address1 == freezed
+          ? _value.address1
+          : address1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address2: address2 == freezed
+          ? _value.address2
+          : address2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -111,22 +160,18 @@ class _$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      addressLine1: addressLine1 == freezed
-          ? _value.addressLine1
-          : addressLine1 // ignore: cast_nullable_to_non_nullable
-              as String?,
-      addressLine2: addressLine2 == freezed
-          ? _value.addressLine2
-          : addressLine2 // ignore: cast_nullable_to_non_nullable
-              as String?,
       workingHours: workingHours == freezed
           ? _value.workingHours
           : workingHours // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+      latitude: latitude == freezed
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: longitude == freezed
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -140,12 +185,17 @@ abstract class _$DispensaryModelCopyWith<$Res>
   @override
   $Res call(
       {int id,
+      String? businessName,
+      String? shippingAddress1,
+      String? shippingAddress2,
+      String? address1,
+      String? address2,
+      String? email,
       String? name,
       String? phone,
-      String? addressLine1,
-      String? addressLine2,
       String? workingHours,
-      String? email});
+      double? latitude,
+      double? longitude});
 }
 
 /// @nodoc
@@ -162,18 +212,47 @@ class __$DispensaryModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? businessName = freezed,
+    Object? shippingAddress1 = freezed,
+    Object? shippingAddress2 = freezed,
+    Object? address1 = freezed,
+    Object? address2 = freezed,
+    Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? addressLine1 = freezed,
-    Object? addressLine2 = freezed,
     Object? workingHours = freezed,
-    Object? email = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_DispensaryModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      businessName: businessName == freezed
+          ? _value.businessName
+          : businessName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingAddress1: shippingAddress1 == freezed
+          ? _value.shippingAddress1
+          : shippingAddress1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shippingAddress2: shippingAddress2 == freezed
+          ? _value.shippingAddress2
+          : shippingAddress2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address1: address1 == freezed
+          ? _value.address1
+          : address1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address2: address2 == freezed
+          ? _value.address2
+          : address2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -182,22 +261,18 @@ class __$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      addressLine1: addressLine1 == freezed
-          ? _value.addressLine1
-          : addressLine1 // ignore: cast_nullable_to_non_nullable
-              as String?,
-      addressLine2: addressLine2 == freezed
-          ? _value.addressLine2
-          : addressLine2 // ignore: cast_nullable_to_non_nullable
-              as String?,
       workingHours: workingHours == freezed
           ? _value.workingHours
           : workingHours // ignore: cast_nullable_to_non_nullable
               as String?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+      latitude: latitude == freezed
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: longitude == freezed
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -207,12 +282,17 @@ class __$DispensaryModelCopyWithImpl<$Res>
 class _$_DispensaryModel implements _DispensaryModel {
   _$_DispensaryModel(
       {required this.id,
+      this.businessName,
+      this.shippingAddress1,
+      this.shippingAddress2,
+      this.address1,
+      this.address2,
+      this.email,
       this.name,
       this.phone,
-      this.addressLine1,
-      this.addressLine2,
       this.workingHours,
-      this.email});
+      this.latitude,
+      this.longitude});
 
   factory _$_DispensaryModel.fromJson(Map<String, dynamic> json) =>
       _$$_DispensaryModelFromJson(json);
@@ -220,21 +300,31 @@ class _$_DispensaryModel implements _DispensaryModel {
   @override
   final int id;
   @override
+  final String? businessName;
+  @override
+  final String? shippingAddress1;
+  @override
+  final String? shippingAddress2;
+  @override
+  final String? address1;
+  @override
+  final String? address2;
+  @override
+  final String? email;
+  @override
   final String? name;
   @override
   final String? phone;
   @override
-  final String? addressLine1;
-  @override
-  final String? addressLine2;
-  @override
   final String? workingHours;
   @override
-  final String? email;
+  final double? latitude;
+  @override
+  final double? longitude;
 
   @override
   String toString() {
-    return 'DispensaryModel(id: $id, name: $name, phone: $phone, addressLine1: $addressLine1, addressLine2: $addressLine2, workingHours: $workingHours, email: $email)';
+    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, workingHours: $workingHours, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -243,33 +333,53 @@ class _$_DispensaryModel implements _DispensaryModel {
         (other is _DispensaryModel &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.businessName, businessName) ||
+                const DeepCollectionEquality()
+                    .equals(other.businessName, businessName)) &&
+            (identical(other.shippingAddress1, shippingAddress1) ||
+                const DeepCollectionEquality()
+                    .equals(other.shippingAddress1, shippingAddress1)) &&
+            (identical(other.shippingAddress2, shippingAddress2) ||
+                const DeepCollectionEquality()
+                    .equals(other.shippingAddress2, shippingAddress2)) &&
+            (identical(other.address1, address1) ||
+                const DeepCollectionEquality()
+                    .equals(other.address1, address1)) &&
+            (identical(other.address2, address2) ||
+                const DeepCollectionEquality()
+                    .equals(other.address2, address2)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.addressLine1, addressLine1) ||
-                const DeepCollectionEquality()
-                    .equals(other.addressLine1, addressLine1)) &&
-            (identical(other.addressLine2, addressLine2) ||
-                const DeepCollectionEquality()
-                    .equals(other.addressLine2, addressLine2)) &&
             (identical(other.workingHours, workingHours) ||
                 const DeepCollectionEquality()
                     .equals(other.workingHours, workingHours)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+            (identical(other.latitude, latitude) ||
+                const DeepCollectionEquality()
+                    .equals(other.latitude, latitude)) &&
+            (identical(other.longitude, longitude) ||
+                const DeepCollectionEquality()
+                    .equals(other.longitude, longitude)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(businessName) ^
+      const DeepCollectionEquality().hash(shippingAddress1) ^
+      const DeepCollectionEquality().hash(shippingAddress2) ^
+      const DeepCollectionEquality().hash(address1) ^
+      const DeepCollectionEquality().hash(address2) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(addressLine1) ^
-      const DeepCollectionEquality().hash(addressLine2) ^
       const DeepCollectionEquality().hash(workingHours) ^
-      const DeepCollectionEquality().hash(email);
+      const DeepCollectionEquality().hash(latitude) ^
+      const DeepCollectionEquality().hash(longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -285,12 +395,17 @@ class _$_DispensaryModel implements _DispensaryModel {
 abstract class _DispensaryModel implements DispensaryModel {
   factory _DispensaryModel(
       {required int id,
+      String? businessName,
+      String? shippingAddress1,
+      String? shippingAddress2,
+      String? address1,
+      String? address2,
+      String? email,
       String? name,
       String? phone,
-      String? addressLine1,
-      String? addressLine2,
       String? workingHours,
-      String? email}) = _$_DispensaryModel;
+      double? latitude,
+      double? longitude}) = _$_DispensaryModel;
 
   factory _DispensaryModel.fromJson(Map<String, dynamic> json) =
       _$_DispensaryModel.fromJson;
@@ -298,17 +413,27 @@ abstract class _DispensaryModel implements DispensaryModel {
   @override
   int get id => throw _privateConstructorUsedError;
   @override
+  String? get businessName => throw _privateConstructorUsedError;
+  @override
+  String? get shippingAddress1 => throw _privateConstructorUsedError;
+  @override
+  String? get shippingAddress2 => throw _privateConstructorUsedError;
+  @override
+  String? get address1 => throw _privateConstructorUsedError;
+  @override
+  String? get address2 => throw _privateConstructorUsedError;
+  @override
+  String? get email => throw _privateConstructorUsedError;
+  @override
   String? get name => throw _privateConstructorUsedError;
   @override
   String? get phone => throw _privateConstructorUsedError;
   @override
-  String? get addressLine1 => throw _privateConstructorUsedError;
-  @override
-  String? get addressLine2 => throw _privateConstructorUsedError;
-  @override
   String? get workingHours => throw _privateConstructorUsedError;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  @override
+  double? get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DispensaryModelCopyWith<_DispensaryModel> get copyWith =>

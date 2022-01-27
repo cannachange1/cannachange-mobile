@@ -1,4 +1,3 @@
-
 import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +23,11 @@ class _AvatarWidgetState extends State<AvatarWidget> {
     super.initState();
     // personalDataState.getUser();
     // personalDataState.selectedImage = null;
-  //  getUserInfo();
+    //  getUserInfo();
   }
 
   Future<void> getUserInfo() async {
-   // name = await StorageHelper.getUserName();
+    // name = await StorageHelper.getUserName();
     surname = await StorageHelper.getUserSurname();
     setState(() {});
   }
@@ -75,29 +74,6 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                       ],
                     ),
                   )
-                : SizedBox()));
-
-    // personalDataState.user != null
-    //     ? SizedBox(
-    //         height: 100,
-    //         width: 100,
-    //         child: ClipRRect(
-    //           borderRadius: BorderRadius.circular(80),
-    //           child: personalDataState.selectedImage != null
-    //               ? Image.file(
-    //                   personalDataState.selectedImage!,
-    //                   fit: BoxFit.cover,
-    //                 )
-    //               : personalDataState.user!.imageUrl == null
-    //                   ? const SizedBox()
-    //                   : Image.network(
-    //                       personalDataState.user!.imageUrl!,
-    //                       fit: BoxFit.cover,
-    //                     ),
-    //         ),
-    //       )
-    // : const SizedBox(),
-    // ),
-    // );
+                : const SizedBox()));
   }
 }

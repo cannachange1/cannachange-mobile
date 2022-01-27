@@ -1,19 +1,24 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'dispensary_model.freezed.dart';
+
 part 'dispensary_model.g.dart';
 
 @freezed
 class DispensaryModel with _$DispensaryModel {
   factory DispensaryModel({
     required int id,
-     String? name,
-     String? phone,
-     String? addressLine1,
-     String? addressLine2,
-     String? workingHours,
-     String? email,
-  //   List<LicenseModel>? licenses,
+    String? businessName,
+    String? shippingAddress1,
+    String? shippingAddress2,
+    String? address1,
+    String? address2,
+    String? email,
+    String? name,
+    String? phone,
+    String? workingHours,
+    double? latitude,
+    double? longitude,
   }) = _DispensaryModel;
 
   factory DispensaryModel.fromJson(Map<String, dynamic> json) =>

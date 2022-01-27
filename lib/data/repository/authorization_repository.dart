@@ -7,27 +7,10 @@ import 'package:get_it/get_it.dart';
 class AuthenticationRepo {
   final dio = GetIt.I<Dio>();
 
-  Future<LoginResponseModel?> loginDispensary(
-      String email, String password) async {
+  Future<LoginResponseModel?> login(String email, String password) async {
     try {
-      final res = await dio.post('authenticate', data: {
-        'username': email,
-        'password': password,
-        "rememberMe": true,
-      });
-      return LoginResponseModel.fromJson(res.data);
-    } on DioError catch (e) {
-      handleError(e);
-    } catch (e) {
-      throw UnknownException();
-    }
-  }
-
-  Future<LoginResponseModel?> loginConsumer(
-      String email, String password) async {
-    try {
-      final res = await dio.post('authenticate', data: {
-        'username': email,
+      final res = await dio.post('mobile/login', data: {
+        'email': email,
         'password': password,
         "rememberMe": true,
       });

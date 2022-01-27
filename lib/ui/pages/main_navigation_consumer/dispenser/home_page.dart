@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              'Dispensary Address: ${personalDataState.dispensaryModel!.addressLine1}',
+              'Dispensary Address: ${personalDataState.dispensaryModel!.address1}',
               style: const TextStyle(
                 fontSize: 16,
                 color: AppColors.darkGrey,

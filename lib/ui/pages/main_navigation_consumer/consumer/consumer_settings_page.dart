@@ -1,4 +1,5 @@
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
@@ -62,11 +63,12 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
             //  } else {
 
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const AvatarWidget(),
                     const SizedBox(
                       height: 30,
                     ),
@@ -125,7 +127,7 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
                       height: 10,
                     ),
                     RoundedTextInput(
-                      controller: emailController,
+                      controller: addressLine2,
                       inputType: TextInputType.text,
                       hintText: 'York, NY 11377',
                       obscureText: false,
@@ -156,36 +158,61 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
                       },
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
-                    MainButton(
-                      callback: () {
-                        // personalDataState.updateUser();
-                      },
-                      label: 'Update Info',
-                      // padding: EdgeInsets.zero,
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    const Text(
-                      'Delete Account',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.secondAccent,
-                        fontWeight: FontWeight.w600,
+                    Center(
+                      child: MainButton(
+                        callback: () {
+                          // personalDataState.updateUser();
+                        },
+                        label: 'Update Info',
+                        // padding: EdgeInsets.zero,
                       ),
                     ),
                     const SizedBox(
-                      height: 100,
+                      height: 50,
                     ),
-                    const Text(
-                      'Cancel Subscription',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.secondAccent,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.delete_forever_rounded,
+                          color: AppColors.secondAccent,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          'Delete Account',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.secondAccent,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.cancel_rounded,
+                          color: AppColors.secondAccent,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          'Cancel Subscription',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.secondAccent,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

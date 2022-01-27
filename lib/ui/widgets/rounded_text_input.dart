@@ -50,18 +50,18 @@ class _RoundedTextInputState extends State<RoundedTextInput> {
       textDirection: widget.textDirection,
       onChanged: widget.onChanged,
       validator: widget.validateText,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w700,
       ),
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
           color: AppColors.secondAccent,
         ),
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.normal,
           color: Colors.white,
@@ -82,7 +82,7 @@ class _RoundedTextInputState extends State<RoundedTextInput> {
             : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.white, width: 1.5),
+          borderSide: const BorderSide(color: Colors.white, width: 1.5),
         ),
       ),
     );

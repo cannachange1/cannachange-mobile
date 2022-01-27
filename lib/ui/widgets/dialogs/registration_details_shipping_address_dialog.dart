@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cannachange/helpers/screen_size_accessor.dart';
-import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/dialogs/registration_details_working_hours_dialog.dart';
@@ -9,11 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 
-import '../../../helpers/overlay_helper.dart';
-import '../buttons/common_button.dart';
-import '../loading.dart';
 import '../text_input.dart';
 
 class RegistrationDetailsShippingAddressDialog extends StatefulWidget {

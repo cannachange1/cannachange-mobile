@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/constants/regexp.dart';
 import 'package:cannachange/data/repository/authorization_repository.dart';
+import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_dashboard_page.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/foundation.dart';
@@ -104,42 +106,17 @@ abstract class _LoginState with Store {
   }
 
   @action
-  Future<void> logIn(BuildContext cont) async {
+  Future<void> logInConsumer(BuildContext cont) async {
+    storeState.changeState(StoreStates.loading);
+    try {
+      final res = await authorizationRepo.login(email, password!);
+      // await StorageHelper.setToken(res.token);
 
-
-
-    //  try {
-    //     final res = await authorizationRepo.login(
-    //         phoneNumber.replaceAll('+', '00'), password!);
-    //     await StorageHelper.setToken(res.token);
-    //
-    //     // WidgetsBinding.instance!.addPostFrameCallback((_) async {
-    //     //
-    //     // });
-    //     //todo uncomment
-    //     if (res.status != describeEnum(PaymentStatus.PAID) &&
-    //         res.status != describeEnum(PaymentStatus.TRIAL)) {
-    //       print ('stttaaatttuuussss ${describeEnum(PaymentStatus.PAID)}');
-    //       await showDialog(
-    //           context: cont,
-    //           useRootNavigator: false,
-    //           barrierColor: AppColors.settingsBackground.withOpacity(.8),
-    //           builder: (ctx) => PromoteSubscriptionDialog(parentC: cont,));
-    //     } else {
-    //       await AutoRouter.of(cont).replace(const DashboardRoute());
-    //     }
-    //   } on DioError catch (e) {
-    //     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-    //     errors.resetValidationErrors();
-    //     loadingState.stopLoading();
-    //     showCustomOverlayNotification(
-    //       color: Colors.red,
-    //       text: map['detail'],
-    //     );
-    //     await StorageHelper.removeAccessToken();
-    //   } finally {
-    //     loadingState.stopLoading();
-    //   }
+      await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
   }
 }
 

@@ -52,7 +52,7 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryName(String value) {
     if (value.isNotEmpty) {
-      dispensaryModel = dispensaryModel!.copyWith(name: value);
+      dispensaryModel = dispensaryModel!.copyWith(businessName: value);
     }
   }
 
@@ -66,14 +66,14 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryAddressLine1(String value) {
     if (value.isNotEmpty) {
-      dispensaryModel = dispensaryModel!.copyWith(addressLine1: value);
+      dispensaryModel = dispensaryModel!.copyWith(address1: value);
     }
   }
 
   @action
   void setDispensaryAddressLine2(String value) {
     if (value.isNotEmpty) {
-      dispensaryModel = dispensaryModel!.copyWith(addressLine2: value);
+      dispensaryModel = dispensaryModel!.copyWith(address1: value);
     }
   }
 

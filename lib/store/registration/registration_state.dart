@@ -120,7 +120,6 @@ abstract class _RegistrationState with Store {
           isDispensary ? dispensaryEmail! : consumerEmail!,
           isDispensary ? dispensaryPassword! : consumerPassword!);
       StorageHelper.setToken(token!);
-
       storeState.changeState(StoreStates.success);
       if (isDispensary) {
         AutoRouter.of(context).replace(const DashboardRoute());
@@ -128,8 +127,8 @@ abstract class _RegistrationState with Store {
         AutoRouter.of(context).replace(const ConsumerDashboardRoute());
       }
     } on Exception catch (e) {
-      storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
     }
   }
 

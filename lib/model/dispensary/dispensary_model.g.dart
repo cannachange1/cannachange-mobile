@@ -9,21 +9,31 @@ part of 'dispensary_model.dart';
 _$_DispensaryModel _$$_DispensaryModelFromJson(Map<String, dynamic> json) =>
     _$_DispensaryModel(
       id: json['id'] as int,
+      businessName: json['businessName'] as String?,
+      shippingAddress1: json['shippingAddress1'] as String?,
+      shippingAddress2: json['shippingAddress2'] as String?,
+      address1: json['address1'] as String?,
+      address2: json['address2'] as String?,
+      email: json['email'] as String?,
       name: json['name'] as String?,
       phone: json['phone'] as String?,
-      addressLine1: json['addressLine1'] as String?,
-      addressLine2: json['addressLine2'] as String?,
       workingHours: json['workingHours'] as String?,
-      email: json['email'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_DispensaryModelToJson(_$_DispensaryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'businessName': instance.businessName,
+      'shippingAddress1': instance.shippingAddress1,
+      'shippingAddress2': instance.shippingAddress2,
+      'address1': instance.address1,
+      'address2': instance.address2,
+      'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
-      'addressLine1': instance.addressLine1,
-      'addressLine2': instance.addressLine2,
       'workingHours': instance.workingHours,
-      'email': instance.email,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

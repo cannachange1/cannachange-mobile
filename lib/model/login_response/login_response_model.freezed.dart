@@ -22,11 +22,15 @@ class _$LoginResponseModelTearOff {
   const _$LoginResponseModelTearOff();
 
   _LoginResponseModel call(
-      {required String token, String? status, MemberResponseModel? member}) {
+      {required String token,
+      String? role,
+      MemberResponseModel? member,
+      List<PointModel>? points}) {
     return _LoginResponseModel(
       token: token,
-      status: status,
+      role: role,
       member: member,
+      points: points,
     );
   }
 
@@ -41,8 +45,9 @@ const $LoginResponseModel = _$LoginResponseModelTearOff();
 /// @nodoc
 mixin _$LoginResponseModel {
   String get token => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
   MemberResponseModel? get member => throw _privateConstructorUsedError;
+  List<PointModel>? get points => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +60,11 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   factory $LoginResponseModelCopyWith(
           LoginResponseModel value, $Res Function(LoginResponseModel) then) =
       _$LoginResponseModelCopyWithImpl<$Res>;
-  $Res call({String token, String? status, MemberResponseModel? member});
+  $Res call(
+      {String token,
+      String? role,
+      MemberResponseModel? member,
+      List<PointModel>? points});
 
   $MemberResponseModelCopyWith<$Res>? get member;
 }
@@ -72,22 +81,27 @@ class _$LoginResponseModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
-    Object? status = freezed,
+    Object? role = freezed,
     Object? member = freezed,
+    Object? points = freezed,
   }) {
     return _then(_value.copyWith(
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
       member: member == freezed
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as MemberResponseModel?,
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<PointModel>?,
     ));
   }
 
@@ -110,7 +124,11 @@ abstract class _$LoginResponseModelCopyWith<$Res>
           _LoginResponseModel value, $Res Function(_LoginResponseModel) then) =
       __$LoginResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({String token, String? status, MemberResponseModel? member});
+  $Res call(
+      {String token,
+      String? role,
+      MemberResponseModel? member,
+      List<PointModel>? points});
 
   @override
   $MemberResponseModelCopyWith<$Res>? get member;
@@ -130,22 +148,27 @@ class __$LoginResponseModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
-    Object? status = freezed,
+    Object? role = freezed,
     Object? member = freezed,
+    Object? points = freezed,
   }) {
     return _then(_LoginResponseModel(
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
       member: member == freezed
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as MemberResponseModel?,
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<PointModel>?,
     ));
   }
 }
@@ -153,7 +176,8 @@ class __$LoginResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LoginResponseModel implements _LoginResponseModel {
-  _$_LoginResponseModel({required this.token, this.status, this.member});
+  _$_LoginResponseModel(
+      {required this.token, this.role, this.member, this.points});
 
   factory _$_LoginResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseModelFromJson(json);
@@ -161,13 +185,15 @@ class _$_LoginResponseModel implements _LoginResponseModel {
   @override
   final String token;
   @override
-  final String? status;
+  final String? role;
   @override
   final MemberResponseModel? member;
+  @override
+  final List<PointModel>? points;
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, status: $status, member: $member)';
+    return 'LoginResponseModel(token: $token, role: $role, member: $member, points: $points)';
   }
 
   @override
@@ -176,18 +202,21 @@ class _$_LoginResponseModel implements _LoginResponseModel {
         (other is _LoginResponseModel &&
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.role, role) ||
+                const DeepCollectionEquality().equals(other.role, role)) &&
             (identical(other.member, member) ||
-                const DeepCollectionEquality().equals(other.member, member)));
+                const DeepCollectionEquality().equals(other.member, member)) &&
+            (identical(other.points, points) ||
+                const DeepCollectionEquality().equals(other.points, points)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(token) ^
-      const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(member);
+      const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(member) ^
+      const DeepCollectionEquality().hash(points);
 
   @JsonKey(ignore: true)
   @override
@@ -203,8 +232,9 @@ class _$_LoginResponseModel implements _LoginResponseModel {
 abstract class _LoginResponseModel implements LoginResponseModel {
   factory _LoginResponseModel(
       {required String token,
-      String? status,
-      MemberResponseModel? member}) = _$_LoginResponseModel;
+      String? role,
+      MemberResponseModel? member,
+      List<PointModel>? points}) = _$_LoginResponseModel;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseModel.fromJson;
@@ -212,9 +242,11 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   @override
   String get token => throw _privateConstructorUsedError;
   @override
-  String? get status => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
   @override
   MemberResponseModel? get member => throw _privateConstructorUsedError;
+  @override
+  List<PointModel>? get points => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginResponseModelCopyWith<_LoginResponseModel> get copyWith =>

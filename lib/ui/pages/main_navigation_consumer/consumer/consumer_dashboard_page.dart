@@ -31,8 +31,8 @@ class _ConsumerDashboardPageState extends State<ConsumerDashboardPage>
         controller: _controller,
         children: const [
           ConsumerHomePage(),
-          ConsumerSettingsPage(),
           SearchDispensaryPage(),
+          ConsumerSettingsPage(),
         ],
       ),
       bottomNavigationBar: TabBar(

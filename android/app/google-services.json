@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "809933482581",
+    "project_id": "cannachange",
+    "storage_bucket": "cannachange.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809933482581:android:e250571f264806a6d542dc",
+        "android_client_info": {
+          "package_name": "com.cannachange.cannachange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809933482581-6549s4dvpooq7g1d291ff9f5q23bjhl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6roXEMGudFu9TSMrHQStWA9Vjv-02jxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809933482581-6549s4dvpooq7g1d291ff9f5q23bjhl3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "809933482581-l9s2drjqftuvh6foalk5o70lhok4vsgb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cannachange.cannachange",
+                "app_store_id": "1596033323"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,11 +22,11 @@ class _$MemberResponseModelTearOff {
   const _$MemberResponseModelTearOff();
 
   _MemberResponseModel call(
-      {int? id, String? email, int? cardNumber, UserModel? user}) {
+      {int? id, String? qrCode, int? wastSaved, UserModel? user}) {
     return _MemberResponseModel(
       id: id,
-      email: email,
-      cardNumber: cardNumber,
+      qrCode: qrCode,
+      wastSaved: wastSaved,
       user: user,
     );
   }
@@ -42,8 +42,8 @@ const $MemberResponseModel = _$MemberResponseModelTearOff();
 /// @nodoc
 mixin _$MemberResponseModel {
   int? get id => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
-  int? get cardNumber => throw _privateConstructorUsedError;
+  String? get qrCode => throw _privateConstructorUsedError;
+  int? get wastSaved => throw _privateConstructorUsedError;
   UserModel? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $MemberResponseModelCopyWith<$Res> {
   factory $MemberResponseModelCopyWith(
           MemberResponseModel value, $Res Function(MemberResponseModel) then) =
       _$MemberResponseModelCopyWithImpl<$Res>;
-  $Res call({int? id, String? email, int? cardNumber, UserModel? user});
+  $Res call({int? id, String? qrCode, int? wastSaved, UserModel? user});
 
   $UserModelCopyWith<$Res>? get user;
 }
@@ -74,8 +74,8 @@ class _$MemberResponseModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? email = freezed,
-    Object? cardNumber = freezed,
+    Object? qrCode = freezed,
+    Object? wastSaved = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
@@ -83,13 +83,13 @@ class _$MemberResponseModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      qrCode: qrCode == freezed
+          ? _value.qrCode
+          : qrCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      cardNumber: cardNumber == freezed
-          ? _value.cardNumber
-          : cardNumber // ignore: cast_nullable_to_non_nullable
+      wastSaved: wastSaved == freezed
+          ? _value.wastSaved
+          : wastSaved // ignore: cast_nullable_to_non_nullable
               as int?,
       user: user == freezed
           ? _value.user
@@ -117,7 +117,7 @@ abstract class _$MemberResponseModelCopyWith<$Res>
           $Res Function(_MemberResponseModel) then) =
       __$MemberResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({int? id, String? email, int? cardNumber, UserModel? user});
+  $Res call({int? id, String? qrCode, int? wastSaved, UserModel? user});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -137,8 +137,8 @@ class __$MemberResponseModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? email = freezed,
-    Object? cardNumber = freezed,
+    Object? qrCode = freezed,
+    Object? wastSaved = freezed,
     Object? user = freezed,
   }) {
     return _then(_MemberResponseModel(
@@ -146,13 +146,13 @@ class __$MemberResponseModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      qrCode: qrCode == freezed
+          ? _value.qrCode
+          : qrCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      cardNumber: cardNumber == freezed
-          ? _value.cardNumber
-          : cardNumber // ignore: cast_nullable_to_non_nullable
+      wastSaved: wastSaved == freezed
+          ? _value.wastSaved
+          : wastSaved // ignore: cast_nullable_to_non_nullable
               as int?,
       user: user == freezed
           ? _value.user
@@ -165,7 +165,7 @@ class __$MemberResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MemberResponseModel implements _MemberResponseModel {
-  _$_MemberResponseModel({this.id, this.email, this.cardNumber, this.user});
+  _$_MemberResponseModel({this.id, this.qrCode, this.wastSaved, this.user});
 
   factory _$_MemberResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_MemberResponseModelFromJson(json);
@@ -173,15 +173,15 @@ class _$_MemberResponseModel implements _MemberResponseModel {
   @override
   final int? id;
   @override
-  final String? email;
+  final String? qrCode;
   @override
-  final int? cardNumber;
+  final int? wastSaved;
   @override
   final UserModel? user;
 
   @override
   String toString() {
-    return 'MemberResponseModel(id: $id, email: $email, cardNumber: $cardNumber, user: $user)';
+    return 'MemberResponseModel(id: $id, qrCode: $qrCode, wastSaved: $wastSaved, user: $user)';
   }
 
   @override
@@ -190,11 +190,11 @@ class _$_MemberResponseModel implements _MemberResponseModel {
         (other is _MemberResponseModel &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.cardNumber, cardNumber) ||
+            (identical(other.qrCode, qrCode) ||
+                const DeepCollectionEquality().equals(other.qrCode, qrCode)) &&
+            (identical(other.wastSaved, wastSaved) ||
                 const DeepCollectionEquality()
-                    .equals(other.cardNumber, cardNumber)) &&
+                    .equals(other.wastSaved, wastSaved)) &&
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)));
   }
@@ -203,8 +203,8 @@ class _$_MemberResponseModel implements _MemberResponseModel {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(cardNumber) ^
+      const DeepCollectionEquality().hash(qrCode) ^
+      const DeepCollectionEquality().hash(wastSaved) ^
       const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
@@ -222,8 +222,8 @@ class _$_MemberResponseModel implements _MemberResponseModel {
 abstract class _MemberResponseModel implements MemberResponseModel {
   factory _MemberResponseModel(
       {int? id,
-      String? email,
-      int? cardNumber,
+      String? qrCode,
+      int? wastSaved,
       UserModel? user}) = _$_MemberResponseModel;
 
   factory _MemberResponseModel.fromJson(Map<String, dynamic> json) =
@@ -232,9 +232,9 @@ abstract class _MemberResponseModel implements MemberResponseModel {
   @override
   int? get id => throw _privateConstructorUsedError;
   @override
-  String? get email => throw _privateConstructorUsedError;
+  String? get qrCode => throw _privateConstructorUsedError;
   @override
-  int? get cardNumber => throw _privateConstructorUsedError;
+  int? get wastSaved => throw _privateConstructorUsedError;
   @override
   UserModel? get user => throw _privateConstructorUsedError;
   @override

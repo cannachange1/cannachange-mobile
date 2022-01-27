@@ -9,8 +9,8 @@ part 'member_response_model.g.dart';
 class MemberResponseModel with _$MemberResponseModel {
   factory MemberResponseModel({
     int? id,
-    String? email,
-    int? cardNumber,
+    String? qrCode,
+    int? wastSaved,
     UserModel? user,
   }) = _MemberResponseModel;
 

@@ -23,24 +23,16 @@ class _$UserModelTearOff {
 
   _UserModel call(
       {required String firstName,
-      required String lastName,
-      required String email,
-      int? id,
-      String? phone,
       required String login,
-      String? imageUrl,
-      required String mainSource,
-      String? password}) {
+      required String email,
+      required String phoneNumber,
+      String? imageUrl}) {
     return _UserModel(
       firstName: firstName,
-      lastName: lastName,
-      email: email,
-      id: id,
-      phone: phone,
       login: login,
+      email: email,
+      phoneNumber: phoneNumber,
       imageUrl: imageUrl,
-      mainSource: mainSource,
-      password: password,
     );
   }
 
@@ -55,14 +47,10 @@ const $UserModel = _$UserModelTearOff();
 /// @nodoc
 mixin _$UserModel {
   String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  int? get id => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
   String get login => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
-  String get mainSource => throw _privateConstructorUsedError;
-  String? get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -76,14 +64,10 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res>;
   $Res call(
       {String firstName,
-      String lastName,
-      String email,
-      int? id,
-      String? phone,
       String login,
-      String? imageUrl,
-      String mainSource,
-      String? password});
+      String email,
+      String phoneNumber,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -97,51 +81,31 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
   @override
   $Res call({
     Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-    Object? phone = freezed,
     Object? login = freezed,
+    Object? email = freezed,
+    Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
-    Object? mainSource = freezed,
-    Object? password = freezed,
   }) {
     return _then(_value.copyWith(
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      login: login == freezed
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      login: login == freezed
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mainSource: mainSource == freezed
-          ? _value.mainSource
-          : mainSource // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -155,14 +119,10 @@ abstract class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   @override
   $Res call(
       {String firstName,
-      String lastName,
-      String email,
-      int? id,
-      String? phone,
       String login,
-      String? imageUrl,
-      String mainSource,
-      String? password});
+      String email,
+      String phoneNumber,
+      String? imageUrl});
 }
 
 /// @nodoc
@@ -177,51 +137,31 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? email = freezed,
-    Object? id = freezed,
-    Object? phone = freezed,
     Object? login = freezed,
+    Object? email = freezed,
+    Object? phoneNumber = freezed,
     Object? imageUrl = freezed,
-    Object? mainSource = freezed,
-    Object? password = freezed,
   }) {
     return _then(_UserModel(
       firstName: firstName == freezed
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      login: login == freezed
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      login: login == freezed
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mainSource: mainSource == freezed
-          ? _value.mainSource
-          : mainSource // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -232,14 +172,10 @@ class __$UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 class _$_UserModel implements _UserModel {
   _$_UserModel(
       {required this.firstName,
-      required this.lastName,
-      required this.email,
-      this.id,
-      this.phone,
       required this.login,
-      this.imageUrl,
-      required this.mainSource,
-      this.password});
+      required this.email,
+      required this.phoneNumber,
+      this.imageUrl});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -247,25 +183,17 @@ class _$_UserModel implements _UserModel {
   @override
   final String firstName;
   @override
-  final String lastName;
+  final String login;
   @override
   final String email;
   @override
-  final int? id;
-  @override
-  final String? phone;
-  @override
-  final String login;
+  final String phoneNumber;
   @override
   final String? imageUrl;
-  @override
-  final String mainSource;
-  @override
-  final String? password;
 
   @override
   String toString() {
-    return 'UserModel(firstName: $firstName, lastName: $lastName, email: $email, id: $id, phone: $phone, login: $login, imageUrl: $imageUrl, mainSource: $mainSource, password: $password)';
+    return 'UserModel(firstName: $firstName, login: $login, email: $email, phoneNumber: $phoneNumber, imageUrl: $imageUrl)';
   }
 
   @override
@@ -275,40 +203,26 @@ class _$_UserModel implements _UserModel {
             (identical(other.firstName, firstName) ||
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.phone, phone) ||
-                const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.login, login) ||
                 const DeepCollectionEquality().equals(other.login, login)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                const DeepCollectionEquality()
+                    .equals(other.phoneNumber, phoneNumber)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.mainSource, mainSource) ||
-                const DeepCollectionEquality()
-                    .equals(other.mainSource, mainSource)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                    .equals(other.imageUrl, imageUrl)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(login) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(mainSource) ^
-      const DeepCollectionEquality().hash(password);
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -324,14 +238,10 @@ class _$_UserModel implements _UserModel {
 abstract class _UserModel implements UserModel {
   factory _UserModel(
       {required String firstName,
-      required String lastName,
-      required String email,
-      int? id,
-      String? phone,
       required String login,
-      String? imageUrl,
-      required String mainSource,
-      String? password}) = _$_UserModel;
+      required String email,
+      required String phoneNumber,
+      String? imageUrl}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -339,21 +249,13 @@ abstract class _UserModel implements UserModel {
   @override
   String get firstName => throw _privateConstructorUsedError;
   @override
-  String get lastName => throw _privateConstructorUsedError;
+  String get login => throw _privateConstructorUsedError;
   @override
   String get email => throw _privateConstructorUsedError;
   @override
-  int? get id => throw _privateConstructorUsedError;
-  @override
-  String? get phone => throw _privateConstructorUsedError;
-  @override
-  String get login => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   @override
   String? get imageUrl => throw _privateConstructorUsedError;
-  @override
-  String get mainSource => throw _privateConstructorUsedError;
-  @override
-  String? get password => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserModelCopyWith<_UserModel> get copyWith =>
