@@ -63,7 +63,8 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
         resizeToAvoidBottomInset: true,
         body: Observer(
           builder: (_) => registrationState.storeState.state ==
-                      StoreStates.loading
+                      StoreStates.loading || loginState.storeState.state ==
+              StoreStates.loading
               ? const Loading(color: Colors.transparent)
               : SingleChildScrollView(
                   child: SizedBox(
@@ -106,8 +107,8 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
                                                             .isNotEmpty
                                                     ? () async {
                                                         authorize();
-                                                        loginState
-                                                            .resetValues();
+                                                        // loginState
+                                                        //     .resetValues();
                                                       }
                                                     : null
                                                 : !registrationState.errors
@@ -210,7 +211,7 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
 
   Future<void> authorize() async {
     if (_controller.page == 0) {
-      await loginState.logInConsumer(context);
+      await loginState.logIn(context);
       // setState(() {
       //   animateToCurrentPage();
       //   _controller.jumpToPage(1);

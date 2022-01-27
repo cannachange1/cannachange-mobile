@@ -7,7 +7,7 @@ part 'dispensary_model.g.dart';
 @freezed
 class DispensaryModel with _$DispensaryModel {
   factory DispensaryModel({
-    required int id,
+    int? id,
     String? businessName,
     String? shippingAddress1,
     String? shippingAddress2,
@@ -16,7 +16,8 @@ class DispensaryModel with _$DispensaryModel {
     String? email,
     String? name,
     String? phone,
-    String? workingHours,
+    String? startHours,
+    String? endHours,
     double? latitude,
     double? longitude,
   }) = _DispensaryModel;

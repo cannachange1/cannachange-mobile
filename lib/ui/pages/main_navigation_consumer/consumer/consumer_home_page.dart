@@ -96,7 +96,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                 ),
               ),
               Text(
-                'Dispensary Hours: ${personalDataState.dispensaryModel!.workingHours}',
+                'Dispensary Hours: ${personalDataState.dispensaryModel!.startHours} - ${personalDataState.dispensaryModel!.endHours}',
                 style: const TextStyle(
                   fontSize: 16,
                   color: AppColors.darkGrey,

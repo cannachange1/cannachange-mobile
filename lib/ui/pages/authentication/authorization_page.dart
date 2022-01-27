@@ -207,7 +207,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
   Future<void> authorize() async {
     if (_controller.page == 0) {
-      await loginState.logInConsumer(context);
+      await loginState.logIn(context);
       // setState(() {
       //   animateToCurrentPage();
       //   _controller.jumpToPage(1);

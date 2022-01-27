@@ -8,7 +8,7 @@ part of 'dispensary_model.dart';
 
 _$_DispensaryModel _$$_DispensaryModelFromJson(Map<String, dynamic> json) =>
     _$_DispensaryModel(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       businessName: json['businessName'] as String?,
       shippingAddress1: json['shippingAddress1'] as String?,
       shippingAddress2: json['shippingAddress2'] as String?,
@@ -17,7 +17,8 @@ _$_DispensaryModel _$$_DispensaryModelFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       name: json['name'] as String?,
       phone: json['phone'] as String?,
-      workingHours: json['workingHours'] as String?,
+      startHours: json['startHours'] as String?,
+      endHours: json['endHours'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
@@ -33,7 +34,8 @@ Map<String, dynamic> _$$_DispensaryModelToJson(_$_DispensaryModel instance) =>
       'email': instance.email,
       'name': instance.name,
       'phone': instance.phone,
-      'workingHours': instance.workingHours,
+      'startHours': instance.startHours,
+      'endHours': instance.endHours,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
     };

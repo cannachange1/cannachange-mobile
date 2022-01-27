@@ -59,7 +59,7 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryHours(String value) {
     if (value.isNotEmpty) {
-      dispensaryModel = dispensaryModel!.copyWith(workingHours: value);
+     // dispensaryModel = dispensaryModel!.copyWith(w: value);
     }
   }
 

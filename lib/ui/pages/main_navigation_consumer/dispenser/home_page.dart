@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              'Dispensary Hours: ${personalDataState.dispensaryModel!.workingHours}',
+              'Dispensary Hours: ${personalDataState.dispensaryModel!.endHours}',
               style: const TextStyle(
                 fontSize: 16,
                 color: AppColors.darkGrey,

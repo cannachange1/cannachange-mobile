@@ -106,13 +106,15 @@ abstract class _LoginState with Store {
   }
 
   @action
-  Future<void> logInConsumer(BuildContext cont) async {
+  Future<void> logIn(BuildContext cont) async {
     storeState.changeState(StoreStates.loading);
     try {
       final res = await authorizationRepo.login(email, password!);
-      // await StorageHelper.setToken(res.token);
+      await StorageHelper.setToken(res!.token);
 
-      await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
+      res.role != "DISPENSARY"
+          ? await AutoRouter.of(cont).replace(const ConsumerDashboardRoute())
+          : await AutoRouter.of(cont).replace(const DashboardRoute());
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);

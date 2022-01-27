@@ -77,11 +77,11 @@ mixin _$LoginState on _LoginState, Store {
     });
   }
 
-  final _$logInConsumerAsyncAction = AsyncAction('_LoginState.logInConsumer');
+  final _$logInAsyncAction = AsyncAction('_LoginState.logIn');
 
   @override
-  Future<void> logInConsumer(BuildContext cont) {
-    return _$logInConsumerAsyncAction.run(() => super.logInConsumer(cont));
+  Future<void> logIn(BuildContext cont) {
+    return _$logInAsyncAction.run(() => super.logIn(cont));
   }
 
   final _$_LoginStateActionController = ActionController(name: '_LoginState');

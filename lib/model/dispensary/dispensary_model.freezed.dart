@@ -22,7 +22,7 @@ class _$DispensaryModelTearOff {
   const _$DispensaryModelTearOff();
 
   _DispensaryModel call(
-      {required int id,
+      {int? id,
       String? businessName,
       String? shippingAddress1,
       String? shippingAddress2,
@@ -31,7 +31,8 @@ class _$DispensaryModelTearOff {
       String? email,
       String? name,
       String? phone,
-      String? workingHours,
+      String? startHours,
+      String? endHours,
       double? latitude,
       double? longitude}) {
     return _DispensaryModel(
@@ -44,7 +45,8 @@ class _$DispensaryModelTearOff {
       email: email,
       name: name,
       phone: phone,
-      workingHours: workingHours,
+      startHours: startHours,
+      endHours: endHours,
       latitude: latitude,
       longitude: longitude,
     );
@@ -60,7 +62,7 @@ const $DispensaryModel = _$DispensaryModelTearOff();
 
 /// @nodoc
 mixin _$DispensaryModel {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get businessName => throw _privateConstructorUsedError;
   String? get shippingAddress1 => throw _privateConstructorUsedError;
   String? get shippingAddress2 => throw _privateConstructorUsedError;
@@ -69,7 +71,8 @@ mixin _$DispensaryModel {
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  String? get workingHours => throw _privateConstructorUsedError;
+  String? get startHours => throw _privateConstructorUsedError;
+  String? get endHours => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
 
@@ -85,7 +88,7 @@ abstract class $DispensaryModelCopyWith<$Res> {
           DispensaryModel value, $Res Function(DispensaryModel) then) =
       _$DispensaryModelCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {int? id,
       String? businessName,
       String? shippingAddress1,
       String? shippingAddress2,
@@ -94,7 +97,8 @@ abstract class $DispensaryModelCopyWith<$Res> {
       String? email,
       String? name,
       String? phone,
-      String? workingHours,
+      String? startHours,
+      String? endHours,
       double? latitude,
       double? longitude});
 }
@@ -119,7 +123,8 @@ class _$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? workingHours = freezed,
+    Object? startHours = freezed,
+    Object? endHours = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
@@ -127,7 +132,7 @@ class _$DispensaryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       businessName: businessName == freezed
           ? _value.businessName
           : businessName // ignore: cast_nullable_to_non_nullable
@@ -160,9 +165,13 @@ class _$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      workingHours: workingHours == freezed
-          ? _value.workingHours
-          : workingHours // ignore: cast_nullable_to_non_nullable
+      startHours: startHours == freezed
+          ? _value.startHours
+          : startHours // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endHours: endHours == freezed
+          ? _value.endHours
+          : endHours // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: latitude == freezed
           ? _value.latitude
@@ -184,7 +193,7 @@ abstract class _$DispensaryModelCopyWith<$Res>
       __$DispensaryModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {int? id,
       String? businessName,
       String? shippingAddress1,
       String? shippingAddress2,
@@ -193,7 +202,8 @@ abstract class _$DispensaryModelCopyWith<$Res>
       String? email,
       String? name,
       String? phone,
-      String? workingHours,
+      String? startHours,
+      String? endHours,
       double? latitude,
       double? longitude});
 }
@@ -220,7 +230,8 @@ class __$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
-    Object? workingHours = freezed,
+    Object? startHours = freezed,
+    Object? endHours = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
@@ -228,7 +239,7 @@ class __$DispensaryModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       businessName: businessName == freezed
           ? _value.businessName
           : businessName // ignore: cast_nullable_to_non_nullable
@@ -261,9 +272,13 @@ class __$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      workingHours: workingHours == freezed
-          ? _value.workingHours
-          : workingHours // ignore: cast_nullable_to_non_nullable
+      startHours: startHours == freezed
+          ? _value.startHours
+          : startHours // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endHours: endHours == freezed
+          ? _value.endHours
+          : endHours // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: latitude == freezed
           ? _value.latitude
@@ -281,7 +296,7 @@ class __$DispensaryModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DispensaryModel implements _DispensaryModel {
   _$_DispensaryModel(
-      {required this.id,
+      {this.id,
       this.businessName,
       this.shippingAddress1,
       this.shippingAddress2,
@@ -290,7 +305,8 @@ class _$_DispensaryModel implements _DispensaryModel {
       this.email,
       this.name,
       this.phone,
-      this.workingHours,
+      this.startHours,
+      this.endHours,
       this.latitude,
       this.longitude});
 
@@ -298,7 +314,7 @@ class _$_DispensaryModel implements _DispensaryModel {
       _$$_DispensaryModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? businessName;
   @override
@@ -316,7 +332,9 @@ class _$_DispensaryModel implements _DispensaryModel {
   @override
   final String? phone;
   @override
-  final String? workingHours;
+  final String? startHours;
+  @override
+  final String? endHours;
   @override
   final double? latitude;
   @override
@@ -324,7 +342,7 @@ class _$_DispensaryModel implements _DispensaryModel {
 
   @override
   String toString() {
-    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, workingHours: $workingHours, latitude: $latitude, longitude: $longitude)';
+    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, startHours: $startHours, endHours: $endHours, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -354,9 +372,12 @@ class _$_DispensaryModel implements _DispensaryModel {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
-            (identical(other.workingHours, workingHours) ||
+            (identical(other.startHours, startHours) ||
                 const DeepCollectionEquality()
-                    .equals(other.workingHours, workingHours)) &&
+                    .equals(other.startHours, startHours)) &&
+            (identical(other.endHours, endHours) ||
+                const DeepCollectionEquality()
+                    .equals(other.endHours, endHours)) &&
             (identical(other.latitude, latitude) ||
                 const DeepCollectionEquality()
                     .equals(other.latitude, latitude)) &&
@@ -377,7 +398,8 @@ class _$_DispensaryModel implements _DispensaryModel {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phone) ^
-      const DeepCollectionEquality().hash(workingHours) ^
+      const DeepCollectionEquality().hash(startHours) ^
+      const DeepCollectionEquality().hash(endHours) ^
       const DeepCollectionEquality().hash(latitude) ^
       const DeepCollectionEquality().hash(longitude);
 
@@ -394,7 +416,7 @@ class _$_DispensaryModel implements _DispensaryModel {
 
 abstract class _DispensaryModel implements DispensaryModel {
   factory _DispensaryModel(
-      {required int id,
+      {int? id,
       String? businessName,
       String? shippingAddress1,
       String? shippingAddress2,
@@ -403,7 +425,8 @@ abstract class _DispensaryModel implements DispensaryModel {
       String? email,
       String? name,
       String? phone,
-      String? workingHours,
+      String? startHours,
+      String? endHours,
       double? latitude,
       double? longitude}) = _$_DispensaryModel;
 
@@ -411,7 +434,7 @@ abstract class _DispensaryModel implements DispensaryModel {
       _$_DispensaryModel.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
   String? get businessName => throw _privateConstructorUsedError;
   @override
@@ -429,7 +452,9 @@ abstract class _DispensaryModel implements DispensaryModel {
   @override
   String? get phone => throw _privateConstructorUsedError;
   @override
-  String? get workingHours => throw _privateConstructorUsedError;
+  String? get startHours => throw _privateConstructorUsedError;
+  @override
+  String? get endHours => throw _privateConstructorUsedError;
   @override
   double? get latitude => throw _privateConstructorUsedError;
   @override

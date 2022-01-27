@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -93,7 +91,6 @@ class _RegistrationDetailsWorkingHoursDialogState
             MainButton(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
-                await AutoRouter.of(context).pop();
                 await registrationState.registerDispensary(context);
               },
               label: 'DONE',

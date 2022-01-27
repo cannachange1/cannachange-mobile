@@ -70,7 +70,7 @@ class WelcomePage extends StatelessWidget {
                       icon: Icons.apartment,
                       callback: () {
                         StorageHelper.setAccessType('Dispensary');
-                        StorageHelper.setFlavor(Flavor.dispensary);
+                       // StorageHelper.setFlavor(Flavor.dispensary);
                         AutoRouter.of(context).push(const AuthorizationRoute());
                       },
                     ),
@@ -79,7 +79,6 @@ class WelcomePage extends StatelessWidget {
                       icon: Icons.person,
                       callback: () {
                         StorageHelper.setAccessType('Consumer');
-                        StorageHelper.setFlavor(Flavor.consumer);
                         AutoRouter.of(context)
                             .push(const ClientAuthorizationRoute());
                       },
