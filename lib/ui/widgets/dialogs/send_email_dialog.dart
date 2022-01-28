@@ -26,7 +26,7 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-    //  backgroundColor: AppColors.mainLogoColor,
+      //  backgroundColor: AppColors.mainLogoColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -61,14 +61,7 @@ class _SendEmailDialogState extends State<SendEmailDialog> {
                 horizontalPadding: 20,
                 callback: () async => {
                   personalDataState
-                      .forgetPasswordInit(emailTextController.text),
-                  showDialog(
-                          context: context,
-                          useRootNavigator: false,
-                          builder: (context) => const ResetPasswordCodeDialog())
-                      .then(
-                    (value) => AutoRouter.of(context).pop(),
-                  ),
+                      .forgetPasswordInit(emailTextController.text, context),
                 },
                 text: 'Send',
                 color: AppColors.secondAccent,

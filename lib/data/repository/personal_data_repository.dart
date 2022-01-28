@@ -49,17 +49,7 @@ class PersonalDataRepository {
         data: {"currentPassword": oldPassword, "newPassword": newPassword},
       );
     } on DioError catch (e) {
-      if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
-        throw NoInternetException();
-      }
-      if (is400StatusCodeFamily(e.error)) {
-        if (e.error == DioError401) {
-          throw UnauhtorizedException();
-        }
-        throw BadRequestException(
-          message: e.response!.data!['message'],
-        );
-      }
+      handleError(e);
     } catch (e) {
       throw UnknownException();
     }
@@ -76,17 +66,7 @@ class PersonalDataRepository {
         data: {"email": email},
       );
     } on DioError catch (e) {
-      if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
-        throw NoInternetException();
-      }
-      if (is400StatusCodeFamily(e.error)) {
-        if (e.error == DioError401) {
-          throw UnauhtorizedException();
-        }
-        throw BadRequestException(
-          message: e.response!.data!['message'],
-        );
-      }
+      handleError(e);
     } catch (e) {
       throw UnknownException();
     }
@@ -104,23 +84,7 @@ class PersonalDataRepository {
         },
       );
     } on DioError catch (e) {
-      if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
-        throw NoInternetException();
-      }
-      if (is400StatusCodeFamily(e.error)) {
-        if (e.error == DioError401) {
-          throw UnauhtorizedException();
-        }
-        print('aaaaa ${e.response!.data!['title']}');
-        throw BadRequestException(
-          message: e.response!.data!['title'],
-        );
-      }
-      if (is500StatusCodeFamily(e.error)) {
-        throw ServerException(
-          message: e.response!.data!['title'],
-        );
-      }
+      handleError(e);
     } catch (e) {
       throw UnknownException();
     }

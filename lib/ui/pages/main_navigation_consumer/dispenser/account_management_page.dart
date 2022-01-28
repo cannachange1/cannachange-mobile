@@ -4,6 +4,7 @@ import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_
 import 'package:cannachange/ui/widgets/buttons/common_button.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
+import 'package:cannachange/ui/widgets/dialogs/change_password_dialog.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
@@ -51,8 +52,7 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-        ),
+        appBar: CustomAppBar(),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -92,6 +92,27 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
                       ),
                       title: const Text(
                         'Cancel subscription',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.lightGrayColor),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: AppColors.mainLogoColor,
+                    child: ListTile(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            useRootNavigator: false,
+                            builder: (context) => const ChangePasswordDialog());
+                      },
+                      leading: const Icon(
+                        Icons.password,
+                        color: AppColors.lightGrayColor,
+                      ),
+                      title: const Text(
+                        'Change password',
                         style: TextStyle(
                             fontWeight: FontWeight.w800,
                             color: AppColors.lightGrayColor),

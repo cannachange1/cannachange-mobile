@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/model/user/user_model.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/widgets/dialogs/reset_password_code_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'personal_data_state.g.dart';
@@ -124,14 +127,20 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
-  Future<void> forgetPasswordInit(String email) async {
+  Future<void> forgetPasswordInit(String email, BuildContext context) async {
     try {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.forgetPasswordInit(email);
+      storeState.changeState(StoreStates.success);
+      showDialog(
+          context: context,
+          useRootNavigator: false,
+          builder: (context) => const ResetPasswordCodeDialog()).then(
+        (value) => AutoRouter.of(context).pop(),
+      );
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
-      rethrow;
     }
   }
 
@@ -155,10 +164,11 @@ abstract class _PersonalDataState with Store {
     try {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.changePassword(newPassword, oldPassword);
+      storeState.setSuccessMessage('Password changed successfully');
+      storeState.changeState(StoreStates.success);
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
-      //  rethrow;
     }
   }
 

@@ -170,9 +170,9 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
       AsyncAction('_PersonalDataState.forgetPasswordInit');
 
   @override
-  Future<void> forgetPasswordInit(String email) {
+  Future<void> forgetPasswordInit(String email, BuildContext context) {
     return _$forgetPasswordInitAsyncAction
-        .run(() => super.forgetPasswordInit(email));
+        .run(() => super.forgetPasswordInit(email, context));
   }
 
   final _$forgetPasswordFinishAsyncAction =
