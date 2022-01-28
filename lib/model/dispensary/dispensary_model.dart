@@ -16,6 +16,7 @@ class DispensaryModel with _$DispensaryModel {
     String? email,
     String? name,
     String? phone,
+    String? image,
     String? startHour,
     String? endHour,
     double? latitude,

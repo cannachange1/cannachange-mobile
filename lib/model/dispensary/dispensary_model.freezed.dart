@@ -31,6 +31,7 @@ class _$DispensaryModelTearOff {
       String? email,
       String? name,
       String? phone,
+      String? image,
       String? startHour,
       String? endHour,
       double? latitude,
@@ -45,6 +46,7 @@ class _$DispensaryModelTearOff {
       email: email,
       name: name,
       phone: phone,
+      image: image,
       startHour: startHour,
       endHour: endHour,
       latitude: latitude,
@@ -71,6 +73,7 @@ mixin _$DispensaryModel {
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   String? get startHour => throw _privateConstructorUsedError;
   String? get endHour => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
@@ -97,6 +100,7 @@ abstract class $DispensaryModelCopyWith<$Res> {
       String? email,
       String? name,
       String? phone,
+      String? image,
       String? startHour,
       String? endHour,
       double? latitude,
@@ -123,6 +127,7 @@ class _$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
     Object? startHour = freezed,
     Object? endHour = freezed,
     Object? latitude = freezed,
@@ -165,6 +170,10 @@ class _$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       startHour: startHour == freezed
           ? _value.startHour
           : startHour // ignore: cast_nullable_to_non_nullable
@@ -202,6 +211,7 @@ abstract class _$DispensaryModelCopyWith<$Res>
       String? email,
       String? name,
       String? phone,
+      String? image,
       String? startHour,
       String? endHour,
       double? latitude,
@@ -230,6 +240,7 @@ class __$DispensaryModelCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
     Object? startHour = freezed,
     Object? endHour = freezed,
     Object? latitude = freezed,
@@ -272,6 +283,10 @@ class __$DispensaryModelCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       startHour: startHour == freezed
           ? _value.startHour
           : startHour // ignore: cast_nullable_to_non_nullable
@@ -305,6 +320,7 @@ class _$_DispensaryModel implements _DispensaryModel {
       this.email,
       this.name,
       this.phone,
+      this.image,
       this.startHour,
       this.endHour,
       this.latitude,
@@ -332,6 +348,8 @@ class _$_DispensaryModel implements _DispensaryModel {
   @override
   final String? phone;
   @override
+  final String? image;
+  @override
   final String? startHour;
   @override
   final String? endHour;
@@ -342,7 +360,7 @@ class _$_DispensaryModel implements _DispensaryModel {
 
   @override
   String toString() {
-    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, startHour: $startHour, endHour: $endHour, latitude: $latitude, longitude: $longitude)';
+    return 'DispensaryModel(id: $id, businessName: $businessName, shippingAddress1: $shippingAddress1, shippingAddress2: $shippingAddress2, address1: $address1, address2: $address2, email: $email, name: $name, phone: $phone, image: $image, startHour: $startHour, endHour: $endHour, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -372,6 +390,8 @@ class _$_DispensaryModel implements _DispensaryModel {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
             (identical(other.startHour, startHour) ||
                 const DeepCollectionEquality()
                     .equals(other.startHour, startHour)) &&
@@ -398,6 +418,7 @@ class _$_DispensaryModel implements _DispensaryModel {
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(phone) ^
+      const DeepCollectionEquality().hash(image) ^
       const DeepCollectionEquality().hash(startHour) ^
       const DeepCollectionEquality().hash(endHour) ^
       const DeepCollectionEquality().hash(latitude) ^
@@ -425,6 +446,7 @@ abstract class _DispensaryModel implements DispensaryModel {
       String? email,
       String? name,
       String? phone,
+      String? image,
       String? startHour,
       String? endHour,
       double? latitude,
@@ -451,6 +473,8 @@ abstract class _DispensaryModel implements DispensaryModel {
   String? get name => throw _privateConstructorUsedError;
   @override
   String? get phone => throw _privateConstructorUsedError;
+  @override
+  String? get image => throw _privateConstructorUsedError;
   @override
   String? get startHour => throw _privateConstructorUsedError;
   @override

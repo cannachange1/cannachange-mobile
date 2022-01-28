@@ -1,3 +1,4 @@
+import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
@@ -18,6 +19,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
   TextEditingController addressLine1 = TextEditingController();
   TextEditingController addressLine2 = TextEditingController();
   TextEditingController openingHours = TextEditingController();
+  TextEditingController closingHours = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
   // TextEditingController phoneNumberController = TextEditingController();
@@ -30,11 +32,15 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
     //getUserInfo();
   }
 
-  // Future<void> getUserInfo() async {
-  //   // await personalDataState.getUser();
-  //   // _updateTextController(personalDataState.user!);
-  // }
-  //
+  void getUserInfo() async {
+    fullNameController.text = personalDataState.dispensaryModel!.name!;
+    addressLine1.text = personalDataState.dispensaryModel!.address1!;
+    addressLine2.text = personalDataState.dispensaryModel!.address2!;
+    emailController.text = personalDataState.dispensaryModel!.email!;
+    openingHours.text = personalDataState.dispensaryModel!.startHour!;
+    closingHours.text = personalDataState.dispensaryModel!.endHour!;
+  }
+
   // _updateTextController(DispensaryModel user) {
   //   nameController.text = user.firstName;
   //   lastNameController.text = user.lastName;
@@ -60,6 +66,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
@@ -86,6 +93,73 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
                 ),
                 const SizedBox(
                   height: 20,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Open at',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      // height: 42,
+                      width: screenWidth(context) * .5,
+                      child: RoundedTextInput(
+                        controller: emailController,
+                        inputType: TextInputType.text,
+                        hintText: '09:00 AM',
+                        obscureText: false,
+                        onChanged: (value) {
+                          personalDataState.setDispensaryAddressLine2(value);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Close at',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      width: screenWidth(context) * .5,
+                      child: RoundedTextInput(
+                        controller: openingHours,
+                        inputType: TextInputType.text,
+                        hintText: '19:00 PM',
+                        obscureText: false,
+                        onChanged: (value) {
+                          personalDataState.setDispensaryAddressLine2(value);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 18,
                 ),
                 const Text(
                   'Address Line 1',

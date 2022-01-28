@@ -110,11 +110,12 @@ abstract class _LoginState with Store {
       await StorageHelper.setToken(res!.token);
       if (res.role == 'DISPENSARY') {
         print('aaaaaaaa ${res.dispensary.toString()}');
-        personalDataState.dispensaryName = res.dispensary!.name!;
-        personalDataState.dispensaryAddress =
-            res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
-        personalDataState.dispensaryWorkingHours =
-            res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
+        personalDataState.dispensaryModel = res.dispensary!;
+        //personalDataState.dispensaryName = res.dispensary!.name!;
+        // personalDataState.dispensaryAddress =
+        //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
+        // personalDataState.dispensaryWorkingHours =
+        //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
         await AutoRouter.of(cont).replace(const DashboardRoute());
       } else {
         personalDataState.clientModel = res.consumer;

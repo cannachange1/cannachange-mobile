@@ -1,13 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
-import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_details_page.dart';
-import 'package:cannachange/ui/widgets/buttons/common_button.dart';
-import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
-import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../router.gr.dart';
 
@@ -102,8 +97,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   Card(
                     child: ListTile(
-                      onTap: () => AutoRouter.of(context)
-                          .replace(const AuthorizationRoute()),
+                      onTap: () {
+                        AutoRouter.of(context)
+                            .replace(const AuthorizationRoute());
+                      },
                       leading: const Icon(Icons.exit_to_app_outlined),
                       title: const Text(
                         'Log out',
