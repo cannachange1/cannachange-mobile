@@ -29,7 +29,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AvatarWidget(),
+                  const AvatarWidget(isDispensary: false,),
                   QrImage(
                     data: "1234567890",
                     version: QrVersions.auto,

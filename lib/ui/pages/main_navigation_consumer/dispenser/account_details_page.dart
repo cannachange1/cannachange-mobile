@@ -1,5 +1,6 @@
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
@@ -29,7 +30,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
   @override
   void initState() {
     super.initState();
-    //getUserInfo();
+    getUserInfo();
   }
 
   void getUserInfo() async {
@@ -69,6 +70,9 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const AvatarWidget(
+                  isDispensary: true,
+                ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -85,7 +89,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
                 RoundedTextInput(
                   controller: fullNameController,
                   inputType: TextInputType.text,
-                  hintText: 'xyz dispensary',
+                  hintText: 'Mainland Dispensary',
                   obscureText: false,
                   onChanged: (value) {
                     personalDataState.setDispensaryName(value);

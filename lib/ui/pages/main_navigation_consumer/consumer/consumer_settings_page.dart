@@ -68,7 +68,9 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AvatarWidget(),
+                    const AvatarWidget(
+                      isDispensary: false,
+                    ),
                     const SizedBox(
                       height: 30,
                     ),

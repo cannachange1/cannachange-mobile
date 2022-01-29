@@ -144,6 +144,23 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
+  final _$dispensarySelectedImageAtom =
+      Atom(name: '_PersonalDataState.dispensarySelectedImage');
+
+  @override
+  File? get dispensarySelectedImage {
+    _$dispensarySelectedImageAtom.reportRead();
+    return super.dispensarySelectedImage;
+  }
+
+  @override
+  set dispensarySelectedImage(File? value) {
+    _$dispensarySelectedImageAtom
+        .reportWrite(value, super.dispensarySelectedImage, () {
+      super.dispensarySelectedImage = value;
+    });
+  }
+
   final _$imageUrlAtom = Atom(name: '_PersonalDataState.imageUrl');
 
   @override
@@ -273,6 +290,7 @@ dispensaryWorkingHours: ${dispensaryWorkingHours},
 dispensaryEmail: ${dispensaryEmail},
 dispensaryPhone: ${dispensaryPhone},
 clientSelectedImage: ${clientSelectedImage},
+dispensarySelectedImage: ${dispensarySelectedImage},
 imageUrl: ${imageUrl},
 currentUser: ${currentUser}
     ''';

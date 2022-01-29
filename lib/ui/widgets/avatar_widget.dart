@@ -5,8 +5,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 class AvatarWidget extends StatefulWidget {
+  final bool isDispensary;
+
   const AvatarWidget({
     Key? key,
+    required this.isDispensary,
   }) : super(key: key);
 
   @override
@@ -47,19 +50,35 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80),
-                          child: personalDataState.clientSelectedImage != null
-                              ? Image.file(
-                                  personalDataState.clientSelectedImage!,
-                                  fit: BoxFit.cover,
-                                  height: 90,
-                                  width: 90,
-                                )
-                              : Image.network(
-                                  personalDataState.clientModel!.avatar!,
-                                  fit: BoxFit.cover,
-                                  height: 90,
-                                  width: 90,
-                                ),
+                          child: widget.isDispensary
+                              ? personalDataState.dispensarySelectedImage !=
+                                      null
+                                  ? Image.file(
+                                      personalDataState.clientSelectedImage!,
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                      width: 90,
+                                    )
+                                  : Image.network(
+                                      personalDataState.dispensaryModel!.image!,
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                      width: 90,
+                                    )
+                              : personalDataState.clientSelectedImage !=
+                                      null
+                                  ? Image.file(
+                                      personalDataState.clientSelectedImage!,
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                      width: 90,
+                                    )
+                                  : Image.network(
+                                      personalDataState.clientModel!.image!,
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                      width: 90,
+                                    ),
                         ),
                         const SizedBox(
                           width: 20,

@@ -8,18 +8,22 @@ part of 'client_model.dart';
 
 _$_ClientModel _$$_ClientModelFromJson(Map<String, dynamic> json) =>
     _$_ClientModel(
-      organisationId: json['organisationId'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      avatar: json['avatar'] as String?,
-      username: json['username'] as String?,
+      id: json['id'] as int?,
+      wasteSaved: json['wasteSaved'] as int?,
+      qrCode: json['qrCode'] as String?,
+      name: json['name'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
+      image: json['image'] as String?,
+      email: json['email'] as String?,
     );
 
 Map<String, dynamic> _$$_ClientModelToJson(_$_ClientModel instance) =>
     <String, dynamic>{
-      'organisationId': instance.organisationId,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'avatar': instance.avatar,
-      'username': instance.username,
+      'id': instance.id,
+      'wasteSaved': instance.wasteSaved,
+      'qrCode': instance.qrCode,
+      'name': instance.name,
+      'phoneNumber': instance.phoneNumber,
+      'image': instance.image,
+      'email': instance.email,
     };

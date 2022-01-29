@@ -111,6 +111,7 @@ abstract class _LoginState with Store {
       if (res.role == 'DISPENSARY') {
         print('aaaaaaaa ${res.dispensary.toString()}');
         personalDataState.dispensaryModel = res.dispensary!;
+        print('aaaaaaa ${personalDataState.dispensaryModel.toString()}');
         //personalDataState.dispensaryName = res.dispensary!.name!;
         // personalDataState.dispensaryAddress =
         //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;

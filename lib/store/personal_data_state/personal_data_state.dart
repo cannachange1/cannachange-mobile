@@ -50,6 +50,9 @@ abstract class _PersonalDataState with Store {
   @observable
   File? clientSelectedImage;
 
+  @observable
+  File? dispensarySelectedImage;
+
   @action
   void setDispensaryName(String value) {
     if (value.isNotEmpty) {

@@ -22,17 +22,21 @@ class _$ClientModelTearOff {
   const _$ClientModelTearOff();
 
   _ClientModel call(
-      {String? organisationId,
-      String? firstName,
-      String? lastName,
-      String? avatar,
-      String? username}) {
+      {int? id,
+      int? wasteSaved,
+      String? qrCode,
+      String? name,
+      String? phoneNumber,
+      String? image,
+      String? email}) {
     return _ClientModel(
-      organisationId: organisationId,
-      firstName: firstName,
-      lastName: lastName,
-      avatar: avatar,
-      username: username,
+      id: id,
+      wasteSaved: wasteSaved,
+      qrCode: qrCode,
+      name: name,
+      phoneNumber: phoneNumber,
+      image: image,
+      email: email,
     );
   }
 
@@ -46,11 +50,13 @@ const $ClientModel = _$ClientModelTearOff();
 
 /// @nodoc
 mixin _$ClientModel {
-  String? get organisationId => throw _privateConstructorUsedError;
-  String? get firstName => throw _privateConstructorUsedError;
-  String? get lastName => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  int? get wasteSaved => throw _privateConstructorUsedError;
+  String? get qrCode => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,11 +70,13 @@ abstract class $ClientModelCopyWith<$Res> {
           ClientModel value, $Res Function(ClientModel) then) =
       _$ClientModelCopyWithImpl<$Res>;
   $Res call(
-      {String? organisationId,
-      String? firstName,
-      String? lastName,
-      String? avatar,
-      String? username});
+      {int? id,
+      int? wasteSaved,
+      String? qrCode,
+      String? name,
+      String? phoneNumber,
+      String? image,
+      String? email});
 }
 
 /// @nodoc
@@ -81,32 +89,42 @@ class _$ClientModelCopyWithImpl<$Res> implements $ClientModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? organisationId = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? avatar = freezed,
-    Object? username = freezed,
+    Object? id = freezed,
+    Object? wasteSaved = freezed,
+    Object? qrCode = freezed,
+    Object? name = freezed,
+    Object? phoneNumber = freezed,
+    Object? image = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
-      organisationId: organisationId == freezed
-          ? _value.organisationId
-          : organisationId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      wasteSaved: wasteSaved == freezed
+          ? _value.wasteSaved
+          : wasteSaved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      qrCode: qrCode == freezed
+          ? _value.qrCode
+          : qrCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: avatar == freezed
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -120,11 +138,13 @@ abstract class _$ClientModelCopyWith<$Res>
       __$ClientModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? organisationId,
-      String? firstName,
-      String? lastName,
-      String? avatar,
-      String? username});
+      {int? id,
+      int? wasteSaved,
+      String? qrCode,
+      String? name,
+      String? phoneNumber,
+      String? image,
+      String? email});
 }
 
 /// @nodoc
@@ -139,32 +159,42 @@ class __$ClientModelCopyWithImpl<$Res> extends _$ClientModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? organisationId = freezed,
-    Object? firstName = freezed,
-    Object? lastName = freezed,
-    Object? avatar = freezed,
-    Object? username = freezed,
+    Object? id = freezed,
+    Object? wasteSaved = freezed,
+    Object? qrCode = freezed,
+    Object? name = freezed,
+    Object? phoneNumber = freezed,
+    Object? image = freezed,
+    Object? email = freezed,
   }) {
     return _then(_ClientModel(
-      organisationId: organisationId == freezed
-          ? _value.organisationId
-          : organisationId // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      wasteSaved: wasteSaved == freezed
+          ? _value.wasteSaved
+          : wasteSaved // ignore: cast_nullable_to_non_nullable
+              as int?,
+      qrCode: qrCode == freezed
+          ? _value.qrCode
+          : qrCode // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: avatar == freezed
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -174,59 +204,69 @@ class __$ClientModelCopyWithImpl<$Res> extends _$ClientModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClientModel implements _ClientModel {
   _$_ClientModel(
-      {this.organisationId,
-      this.firstName,
-      this.lastName,
-      this.avatar,
-      this.username});
+      {this.id,
+      this.wasteSaved,
+      this.qrCode,
+      this.name,
+      this.phoneNumber,
+      this.image,
+      this.email});
 
   factory _$_ClientModel.fromJson(Map<String, dynamic> json) =>
       _$$_ClientModelFromJson(json);
 
   @override
-  final String? organisationId;
+  final int? id;
   @override
-  final String? firstName;
+  final int? wasteSaved;
   @override
-  final String? lastName;
+  final String? qrCode;
   @override
-  final String? avatar;
+  final String? name;
   @override
-  final String? username;
+  final String? phoneNumber;
+  @override
+  final String? image;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'ClientModel(organisationId: $organisationId, firstName: $firstName, lastName: $lastName, avatar: $avatar, username: $username)';
+    return 'ClientModel(id: $id, wasteSaved: $wasteSaved, qrCode: $qrCode, name: $name, phoneNumber: $phoneNumber, image: $image, email: $email)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ClientModel &&
-            (identical(other.organisationId, organisationId) ||
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.wasteSaved, wasteSaved) ||
                 const DeepCollectionEquality()
-                    .equals(other.organisationId, organisationId)) &&
-            (identical(other.firstName, firstName) ||
+                    .equals(other.wasteSaved, wasteSaved)) &&
+            (identical(other.qrCode, qrCode) ||
+                const DeepCollectionEquality().equals(other.qrCode, qrCode)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.phoneNumber, phoneNumber) ||
                 const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.avatar, avatar) ||
-                const DeepCollectionEquality().equals(other.avatar, avatar)) &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)));
+                    .equals(other.phoneNumber, phoneNumber)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(organisationId) ^
-      const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(lastName) ^
-      const DeepCollectionEquality().hash(avatar) ^
-      const DeepCollectionEquality().hash(username);
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(wasteSaved) ^
+      const DeepCollectionEquality().hash(qrCode) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(phoneNumber) ^
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(email);
 
   @JsonKey(ignore: true)
   @override
@@ -241,25 +281,31 @@ class _$_ClientModel implements _ClientModel {
 
 abstract class _ClientModel implements ClientModel {
   factory _ClientModel(
-      {String? organisationId,
-      String? firstName,
-      String? lastName,
-      String? avatar,
-      String? username}) = _$_ClientModel;
+      {int? id,
+      int? wasteSaved,
+      String? qrCode,
+      String? name,
+      String? phoneNumber,
+      String? image,
+      String? email}) = _$_ClientModel;
 
   factory _ClientModel.fromJson(Map<String, dynamic> json) =
       _$_ClientModel.fromJson;
 
   @override
-  String? get organisationId => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @override
-  String? get firstName => throw _privateConstructorUsedError;
+  int? get wasteSaved => throw _privateConstructorUsedError;
   @override
-  String? get lastName => throw _privateConstructorUsedError;
+  String? get qrCode => throw _privateConstructorUsedError;
   @override
-  String? get avatar => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String? get username => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  @override
+  String? get image => throw _privateConstructorUsedError;
+  @override
+  String? get email => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ClientModelCopyWith<_ClientModel> get copyWith =>
