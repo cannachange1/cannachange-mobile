@@ -6,9 +6,11 @@ import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_details_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_management_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/payment_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
 import 'ui/pages/main_navigation_consumer/consumer/consumer_settings_page.dart';
 import 'ui/pages/main_navigation_consumer/dispenser/dashboard_page.dart';
+import 'ui/pages/secondary_navigation/qr_scanner_view.dart';
 import 'ui/pages/secondary_navigation/welcome_page.dart';
 import 'ui/pages/verify_account/verify_otp_code_page.dart';
 
@@ -22,12 +24,14 @@ import 'ui/pages/verify_account/verify_otp_code_page.dart';
     AutoRoute(page: SettingsPage),
     AutoRoute(page: ConsumerSettingsPage),
     AutoRoute(page: AccountManagementPage),
+    AutoRoute(page: PaymentPage),
     AutoRoute(page: DashboardPage),
     AutoRoute(page: ConsumerDashboardPage),
     AutoRoute(page: AccountDetailsPage),
     AutoRoute(page: ClientAuthorizationPage),
     AutoRoute(page: WelcomePage, initial: true),
     AutoRoute(page: VerifyOtpCodePage),
+    AutoRoute(page: QrScannerView),
   ],
 )
 class $FlutterRouter {}

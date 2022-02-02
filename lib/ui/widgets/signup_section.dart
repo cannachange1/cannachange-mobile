@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
 import 'text_input.dart';
@@ -175,7 +174,8 @@ class _SignUpSectionState extends State<SignUpSection> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => _launchURL,
+                    onTap: () => {},
+                    //_launchURL,
                     child: const Text.rich(
                       TextSpan(
                         text: 'I agree to the ',
@@ -227,7 +227,7 @@ class _SignUpSectionState extends State<SignUpSection> {
     dispensaryConfirmPasswordTextController.clear();
   }
 
-  void _launchURL() async => await canLaunch(_url)
-      ? await launch(_url)
-      : throw 'Could not launch $_url';
+  // void _launchURL() async => await canLaunch(_url)
+  //     ? await launch(_url)
+  //     : throw 'Could not launch $_url';
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
@@ -5,6 +6,8 @@ import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../../../router.gr.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -111,11 +114,15 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              Center(
-                child: Icon(
-                  Icons.qr_code_scanner_rounded,
-                  size: screenWidth(context) * .5,
-                  color: AppColors.secondAccent,
+              GestureDetector(
+                onTap: () =>
+                    AutoRouter.of(context).push(const QrScannerView()),
+                child: Center(
+                  child: Icon(
+                    Icons.qr_code_scanner_rounded,
+                    size: screenWidth(context) * .5,
+                    color: AppColors.secondAccent,
+                  ),
                 ),
               ),
             ],

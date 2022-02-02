@@ -121,7 +121,7 @@ abstract class _RegistrationState with Store {
           isDispensary ? dispensaryPassword! : consumerPassword!);
       StorageHelper.setToken(token!);
       if (isDispensary) {
-        AutoRouter.of(context).push(const DashboardRoute());
+        AutoRouter.of(context).push(const PaymentRoute());
       } else {
         AutoRouter.of(context).push(const ConsumerDashboardRoute());
       }

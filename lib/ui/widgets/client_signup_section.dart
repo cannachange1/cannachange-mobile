@@ -2,7 +2,6 @@ import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
 import 'text_input.dart';
@@ -24,8 +23,8 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
   TextEditingController clientConfirmPasswordTextController =
       TextEditingController();
 
-  final String _url =
-      'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
+  // final String _url =
+  //     'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
   final registrationState = GetIt.I<RegistrationState>();
 
   @override
@@ -117,7 +116,8 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => _launchURL,
+                    onTap: () => {},
+                    //_launchURL,
                     child: const Text.rich(
                       TextSpan(
                         text: 'I agree to the ',
@@ -164,8 +164,8 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
     clientEmailTextController.clear();
     clientNameTextController.clear();
   }
-
-  void _launchURL() async => await canLaunch(_url)
-      ? await launch(_url)
-      : throw 'Could not launch $_url';
+  //
+  // void _launchURL() async => await canLaunch(_url)
+  //     ? await launch(_url)
+  //     : throw 'Could not launch $_url';
 }

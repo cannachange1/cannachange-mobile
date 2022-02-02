@@ -8,6 +8,7 @@ class StringConst {
   static const String password = 'Password';
   static const String confirmPassword = 'Confirm password';
   static const String email = 'Email';
+  static const String addPoints = 'Add Points';
   static const String dispensaryHours = 'Dispensary Hours';
   static const String fullName = 'First and Last Name';
   static const String dispensaryName = 'Dispensary Name';
