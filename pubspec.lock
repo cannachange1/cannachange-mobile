@@ -717,11 +717,13 @@ packages:
     source: hosted
     version: "2.1.0"
   qr_flutter:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
-      name: qr_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: e3f8d3d4bbe8661f6c941acde8c9815a876756a3
+      url: "git://github.com/lukef/qr.flutter.git"
+    source: git
     version: "4.0.0"
   shelf:
     dependency: transitive

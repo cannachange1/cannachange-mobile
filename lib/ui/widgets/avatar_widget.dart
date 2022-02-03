@@ -43,48 +43,32 @@ class _AvatarWidgetState extends State<AvatarWidget> {
               await personalDataState.pickImage();
               getUserInfo();
             },
-            child: personalDataState.clientModel != null
+            child: widget.isDispensary
                 ? Center(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(80),
-                          child: widget.isDispensary
-                              ? personalDataState.dispensarySelectedImage !=
-                                      null
-                                  ? Image.file(
-                                      personalDataState.clientSelectedImage!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                                  : Image.network(
-                                      personalDataState.dispensaryModel!.image!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                              : personalDataState.clientSelectedImage !=
-                                      null
-                                  ? Image.file(
-                                      personalDataState.clientSelectedImage!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                                  : Image.network(
-                                      personalDataState.clientModel!.image!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    ),
-                        ),
+                            borderRadius: BorderRadius.circular(80),
+                            child: personalDataState.dispensarySelectedImage !=
+                                    null
+                                ? Image.file(
+                                    personalDataState.dispensarySelectedImage!,
+                                    fit: BoxFit.cover,
+                                    height: 90,
+                                    width: 90,
+                                  )
+                                : Image.network(
+                                    personalDataState.dispensaryModel!.image!,
+                                    fit: BoxFit.cover,
+                                    height: 90,
+                                    width: 90,
+                                  )),
                         const SizedBox(
                           width: 20,
                         ),
                         Text(
-                          name,
+                          personalDataState.dispensaryModel!.name!,
                           style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
@@ -93,6 +77,38 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                       ],
                     ),
                   )
-                : const SizedBox()));
+                : Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: personalDataState.clientSelectedImage != null
+                              ? Image.file(
+                                  personalDataState.clientSelectedImage!,
+                                  fit: BoxFit.cover,
+                                  height: 90,
+                                  width: 90,
+                                )
+                              : Image.network(
+                                  personalDataState.clientModel!.image!,
+                                  fit: BoxFit.cover,
+                                  height: 90,
+                                  width: 90,
+                                ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          personalDataState.clientModel!.name!,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )));
   }
 }

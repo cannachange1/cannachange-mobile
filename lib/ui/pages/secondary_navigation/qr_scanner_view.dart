@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../app_theme.dart';
 import '../../../helpers/overlay_helper.dart';
@@ -22,7 +23,7 @@ class QrScannerView extends StatefulWidget {
 
 class _QrScannerViewState extends State<QrScannerView> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  //QRViewController? controller;
+ // QRViewController? controller;
 
   //LoadingState loadingState = LoadingState();
   final dio = GetIt.I<Dio>();

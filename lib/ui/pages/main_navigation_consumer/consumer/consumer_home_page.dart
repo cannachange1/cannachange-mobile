@@ -31,7 +31,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                 children: [
                   const AvatarWidget(isDispensary: false,),
                   QrImage(
-                    data: "1234567890",
+                    data: personalDataState.clientModel!.qrCode!,
                     version: QrVersions.auto,
                     size: 120,
                   ),
@@ -50,20 +50,23 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                 shrinkWrap: true,
                 itemBuilder: (context, position) {
                   return Card(
+                    elevation: 8,
+                    color: AppColors.secondAccent,
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'name',
-                            style: TextStyle(fontSize: 22.0),
+                            style: TextStyle(fontSize: 22.0, color: AppColors.lightGrayColor),
                           ),
                           Stack(
                             children: const [
                               Icon(
                                 Icons.filter_none,
                                 size: 50,
-                                color: AppColors.secondAccent,
+                                color: AppColors.lightGrayColor,
                               ),
                               Positioned(
                                 child: Text(
@@ -95,7 +98,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                     ),
                   ),
                   Text(
-                    personalDataState.dispensaryModel!.address1!,
+                    personalDataState.dispensaryModel!.address1 ?? '',
                     style: const TextStyle(
                       fontSize: 16,
                       color: AppColors.secondAccent,

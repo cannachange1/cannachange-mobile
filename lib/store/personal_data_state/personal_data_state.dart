@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
+import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:cannachange/model/user/user_model.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/dialogs/reset_password_code_dialog.dart';
@@ -52,6 +53,13 @@ abstract class _PersonalDataState with Store {
 
   @observable
   File? dispensarySelectedImage;
+
+  @observable
+  ObservableList<PointModel> consumerPointList = <PointModel>[].asObservable();
+
+  @observable
+  ObservableList<PointModel> dispensaryPointList =
+      <PointModel>[].asObservable();
 
   @action
   void setDispensaryName(String value) {

@@ -117,11 +117,14 @@ abstract class _LoginState with Store {
         //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
         // personalDataState.dispensaryWorkingHours =
         //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
+
         await AutoRouter.of(cont).replace(const DashboardRoute());
       } else {
         personalDataState.clientModel = res.consumer;
         await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
       }
+      storeState.changeState(StoreStates.success);
+
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);

@@ -92,8 +92,8 @@ class _RegistrationDetailsWorkingHoursDialogState
             MainButton(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
-                await AutoRouter.of(context).pop();
                 await registrationState.registerDispensary(context);
+
               },
               label: 'DONE',
             ),

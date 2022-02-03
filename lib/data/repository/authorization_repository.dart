@@ -17,8 +17,6 @@ class AuthenticationRepo {
       return LoginResponseModel.fromJson(res.data);
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
     }
   }
 
@@ -27,8 +25,6 @@ class AuthenticationRepo {
       await dio.post('mobile/consumer?sendSMS=true', data: signUpRequestModel);
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
     }
   }
 
@@ -39,8 +35,6 @@ class AuthenticationRepo {
           data: signUpRequestModel);
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
     }
   }
 
@@ -52,8 +46,6 @@ class AuthenticationRepo {
       return res.data['token'];
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
-    }
+    } 
   }
 }

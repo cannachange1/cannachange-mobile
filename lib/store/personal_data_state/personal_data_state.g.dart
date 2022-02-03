@@ -161,6 +161,38 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
+  final _$consumerPointListAtom =
+      Atom(name: '_PersonalDataState.consumerPointList');
+
+  @override
+  ObservableList<PointModel> get consumerPointList {
+    _$consumerPointListAtom.reportRead();
+    return super.consumerPointList;
+  }
+
+  @override
+  set consumerPointList(ObservableList<PointModel> value) {
+    _$consumerPointListAtom.reportWrite(value, super.consumerPointList, () {
+      super.consumerPointList = value;
+    });
+  }
+
+  final _$dispensaryPointListAtom =
+      Atom(name: '_PersonalDataState.dispensaryPointList');
+
+  @override
+  ObservableList<PointModel> get dispensaryPointList {
+    _$dispensaryPointListAtom.reportRead();
+    return super.dispensaryPointList;
+  }
+
+  @override
+  set dispensaryPointList(ObservableList<PointModel> value) {
+    _$dispensaryPointListAtom.reportWrite(value, super.dispensaryPointList, () {
+      super.dispensaryPointList = value;
+    });
+  }
+
   final _$imageUrlAtom = Atom(name: '_PersonalDataState.imageUrl');
 
   @override
@@ -291,6 +323,8 @@ dispensaryEmail: ${dispensaryEmail},
 dispensaryPhone: ${dispensaryPhone},
 clientSelectedImage: ${clientSelectedImage},
 dispensarySelectedImage: ${dispensarySelectedImage},
+consumerPointList: ${consumerPointList},
+dispensaryPointList: ${dispensaryPointList},
 imageUrl: ${imageUrl},
 currentUser: ${currentUser}
     ''';

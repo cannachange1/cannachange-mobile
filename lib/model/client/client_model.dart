@@ -7,7 +7,7 @@ part 'client_model.g.dart';
 class ClientModel with _$ClientModel {
   factory ClientModel({
      int? id,
-     int? wasteSaved,
+     double? wasteSaved,
      String? qrCode,
      String? name,
      String? phoneNumber,
