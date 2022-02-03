@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -8,8 +9,12 @@ import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:cannachange/model/user/user_model.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/dialogs/reset_password_code_dialog.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../helpers/overlay_helper.dart';
 
 part 'personal_data_state.g.dart';
 
@@ -128,20 +133,38 @@ abstract class _PersonalDataState with Store {
   String imageUrl = '';
 
   @action
-  Future<void> pickImage() async {
-    // try {
-    //   FilePickerResult? result =
-    //       await FilePicker.platform.pickFiles(type: FileType.image);
-    //   if (result != null) {
-    //     selectedImage = File(
-    //       result.files.single.path!,
-    //     );
-    //     userRepository.uploadProfilePic(selectedImage!, result);
-    //   } else {}
-    // } on DioError catch (e) {
-    //   final Map<String, dynamic> map = jsonDecode(e.response!.data);
-    //   showCustomOverlayNotification(color: Colors.red, text: map['title']);
-    // }
+  Future<void> pickConsumerImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        clientSelectedImage = File(
+          result.files.single.path!,
+        );
+        personalDataRepository.uploadProfilePic(clientSelectedImage!, result);
+      } else {}
+    } on DioError catch (e) {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
+      showCustomOverlayNotification(color: Colors.red, text: map['title']);
+    }
+  }
+
+  @action
+  Future<void> pickDispensaryImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        dispensarySelectedImage = File(
+          result.files.single.path!,
+        );
+        personalDataRepository.uploadProfilePic(
+            dispensarySelectedImage!, result);
+      } else {}
+    } on DioError catch (e) {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
+      showCustomOverlayNotification(color: Colors.red, text: map['title']);
+    }
   }
 
   @action

@@ -208,11 +208,21 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
-  final _$pickImageAsyncAction = AsyncAction('_PersonalDataState.pickImage');
+  final _$pickConsumerImageAsyncAction =
+      AsyncAction('_PersonalDataState.pickConsumerImage');
 
   @override
-  Future<void> pickImage() {
-    return _$pickImageAsyncAction.run(() => super.pickImage());
+  Future<void> pickConsumerImage() {
+    return _$pickConsumerImageAsyncAction.run(() => super.pickConsumerImage());
+  }
+
+  final _$pickDispensaryImageAsyncAction =
+      AsyncAction('_PersonalDataState.pickDispensaryImage');
+
+  @override
+  Future<void> pickDispensaryImage() {
+    return _$pickDispensaryImageAsyncAction
+        .run(() => super.pickDispensaryImage());
   }
 
   final _$forgetPasswordInitAsyncAction =

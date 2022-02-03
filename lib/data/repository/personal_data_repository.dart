@@ -27,7 +27,7 @@ class PersonalDataRepository {
       File image, FilePickerResult filePickerResult) async {
     String fileName = image.path.split('/').last;
     final res = await dio.post(
-      'avatar',
+      'mobile/avatar',
       data: {"name": fileName, "extension": 'jpeg'},
     );
     if (res.data['link'] != null) {

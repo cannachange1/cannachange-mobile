@@ -34,6 +34,8 @@ class _ConsumerPersonalDetailsPageState
   void getUserInfo() async {
     fullNameController.text = personalDataState.clientModel!.name!;
     emailController.text = personalDataState.clientModel!.email!;
+    print('aaaaa ${fullNameController.text}');
+    print('ccc ${personalDataState.clientModel!.name!}');
   }
 
   // _updateTextController(DispensaryModel user) {

@@ -18,8 +18,6 @@ class AvatarWidget extends StatefulWidget {
 
 class _AvatarWidgetState extends State<AvatarWidget> {
   final personalDataState = GetIt.I<PersonalDataState>();
-  String name = '';
-  String surname = '';
 
   @override
   void initState() {
@@ -30,7 +28,6 @@ class _AvatarWidgetState extends State<AvatarWidget> {
   }
 
   Future<void> getUserInfo() async {
-    // name = await StorageHelper.getUserName();
     setState(() {});
   }
 
@@ -39,7 +36,9 @@ class _AvatarWidgetState extends State<AvatarWidget> {
     return Observer(
         builder: (_) => GestureDetector(
             onTap: () async {
-              await personalDataState.pickImage();
+              widget.isDispensary
+                  ? await personalDataState.pickDispensaryImage()
+                  : await personalDataState.pickConsumerImage();
               getUserInfo();
             },
             child: widget.isDispensary
