@@ -116,23 +116,31 @@ class UnknownException implements Exception {
 }
 
 void handleError(DioError e) {
-  final Map<String, dynamic> map = jsonDecode(e.response!.data);
+  if(e.response!=null)
+    {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
 
-  if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
-    throw NoInternetException();
-  }
-  if (is400StatusCodeFamily(e.error)) {
-    if (e.error == DioError401) {
-      throw UnauhtorizedException();
+      if (e.error is SocketException || e.type == DioErrorType.connectTimeout) {
+        throw NoInternetException();
+      }
+      if (is400StatusCodeFamily(e.error)) {
+        if (e.error == DioError401) {
+          throw UnauhtorizedException();
+        }
+
+        throw BadRequestException(
+          message: map['title'],
+        );
+      }
+      if (is500StatusCodeFamily(e.error)) {
+        throw ServerException(
+          message: map['title'],
+        );
+      }
+    }
+  else
+    {
+      return;
     }
 
-    throw BadRequestException(
-      message: map['title'],
-    );
-  }
-  if (is500StatusCodeFamily(e.error)) {
-    throw ServerException(
-      message: map['title'],
-    );
-  }
 }
