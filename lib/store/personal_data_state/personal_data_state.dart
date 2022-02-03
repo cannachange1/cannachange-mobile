@@ -69,6 +69,13 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
+  void setConsumerName(String value) {
+    if (value.isNotEmpty) {
+      clientModel = clientModel!.copyWith(name: value);
+    }
+  }
+
+  @action
   void setDispensaryHours(String value) {
     if (value.isNotEmpty) {
       // dispensaryModel = dispensaryModel!.copyWith(w: value);

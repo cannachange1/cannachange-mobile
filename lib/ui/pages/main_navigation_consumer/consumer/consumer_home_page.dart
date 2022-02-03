@@ -24,52 +24,63 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const AvatarWidget(
-                    isDispensary: false,
-                  ),
-                  QrImage(
-                    data: personalDataState.clientModel!.qrCode!,
-                    version: QrVersions.auto,
-                    size: 140,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                'Points Earned',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w700,
+          child: Observer(
+            builder: (_) => Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              const Divider(
-                color: AppColors.secondAccent,
-                indent: 2,
-                thickness: 3,
-              ),
-              const Divider(
-                thickness: 1,
-                height: 0,
-              ),
-              Observer(
-                builder: (_) => ListView.builder(
-                  itemCount: personalDataState.consumerPointList.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return personalDataState.consumerPointList.isNotEmpty
-                        ? Card(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const AvatarWidget(
+                      isDispensary: false,
+                    ),
+                    QrImage(
+                      data: personalDataState.clientModel!.qrCode!,
+                      version: QrVersions.auto,
+                      size: 140,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'Points Earned',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: AppColors.darkGrey,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const Divider(
+                  color: AppColors.secondAccent,
+                  indent: 2,
+                  thickness: 3,
+                ),
+                const Divider(
+                  thickness: 1,
+                  height: 0,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                personalDataState.consumerPointList.isEmpty
+                    ? Text(
+                        "You didn't earn points yet",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          color: AppColors.darkGrey.withOpacity(.7),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: personalDataState.consumerPointList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Card(
                             elevation: 8,
                             color: AppColors.secondAccent,
                             child: Padding(
@@ -111,60 +122,56 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                 ],
                               ),
                             ),
-                          )
-                        : const Text(
-                            "You didn't earn points yet",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
-                                color: AppColors.darkGrey),
                           );
-                  },
+                        },
+                      ),
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const Text(
-                'Waste Saved',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: AppColors.darkGrey,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Divider(
-                color: AppColors.secondAccent,
-                indent: 2,
-                thickness: 3,
-              ),
-              const Divider(
-                thickness: 1,
-                height: 0,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: 10,
+                const Text(
+                  'Waste Saved',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: AppColors.darkGrey,
+                    fontWeight: FontWeight.w700,
                   ),
-                  Text(
-                    personalDataState.clientModel!.wasteSaved.toString(),
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: AppColors.darkGrey.withOpacity(.7),
-                      fontWeight: FontWeight.w700,
+                ),
+                const Divider(
+                  color: AppColors.secondAccent,
+                  indent: 2,
+                  thickness: 3,
+                ),
+                const Divider(
+                  thickness: 1,
+                  height: 0,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: 10,
                     ),
-                  ),
-                  const Icon(
-                    Icons.scale,
-                    color: AppColors.secondAccent,
-                    size: 50,
-                  ),
-                ],
-              )
-            ],
+                    Text(
+                      personalDataState.clientModel!.wasteSaved.toString(),
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: AppColors.darkGrey.withOpacity(.7),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.scale,
+                      color: AppColors.secondAccent,
+                      size: 50,
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
