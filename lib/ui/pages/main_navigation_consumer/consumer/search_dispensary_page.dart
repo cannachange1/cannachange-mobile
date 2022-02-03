@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
+import 'package:cannachange/ui/widgets/search_box.dart';
 import 'package:cannachange/values/values.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SearchDispensaryPage extends StatefulWidget {
   const SearchDispensaryPage({Key? key}) : super(key: key);
@@ -15,192 +20,69 @@ class SearchDispensaryPage extends StatefulWidget {
 }
 
 class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
-  final dashboardState = GetIt.I<DashboardState>();
-  final personalDataState = GetIt.I<PersonalDataState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController addressLine1 = TextEditingController();
-  TextEditingController addressLine2 = TextEditingController();
-  TextEditingController openingHours = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  final Completer<GoogleMapController> _controller = Completer();
+  TextEditingController searchController = TextEditingController();
 
-  // TextEditingController phoneNumberController = TextEditingController();
+  // static const CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 14.4746,
+  // );
+
+  // static const CameraPosition _kLake = CameraPosition(
+  //     bearing: 192.8334901395799,
+  //     target: LatLng(37.43296265331129, -122.08832357078792),
+  //     tilt: 59.440717697143555,
+  //     zoom: 19.151926040649414);
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    //getUserInfo();
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+    }
   }
-
-  // Future<void> getUserInfo() async {
-  //   // await personalDataState.getUser();
-  //   // _updateTextController(personalDataState.user!);
-  // }
-  //
-  // _updateTextController(DispensaryModel user) {
-  //   nameController.text = user.firstName;
-  //   lastNameController.text = user.lastName;
-  //   phoneNumberController.text = user.phone;
-  //
-  //   if (user.email != null) {
-  //     emailController.text = user.email!;
-  //   }
-  //   if (user.country != null) {
-  //     countryController.text = user.country!;
-  //   }
-  //   if (user.city != null) {
-  //     cityController.text = user.city!;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Observer(
-          builder: (context) {
-            // if (personalDataState.storeState.state == StoreStates.loading ||
-            //     personalDataState.storeState.state == StoreStates.initial) {
-            //   return Center(child: CircularProgressIndicator());
-            //  } else {
-
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text(
-                      'Dispensary Name',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: fullNameController,
-                      inputType: TextInputType.text,
-                      hintText: 'xyz dispensary',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryName(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Address Line 1',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: addressLine1,
-                      inputType: TextInputType.text,
-                      hintText: 'Jane Doe 123 Main Street',
-                      obscureText: false,
-                      onChanged: (value) {
-                        //   personalDataState.setLastName(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Address Line 2',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: emailController,
-                      inputType: TextInputType.text,
-                      hintText: 'York, NY 11377',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryAddressLine2(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Email',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: emailController,
-                      inputType: TextInputType.text,
-                      hintText: 'Johndoe@gmail.com',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryEmail(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    MainButton(
-                      callback: () {
-                        // personalDataState.updateUser();
-                      },
-                      label: 'Update Info',
-                      // padding: EdgeInsets.zero,
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    Row(
-                      children: const [
-                        Icon(Icons.delete_forever_rounded),
-                        Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.secondAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    const Text(
-                      'Cancel Subscription',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.secondAccent,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            SearchBox(
+              textEditingController: searchController,
+              hintText: 'Zip code, city or name',
+            ),
+            // GoogleMap(
+            //   mapType: MapType.hybrid,
+            //   initialCameraPosition: _kGooglePlex,
+            //   onMapCreated: (GoogleMapController controller) {
+            //     _controller.complete(controller);
+            //   },
+            // ),
+          ],
         ),
       ),
     );
   }
+
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    // controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+
+// showModalBottomSheet(
+// context: context,
+// isScrollControlled: true,
+// backgroundColor: Colors.transparent,
+// builder: (context) => item.isOnline
+// ? OnlineRetailerDescriptionDialog(
+// dealModel: item,
+// userHasToken: dashboardState.userHasToken,
+// )
+//     : RetailerDescriptionDialog(dealModel: item),
+// ),
 }

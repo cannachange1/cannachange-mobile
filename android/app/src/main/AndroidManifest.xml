@@ -6,6 +6,9 @@
         android:icon="@mipmap/launcher_icon"
         android:label="cannachange">
 
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD_ZZoiuzsjTNW4sYfhis0DLYQt9KhCKjA"/>
+
         <meta-data
             android:name="flutter_deeplinking_enabled"
             android:value="true" />
