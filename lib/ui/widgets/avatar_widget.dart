@@ -31,7 +31,6 @@ class _AvatarWidgetState extends State<AvatarWidget> {
 
   Future<void> getUserInfo() async {
     // name = await StorageHelper.getUserName();
-    surname = await StorageHelper.getUserSurname();
     setState(() {});
   }
 
