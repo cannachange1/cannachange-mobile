@@ -66,7 +66,10 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
                   Card(
                     color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        //TODO please add push notif token
+                        personalDataState.deleteAccount('');
+                      },
                       leading: const Icon(
                         Icons.delete,
                         color: AppColors.lightGrayColor,

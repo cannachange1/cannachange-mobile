@@ -48,7 +48,6 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (defaultTargetPlatform == TargetPlatform.android) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
@@ -74,7 +73,8 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
               hintText: 'Zip code, city or name',
               onChanged: (txt) {
                 searchState.searchKey = txt;
-              //  searchState.getDispensaries();
+                pageNumber = 0;
+                searchState.getDispensaries(txt, pageNumber);
               },
             ),
             PagedListView(

@@ -1,6 +1,7 @@
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/avatar_widget.dart';
+import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -64,20 +65,26 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                 const Divider(
                   thickness: 1,
                   height: 0,
-                ),
-                const SizedBox(
-                  height: 8,
+                  indent: 0,
                 ),
                 personalDataState.consumerPointList.isEmpty
-                    ? Text(
-                        "You didn't earn points yet",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: AppColors.darkGrey.withOpacity(.7),
-                        ),
+                    ? Column(
+                        children: [
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            "You didn't earn points yet",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              color: AppColors.darkGrey.withOpacity(.7),
+                            ),
+                          ),
+                        ],
                       )
                     : ListView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         itemCount: personalDataState.consumerPointList.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
@@ -92,12 +99,38 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    personalDataState.consumerPointList[index]
-                                        .dispensary!.name!,
+                                    personalDataState
+                                        .consumerPointList[index].name!,
                                     style: const TextStyle(
                                         fontSize: 22.0,
                                         color: AppColors.lightGrayColor),
                                   ),
+                                  if (personalDataState.consumerPointList[index]
+                                              .discountCode ==
+                                          null &&
+                                      personalDataState.consumerPointList[index]
+                                              .point! >=
+                                          25)
+                                    MainButton(
+                                      callback: () => personalDataState
+                                          .redeemPoints(personalDataState
+                                              .consumerPointList[index].id!),
+                                      label: 'Redeem Points',
+                                    ),
+                                  if (personalDataState.consumerPointList[index]
+                                              .point! >=
+                                          25 &&
+                                      personalDataState.consumerPointList[index]
+                                              .discountCode !=
+                                          null)
+                                    Text(
+                                      personalDataState.consumerPointList[index]
+                                          .discountCode!,
+                                      style: const TextStyle(
+                                          color: AppColors.lightGrayColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 18),
+                                    ),
                                   Stack(
                                     children: [
                                       const Icon(
@@ -112,11 +145,11 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                               .toString(),
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w800,
-                                              fontSize: 24,
-                                              color: AppColors.darkGrey),
+                                              fontSize: 18,
+                                              color: Colors.white),
                                         ),
-                                        right: 12,
-                                        top: 6,
+                                        right: 8,
+                                        top: 10,
                                       )
                                     ],
                                   ),

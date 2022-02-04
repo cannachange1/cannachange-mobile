@@ -104,8 +104,8 @@ abstract class _LoginState with Store {
 
   @action
   Future<void> logIn(BuildContext cont) async {
-    storeState.changeState(StoreStates.loading);
     try {
+      storeState.changeState(StoreStates.loading);
       final res = await authorizationRepo.login(email, password!);
       await StorageHelper.setToken(res!.token);
       if (res.role == 'DISPENSARY') {
@@ -121,11 +121,11 @@ abstract class _LoginState with Store {
         await AutoRouter.of(cont).replace(const DashboardRoute());
       } else {
         personalDataState.clientModel = res.consumer;
-        print('aaaaaa ${res.consumer}');
+        personalDataState.consumerPointList.clear();
+        personalDataState.consumerPointList.addAll(res.points!);
         await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
       }
       storeState.changeState(StoreStates.success);
-
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());

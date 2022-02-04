@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:cannachange/data/exceptions/dio_error_codes.dart';
 import 'package:cannachange/data/exceptions/general_exceptions.dart';
+import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
@@ -90,6 +91,37 @@ class PersonalDataRepository {
           "token": token,
         },
       );
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> redeemPoints(
+    int id,
+  ) async {
+    try {
+      await dio.get(
+        'mobile/points/$id/redeem',
+      );
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<List<PointModel>?> getPoints() async {
+    try {
+      final res = await dio.get(
+        'mobile/points',
+      );
+      final List<PointModel> list = res.data
+          .map((i) => PointModel.fromJson(i))
+          .toList()
+          .cast<PointModel>();
+      return list;
     } on DioError catch (e) {
       handleError(e);
     }

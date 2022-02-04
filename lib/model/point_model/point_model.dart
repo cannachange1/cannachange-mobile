@@ -10,8 +10,9 @@ part 'point_model.g.dart';
 class PointModel with _$PointModel {
   factory PointModel({
     int? id,
-    DispensaryModel? dispensary,
+    String? name,
     int? point,
+    String? discountCode,
   }) = _PointModel;
 
   factory PointModel.fromJson(Map<String, dynamic> json) =>
