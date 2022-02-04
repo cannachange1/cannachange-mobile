@@ -28,10 +28,12 @@ class SearchDispensaryPage extends StatefulWidget {
 class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
   final Completer<GoogleMapController> _controller = Completer();
   TextEditingController searchController = TextEditingController();
-  final searchState = GetIt.I<SearchState>();
+  SearchState searchState = GetIt.I<SearchState>();
 
   PagingController<int, DispensaryModel> pagingController =
       PagingController(firstPageKey: 0);
+
+  int pageNumber = 0;
 
   // static const CameraPosition _kGooglePlex = CameraPosition(
   //   target: LatLng(37.42796133580664, -122.085749655962),
@@ -51,9 +53,10 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
     if (defaultTargetPlatform == TargetPlatform.android) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
     }
-    pagingController.addPageRequestListener((key) => () {
-     // searchState.getDispensaries(searchKey, pageKey)
-    });
+
+    // pagingController.addPageRequestListener((key) => () {
+    //  // searchState.getDispensaries(searchKey, pageKey)
+    // });
   }
 
   @override
@@ -69,6 +72,10 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
             SearchBox(
               textEditingController: searchController,
               hintText: 'Zip code, city or name',
+              onChanged: (txt) {
+                searchState.searchKey = txt;
+              //  searchState.getDispensaries();
+              },
             ),
             PagedListView(
               shrinkWrap: true,
@@ -86,17 +93,6 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
                                   color: AppColors.darkGrey,
                                   fontWeight: FontWeight.w800),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Check back regularly as our L&L family is always growing.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.darkGrey,
-                                  fontWeight: FontWeight.w700),
-                            )
                           ],
                         ),
                       ),
@@ -195,6 +191,7 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
       ),
     );
   }
+
   Future<void> fetchOnlinePage(String searchKey, int pageKey) async {
     try {
       await searchState.getDispensaries(searchKey, pageKey);
@@ -203,8 +200,7 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
       } else {
         //final nextPageKey = pageKey + res.dealList.length;
         pagingController.appendPage(
-        searchState.filteredDispensariesList,
-            pageKey + 1);
+            searchState.filteredDispensariesList, pageKey + 1);
       }
     } on Exception catch (error) {
       pagingController.error = error;
