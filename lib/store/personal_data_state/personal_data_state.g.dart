@@ -161,6 +161,38 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
+  final _$consumerPointListAtom =
+      Atom(name: '_PersonalDataState.consumerPointList');
+
+  @override
+  ObservableList<PointModel> get consumerPointList {
+    _$consumerPointListAtom.reportRead();
+    return super.consumerPointList;
+  }
+
+  @override
+  set consumerPointList(ObservableList<PointModel> value) {
+    _$consumerPointListAtom.reportWrite(value, super.consumerPointList, () {
+      super.consumerPointList = value;
+    });
+  }
+
+  final _$dispensaryPointListAtom =
+      Atom(name: '_PersonalDataState.dispensaryPointList');
+
+  @override
+  ObservableList<PointModel> get dispensaryPointList {
+    _$dispensaryPointListAtom.reportRead();
+    return super.dispensaryPointList;
+  }
+
+  @override
+  set dispensaryPointList(ObservableList<PointModel> value) {
+    _$dispensaryPointListAtom.reportWrite(value, super.dispensaryPointList, () {
+      super.dispensaryPointList = value;
+    });
+  }
+
   final _$imageUrlAtom = Atom(name: '_PersonalDataState.imageUrl');
 
   @override
@@ -176,11 +208,21 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
-  final _$pickImageAsyncAction = AsyncAction('_PersonalDataState.pickImage');
+  final _$pickConsumerImageAsyncAction =
+      AsyncAction('_PersonalDataState.pickConsumerImage');
 
   @override
-  Future<void> pickImage() {
-    return _$pickImageAsyncAction.run(() => super.pickImage());
+  Future<void> pickConsumerImage() {
+    return _$pickConsumerImageAsyncAction.run(() => super.pickConsumerImage());
+  }
+
+  final _$pickDispensaryImageAsyncAction =
+      AsyncAction('_PersonalDataState.pickDispensaryImage');
+
+  @override
+  Future<void> pickDispensaryImage() {
+    return _$pickDispensaryImageAsyncAction
+        .run(() => super.pickDispensaryImage());
   }
 
   final _$forgetPasswordInitAsyncAction =
@@ -219,6 +261,28 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
         name: '_PersonalDataState.setDispensaryName');
     try {
       return super.setDispensaryName(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setConsumerName(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setConsumerName');
+    try {
+      return super.setConsumerName(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setConsumerEmail(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setConsumerEmail');
+    try {
+      return super.setConsumerEmail(value);
     } finally {
       _$_PersonalDataStateActionController.endAction(_$actionInfo);
     }
@@ -291,6 +355,8 @@ dispensaryEmail: ${dispensaryEmail},
 dispensaryPhone: ${dispensaryPhone},
 clientSelectedImage: ${clientSelectedImage},
 dispensarySelectedImage: ${dispensarySelectedImage},
+consumerPointList: ${consumerPointList},
+dispensaryPointList: ${dispensaryPointList},
 imageUrl: ${imageUrl},
 currentUser: ${currentUser}
     ''';

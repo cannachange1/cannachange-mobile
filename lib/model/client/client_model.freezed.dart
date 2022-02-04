@@ -23,7 +23,7 @@ class _$ClientModelTearOff {
 
   _ClientModel call(
       {int? id,
-      int? wasteSaved,
+      double? wasteSaved,
       String? qrCode,
       String? name,
       String? phoneNumber,
@@ -51,7 +51,7 @@ const $ClientModel = _$ClientModelTearOff();
 /// @nodoc
 mixin _$ClientModel {
   int? get id => throw _privateConstructorUsedError;
-  int? get wasteSaved => throw _privateConstructorUsedError;
+  double? get wasteSaved => throw _privateConstructorUsedError;
   String? get qrCode => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $ClientModelCopyWith<$Res> {
       _$ClientModelCopyWithImpl<$Res>;
   $Res call(
       {int? id,
-      int? wasteSaved,
+      double? wasteSaved,
       String? qrCode,
       String? name,
       String? phoneNumber,
@@ -105,7 +105,7 @@ class _$ClientModelCopyWithImpl<$Res> implements $ClientModelCopyWith<$Res> {
       wasteSaved: wasteSaved == freezed
           ? _value.wasteSaved
           : wasteSaved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       qrCode: qrCode == freezed
           ? _value.qrCode
           : qrCode // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ abstract class _$ClientModelCopyWith<$Res>
   @override
   $Res call(
       {int? id,
-      int? wasteSaved,
+      double? wasteSaved,
       String? qrCode,
       String? name,
       String? phoneNumber,
@@ -175,7 +175,7 @@ class __$ClientModelCopyWithImpl<$Res> extends _$ClientModelCopyWithImpl<$Res>
       wasteSaved: wasteSaved == freezed
           ? _value.wasteSaved
           : wasteSaved // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       qrCode: qrCode == freezed
           ? _value.qrCode
           : qrCode // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ class _$_ClientModel implements _ClientModel {
   @override
   final int? id;
   @override
-  final int? wasteSaved;
+  final double? wasteSaved;
   @override
   final String? qrCode;
   @override
@@ -282,7 +282,7 @@ class _$_ClientModel implements _ClientModel {
 abstract class _ClientModel implements ClientModel {
   factory _ClientModel(
       {int? id,
-      int? wasteSaved,
+      double? wasteSaved,
       String? qrCode,
       String? name,
       String? phoneNumber,
@@ -295,7 +295,7 @@ abstract class _ClientModel implements ClientModel {
   @override
   int? get id => throw _privateConstructorUsedError;
   @override
-  int? get wasteSaved => throw _privateConstructorUsedError;
+  double? get wasteSaved => throw _privateConstructorUsedError;
   @override
   String? get qrCode => throw _privateConstructorUsedError;
   @override

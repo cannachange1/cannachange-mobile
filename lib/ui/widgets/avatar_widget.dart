@@ -6,10 +6,12 @@ import 'package:get_it/get_it.dart';
 
 class AvatarWidget extends StatefulWidget {
   final bool isDispensary;
+  final bool showName;
 
   const AvatarWidget({
     Key? key,
     required this.isDispensary,
+    required this.showName,
   }) : super(key: key);
 
   @override
@@ -18,8 +20,6 @@ class AvatarWidget extends StatefulWidget {
 
 class _AvatarWidgetState extends State<AvatarWidget> {
   final personalDataState = GetIt.I<PersonalDataState>();
-  String name = '';
-  String surname = '';
 
   @override
   void initState() {
@@ -30,69 +30,87 @@ class _AvatarWidgetState extends State<AvatarWidget> {
   }
 
   Future<void> getUserInfo() async {
-    // name = await StorageHelper.getUserName();
-    surname = await StorageHelper.getUserSurname();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(
-        builder: (_) => GestureDetector(
-            onTap: () async {
-              await personalDataState.pickImage();
-              getUserInfo();
-            },
-            child: personalDataState.clientModel != null
-                ? Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
+        builder: (_) =>
+            GestureDetector(
+                onTap: () async {
+                  widget.isDispensary
+                      ? await personalDataState.pickDispensaryImage()
+                      : await personalDataState.pickConsumerImage();
+                  getUserInfo();
+                },
+                child: widget.isDispensary
+                    ? Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
                           borderRadius: BorderRadius.circular(80),
-                          child: widget.isDispensary
-                              ? personalDataState.dispensarySelectedImage !=
-                                      null
-                                  ? Image.file(
-                                      personalDataState.clientSelectedImage!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                                  : Image.network(
-                                      personalDataState.dispensaryModel!.image!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                              : personalDataState.clientSelectedImage !=
-                                      null
-                                  ? Image.file(
-                                      personalDataState.clientSelectedImage!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    )
-                                  : Image.network(
-                                      personalDataState.clientModel!.image!,
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                      width: 90,
-                                    ),
+                          child: personalDataState.dispensarySelectedImage !=
+                              null
+                              ? Image.file(
+                            personalDataState.dispensarySelectedImage!,
+                            fit: BoxFit.cover,
+                            height: 90,
+                            width: 90,
+                          )
+                              : Image.network(
+                            personalDataState.dispensaryModel!.image!,
+                            fit: BoxFit.cover,
+                            height: 90,
+                            width: 90,
+                          )),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        personalDataState.dispensaryModel!.name!,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700,
                         ),
-                        const SizedBox(
-                          width: 20,
+                      ),
+                    ],
+                  ),
+                )
+                    : Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(80),
+                        child: personalDataState.clientSelectedImage != null
+                            ? Image.file(
+                          personalDataState.clientSelectedImage!,
+                          fit: BoxFit.cover,
+                          height: 90,
+                          width: 90,
+                        )
+                            : Image.network(
+                          personalDataState.clientModel!.image!,
+                          fit: BoxFit.cover,
+                          height: 90,
+                          width: 90,
                         ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      if(widget.showName)
                         Text(
-                          name,
+                          personalDataState.clientModel!.name!,
                           style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                      ],
-                    ),
-                  )
-                : const SizedBox()));
+                    ],
+                  ),
+                )));
   }
 }

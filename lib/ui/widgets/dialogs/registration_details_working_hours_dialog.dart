@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
@@ -92,6 +93,7 @@ class _RegistrationDetailsWorkingHoursDialogState
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
                 await registrationState.registerDispensary(context);
+
               },
               label: 'DONE',
             ),

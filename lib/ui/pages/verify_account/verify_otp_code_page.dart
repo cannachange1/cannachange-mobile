@@ -93,7 +93,7 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                       OtpCodeFields(
                         controller: textEditingController,
                         appContext: context,
-                        errorAnimationController: errorController,
+                       // errorAnimationController: errorController,
                         pastedTextStyle: const TextStyle(
                           color: AppColors.secondAccent,
                           fontWeight: FontWeight.bold,

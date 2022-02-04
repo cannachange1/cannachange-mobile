@@ -9,7 +9,7 @@ part of 'client_model.dart';
 _$_ClientModel _$$_ClientModelFromJson(Map<String, dynamic> json) =>
     _$_ClientModel(
       id: json['id'] as int?,
-      wasteSaved: json['wasteSaved'] as int?,
+      wasteSaved: (json['wasteSaved'] as num?)?.toDouble(),
       qrCode: json['qrCode'] as String?,
       name: json['name'] as String?,
       phoneNumber: json['phoneNumber'] as String?,

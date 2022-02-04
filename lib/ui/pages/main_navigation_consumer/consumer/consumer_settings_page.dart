@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
@@ -5,6 +7,8 @@ import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
+import '../../../widgets/custom_app_bar.dart';
 
 class ConsumerSettingsPage extends StatefulWidget {
   const ConsumerSettingsPage({Key? key}) : super(key: key);
@@ -54,175 +58,75 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Observer(
-          builder: (context) {
-            // if (personalDataState.storeState.state == StoreStates.loading ||
-            //     personalDataState.storeState.state == StoreStates.initial) {
-            //   return Center(child: CircularProgressIndicator());
-            //  } else {
-
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AvatarWidget(
-                      isDispensary: false,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text(
-                      'Dispensary Name',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: fullNameController,
-                      inputType: TextInputType.text,
-                      hintText: 'xyz dispensary',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryName(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Address Line 1',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: addressLine1,
-                      inputType: TextInputType.text,
-                      hintText: 'Jane Doe 123 Main Street',
-                      obscureText: false,
-                      onChanged: (value) {
-                        //   personalDataState.setLastName(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Address Line 2',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: addressLine2,
-                      inputType: TextInputType.text,
-                      hintText: 'York, NY 11377',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryAddressLine2(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Email',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: emailController,
-                      inputType: TextInputType.text,
-                      hintText: 'Johndoe@gmail.com',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryEmail(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Center(
-                      child: MainButton(
-                        callback: () {
-                          // personalDataState.updateUser();
-                        },
-                        label: 'Update Info',
-                        // padding: EdgeInsets.zero,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      children: const [
-                        Icon(
-                          Icons.delete_forever_rounded,
-                          color: AppColors.secondAccent,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.secondAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    Row(
-                      children: const [
-                        Icon(
-                          Icons.cancel_rounded,
-                          color: AppColors.secondAccent,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          'Cancel Subscription',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.secondAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+        appBar: CustomAppBar(
+          showBackButton: false,
         ),
-      ),
-    );
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Card(
+                    elevation: 3,
+                    child: ListTile(
+                      onTap: () => AutoRouter.of(context)
+                          .push(const ConsumerPersonalDetailsRoute()),
+                      leading: const Icon(Icons.person),
+                      title: const Text(
+                        'Personal Details',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColors.mainLogoColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Card(
+                    elevation: 3,
+                    child: ListTile(
+                      onTap: () => AutoRouter.of(context)
+                          .push(const ConsumerAccountManagementRoute()),
+                      leading: const Icon(Icons.manage_accounts_outlined),
+                      title: const Text(
+                        'Account Management',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColors.mainLogoColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Card(
+                    elevation: 3,
+                    child: ListTile(
+                      onTap: () {
+                        AutoRouter.of(context)
+                            .replace(const ClientAuthorizationRoute());
+                      },
+                      leading: const Icon(Icons.exit_to_app_outlined),
+                      title: const Text(
+                        'Log out',
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

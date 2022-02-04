@@ -54,10 +54,13 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
             ),
             const AvatarWidget(
               isDispensary: false,
+              showName: true,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
-              child: TextInput(hintText: '10',),
+              child: TextInput(
+                hintText: '10',
+              ),
             ),
             const SizedBox(
               height: 40,
@@ -76,6 +79,5 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
         ),
       ),
     );
-
   }
 }

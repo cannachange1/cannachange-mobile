@@ -1,5 +1,4 @@
 import 'package:cannachange/values/values.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xFF25292f);
@@ -74,16 +73,10 @@ ThemeData buildLightTheme() => ThemeData(
       primarySwatch: createMaterialColor(primaryColor),
       scaffoldBackgroundColor: AppColors.lightGrayColor,
       appBarTheme: const AppBarTheme(
-          color: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(color: aquaMarine, size: 15),
-          brightness: Brightness.light,
-          textTheme: TextTheme(
-              headline6: TextStyle(
-                  color: primaryColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500))),
-      accentColor: accentColor,
+        color: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: aquaMarine, size: 15),
+      ),
       buttonTheme: ButtonThemeData(
         buttonColor: primaryColor,
         disabledColor: primaryColor,
@@ -92,7 +85,6 @@ ThemeData buildLightTheme() => ThemeData(
         ),
         textTheme: ButtonTextTheme.primary,
       ),
-      buttonColor: primaryColor,
       fontFamily: 'NunitoSans',
       textTheme: TextTheme(
         headline6: TextStyle(

@@ -1,14 +1,20 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
+import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:cannachange/model/user/user_model.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/dialogs/reset_password_code_dialog.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../helpers/overlay_helper.dart';
 
 part 'personal_data_state.g.dart';
 
@@ -53,10 +59,31 @@ abstract class _PersonalDataState with Store {
   @observable
   File? dispensarySelectedImage;
 
+  @observable
+  ObservableList<PointModel> consumerPointList = <PointModel>[].asObservable();
+
+  @observable
+  ObservableList<PointModel> dispensaryPointList =
+      <PointModel>[].asObservable();
+
   @action
   void setDispensaryName(String value) {
     if (value.isNotEmpty) {
       dispensaryModel = dispensaryModel!.copyWith(businessName: value);
+    }
+  }
+
+  @action
+  void setConsumerName(String value) {
+    if (value.isNotEmpty) {
+      clientModel = clientModel!.copyWith(name: value);
+    }
+  }
+
+  @action
+  void setConsumerEmail(String value) {
+    if (value.isNotEmpty) {
+      clientModel = clientModel!.copyWith(email: value);
     }
   }
 
@@ -113,20 +140,38 @@ abstract class _PersonalDataState with Store {
   String imageUrl = '';
 
   @action
-  Future<void> pickImage() async {
-    // try {
-    //   FilePickerResult? result =
-    //       await FilePicker.platform.pickFiles(type: FileType.image);
-    //   if (result != null) {
-    //     selectedImage = File(
-    //       result.files.single.path!,
-    //     );
-    //     userRepository.uploadProfilePic(selectedImage!, result);
-    //   } else {}
-    // } on DioError catch (e) {
-    //   final Map<String, dynamic> map = jsonDecode(e.response!.data);
-    //   showCustomOverlayNotification(color: Colors.red, text: map['title']);
-    // }
+  Future<void> pickConsumerImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        clientSelectedImage = File(
+          result.files.single.path!,
+        );
+        personalDataRepository.uploadProfilePic(clientSelectedImage!, result);
+      } else {}
+    } on DioError catch (e) {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
+      showCustomOverlayNotification(color: Colors.red, text: map['title']);
+    }
+  }
+
+  @action
+  Future<void> pickDispensaryImage() async {
+    try {
+      FilePickerResult? result =
+          await FilePicker.platform.pickFiles(type: FileType.image);
+      if (result != null) {
+        dispensarySelectedImage = File(
+          result.files.single.path!,
+        );
+        personalDataRepository.uploadProfilePic(
+            dispensarySelectedImage!, result);
+      } else {}
+    } on DioError catch (e) {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
+      showCustomOverlayNotification(color: Colors.red, text: map['title']);
+    }
   }
 
   @action
@@ -175,6 +220,7 @@ abstract class _PersonalDataState with Store {
     }
   }
 
+
 // @action
 // Future<void> getUser() async {
 //   try {
@@ -195,14 +241,50 @@ abstract class _PersonalDataState with Store {
 //   }
 // }
 
-// Future<void> updateUser() async {
-//   try {
-//     loadingState.startLoading();
-//     await userRepository.updateUser(user!);
-//     loadingState.stopLoading();
-//   } on DioError catch (e) {
-//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-//     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-//   }
-// }
+  Future<void> updateConsumer() async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.updateUser(
+        true,
+        name: clientModel!.name,
+        email: clientModel!.email,
+      );
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  Future<void> deleteAccount(String? token) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.deleteUser(token);
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  Future<void> updateDispensary() async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.updateUser(
+        false,
+        name: dispensaryModel!.name,
+        email: dispensaryModel!.email,
+        address1: dispensaryModel!.address1,
+        address2: dispensaryModel!.address2,
+        endHour: dispensaryModel!.endHour,
+        startHour: dispensaryModel!.startHour,
+        shippingAddress1: dispensaryModel!.shippingAddress1,
+        shippingAddress2: dispensaryModel!.shippingAddress2,
+      );
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
 }

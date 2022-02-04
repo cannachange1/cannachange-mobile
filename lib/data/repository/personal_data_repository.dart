@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cannachange/data/exceptions/dio_error_codes.dart';
 import 'package:cannachange/data/exceptions/general_exceptions.dart';
@@ -25,19 +26,14 @@ class PersonalDataRepository {
 
   Future<void> uploadProfilePic(
       File image, FilePickerResult filePickerResult) async {
-    String fileName = image.path.split('/').last;
-    final res = await dio.post(
-      'avatar',
-      data: {"name": fileName, "extension": 'jpeg'},
-    );
-    if (res.data['link'] != null) {
-      await dio.put(res.data['link'],
-          data: image.openRead(),
-          options: Options(contentType: "image/jpeg", headers: {
-            "Content-Length": image.lengthSync(),
-            "noToken": true
-          }));
-    }
+    Uint8List bytes;
+    await image.readAsBytes().then((value) async {
+      bytes = Uint8List.fromList(value);
+      await dio.post(
+        'mobile/avatar',
+        data: {"img": bytes, "extension": 'image/jpeg'},
+      );
+    });
   }
 
   ///////////**********/////////////
@@ -50,8 +46,6 @@ class PersonalDataRepository {
       );
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
     }
   }
 
@@ -67,8 +61,6 @@ class PersonalDataRepository {
       );
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
     }
   }
 
@@ -85,8 +77,58 @@ class PersonalDataRepository {
       );
     } on DioError catch (e) {
       handleError(e);
-    } catch (e) {
-      throw UnknownException();
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> deleteUser(String? token) async {
+    try {
+      await dio.delete(
+        'mobile/profile',
+        data: {
+          "token": token,
+        },
+      );
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> updateUser(bool isConsumer,
+      {String? name,
+      String? email,
+      String? address1,
+      String? address2,
+      String? startHour,
+      String? endHour,
+      String? shippingAddress1,
+      String? shippingAddress2}) async {
+    try {
+      dynamic data;
+
+      if (isConsumer) {
+        data = {
+          "name": name,
+          "email": email,
+        };
+      } else {
+        data = {
+          "email": email,
+          "name": name,
+          "address1": address1,
+          "address2": address2,
+          "startHour": startHour,
+          "endHour": endHour,
+          "shippingAddress1": shippingAddress1,
+          "shippingAddress2": shippingAddress2,
+        };
+      }
+      await dio.put('mobile/profile', data: data);
+    } on DioError catch (e) {
+      handleError(e);
     }
   }
 
