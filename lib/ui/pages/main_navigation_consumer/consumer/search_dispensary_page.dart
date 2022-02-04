@@ -51,7 +51,9 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
     if (defaultTargetPlatform == TargetPlatform.android) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
     }
-    pagingController.addPageRequestListener((key) => () {});
+    pagingController.addPageRequestListener((key) => () {
+     // searchState.getDispensaries(searchKey, pageKey)
+    });
   }
 
   @override
@@ -59,15 +61,17 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
     return SafeArea(
       child: Scaffold(
         body: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             SearchBox(
               textEditingController: searchController,
               hintText: 'Zip code, city or name',
             ),
             PagedListView(
+              shrinkWrap: true,
               pagingController: pagingController,
               builderDelegate: PagedChildBuilderDelegate<dynamic>(
                   noItemsFoundIndicatorBuilder: (_) => Padding(

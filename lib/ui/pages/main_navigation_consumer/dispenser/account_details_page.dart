@@ -72,6 +72,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
               children: [
                 const AvatarWidget(
                   isDispensary: true,
+                  showName: false,
                 ),
                 const SizedBox(
                   height: 30,

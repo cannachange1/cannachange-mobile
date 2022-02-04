@@ -81,6 +81,13 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
+  void setConsumerEmail(String value) {
+    if (value.isNotEmpty) {
+      clientModel = clientModel!.copyWith(email: value);
+    }
+  }
+
+  @action
   void setDispensaryHours(String value) {
     if (value.isNotEmpty) {
       // dispensaryModel = dispensaryModel!.copyWith(w: value);
@@ -213,6 +220,7 @@ abstract class _PersonalDataState with Store {
     }
   }
 
+
 // @action
 // Future<void> getUser() async {
 //   try {
@@ -233,14 +241,50 @@ abstract class _PersonalDataState with Store {
 //   }
 // }
 
-// Future<void> updateUser() async {
-//   try {
-//     loadingState.startLoading();
-//     await userRepository.updateUser(user!);
-//     loadingState.stopLoading();
-//   } on DioError catch (e) {
-//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-//     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-//   }
-// }
+  Future<void> updateConsumer() async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.updateUser(
+        true,
+        name: clientModel!.name,
+        email: clientModel!.email,
+      );
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  Future<void> deleteAccount(String? token) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.deleteUser(token);
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  Future<void> updateDispensary() async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.updateUser(
+        false,
+        name: dispensaryModel!.name,
+        email: dispensaryModel!.email,
+        address1: dispensaryModel!.address1,
+        address2: dispensaryModel!.address2,
+        endHour: dispensaryModel!.endHour,
+        startHour: dispensaryModel!.startHour,
+        shippingAddress1: dispensaryModel!.shippingAddress1,
+        shippingAddress2: dispensaryModel!.shippingAddress2,
+      );
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
 }

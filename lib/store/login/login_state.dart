@@ -121,13 +121,14 @@ abstract class _LoginState with Store {
         await AutoRouter.of(cont).replace(const DashboardRoute());
       } else {
         personalDataState.clientModel = res.consumer;
+        print('aaaaaa ${res.consumer}');
         await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
       }
       storeState.changeState(StoreStates.success);
 
     } on Exception catch (e) {
-      storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
     }
   }
 }

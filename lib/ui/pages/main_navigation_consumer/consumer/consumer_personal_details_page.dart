@@ -1,12 +1,15 @@
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
+import 'package:cannachange/ui/widgets/loading.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class ConsumerPersonalDetailsPage extends StatefulWidget {
   const ConsumerPersonalDetailsPage({Key? key}) : super(key: key);
@@ -21,9 +24,7 @@ class _ConsumerPersonalDetailsPageState
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  // TextEditingController phoneNumberController = TextEditingController();
-
-  PersonalDataState personalDataState = PersonalDataState();
+  final personalDataState = GetIt.I<PersonalDataState>();
 
   @override
   void initState() {
@@ -59,71 +60,77 @@ class _ConsumerPersonalDetailsPageState
     return Scaffold(
         appBar: CustomAppBar(),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AvatarWidget(
-                      isDispensary: false,
-                    ),
-                    const Text(
-                      'Name',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+          child: Observer(
+            builder: (_) =>
+                personalDataState.storeState.state == StoreStates.loading
+                    ? const Loading(
+                        color: Colors.transparent,
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: SingleChildScrollView(
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const AvatarWidget(
+                                    isDispensary: false, showName: false),
+                                const Text(
+                                  'Name',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                RoundedTextInput(
+                                  controller: fullNameController,
+                                  inputType: TextInputType.text,
+                                  hintText: 'John Smith',
+                                  obscureText: false,
+                                  onChanged: (value) {
+                                    personalDataState.setConsumerName(value);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                const Text(
+                                  'Email',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                RoundedTextInput(
+                                  controller: emailController,
+                                  inputType: TextInputType.text,
+                                  hintText: 'Johndoe@gmail.com',
+                                  obscureText: false,
+                                  onChanged: (value) {
+                                    personalDataState.setConsumerEmail(value);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                Center(
+                                  child: MainButton(
+                                    callback: () {
+                                      personalDataState.updateConsumer();
+                                    },
+                                    label: 'Update Info',
+                                  ),
+                                ),
+                              ]),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: fullNameController,
-                      inputType: TextInputType.text,
-                      hintText: 'John Smith',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setConsumerName(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Email',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    RoundedTextInput(
-                      controller: emailController,
-                      inputType: TextInputType.text,
-                      hintText: 'Johndoe@gmail.com',
-                      obscureText: false,
-                      onChanged: (value) {
-                        personalDataState.setDispensaryEmail(value);
-                      },
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Center(
-                      child: MainButton(
-                        callback: () {
-                          // personalDataState.updateUser();
-                        },
-                        label: 'Update Info',
-                        // padding: EdgeInsets.zero,
-                      ),
-                    ),
-                  ]),
-            ),
           ),
         ));
   }

@@ -58,7 +58,7 @@ class SearchBox extends StatelessWidget {
               filled: filled,
               enabledBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: borderColor ?? Colors.black),
+                      const BorderSide(color: AppColors.secondAccent),
                   borderRadius: borderRadius ?? BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
                   borderSide:

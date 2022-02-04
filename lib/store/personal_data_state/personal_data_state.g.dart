@@ -278,6 +278,17 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   }
 
   @override
+  void setConsumerEmail(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setConsumerEmail');
+    try {
+      return super.setConsumerEmail(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setDispensaryHours(String value) {
     final _$actionInfo = _$_PersonalDataStateActionController.startAction(
         name: '_PersonalDataState.setDispensaryHours');

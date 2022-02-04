@@ -36,6 +36,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                   children: [
                     const AvatarWidget(
                       isDispensary: false,
+                      showName: true,
                     ),
                     QrImage(
                       data: personalDataState.clientModel!.qrCode!,

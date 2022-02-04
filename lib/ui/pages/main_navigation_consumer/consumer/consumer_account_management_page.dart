@@ -10,6 +10,7 @@ import 'package:cannachange/values/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../../helpers/overlay_helper.dart';
 import '../../../../router.gr.dart';
@@ -24,7 +25,7 @@ class ConsumerAccountManagementPage extends StatefulWidget {
 
 class _ConsumerAccountManagementPageState
     extends State<ConsumerAccountManagementPage> {
-  PersonalDataState personalDataState = PersonalDataState();
+  final personalDataState = GetIt.I<PersonalDataState>();
   bool pushNotifications = false;
 
   @override
@@ -102,8 +103,6 @@ class _ConsumerAccountManagementPageState
                           value: pushNotifications,
                           onChanged: (value) {
                             setState(() {
-                              // isBiometricsOnn = value;
-                              // StorageHelper.setBiometrics(value);
                               showCustomOverlayNotification(
                                   color: AppColors.secondAccent,
                                   text:
@@ -122,7 +121,10 @@ class _ConsumerAccountManagementPageState
                     elevation: 3,
                     color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        //TODO please add push notif token
+                        personalDataState.deleteAccount('');
+                      },
                       leading: const Icon(
                         Icons.delete,
                         color: AppColors.lightGrayColor,
