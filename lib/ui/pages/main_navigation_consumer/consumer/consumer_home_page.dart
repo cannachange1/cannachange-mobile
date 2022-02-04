@@ -8,6 +8,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../../widgets/custom_app_bar.dart';
+
 class ConsumerHomePage extends StatefulWidget {
   const ConsumerHomePage({Key? key}) : super(key: key);
 
@@ -28,16 +30,16 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(
+        showBackButton: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Observer(
             builder: (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 40,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

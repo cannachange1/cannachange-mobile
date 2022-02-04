@@ -4,9 +4,11 @@ import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
+import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/ui/widgets/search_box.dart';
 import 'package:cannachange/values/values.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -30,7 +32,7 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
   TextEditingController searchController = TextEditingController();
   SearchState searchState = GetIt.I<SearchState>();
 
-  PagingController<int, DispensaryModel> pagingController =
+  final PagingController<int, DispensaryModel> _pagingController =
       PagingController(firstPageKey: 0);
 
   int pageNumber = 0;
@@ -48,162 +50,199 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
 
   @override
   void initState() {
+    _pagingController.addPageRequestListener((pageKey) {
+      fetchDispensaries(searchState.searchKey, pageKey);
+    });
     super.initState();
     if (defaultTargetPlatform == TargetPlatform.android) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
     }
-
-    // pagingController.addPageRequestListener((key) => () {
-    //  // searchState.getDispensaries(searchKey, pageKey)
-    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            SearchBox(
-              textEditingController: searchController,
-              hintText: 'Zip code, city or name',
-              onChanged: (txt) {
-                searchState.searchKey = txt;
-                pageNumber = 0;
-                searchState.getDispensaries(txt, pageNumber);
-              },
-            ),
-            PagedListView(
-              shrinkWrap: true,
-              pagingController: pagingController,
-              builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                  noItemsFoundIndicatorBuilder: (_) => Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 40),
-                        child: Column(
-                          children: const [
-                            Text(
-                              'No items found',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.darkGrey,
-                                  fontWeight: FontWeight.w800),
+    return Scaffold(
+      appBar: CustomAppBar(
+        showBackButton: false,
+      ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          SearchBox(
+            textEditingController: searchController,
+            hintText: 'Zip code, city or name',
+            onChanged: (txt) {
+              searchState.searchKey = txt;
+              pageNumber = 0;
+              searchState.getDispensaries(txt, pageNumber);
+            },
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          PagedListView<int, DispensaryModel>(
+            shrinkWrap: true,
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<DispensaryModel>(
+                noItemsFoundIndicatorBuilder: (_) => Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 40),
+                      child: Column(
+                        children: const [
+                          Text(
+                            'Empty search',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.darkGrey,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                    ),
+                itemBuilder: (context, item, index) => Container(
+                      height: 110,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 20),
+                      child: GestureDetector(
+                        onTap: () => showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => DispensaryDescriptionDialog(
+                            dispensaryModel: item,
+                          ),
+                        ),
+                        child: Card(
+                          elevation: 8,
+                          color: AppColors.lightGrayColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: Container(
+                            height: 110,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  item.businessName!,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w800,
+                                      color: AppColors.secondAccent),
+                                ),
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Working hours',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColors.secondAccent),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '${item.startHour!} - ',
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: AppColors.darkGrey),
+                                              ),
+                                              Text(
+                                                item.endHour!,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: AppColors.darkGrey),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Address',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColors.secondAccent),
+                                          ),
+                                          Text(
+                                            item.address1!,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: AppColors.darkGrey),
+                                          ),
+                                          Text(
+                                            item.address2!,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: AppColors.darkGrey),
+                                          ),
+                                        ],
+                                      )
+                                    ]),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                  itemBuilder: (context, item, index) => Container(
-                        margin: EdgeInsets.only(
-                          bottom: index == pagingController.itemList!.length - 1
-                              ? 55
-                              : 0,
-                        ),
-                        height: 130,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 10),
-                        child: GestureDetector(
-                          onTap: () => showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (context) => DispensaryDescriptionDialog(
-                              dispensaryModel: item,
-                            ),
-                          ),
-                          child: Card(
-                            color: AppColors.secondAccent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            clipBehavior: Clip.antiAlias,
-                            child: Container(
-                              height: 100,
-                              padding: const EdgeInsets.all(0),
-                              child: Stack(
-                                children: [
-                                  Row(children: [
-                                    const Spacer(),
-                                    Expanded(
-                                      flex: 14,
-                                      child: Container(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Text(
-                                              item.businessName,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w800,
-                                                  color:
-                                                      AppColors.secondAccent),
-                                            ),
-                                            const SizedBox(
-                                              height: 8,
-                                            ),
-                                            if (!item.isOnline)
-                                              Text(
-                                                item.address1 ?? 'No address',
-                                                maxLines: 2,
-                                                style: const TextStyle(
-                                                    color:
-                                                        AppColors.secondAccent),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 11,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                  item.imageLink ??
-                                                      'https://localandloyal.blob.core.windows.net/upload/imageNotFound.jpg',
-                                                ),
-                                                fit: BoxFit.cover)),
-                                      ),
-                                    ),
-                                  ]),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      )),
-            )
-          ],
-        ),
+                    )),
+          )
+        ],
       ),
     );
   }
 
-  Future<void> fetchOnlinePage(String searchKey, int pageKey) async {
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+
+  Future<void> fetchDispensaries(String searchKey, int pageKey) async {
     try {
       await searchState.getDispensaries(searchKey, pageKey);
       if (!searchState.hasNextPage) {
-        pagingController.appendLastPage(searchState.filteredDispensariesList);
+        _pagingController.appendLastPage(searchState.filteredDispensariesList);
       } else {
-        //final nextPageKey = pageKey + res.dealList.length;
-        pagingController.appendPage(
+        _pagingController.appendPage(
             searchState.filteredDispensariesList, pageKey + 1);
       }
     } on Exception catch (error) {
-      pagingController.error = error;
+      _pagingController.error = error;
     }
   }
 }

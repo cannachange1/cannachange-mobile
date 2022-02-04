@@ -132,23 +132,13 @@ class _DispensaryDescriptionDialogState
                       ),
                       Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: ClipOval(
-                              child: Image.network(
-                                widget.dispensaryModel.image!,
-                                height: 100,
-                                width: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+
                           Expanded(
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: Text(
-                                widget.dispensaryModel.name!,
+                                widget.dispensaryModel.name ?? 'asd',
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
