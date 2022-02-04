@@ -20,6 +20,12 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
   final personalDataState = GetIt.I<PersonalDataState>();
 
   @override
+  void initState() {
+    super.initState();
+    personalDataState.getPoints();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
