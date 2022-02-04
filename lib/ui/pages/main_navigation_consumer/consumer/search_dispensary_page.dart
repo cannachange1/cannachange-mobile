@@ -1,18 +1,11 @@
 import 'dart:async';
 
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
-import 'package:cannachange/store/dashboard/dashboard_state.dart';
-import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
-import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
-import 'package:cannachange/ui/widgets/rounded_text_input.dart';
 import 'package:cannachange/ui/widgets/search_box.dart';
 import 'package:cannachange/values/values.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -28,25 +21,11 @@ class SearchDispensaryPage extends StatefulWidget {
 }
 
 class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
-  final Completer<GoogleMapController> _controller = Completer();
   TextEditingController searchController = TextEditingController();
   SearchState searchState = GetIt.I<SearchState>();
-
+  int pageNumber = 0;
   final PagingController<int, DispensaryModel> _pagingController =
       PagingController(firstPageKey: 0);
-
-  int pageNumber = 0;
-
-  // static const CameraPosition _kGooglePlex = CameraPosition(
-  //   target: LatLng(37.42796133580664, -122.085749655962),
-  //   zoom: 14.4746,
-  // );
-
-  // static const CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.43296265331129, -122.08832357078792),
-  //     tilt: 59.440717697143555,
-  //     zoom: 19.151926040649414);
 
   @override
   void initState() {
