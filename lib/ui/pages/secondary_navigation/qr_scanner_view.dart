@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../../app_theme.dart';
 import '../../../helpers/overlay_helper.dart';
@@ -23,7 +23,7 @@ class QrScannerView extends StatefulWidget {
 
 class _QrScannerViewState extends State<QrScannerView> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
- // QRViewController? controller;
+  QRViewController? controller;
 
   //LoadingState loadingState = LoadingState();
   final dio = GetIt.I<Dio>();
@@ -63,18 +63,18 @@ class _QrScannerViewState extends State<QrScannerView> {
             children: [
               Column(
                 children: <Widget>[
-                  // const Expanded(
-                  //   child: Center(
-                  //     child: Text('Scanning...'),
-                  //   ),
-                  // ),
-                  // Expanded(
-                  //   flex: 5,
-                  //   child: QRView(
-                  //     key: qrKey,
-                  //     onQRViewCreated: _onQRViewCreated,
-                  //   ),
-                  // ),
+                  const Expanded(
+                    child: Center(
+                      child: Text('Scanning...'),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: QRView(
+                      key: qrKey,
+                      onQRViewCreated: _onQRViewCreated,
+                    ),
+                  ),
 
                 ],
               ),
@@ -85,21 +85,21 @@ class _QrScannerViewState extends State<QrScannerView> {
     );
   }
 
-  // void _onQRViewCreated(QRViewController controller) {
-  //   this.controller = controller;
-  //   controller.scannedDataStream.listen((scanData) async {
-  //     if (!isDetected) {
-  //       await sendQR(scanData.code!);
-  //       await AutoRouter.of(context).pop();
-  //     }
-  //   });
-  // }
-  //
-  // @override
-  // void dispose() {
-  //   controller?.dispose();
-  //   super.dispose();
-  // }
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) async {
+      if (!isDetected) {
+        await sendQR(scanData.code!);
+        await AutoRouter.of(context).pop();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
   Future<void> sendQR(String qr) async {
     isDetected = true;

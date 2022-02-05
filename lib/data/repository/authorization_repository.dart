@@ -4,6 +4,8 @@ import 'package:cannachange/model/login_response/login_response_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../model/register_response/register_response.dart';
+
 class AuthenticationRepo {
   final dio = GetIt.I<Dio>();
 
@@ -24,6 +26,7 @@ class AuthenticationRepo {
   Future<void> registerConsumer(Map<String, String> signUpRequestModel) async {
     try {
       await dio.post('mobile/consumer?sendSMS=true', data: signUpRequestModel);
+
     } on DioError catch (e) {
       handleError(e);
     }
@@ -39,12 +42,12 @@ class AuthenticationRepo {
     }
   }
 
-  Future<String?> sendOTPCode(
+  Future<RegisterResponse?> sendOTPCode(
       String code, String email, String password) async {
     try {
       final res = await dio.put('mobile/activate',
           data: {"key": code, "email": email, "password": password});
-      return res.data['token'];
+      return RegisterResponse.fromJson(res.data);
     } on DioError catch (e) {
       handleError(e);
     } 

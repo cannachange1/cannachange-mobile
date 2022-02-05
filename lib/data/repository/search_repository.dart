@@ -12,7 +12,7 @@ class SearchRepository {
     dynamic res;
     try {
       res = await dio.get(
-        'mobile/dispensaries?page=$pageKey&searchKey=$searchKey',
+        'mobile/dispensaries?page=$pageKey&searchQuery=$searchKey',
       );
       final hasNextPage = res.headers.map['hasnextpage']!.first;
       final totalCount = res.headers.map['x-total-count']!.first;

@@ -243,6 +243,14 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
         .run(() => super.forgetPasswordFinish(code, newPassword));
   }
 
+  final _$redeemPointsAsyncAction =
+      AsyncAction('_PersonalDataState.redeemPoints');
+
+  @override
+  Future<void> redeemPoints(int id) {
+    return _$redeemPointsAsyncAction.run(() => super.redeemPoints(id));
+  }
+
   final _$changePasswordAsyncAction =
       AsyncAction('_PersonalDataState.changePassword');
 
@@ -250,6 +258,13 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   Future<void> changePassword(String oldPassword, String newPassword) {
     return _$changePasswordAsyncAction
         .run(() => super.changePassword(oldPassword, newPassword));
+  }
+
+  final _$getPointsAsyncAction = AsyncAction('_PersonalDataState.getPoints');
+
+  @override
+  Future<void> getPoints() {
+    return _$getPointsAsyncAction.run(() => super.getPoints());
   }
 
   final _$_PersonalDataStateActionController =

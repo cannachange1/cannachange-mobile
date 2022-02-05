@@ -31,8 +31,6 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
   @override
   void initState() {
     super.initState();
-    // registrationState.mainDocumentCategory =
-    //     registrationState.mainDocumentTypeModelList[5];
   }
 
   @override

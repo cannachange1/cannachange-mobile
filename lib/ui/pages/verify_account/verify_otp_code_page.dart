@@ -11,7 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../helpers/storage_helper.dart';
 import '../../../router.gr.dart';
+import '../../../store/personal_data_state/personal_data_state.dart';
 
 class VerifyOtpCodePage extends StatefulWidget {
   final bool isDispensary;
@@ -28,6 +30,7 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
   final registrationState = GetIt.I<RegistrationState>();
   TextEditingController textEditingController = TextEditingController();
   late StreamController<ErrorAnimationType> errorController;
+  final personalDataState = GetIt.I<PersonalDataState>();
 
   @override
   void initState() {
@@ -104,7 +107,7 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
                         onCompleted: (_) async {
-                         await registrationState.activateAccount(widget.isDispensary,
+                         final res = await registrationState.activateAccount(widget.isDispensary,
                               context, textEditingController.text);
                           // textEditingController.clear();
                           // AutoRouter.of(context)
