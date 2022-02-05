@@ -107,25 +107,27 @@ abstract class _LoginState with Store {
     try {
       storeState.changeState(StoreStates.loading);
       final res = await authorizationRepo.login(email, password!);
-      await StorageHelper.setToken(res!.token);
-      if (res.role == 'DISPENSARY') {
-        print('aaaaaaaa ${res.dispensary.toString()}');
-        personalDataState.dispensaryModel = res.dispensary!;
-        print('aaaaaaa ${personalDataState.dispensaryModel.toString()}');
-        //personalDataState.dispensaryName = res.dispensary!.name!;
-        // personalDataState.dispensaryAddress =
-        //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
-        // personalDataState.dispensaryWorkingHours =
-        //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
+      if (res != null) {
+        await StorageHelper.setToken(res.token);
+        if (res.role == 'DISPENSARY') {
+          print('aaaaaaaa ${res.dispensary.toString()}');
+          personalDataState.dispensaryModel = res.dispensary!;
+          print('aaaaaaa ${personalDataState.dispensaryModel.toString()}');
+          //personalDataState.dispensaryName = res.dispensary!.name!;
+          // personalDataState.dispensaryAddress =
+          //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
+          // personalDataState.dispensaryWorkingHours =
+          //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
 
-        await AutoRouter.of(cont).replace(const DashboardRoute());
-      } else {
-        personalDataState.clientModel = res.consumer;
-        personalDataState.consumerPointList.clear();
-        personalDataState.consumerPointList.addAll(res.points!);
-        await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
+          await AutoRouter.of(cont).replace(const DashboardRoute());
+        } else {
+          personalDataState.clientModel = res.consumer;
+          personalDataState.consumerPointList.clear();
+          personalDataState.consumerPointList.addAll(res.points!);
+          await AutoRouter.of(cont).replace(const ConsumerDashboardRoute());
+        }
+        storeState.changeState(StoreStates.success);
       }
-      storeState.changeState(StoreStates.success);
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());
