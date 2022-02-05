@@ -2,6 +2,7 @@ import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
 import 'text_input.dart';
@@ -23,8 +24,8 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
   TextEditingController clientConfirmPasswordTextController =
       TextEditingController();
 
-  // final String _url =
-  //     'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
+  final String _url =
+      'https://app.termly.io/document/terms-of-use-for-ios-app/209fc4a8-267a-48d2-a212-2c6818b7e34f';
   final registrationState = GetIt.I<RegistrationState>();
 
   @override
@@ -108,16 +109,17 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
                       child: Checkbox(
                         activeColor: AppColors.secondAccent,
                         checkColor: AppColors.lightGrayColor,
-                        value: registrationState.agreedToConsumerTermsAndConditions,
+                        value: registrationState
+                            .agreedToConsumerTermsAndConditions,
                         onChanged: (_) {
-                          registrationState.setAgreedToConsumerTermsAndConditions();
+                          registrationState
+                              .setAgreedToConsumerTermsAndConditions();
                         },
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => {},
-                    //_launchURL,
+                    onTap: () => _launchURL(),
                     child: const Text.rich(
                       TextSpan(
                         text: 'I agree to the ',
@@ -125,20 +127,7 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
                             TextStyle(fontSize: 14, color: AppColors.darkGrey),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Terms or Services',
-                            style: TextStyle(
-                              color: AppColors.secondAccent,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' and ',
-                            style: TextStyle(
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '\nPrivacy Policy',
+                            text: 'Terms of Services',
                             style: TextStyle(
                               color: AppColors.secondAccent,
                               decoration: TextDecoration.underline,
@@ -164,8 +153,8 @@ class _ClientSignUpSectionState extends State<ClientSignUpSection> {
     clientEmailTextController.clear();
     clientNameTextController.clear();
   }
-  //
-  // void _launchURL() async => await canLaunch(_url)
-  //     ? await launch(_url)
-  //     : throw 'Could not launch $_url';
+
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 }
