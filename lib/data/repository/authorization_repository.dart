@@ -18,6 +18,7 @@ class AuthenticationRepo {
     } on DioError catch (e) {
       handleError(e);
     }
+    return null;
   }
 
   Future<void> registerConsumer(Map<String, String> signUpRequestModel) async {

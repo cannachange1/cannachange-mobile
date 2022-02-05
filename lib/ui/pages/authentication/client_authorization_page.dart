@@ -41,14 +41,14 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
     loginState.setupValidations();
     registrationState.setupConsumerValidations();
     _controller.addListener(() => setState(() {}));
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       setState(() {});
     });
   }
 
   Future<bool> initializeController() {
     Completer<bool> completer = Completer<bool>();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       completer.complete(true);
     });
     return completer.future;

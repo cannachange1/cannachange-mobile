@@ -208,6 +208,20 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
+  Future<void> redeemPoints(int id) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      final res = await personalDataRepository.redeemPoints(id);
+      return res;
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+
+      // rethrow;
+    }
+  }
+
+  @action
   Future<void> changePassword(String oldPassword, String newPassword) async {
     try {
       storeState.changeState(StoreStates.loading);
@@ -220,6 +234,19 @@ abstract class _PersonalDataState with Store {
     }
   }
 
+  @action
+  Future<void> getPoints() async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      final res = await personalDataRepository.getPoints();
+      consumerPointList.clear();
+      consumerPointList.addAll(res!);
+      storeState.changeState(StoreStates.success);
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
 
 // @action
 // Future<void> getUser() async {

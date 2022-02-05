@@ -21,11 +21,12 @@ PointModel _$PointModelFromJson(Map<String, dynamic> json) {
 class _$PointModelTearOff {
   const _$PointModelTearOff();
 
-  _PointModel call({int? id, DispensaryModel? dispensary, int? point}) {
+  _PointModel call({int? id, String? name, int? point, String? discountCode}) {
     return _PointModel(
       id: id,
-      dispensary: dispensary,
+      name: name,
       point: point,
+      discountCode: discountCode,
     );
   }
 
@@ -40,8 +41,9 @@ const $PointModel = _$PointModelTearOff();
 /// @nodoc
 mixin _$PointModel {
   int? get id => throw _privateConstructorUsedError;
-  DispensaryModel? get dispensary => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   int? get point => throw _privateConstructorUsedError;
+  String? get discountCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,9 +56,7 @@ abstract class $PointModelCopyWith<$Res> {
   factory $PointModelCopyWith(
           PointModel value, $Res Function(PointModel) then) =
       _$PointModelCopyWithImpl<$Res>;
-  $Res call({int? id, DispensaryModel? dispensary, int? point});
-
-  $DispensaryModelCopyWith<$Res>? get dispensary;
+  $Res call({int? id, String? name, int? point, String? discountCode});
 }
 
 /// @nodoc
@@ -70,34 +70,28 @@ class _$PointModelCopyWithImpl<$Res> implements $PointModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? dispensary = freezed,
+    Object? name = freezed,
     Object? point = freezed,
+    Object? discountCode = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      dispensary: dispensary == freezed
-          ? _value.dispensary
-          : dispensary // ignore: cast_nullable_to_non_nullable
-              as DispensaryModel?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       point: point == freezed
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
+      discountCode: discountCode == freezed
+          ? _value.discountCode
+          : discountCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
-  }
-
-  @override
-  $DispensaryModelCopyWith<$Res>? get dispensary {
-    if (_value.dispensary == null) {
-      return null;
-    }
-
-    return $DispensaryModelCopyWith<$Res>(_value.dispensary!, (value) {
-      return _then(_value.copyWith(dispensary: value));
-    });
   }
 }
 
@@ -107,10 +101,7 @@ abstract class _$PointModelCopyWith<$Res> implements $PointModelCopyWith<$Res> {
           _PointModel value, $Res Function(_PointModel) then) =
       __$PointModelCopyWithImpl<$Res>;
   @override
-  $Res call({int? id, DispensaryModel? dispensary, int? point});
-
-  @override
-  $DispensaryModelCopyWith<$Res>? get dispensary;
+  $Res call({int? id, String? name, int? point, String? discountCode});
 }
 
 /// @nodoc
@@ -126,22 +117,27 @@ class __$PointModelCopyWithImpl<$Res> extends _$PointModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? dispensary = freezed,
+    Object? name = freezed,
     Object? point = freezed,
+    Object? discountCode = freezed,
   }) {
     return _then(_PointModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      dispensary: dispensary == freezed
-          ? _value.dispensary
-          : dispensary // ignore: cast_nullable_to_non_nullable
-              as DispensaryModel?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       point: point == freezed
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
+      discountCode: discountCode == freezed
+          ? _value.discountCode
+          : discountCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -149,7 +145,7 @@ class __$PointModelCopyWithImpl<$Res> extends _$PointModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PointModel implements _PointModel {
-  _$_PointModel({this.id, this.dispensary, this.point});
+  _$_PointModel({this.id, this.name, this.point, this.discountCode});
 
   factory _$_PointModel.fromJson(Map<String, dynamic> json) =>
       _$$_PointModelFromJson(json);
@@ -157,13 +153,15 @@ class _$_PointModel implements _PointModel {
   @override
   final int? id;
   @override
-  final DispensaryModel? dispensary;
+  final String? name;
   @override
   final int? point;
+  @override
+  final String? discountCode;
 
   @override
   String toString() {
-    return 'PointModel(id: $id, dispensary: $dispensary, point: $point)';
+    return 'PointModel(id: $id, name: $name, point: $point, discountCode: $discountCode)';
   }
 
   @override
@@ -172,19 +170,22 @@ class _$_PointModel implements _PointModel {
         (other is _PointModel &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.dispensary, dispensary) ||
-                const DeepCollectionEquality()
-                    .equals(other.dispensary, dispensary)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.point, point) ||
-                const DeepCollectionEquality().equals(other.point, point)));
+                const DeepCollectionEquality().equals(other.point, point)) &&
+            (identical(other.discountCode, discountCode) ||
+                const DeepCollectionEquality()
+                    .equals(other.discountCode, discountCode)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(dispensary) ^
-      const DeepCollectionEquality().hash(point);
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(point) ^
+      const DeepCollectionEquality().hash(discountCode);
 
   @JsonKey(ignore: true)
   @override
@@ -198,8 +199,11 @@ class _$_PointModel implements _PointModel {
 }
 
 abstract class _PointModel implements PointModel {
-  factory _PointModel({int? id, DispensaryModel? dispensary, int? point}) =
-      _$_PointModel;
+  factory _PointModel(
+      {int? id,
+      String? name,
+      int? point,
+      String? discountCode}) = _$_PointModel;
 
   factory _PointModel.fromJson(Map<String, dynamic> json) =
       _$_PointModel.fromJson;
@@ -207,9 +211,11 @@ abstract class _PointModel implements PointModel {
   @override
   int? get id => throw _privateConstructorUsedError;
   @override
-  DispensaryModel? get dispensary => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @override
   int? get point => throw _privateConstructorUsedError;
+  @override
+  String? get discountCode => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PointModelCopyWith<_PointModel> get copyWith =>

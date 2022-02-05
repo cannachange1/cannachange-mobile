@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:dio/dio.dart';
 
-const String baseUrl = 'http://cannachange.herokuapp.com/api/';
+const String baseUrl = 'http://cannachange-environ.eba-ii32qd3q.us-east-2.elasticbeanstalk.com/api/';
 
 Dio initDio() {
   final options = BaseOptions(

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
+import 'package:cannachange/values/values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,8 @@ class _DispensaryDescriptionDialogState
     setState(() {
       pinLocationIcon = icon;
     });
-    await _addMarker(widget.dispensaryModel.latitude!, widget.dispensaryModel.longitude!);
+    await _addMarker(
+        widget.dispensaryModel.latitude!, widget.dispensaryModel.longitude!);
   }
 
   Future<Uint8List> getBytesFromAsset(String path, int width) async {
@@ -92,23 +94,13 @@ class _DispensaryDescriptionDialogState
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // GestureDetector(
-          //   onTap: AutoRouter.of(context).pop,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(left: 16, bottom: 20),
-          //     child: SvgPicture.asset(
-          //       'assets/icons/ic_back.svg',
-          //       height: 50,
-          //     ),
-          //   ),
-          // ),
           Stack(
             alignment: Alignment.center,
             children: [
               Container(
-                height: screenHeight(context) * .85,
+                height: screenHeight(context) * .65,
                 decoration: BoxDecoration(
-                  color: brightBlueColor,
+                  color: AppColors.secondAccent,
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 10,
@@ -117,267 +109,106 @@ class _DispensaryDescriptionDialogState
                     ),
                   ],
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 2),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: ClipOval(
-                              child: Image.network(
-                                widget.dispensaryModel.image!,
-                                height: 100,
-                                width: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                widget.dispensaryModel.name!,
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w800,
-                                    color: textBlueColor),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'sdf',
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w900,
-                                  color: orangeColor),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            // Expanded(
-                            //   child: Text(
-                            //     widget.dealModel.conditions,
-                            //     textAlign: TextAlign.right,
-                            //     maxLines: 2,
-                            //     overflow: TextOverflow.ellipsis,
-                            //     style: const TextStyle(
-                            //       fontSize: 14,
-                            //       color: greyTextColor,
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 20,
+                      decoration: const BoxDecoration(
+                        color: AppColors.secondAccent,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40),
                         ),
                       ),
-                      Expanded(
-                        flex: 2,
-                        child: SizedBox(
-                          height: 180,
-                          child: GoogleMap(
-                            markers: Set<Marker>.of(markers.values),
-                            initialCameraPosition: CameraPosition(
-                              target: LatLng(
-                                widget.dispensaryModel.latitude!,
-                                widget.dispensaryModel.longitude!,
-                              ),
-                              zoom: 14.4746,
-                            ),
-                            onMapCreated: _controller.complete,
-                          ),
-                        ),
-                      ),
-                      const Expanded(
-                          child: SizedBox(
-                        height: 20,
-                      )),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(
-                      //       horizontal: 20, vertical: 20),
-                      //   child: Center(
-                      //     child: Text(
-                      //       widget.dealModel.information ?? '',
-                      //       textAlign: TextAlign.center,
-                      //       maxLines: 3,
-                      //       overflow: TextOverflow.ellipsis,
-                      //       style: const TextStyle(color: textBlueColor),
-                      //     ),
-                      //   ),
-                      // ),
-                      // Expanded(
-                      //   flex: 2,
-                      //   child: Stack(
-                      //     children: [
-                      //       Positioned(
-                      //         bottom: 20,
-                      //         right: 0,
-                      //         left: 0,
-                      //         child: Visibility(
-                      //           visible: widget.dealModel.website != null,
-                      //           child: SvgPicture.asset(
-                      //             'assets/icons/ic_navigate.svg',
-                      //             height: 70,
-                      //             width: 70,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       Positioned(
-                      //         bottom: 40,
-                      //         right: 20,
-                      //         left: 20,
-                      //         child: GestureDetector(
-                      //           onTap: () async =>
-                      //               await canLaunch(widget.dealModel.website!)
-                      //                   ? launchURL()
-                      //                   : showCustomOverlayNotification(
-                      //                       color: Colors.red,
-                      //                       text: 'Invalid Web page address',
-                      //                     ),
-                      //           child: Text(
-                      //             widget.dealModel.website ?? '',
-                      //             style: const TextStyle(
-                      //                 color: textBlueColor,
-                      //                 fontWeight: FontWeight.w700),
-                      //             textAlign: TextAlign.center,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: SizedBox(
-                  height: 120,
-                  child: Card(
-                    elevation: 8,
-                    color: white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 8),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 10),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Address',
-                                  style: TextStyle(
-                                      color: greyTextColor,
-                                      fontWeight: FontWeight.w600),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Address',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                widget.dispensaryModel.address1!,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
                                 ),
-                                Text(
-                                  widget.dispensaryModel.address1!,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: greyTextColor,
-                                    fontSize: 12,
-                                  ),
+                              ),
+                              Text(
+                                widget.dispensaryModel.address2!,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
                                 ),
-                                Text(
-                                  widget.dispensaryModel.address2!,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    color: greyTextColor,
-                                    fontSize: 12,
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
-                          // Expanded(
-                          //   child: GestureDetector(
-                          //     onTap: () => showModalBottomSheet(
-                          //       context: context,
-                          //       isScrollControlled: true,
-                          //       backgroundColor: Colors.transparent,
-                          //       builder: (context) => MultiAnswerBottomSheet(
-                          //         isDivided: true,
-                          //         actionList: [
-                          //           ItemMultiAnswerPopupAction(
-                          //             isLastAction: true,
-                          //             textColor: intBlue,
-                          //             actionName: widget.dealModel.phoneNumber,
-                          //             onActionPressed: () async {
-                          //               await launch(
-                          //                   'tel://${widget.dealModel.phoneNumber}');
-                          //             },
-                          //           )
-                          //         ],
-                          //         mainTitle: 'Call',
-                          //         titleColor: textBlueColor,
-                          //       ),
-                          //     ),
-                          //     child: Column(
-                          //       mainAxisAlignment: MainAxisAlignment.center,
-                          //       children: [
-                          //         SvgPicture.asset('assets/icons/ic_phone.svg'),
-                          //         const SizedBox(
-                          //           height: 16,
-                          //         ),
-                          //         const Text(
-                          //           'Contact',
-                          //           style: TextStyle(
-                          //               color: textBlueColor, fontSize: 12),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                // SvgPicture.asset(
-                                //     'assets/icons/ic_get_directions.svg'),
-                                // const SizedBox(
-                                //   height: 16,
-                                // ),
-                                const Text(
-                                  'Get Directions',
-                                  style: TextStyle(
-                                      color: textBlueColor, fontSize: 12),
+                          Column(
+                            children: [
+                              const Text(
+                                'Working hours',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                'Open at ${widget.dispensaryModel.startHour!}',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                              Text(
+                                'Close at ${widget.dispensaryModel.endHour!}',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
-                  ),
+                    Expanded(
+                      flex: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GoogleMap(
+                          markers: Set<Marker>.of(markers.values),
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(
+                              widget.dispensaryModel.latitude ?? 0.0,
+                              widget.dispensaryModel.longitude ?? 0.0,
+                            ),
+                            zoom: 14.4746,
+                          ),
+                          onMapCreated: _controller.complete,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                  ],
                 ),
               ),
             ],

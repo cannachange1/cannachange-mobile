@@ -7,7 +7,8 @@ import '../../model/dispensary_list_response/dispensary_list_response.dart';
 class SearchRepository {
   final dio = GetIt.I<Dio>();
 
-  Future<DispensaryListResponse> getDispensaries(String searchKey, int pageKey) async {
+  Future<DispensaryListResponse> getDispensaries(
+      String searchKey, int pageKey) async {
     dynamic res;
     try {
       res = await dio.get(
@@ -22,7 +23,7 @@ class SearchRepository {
 
       final dealListResponse = DispensaryListResponse(
           dispensaryList: list,
-          hasNextPage: hasNextPage,
+          hasNextPage: hasNextPage == 'false' ? false : true,
           allDispensaryQuantity: int.parse(totalCount));
       return dealListResponse;
     } on DioError catch (e) {
