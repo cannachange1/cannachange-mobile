@@ -68,7 +68,8 @@ class _AvatarWidgetState extends State<AvatarWidget> {
                       const SizedBox(
                         width: 20,
                       ),
-                      Text(
+                      if(widget.showName)
+                        Text(
                         personalDataState.dispensaryModel!.name!,
                         style: const TextStyle(
                           fontSize: 17,

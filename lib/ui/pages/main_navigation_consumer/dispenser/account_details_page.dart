@@ -46,22 +46,6 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
     closingHours.text = personalDataState.dispensaryModel!.endHour!;
   }
 
-  // _updateTextController(DispensaryModel user) {
-  //   nameController.text = user.firstName;
-  //   lastNameController.text = user.lastName;
-  //   phoneNumberController.text = user.phone;
-  //
-  //   if (user.email != null) {
-  //     emailController.text = user.email!;
-  //   }
-  //   if (user.country != null) {
-  //     countryController.text = user.country!;
-  //   }
-  //   if (user.city != null) {
-  //     cityController.text = user.city!;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +53,9 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
       body: Observer(
         builder: (_) => personalDataState.storeState.state ==
                 StoreStates.loading
-            ? const Loading(color: AppColors.lightGrayColor,)
+            ? const Loading(
+                color: AppColors.lightGrayColor,
+              )
             : SafeArea(
                 child: Padding(
                   padding:
