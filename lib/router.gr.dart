@@ -11,7 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i17;
-import 'package:flutter/foundation.dart' as _i19;
+import 'package:flutter/cupertino.dart' as _i19;
 import 'package:flutter/material.dart' as _i18;
 
 import 'ui/pages/authentication/authorization_page.dart' as _i2;

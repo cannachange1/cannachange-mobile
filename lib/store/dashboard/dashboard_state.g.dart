@@ -39,6 +39,21 @@ mixin _$DashboardState on _DashboardState, Store {
     });
   }
 
+  final _$scannedQRAtom = Atom(name: '_DashboardState.scannedQR');
+
+  @override
+  String get scannedQR {
+    _$scannedQRAtom.reportRead();
+    return super.scannedQR;
+  }
+
+  @override
+  set scannedQR(String value) {
+    _$scannedQRAtom.reportWrite(value, super.scannedQR, () {
+      super.scannedQR = value;
+    });
+  }
+
   final _$changePageAsyncAction = AsyncAction('_DashboardState.changePage');
 
   @override
@@ -58,7 +73,8 @@ mixin _$DashboardState on _DashboardState, Store {
   String toString() {
     return '''
 scannedUser: ${scannedUser},
-selectedPageName: ${selectedPageName}
+selectedPageName: ${selectedPageName},
+scannedQR: ${scannedQR}
     ''';
   }
 }

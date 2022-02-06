@@ -20,6 +20,9 @@ abstract class _DashboardState with Store {
   @observable
   String selectedPageName = '';
 
+  @observable
+  String scannedQR = '';
+
   @action
   Future<void> changePage(
       {required int targetPage, required String pageName}) async {
@@ -31,6 +34,7 @@ abstract class _DashboardState with Store {
   Future<void> scanQr(String qr) async {
     try {
       storeState.changeState(StoreStates.loading);
+      scannedQR = qr;
       scannedUser = await dashboardRepo.scanQr(qr);
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);

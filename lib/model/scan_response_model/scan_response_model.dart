@@ -10,6 +10,7 @@ part 'scan_response_model.g.dart';
 class ScanResponseModel with _$ScanResponseModel {
   factory ScanResponseModel({
     String? link,
+    String? discountCode,
     String? name,
     int? point,
   }) = _ScanResponseModel;

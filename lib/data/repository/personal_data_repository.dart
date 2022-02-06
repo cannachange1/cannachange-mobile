@@ -115,7 +115,7 @@ class PersonalDataRepository {
 
   Future<void> addPoints(int point, String code) async {
     try {
-      await dio.put('mobile/points', data: {"point": point, "code": code});
+      await dio.put('mobile/points', data: {"point": point, "qrCode": code});
     } on DioError catch (e) {
       handleError(e);
     }

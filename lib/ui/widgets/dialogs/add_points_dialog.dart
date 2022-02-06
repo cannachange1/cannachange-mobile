@@ -1,3 +1,5 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
@@ -7,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+
+import '../../../store/dashboard/dashboard_state.dart';
+import '../../../store/personal_data_state/personal_data_state.dart';
 
 class AddPointsDialog extends StatefulWidget {
   const AddPointsDialog({
@@ -18,10 +23,9 @@ class AddPointsDialog extends StatefulWidget {
 }
 
 class _AddPointsDialogState extends State<AddPointsDialog> {
-  final registrationState = GetIt.I<RegistrationState>();
-  TimeOfDay pickedTime = TimeOfDay.now();
-  TextEditingController startHourController = TextEditingController();
-  TextEditingController endHourController = TextEditingController();
+  final dashboardState = GetIt.I<DashboardState>();
+  final personalState = GetIt.I<PersonalDataState>();
+  TextEditingController pointAmountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +60,10 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
               isDispensary: false,
               showName: true,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextInput(
+                controller: pointAmountController,
                 hintText: '10',
               ),
             ),
@@ -68,7 +73,9 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
             MainButton(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
-                await registrationState.registerDispensary(context);
+                personalState.addPoints(int.parse(pointAmountController.text),
+                    dashboardState.scannedQR);
+                AutoRouter.of(context).pop();
               },
               label: 'Submit',
             ),

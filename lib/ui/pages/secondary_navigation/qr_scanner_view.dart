@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/widgets/dialogs/add_points_dialog.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -96,39 +97,44 @@ class _QrScannerViewState extends State<QrScannerView> {
     controller.scannedDataStream.listen((scanData) async {
       if (!isDetected) {
         await dashboardState.scanQr(scanData.code!);
-        //TODO change it to activatedCode!=null
-        if (dashboardState.scannedUser!.point! > 25) {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            backgroundColor: Colors.transparent,
-            builder: (context) => MultiAnswerBottomSheet(
-              isDivided: true,
-              actionList: [
-                ItemMultiAnswerPopupAction(
-                  isLastAction: true,
-                  textColor: intBlue,
-                  actionName: 'Add Points',
-                  onActionPressed: () async {
-                    //  personalState.addPoints(points, code);
-                  },
-                ),
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => MultiAnswerBottomSheet(
+            isDivided: true,
+            actionList: [
+              ItemMultiAnswerPopupAction(
+                isLastAction: true,
+                textColor: intBlue,
+                actionName: 'Add Points',
+                onActionPressed: () async {
+                  showDialog(
+                      context: context,
+                      useRootNavigator: false,
+                      builder: (context) => const AddPointsDialog()).then(
+                    (value) => AutoRouter.of(context).pop(),
+                  );
+                },
+              ),
+              if (dashboardState.scannedUser!.discountCode != null)
                 ItemMultiAnswerPopupAction(
                   isLastAction: true,
                   textColor: intBlue,
                   actionName: 'Redeem Points',
                   onActionPressed: () async {
-                    //   personalState.approvePointsRedeem(id);
+                    //TODO uncomment this later
+                    // personalState.approvePointsRedeem(id);
+                    //AutoRouter.of(context).pop(),
                   },
                 )
-              ],
-              mainTitle: 'Select the Action',
-              titleColor: textBlueColor,
-            ),
-          );
-        }
-        await AutoRouter.of(context).pop();
+            ],
+            mainTitle: 'Select the Action',
+            titleColor: textBlueColor,
+          ),
+        );
       }
+      await AutoRouter.of(context).pop();
     });
   }
 
