@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../widgets/custom_app_bar.dart';
+
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
 
@@ -32,6 +34,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(showBackButton: true),
       body: GoogleMap(
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
