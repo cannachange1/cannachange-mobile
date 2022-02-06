@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>809933482581-l9s2drjqftuvh6foalk5o70lhok4vsgb.apps.googleusercontent.com</string>
+	<string>809933482581-qto8meaks5v8s8ic7cgi73d56b2qrh85.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.809933482581-l9s2drjqftuvh6foalk5o70lhok4vsgb</string>
+	<string>com.googleusercontent.apps.809933482581-qto8meaks5v8s8ic7cgi73d56b2qrh85</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCLc_WDGVrhDl2QjoCyjpv16RxUju0EMow</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.cannachange.cannachange</string>
+	<string>com.cannachange.app</string>
 	<key>PROJECT_ID</key>
 	<string>cannachange</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:809933482581:ios:d5793737da424d9bd542dc</string>
+	<string>1:809933482581:ios:05d7fa283c9f6cc5d542dc</string>
 </dict>
 </plist>

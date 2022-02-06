@@ -22,7 +22,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCLc_WDGVrhDl2QjoCyjpv16RxUju0EMow",
-      appId: "1:809933482581:ios:d5793737da424d9bd542dc",
+      appId: "1:809933482581:ios:05d7fa283c9f6cc5d542dc",
       messagingSenderId: "809933482581",
       projectId: "cannachange",
     ),

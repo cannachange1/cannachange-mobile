@@ -6,6 +6,7 @@ import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -114,12 +115,16 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          personalDataState
-                                              .consumerPointList[index].name!,
-                                          style: const TextStyle(
-                                              fontSize: 22.0,
-                                              color: AppColors.lightGrayColor),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Text(
+                                            personalDataState
+                                                .consumerPointList[index].name!,
+                                            style: const TextStyle(
+                                                fontSize: 22.0,
+                                                color:
+                                                    AppColors.lightGrayColor),
+                                          ),
                                         ),
                                         if (personalDataState
                                                     .consumerPointList[index]
@@ -131,9 +136,11 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                                 25)
                                           MainButton(
                                             callback: () => personalDataState
-                                                .redeemPoints(personalDataState
-                                                    .consumerPointList[index]
-                                                    .id!),
+                                                .redeemPoints(
+                                                    personalDataState
+                                                        .consumerPointList[
+                                                            index]
+                                                        .id!),
                                             label: 'Redeem Points',
                                           ),
                                         if (personalDataState
@@ -149,7 +156,9 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                                 .consumerPointList[index]
                                                 .discountCode!,
                                             style: const TextStyle(
-                                                color: AppColors.lightGrayColor,
+                                              overflow: TextOverflow.ellipsis,
+                                                color:
+                                                    AppColors.lightGrayColor,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 18),
                                           ),
@@ -167,7 +176,8 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                                     .point!
                                                     .toString(),
                                                 style: const TextStyle(
-                                                    fontWeight: FontWeight.w800,
+                                                    fontWeight:
+                                                        FontWeight.w800,
                                                     fontSize: 18,
                                                     color: Colors.white),
                                               ),
@@ -221,8 +231,8 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const Icon(
-                            Icons.scale,
+                          const FaIcon(
+                            FontAwesomeIcons.balanceScale,
                             color: AppColors.secondAccent,
                             size: 50,
                           ),
