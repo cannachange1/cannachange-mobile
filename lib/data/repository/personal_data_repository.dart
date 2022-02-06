@@ -25,16 +25,18 @@ class PersonalDataRepository {
   //   } on DioError catch (e) {}
   // }
 
-  Future<void> uploadProfilePic(
-      File image, FilePickerResult filePickerResult) async {
-    Uint8List bytes;
-    await image.readAsBytes().then((value) async {
-      bytes = Uint8List.fromList(value);
-      await dio.post(
-        'mobile/avatar',
-        data: {"img": bytes, "extension": 'image/jpeg'},
-      );
-    });
+  Future<void> uploadProfilePic(File image) async {
+    var formData = FormData.fromMap(
+      {
+        'img': await MultipartFile.fromFile(
+          image.path,
+        ),
+      },
+    );
+    await dio.post(
+      'mobile/avatar',
+      data: formData,
+    );
   }
 
   ///////////**********/////////////

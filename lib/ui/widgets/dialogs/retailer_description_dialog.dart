@@ -1,20 +1,14 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/values/values.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' hide MapType;
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app_theme.dart';
-import '../../../helpers/overlay_helper.dart';
 import '../../../helpers/screen_size_accessor.dart';
 
 class DispensaryDescriptionDialog extends StatefulWidget {

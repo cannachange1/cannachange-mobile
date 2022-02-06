@@ -148,7 +148,7 @@ abstract class _PersonalDataState with Store {
         clientSelectedImage = File(
           result.files.single.path!,
         );
-        personalDataRepository.uploadProfilePic(clientSelectedImage!, result);
+        personalDataRepository.uploadProfilePic(clientSelectedImage!);
       } else {}
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
@@ -165,8 +165,7 @@ abstract class _PersonalDataState with Store {
         dispensarySelectedImage = File(
           result.files.single.path!,
         );
-        personalDataRepository.uploadProfilePic(
-            dispensarySelectedImage!, result);
+        personalDataRepository.uploadProfilePic(dispensarySelectedImage!);
       } else {}
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
