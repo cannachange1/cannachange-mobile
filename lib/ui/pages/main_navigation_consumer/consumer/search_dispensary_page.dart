@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
+import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/ui/widgets/search_box.dart';
 import 'package:cannachange/values/values.dart';
@@ -12,6 +14,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../helpers/overlay_helper.dart';
+import '../../../../router.gr.dart';
 import '../../../../store/search/search_state.dart';
 import '../../../widgets/dialogs/retailer_description_dialog.dart';
 
@@ -65,6 +68,10 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
           const SizedBox(
             height: 18,
           ),
+           MainButton(
+            label: 'See nearest dispensaries',
+            callback: ()=> AutoRouter.of(context).push(const MapRoute()),
+          ),
           Observer(
             builder: (_) => PagedListView<int, DispensaryModel>(
               shrinkWrap: true,
@@ -93,7 +100,8 @@ class _SearchDispensaryPageState extends State<SearchDispensaryPage> {
                           onTap: () => item.longitude == null
                               ? showCustomOverlayNotification(
                                   color: AppColors.primaryColor,
-                                  text: 'Dispensary location is not specified yet')
+                                  text:
+                                      'Dispensary location is not specified yet')
                               : showModalBottomSheet(
                                   context: context,
                                   isScrollControlled: true,

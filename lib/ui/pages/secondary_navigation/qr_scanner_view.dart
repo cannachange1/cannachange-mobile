@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -6,15 +5,12 @@ import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/dialogs/add_points_dialog.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../../app_theme.dart';
-import '../../../helpers/overlay_helper.dart';
 import '../../../store/dashboard/dashboard_state.dart';
 import '../../../store/personal_data_state/personal_data_state.dart';
 import '../../widgets/dialogs/multi_answer_bottom_sheet.dart';
@@ -40,11 +36,11 @@ class _QrScannerViewState extends State<QrScannerView> {
   @override
   void reassemble() {
     super.reassemble();
-    // if (Platform.isAndroid) {
-    //   controller!.pauseCamera();
-    // } else if (Platform.isIOS) {
-    //   controller!.resumeCamera();
-    // }
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
   }
 
   @override
