@@ -8,7 +8,7 @@ part of 'scan_response_model.dart';
 
 _$_ScanResponseModel _$$_ScanResponseModelFromJson(Map<String, dynamic> json) =>
     _$_ScanResponseModel(
-      imageLink: json['imageLink'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       discountCode: json['discountCode'] as String?,
       name: json['name'] as String?,
       point: json['point'] as int?,
@@ -18,7 +18,7 @@ _$_ScanResponseModel _$$_ScanResponseModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ScanResponseModelToJson(
         _$_ScanResponseModel instance) =>
     <String, dynamic>{
-      'imageLink': instance.imageLink,
+      'imageUrl': instance.imageUrl,
       'discountCode': instance.discountCode,
       'name': instance.name,
       'point': instance.point,

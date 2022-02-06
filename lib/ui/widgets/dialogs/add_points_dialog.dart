@@ -34,7 +34,7 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: SizedBox(
-        height: 200,
+        height: 400,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,7 +47,7 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
                   style: TextStyle(
                       color: AppColors.secondAccent.withOpacity(.85),
                       height: 2,
-                      fontSize: 16,
+                      fontSize: 22,
                       fontWeight: FontWeight.w800),
                 ),
                 alignment: Alignment.center,
@@ -56,15 +56,24 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
             const SizedBox(
               height: 8,
             ),
-            const AvatarWidget(
-              isDispensary: false,
-              showName: true,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: Image.network(
+                    dashboardState.scannedUser!.imageUrl!,
+                    fit: BoxFit.cover,
+                    height: 90,
+                    width: 90,
+                  )),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextInput(
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.done,
                 controller: pointAmountController,
-                hintText: '10',
+                hintText: 'Example 15',
               ),
             ),
             const SizedBox(

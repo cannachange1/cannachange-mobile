@@ -9,7 +9,7 @@ part 'scan_response_model.g.dart';
 @freezed
 class ScanResponseModel with _$ScanResponseModel {
   factory ScanResponseModel({
-    String? imageLink,
+    String? imageUrl,
     String? discountCode,
     String? name,
     int? point,

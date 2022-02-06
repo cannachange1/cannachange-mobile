@@ -111,18 +111,12 @@ class _RegistrationDetailsWorkingHoursDialogState
       context: context,
       initialTime: pickedTime,
     );
-    if (response != null && response != pickedTime) {
+    if (response != null) {
       if (isStartingDate) {
-        registrationState.dispensaryStartHours = DateFormat.jm()
-            .format(DateTime(1, 1, response.hour, response.minute));
+        registrationState.dispensaryStartHours = response.format(context);
       } else {
-        registrationState.dispensaryEndHours = DateFormat.jm()
-            .format(DateTime(1, 1, response.hour, response.minute));
+        registrationState.dispensaryEndHours = response.format(context);
       }
-      //
-      // setState(() {
-      //   pickedTime = response;
-      // });
     }
   }
 }
