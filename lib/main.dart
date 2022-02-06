@@ -22,7 +22,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCLc_WDGVrhDl2QjoCyjpv16RxUju0EMow",
-      appId: "1:809933482581:ios:d5793737da424d9bd542dc",
+      appId: "1:809933482581:ios:05d7fa283c9f6cc5d542dc",
       messagingSenderId: "809933482581",
       projectId: "cannachange",
     ),
@@ -38,6 +38,7 @@ Future<void> main() async {
     sound: true,
   );
   print('User granted permission: ${settings.authorizationStatus}');
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     print('Got a message whilst in the foreground!');
@@ -47,7 +48,6 @@ Future<void> main() async {
       print('Message also contained a notification: ${message.notification}');
     }
   });
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(MyApp());
 }
 
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
             routeInformationParser: _appRouter.defaultRouteParser(),
             routerDelegate: _appRouter.delegate()),
         debugShowCheckedModeBanner: false,
-        title: 'Drive Trained',
+        title: 'cannachange',
         theme: buildLightTheme(),
       ),
     );

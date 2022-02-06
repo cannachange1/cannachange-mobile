@@ -88,9 +88,17 @@ abstract class _PersonalDataState with Store {
   }
 
   @action
-  void setDispensaryHours(String value) {
+  void setDispensaryStartHours(String value) {
     if (value.isNotEmpty) {
-      // dispensaryModel = dispensaryModel!.copyWith(w: value);
+       dispensaryModel = dispensaryModel!.copyWith(startHour: value);
+    }
+  }
+
+
+  @action
+  void setDispensaryEndHours(String value) {
+    if (value.isNotEmpty) {
+       dispensaryModel = dispensaryModel!.copyWith(endHour: value);
     }
   }
 
@@ -148,7 +156,7 @@ abstract class _PersonalDataState with Store {
         clientSelectedImage = File(
           result.files.single.path!,
         );
-        personalDataRepository.uploadProfilePic(clientSelectedImage!, result);
+        personalDataRepository.uploadProfilePic(clientSelectedImage!);
       } else {}
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
@@ -165,8 +173,7 @@ abstract class _PersonalDataState with Store {
         dispensarySelectedImage = File(
           result.files.single.path!,
         );
-        personalDataRepository.uploadProfilePic(
-            dispensarySelectedImage!, result);
+        personalDataRepository.uploadProfilePic(dispensarySelectedImage!);
       } else {}
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
@@ -220,6 +227,35 @@ abstract class _PersonalDataState with Store {
       // rethrow;
     }
   }
+
+
+  @action
+  Future<void> addPoints(int points, String code) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.addPoints(points, code);
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+    }
+  }
+
+
+  @action
+  Future<void> approvePointsRedeem(int id) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      final res = await personalDataRepository.approvePointsRedeem(id);
+      return res;
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+
+      // rethrow;
+    }
+  }
+
+
 
   @action
   Future<void> changePassword(String oldPassword, String newPassword) async {

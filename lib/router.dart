@@ -10,6 +10,7 @@ import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/payment_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
+import 'package:cannachange/ui/pages/secondary_navigation/map_page.dart';
 import 'ui/pages/main_navigation_consumer/consumer/consumer_settings_page.dart';
 import 'ui/pages/main_navigation_consumer/dispenser/dashboard_page.dart';
 import 'ui/pages/secondary_navigation/qr_scanner_view.dart';
@@ -34,6 +35,7 @@ import 'ui/pages/verify_account/verify_otp_code_page.dart';
     AutoRoute(page: WelcomePage, initial: true),
     AutoRoute(page: VerifyOtpCodePage),
     AutoRoute(page: QrScannerView),
+    AutoRoute(page: MapPage),
     AutoRoute(page: ConsumerAccountManagementPage),
     AutoRoute(page: ConsumerPersonalDetailsPage),
   ],

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../values/values.dart';
 import 'text_input.dart';
@@ -32,7 +33,7 @@ class _SignUpSectionState extends State<SignUpSection> {
       TextEditingController();
 
   final String _url =
-      'http://auguricorp.com/DOXI/TC/DOXI%20TERMS%20AND%20CONDITIONS.html';
+      'https://app.termly.io/document/terms-of-use-for-ios-app/209fc4a8-267a-48d2-a212-2c6818b7e34f';
   final registrationState = GetIt.I<RegistrationState>();
 
   @override
@@ -89,7 +90,8 @@ class _SignUpSectionState extends State<SignUpSection> {
                           registrationState.dispensaryAddress1 = value,
                       textInputAction: TextInputAction.next,
                       hintText: StringConst.line1,
-                      errorText: registrationState.errors.dispensaryAddress?? '\n',
+                      errorText:
+                          registrationState.errors.dispensaryAddress ?? '\n',
                     ),
                   ),
                 ),
@@ -110,7 +112,6 @@ class _SignUpSectionState extends State<SignUpSection> {
                 ),
               ],
             ),
-
             Observer(
               builder: (_) => TextInput(
                 controller: dispensaryEmailTextController,
@@ -174,8 +175,7 @@ class _SignUpSectionState extends State<SignUpSection> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => {},
-                    //_launchURL,
+                    onTap: () => _launchURL(),
                     child: const Text.rich(
                       TextSpan(
                         text: 'I agree to the ',
@@ -183,25 +183,13 @@ class _SignUpSectionState extends State<SignUpSection> {
                             TextStyle(fontSize: 14, color: AppColors.darkGrey),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Terms or Services',
+                            text: 'Terms of Services',
                             style: TextStyle(
                               color: AppColors.secondAccent,
                               decoration: TextDecoration.underline,
                             ),
                           ),
-                          TextSpan(
-                            text: ' and ',
-                            style: TextStyle(
-                              color: AppColors.darkGrey,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '\nPrivacy Policy',
-                            style: TextStyle(
-                              color: AppColors.secondAccent,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
+
                         ],
                       ),
                     ),
@@ -215,7 +203,6 @@ class _SignUpSectionState extends State<SignUpSection> {
     );
   }
 
-
   void resetControllers() {
     dispensaryNameTextController.clear();
     dispensaryAddress1TextController.clear();
@@ -227,7 +214,7 @@ class _SignUpSectionState extends State<SignUpSection> {
     dispensaryConfirmPasswordTextController.clear();
   }
 
-  // void _launchURL() async => await canLaunch(_url)
-  //     ? await launch(_url)
-  //     : throw 'Could not launch $_url';
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 }

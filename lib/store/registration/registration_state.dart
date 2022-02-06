@@ -5,10 +5,12 @@ import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../constants/regexp.dart';
 import '../../router.gr.dart';
+import '../personal_data_state/personal_data_state.dart';
 
 part 'registration_state.g.dart';
 
@@ -18,6 +20,7 @@ abstract class _RegistrationState with Store {
   final authorizationRepo = AuthenticationRepo();
   List<ReactionDisposer> _dispensaryDisposers = [];
   List<ReactionDisposer> _consumerDisposers = [];
+  final personalDataState = GetIt.I<PersonalDataState>();
 
   final StoreState storeState = StoreState();
   final RegistrationStateErrors errors = RegistrationStateErrors();
@@ -115,14 +118,16 @@ abstract class _RegistrationState with Store {
       bool isDispensary, BuildContext context, String code) async {
     storeState.changeState(StoreStates.loading);
     try {
-      String? token = await authorizationRepo.sendOTPCode(
+      final res = await authorizationRepo.sendOTPCode(
           code,
           isDispensary ? dispensaryEmail! : consumerEmail!,
           isDispensary ? dispensaryPassword! : consumerPassword!);
-      StorageHelper.setToken(token!);
+      StorageHelper.setToken(res!.token);
       if (isDispensary) {
+        personalDataState.dispensaryModel = res.dispensary;
         AutoRouter.of(context).push(const DashboardRoute());
       } else {
+        personalDataState.clientModel = res.consumer;
         AutoRouter.of(context).push(const ConsumerDashboardRoute());
       }
       storeState.changeState(StoreStates.success);
@@ -165,6 +170,7 @@ abstract class _RegistrationState with Store {
       // resetDispensaryValidationErrors();
       AutoRouter.of(context).replace(VerifyOtpCodeRoute(isDispensary: true));
     } on Exception catch (e) {
+      AutoRouter.of(context).pop();
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
     }

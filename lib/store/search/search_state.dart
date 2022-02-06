@@ -30,6 +30,7 @@ abstract class _SearchState with Store {
     int pageKey,
   ) async {
     try {
+      storeState.changeState(StoreStates.loading);
       final res = await searchRepo.getDispensaries(
         searchKey,
         pageKey,
@@ -38,7 +39,9 @@ abstract class _SearchState with Store {
       filteredDispensariesList
         ..clear()
         ..addAll(res.dispensaryList);
+      storeState.changeState(StoreStates.success);
     } on DioError catch (e) {
+      storeState.changeState(StoreStates.error);
       return Future.error(e.response!.data('title'));
     }
   }

@@ -1,11 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:cannachange/data/exceptions/dio_error_codes.dart';
 import 'package:cannachange/data/exceptions/general_exceptions.dart';
 import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 
 class PersonalDataRepository {
@@ -25,16 +22,20 @@ class PersonalDataRepository {
   //   } on DioError catch (e) {}
   // }
 
-  Future<void> uploadProfilePic(
-      File image, FilePickerResult filePickerResult) async {
-    Uint8List bytes;
-    await image.readAsBytes().then((value) async {
-      bytes = Uint8List.fromList(value);
-      await dio.post(
-        'mobile/avatar',
-        data: {"img": bytes, "extension": 'image/jpeg'},
-      );
-    });
+  Future<void> uploadProfilePic(File image) async {
+    String fileName = image.path.split('/').last;
+
+    FormData formData = FormData.fromMap(
+      {
+        'image': await MultipartFile.fromFile(
+          image.path,
+        ),
+      },
+    );
+    await dio.post(
+      'mobile/avatar',
+      data: formData,
+    );
   }
 
   ///////////**********/////////////
@@ -104,6 +105,30 @@ class PersonalDataRepository {
     try {
       await dio.get(
         'mobile/points/$id/redeem',
+      );
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> addPoints(int point, String code) async {
+    try {
+      await dio.put('mobile/points', data: {"point": point, "qrCode": code});
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> approvePointsRedeem(
+    int id,
+  ) async {
+    try {
+      await dio.get(
+        'mobile/points/$id/approve',
       );
     } on DioError catch (e) {
       handleError(e);

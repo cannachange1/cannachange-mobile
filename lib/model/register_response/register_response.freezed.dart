@@ -22,11 +22,19 @@ class _$RegisterResponseTearOff {
   const _$RegisterResponseTearOff();
 
   _RegisterResponse call(
-      {String? sessionId, String? message, String? subscriptionId}) {
+      {required String token,
+      String? role,
+      DispensaryModel? dispensary,
+      ClientModel? consumer,
+      MemberResponseModel? member,
+      List<PointModel>? points}) {
     return _RegisterResponse(
-      sessionId: sessionId,
-      message: message,
-      subscriptionId: subscriptionId,
+      token: token,
+      role: role,
+      dispensary: dispensary,
+      consumer: consumer,
+      member: member,
+      points: points,
     );
   }
 
@@ -40,9 +48,12 @@ const $RegisterResponse = _$RegisterResponseTearOff();
 
 /// @nodoc
 mixin _$RegisterResponse {
-  String? get sessionId => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  String? get subscriptionId => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  DispensaryModel? get dispensary => throw _privateConstructorUsedError;
+  ClientModel? get consumer => throw _privateConstructorUsedError;
+  MemberResponseModel? get member => throw _privateConstructorUsedError;
+  List<PointModel>? get points => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +66,17 @@ abstract class $RegisterResponseCopyWith<$Res> {
   factory $RegisterResponseCopyWith(
           RegisterResponse value, $Res Function(RegisterResponse) then) =
       _$RegisterResponseCopyWithImpl<$Res>;
-  $Res call({String? sessionId, String? message, String? subscriptionId});
+  $Res call(
+      {String token,
+      String? role,
+      DispensaryModel? dispensary,
+      ClientModel? consumer,
+      MemberResponseModel? member,
+      List<PointModel>? points});
+
+  $DispensaryModelCopyWith<$Res>? get dispensary;
+  $ClientModelCopyWith<$Res>? get consumer;
+  $MemberResponseModelCopyWith<$Res>? get member;
 }
 
 /// @nodoc
@@ -69,24 +90,72 @@ class _$RegisterResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? sessionId = freezed,
-    Object? message = freezed,
-    Object? subscriptionId = freezed,
+    Object? token = freezed,
+    Object? role = freezed,
+    Object? dispensary = freezed,
+    Object? consumer = freezed,
+    Object? member = freezed,
+    Object? points = freezed,
   }) {
     return _then(_value.copyWith(
-      sessionId: sessionId == freezed
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subscriptionId: subscriptionId == freezed
-          ? _value.subscriptionId
-          : subscriptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      dispensary: dispensary == freezed
+          ? _value.dispensary
+          : dispensary // ignore: cast_nullable_to_non_nullable
+              as DispensaryModel?,
+      consumer: consumer == freezed
+          ? _value.consumer
+          : consumer // ignore: cast_nullable_to_non_nullable
+              as ClientModel?,
+      member: member == freezed
+          ? _value.member
+          : member // ignore: cast_nullable_to_non_nullable
+              as MemberResponseModel?,
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<PointModel>?,
     ));
+  }
+
+  @override
+  $DispensaryModelCopyWith<$Res>? get dispensary {
+    if (_value.dispensary == null) {
+      return null;
+    }
+
+    return $DispensaryModelCopyWith<$Res>(_value.dispensary!, (value) {
+      return _then(_value.copyWith(dispensary: value));
+    });
+  }
+
+  @override
+  $ClientModelCopyWith<$Res>? get consumer {
+    if (_value.consumer == null) {
+      return null;
+    }
+
+    return $ClientModelCopyWith<$Res>(_value.consumer!, (value) {
+      return _then(_value.copyWith(consumer: value));
+    });
+  }
+
+  @override
+  $MemberResponseModelCopyWith<$Res>? get member {
+    if (_value.member == null) {
+      return null;
+    }
+
+    return $MemberResponseModelCopyWith<$Res>(_value.member!, (value) {
+      return _then(_value.copyWith(member: value));
+    });
   }
 }
 
@@ -97,7 +166,20 @@ abstract class _$RegisterResponseCopyWith<$Res>
           _RegisterResponse value, $Res Function(_RegisterResponse) then) =
       __$RegisterResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String? sessionId, String? message, String? subscriptionId});
+  $Res call(
+      {String token,
+      String? role,
+      DispensaryModel? dispensary,
+      ClientModel? consumer,
+      MemberResponseModel? member,
+      List<PointModel>? points});
+
+  @override
+  $DispensaryModelCopyWith<$Res>? get dispensary;
+  @override
+  $ClientModelCopyWith<$Res>? get consumer;
+  @override
+  $MemberResponseModelCopyWith<$Res>? get member;
 }
 
 /// @nodoc
@@ -113,23 +195,38 @@ class __$RegisterResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? sessionId = freezed,
-    Object? message = freezed,
-    Object? subscriptionId = freezed,
+    Object? token = freezed,
+    Object? role = freezed,
+    Object? dispensary = freezed,
+    Object? consumer = freezed,
+    Object? member = freezed,
+    Object? points = freezed,
   }) {
     return _then(_RegisterResponse(
-      sessionId: sessionId == freezed
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subscriptionId: subscriptionId == freezed
-          ? _value.subscriptionId
-          : subscriptionId // ignore: cast_nullable_to_non_nullable
-              as String?,
+      dispensary: dispensary == freezed
+          ? _value.dispensary
+          : dispensary // ignore: cast_nullable_to_non_nullable
+              as DispensaryModel?,
+      consumer: consumer == freezed
+          ? _value.consumer
+          : consumer // ignore: cast_nullable_to_non_nullable
+              as ClientModel?,
+      member: member == freezed
+          ? _value.member
+          : member // ignore: cast_nullable_to_non_nullable
+              as MemberResponseModel?,
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<PointModel>?,
     ));
   }
 }
@@ -137,44 +234,64 @@ class __$RegisterResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RegisterResponse implements _RegisterResponse {
-  _$_RegisterResponse({this.sessionId, this.message, this.subscriptionId});
+  _$_RegisterResponse(
+      {required this.token,
+      this.role,
+      this.dispensary,
+      this.consumer,
+      this.member,
+      this.points});
 
   factory _$_RegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$$_RegisterResponseFromJson(json);
 
   @override
-  final String? sessionId;
+  final String token;
   @override
-  final String? message;
+  final String? role;
   @override
-  final String? subscriptionId;
+  final DispensaryModel? dispensary;
+  @override
+  final ClientModel? consumer;
+  @override
+  final MemberResponseModel? member;
+  @override
+  final List<PointModel>? points;
 
   @override
   String toString() {
-    return 'RegisterResponse(sessionId: $sessionId, message: $message, subscriptionId: $subscriptionId)';
+    return 'RegisterResponse(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, member: $member, points: $points)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RegisterResponse &&
-            (identical(other.sessionId, sessionId) ||
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)) &&
+            (identical(other.role, role) ||
+                const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.dispensary, dispensary) ||
                 const DeepCollectionEquality()
-                    .equals(other.sessionId, sessionId)) &&
-            (identical(other.message, message) ||
+                    .equals(other.dispensary, dispensary)) &&
+            (identical(other.consumer, consumer) ||
                 const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
-            (identical(other.subscriptionId, subscriptionId) ||
-                const DeepCollectionEquality()
-                    .equals(other.subscriptionId, subscriptionId)));
+                    .equals(other.consumer, consumer)) &&
+            (identical(other.member, member) ||
+                const DeepCollectionEquality().equals(other.member, member)) &&
+            (identical(other.points, points) ||
+                const DeepCollectionEquality().equals(other.points, points)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(sessionId) ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(subscriptionId);
+      const DeepCollectionEquality().hash(token) ^
+      const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(dispensary) ^
+      const DeepCollectionEquality().hash(consumer) ^
+      const DeepCollectionEquality().hash(member) ^
+      const DeepCollectionEquality().hash(points);
 
   @JsonKey(ignore: true)
   @override
@@ -189,19 +306,28 @@ class _$_RegisterResponse implements _RegisterResponse {
 
 abstract class _RegisterResponse implements RegisterResponse {
   factory _RegisterResponse(
-      {String? sessionId,
-      String? message,
-      String? subscriptionId}) = _$_RegisterResponse;
+      {required String token,
+      String? role,
+      DispensaryModel? dispensary,
+      ClientModel? consumer,
+      MemberResponseModel? member,
+      List<PointModel>? points}) = _$_RegisterResponse;
 
   factory _RegisterResponse.fromJson(Map<String, dynamic> json) =
       _$_RegisterResponse.fromJson;
 
   @override
-  String? get sessionId => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
   @override
-  String? get subscriptionId => throw _privateConstructorUsedError;
+  DispensaryModel? get dispensary => throw _privateConstructorUsedError;
+  @override
+  ClientModel? get consumer => throw _privateConstructorUsedError;
+  @override
+  MemberResponseModel? get member => throw _privateConstructorUsedError;
+  @override
+  List<PointModel>? get points => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$RegisterResponseCopyWith<_RegisterResponse> get copyWith =>
