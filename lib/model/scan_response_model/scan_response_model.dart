@@ -9,10 +9,11 @@ part 'scan_response_model.g.dart';
 @freezed
 class ScanResponseModel with _$ScanResponseModel {
   factory ScanResponseModel({
-    String? link,
+    String? imageLink,
     String? discountCode,
     String? name,
     int? point,
+    int? pointId,
   }) = _ScanResponseModel;
 
   factory ScanResponseModel.fromJson(Map<String, dynamic> json) =>

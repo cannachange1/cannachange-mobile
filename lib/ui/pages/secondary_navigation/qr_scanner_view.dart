@@ -33,7 +33,6 @@ class _QrScannerViewState extends State<QrScannerView> {
   final dashboardState = GetIt.I<DashboardState>();
   final personalState = GetIt.I<PersonalDataState>();
 
-  //LoadingState loadingState = LoadingState();
   final dio = GetIt.I<Dio>();
   StoreState storeState = StoreState();
   bool isDetected = false;
@@ -123,9 +122,9 @@ class _QrScannerViewState extends State<QrScannerView> {
                   textColor: intBlue,
                   actionName: 'Redeem Points',
                   onActionPressed: () async {
-                    //TODO uncomment this later
-                    // personalState.approvePointsRedeem(id);
-                    //AutoRouter.of(context).pop(),
+                    personalState.approvePointsRedeem(
+                        dashboardState.scannedUser!.pointId!);
+                    AutoRouter.of(context).pop();
                   },
                 )
             ],

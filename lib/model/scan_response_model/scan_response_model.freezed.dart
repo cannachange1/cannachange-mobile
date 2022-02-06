@@ -22,12 +22,17 @@ class _$ScanResponseModelTearOff {
   const _$ScanResponseModelTearOff();
 
   _ScanResponseModel call(
-      {String? link, String? discountCode, String? name, int? point}) {
+      {String? imageLink,
+      String? discountCode,
+      String? name,
+      int? point,
+      int? pointId}) {
     return _ScanResponseModel(
-      link: link,
+      imageLink: imageLink,
       discountCode: discountCode,
       name: name,
       point: point,
+      pointId: pointId,
     );
   }
 
@@ -41,10 +46,11 @@ const $ScanResponseModel = _$ScanResponseModelTearOff();
 
 /// @nodoc
 mixin _$ScanResponseModel {
-  String? get link => throw _privateConstructorUsedError;
+  String? get imageLink => throw _privateConstructorUsedError;
   String? get discountCode => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get point => throw _privateConstructorUsedError;
+  int? get pointId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,7 +63,12 @@ abstract class $ScanResponseModelCopyWith<$Res> {
   factory $ScanResponseModelCopyWith(
           ScanResponseModel value, $Res Function(ScanResponseModel) then) =
       _$ScanResponseModelCopyWithImpl<$Res>;
-  $Res call({String? link, String? discountCode, String? name, int? point});
+  $Res call(
+      {String? imageLink,
+      String? discountCode,
+      String? name,
+      int? point,
+      int? pointId});
 }
 
 /// @nodoc
@@ -71,15 +82,16 @@ class _$ScanResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? link = freezed,
+    Object? imageLink = freezed,
     Object? discountCode = freezed,
     Object? name = freezed,
     Object? point = freezed,
+    Object? pointId = freezed,
   }) {
     return _then(_value.copyWith(
-      link: link == freezed
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      imageLink: imageLink == freezed
+          ? _value.imageLink
+          : imageLink // ignore: cast_nullable_to_non_nullable
               as String?,
       discountCode: discountCode == freezed
           ? _value.discountCode
@@ -93,6 +105,10 @@ class _$ScanResponseModelCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
+      pointId: pointId == freezed
+          ? _value.pointId
+          : pointId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -104,7 +120,12 @@ abstract class _$ScanResponseModelCopyWith<$Res>
           _ScanResponseModel value, $Res Function(_ScanResponseModel) then) =
       __$ScanResponseModelCopyWithImpl<$Res>;
   @override
-  $Res call({String? link, String? discountCode, String? name, int? point});
+  $Res call(
+      {String? imageLink,
+      String? discountCode,
+      String? name,
+      int? point,
+      int? pointId});
 }
 
 /// @nodoc
@@ -120,15 +141,16 @@ class __$ScanResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? link = freezed,
+    Object? imageLink = freezed,
     Object? discountCode = freezed,
     Object? name = freezed,
     Object? point = freezed,
+    Object? pointId = freezed,
   }) {
     return _then(_ScanResponseModel(
-      link: link == freezed
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      imageLink: imageLink == freezed
+          ? _value.imageLink
+          : imageLink // ignore: cast_nullable_to_non_nullable
               as String?,
       discountCode: discountCode == freezed
           ? _value.discountCode
@@ -142,6 +164,10 @@ class __$ScanResponseModelCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as int?,
+      pointId: pointId == freezed
+          ? _value.pointId
+          : pointId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -149,47 +175,54 @@ class __$ScanResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ScanResponseModel implements _ScanResponseModel {
-  _$_ScanResponseModel({this.link, this.discountCode, this.name, this.point});
+  _$_ScanResponseModel(
+      {this.imageLink, this.discountCode, this.name, this.point, this.pointId});
 
   factory _$_ScanResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_ScanResponseModelFromJson(json);
 
   @override
-  final String? link;
+  final String? imageLink;
   @override
   final String? discountCode;
   @override
   final String? name;
   @override
   final int? point;
+  @override
+  final int? pointId;
 
   @override
   String toString() {
-    return 'ScanResponseModel(link: $link, discountCode: $discountCode, name: $name, point: $point)';
+    return 'ScanResponseModel(imageLink: $imageLink, discountCode: $discountCode, name: $name, point: $point, pointId: $pointId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ScanResponseModel &&
-            (identical(other.link, link) ||
-                const DeepCollectionEquality().equals(other.link, link)) &&
+            (identical(other.imageLink, imageLink) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageLink, imageLink)) &&
             (identical(other.discountCode, discountCode) ||
                 const DeepCollectionEquality()
                     .equals(other.discountCode, discountCode)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.point, point) ||
-                const DeepCollectionEquality().equals(other.point, point)));
+                const DeepCollectionEquality().equals(other.point, point)) &&
+            (identical(other.pointId, pointId) ||
+                const DeepCollectionEquality().equals(other.pointId, pointId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(link) ^
+      const DeepCollectionEquality().hash(imageLink) ^
       const DeepCollectionEquality().hash(discountCode) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(point);
+      const DeepCollectionEquality().hash(point) ^
+      const DeepCollectionEquality().hash(pointId);
 
   @JsonKey(ignore: true)
   @override
@@ -204,22 +237,25 @@ class _$_ScanResponseModel implements _ScanResponseModel {
 
 abstract class _ScanResponseModel implements ScanResponseModel {
   factory _ScanResponseModel(
-      {String? link,
+      {String? imageLink,
       String? discountCode,
       String? name,
-      int? point}) = _$_ScanResponseModel;
+      int? point,
+      int? pointId}) = _$_ScanResponseModel;
 
   factory _ScanResponseModel.fromJson(Map<String, dynamic> json) =
       _$_ScanResponseModel.fromJson;
 
   @override
-  String? get link => throw _privateConstructorUsedError;
+  String? get imageLink => throw _privateConstructorUsedError;
   @override
   String? get discountCode => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
   int? get point => throw _privateConstructorUsedError;
+  @override
+  int? get pointId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ScanResponseModelCopyWith<_ScanResponseModel> get copyWith =>
