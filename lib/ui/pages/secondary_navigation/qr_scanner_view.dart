@@ -6,7 +6,6 @@ import 'package:cannachange/ui/widgets/dialogs/add_points_dialog.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -61,27 +60,25 @@ class _QrScannerViewState extends State<QrScannerView> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Observer(
-          builder: (_) => Stack(
-            children: [
-              Column(
-                children: <Widget>[
-                  const Expanded(
-                    child: Center(
-                      child: Text('Scanning...'),
-                    ),
+        child: Stack(
+          children: [
+            Column(
+              children: <Widget>[
+                const Expanded(
+                  child: Center(
+                    child: Text('Scanning...'),
                   ),
-                  Expanded(
-                    flex: 5,
-                    child: QRView(
-                      key: qrKey,
-                      onQRViewCreated: _onQRViewCreated,
-                    ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: QRView(
+                    key: qrKey,
+                    onQRViewCreated: _onQRViewCreated,
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -91,7 +88,9 @@ class _QrScannerViewState extends State<QrScannerView> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) async {
       if (!isDetected) {
+        isDetected = true;
         await dashboardState.scanQr(scanData.code!);
+        await AutoRouter.of(context).pop();
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
@@ -106,7 +105,7 @@ class _QrScannerViewState extends State<QrScannerView> {
                 onActionPressed: () async {
                   showDialog(
                       context: context,
-                      useRootNavigator: false,
+                      //  useRootNavigator: false,
                       builder: (context) => const AddPointsDialog()).then(
                     (value) => AutoRouter.of(context).pop(),
                   );
@@ -129,7 +128,6 @@ class _QrScannerViewState extends State<QrScannerView> {
           ),
         );
       }
-      await AutoRouter.of(context).pop();
     });
   }
 
@@ -138,30 +136,4 @@ class _QrScannerViewState extends State<QrScannerView> {
     controller?.dispose();
     super.dispose();
   }
-//
-// Future<void> sendQR(String qr) async {
-//   isDetected = true;
-//   storeState.changeState(StoreStates.loading);
-//   try {
-//     await dio.post('/mobile/checkin', data: {
-//       'qrCode': qr,
-//     });
-//     // showDialog(
-//     //     context: context,
-//     //     useRootNavigator: false,
-//     //     builder: (context) =>
-//     //     const RegistrationDetailsWorkingHoursDialog());
-//
-//     storeState.changeState(StoreStates.success);
-//   } on DioError catch (e) {
-//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-//     showCustomOverlayNotification(
-//       color: Colors.red,
-//       text: map['title'],
-//     );
-//     storeState.changeState(StoreStates.error);
-//     await AutoRouter.of(context).pop();
-//     return Future.error(e.response!.data['title']);
-//   }
-// }
 }

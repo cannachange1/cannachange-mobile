@@ -22,13 +22,13 @@ class _$ScanResponseModelTearOff {
   const _$ScanResponseModelTearOff();
 
   _ScanResponseModel call(
-      {String? imageLink,
+      {String? imageUrl,
       String? discountCode,
       String? name,
       int? point,
       int? pointId}) {
     return _ScanResponseModel(
-      imageLink: imageLink,
+      imageUrl: imageUrl,
       discountCode: discountCode,
       name: name,
       point: point,
@@ -46,7 +46,7 @@ const $ScanResponseModel = _$ScanResponseModelTearOff();
 
 /// @nodoc
 mixin _$ScanResponseModel {
-  String? get imageLink => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   String? get discountCode => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get point => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $ScanResponseModelCopyWith<$Res> {
           ScanResponseModel value, $Res Function(ScanResponseModel) then) =
       _$ScanResponseModelCopyWithImpl<$Res>;
   $Res call(
-      {String? imageLink,
+      {String? imageUrl,
       String? discountCode,
       String? name,
       int? point,
@@ -82,16 +82,16 @@ class _$ScanResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? imageLink = freezed,
+    Object? imageUrl = freezed,
     Object? discountCode = freezed,
     Object? name = freezed,
     Object? point = freezed,
     Object? pointId = freezed,
   }) {
     return _then(_value.copyWith(
-      imageLink: imageLink == freezed
-          ? _value.imageLink
-          : imageLink // ignore: cast_nullable_to_non_nullable
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       discountCode: discountCode == freezed
           ? _value.discountCode
@@ -121,7 +121,7 @@ abstract class _$ScanResponseModelCopyWith<$Res>
       __$ScanResponseModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? imageLink,
+      {String? imageUrl,
       String? discountCode,
       String? name,
       int? point,
@@ -141,16 +141,16 @@ class __$ScanResponseModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? imageLink = freezed,
+    Object? imageUrl = freezed,
     Object? discountCode = freezed,
     Object? name = freezed,
     Object? point = freezed,
     Object? pointId = freezed,
   }) {
     return _then(_ScanResponseModel(
-      imageLink: imageLink == freezed
-          ? _value.imageLink
-          : imageLink // ignore: cast_nullable_to_non_nullable
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       discountCode: discountCode == freezed
           ? _value.discountCode
@@ -176,13 +176,13 @@ class __$ScanResponseModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ScanResponseModel implements _ScanResponseModel {
   _$_ScanResponseModel(
-      {this.imageLink, this.discountCode, this.name, this.point, this.pointId});
+      {this.imageUrl, this.discountCode, this.name, this.point, this.pointId});
 
   factory _$_ScanResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_ScanResponseModelFromJson(json);
 
   @override
-  final String? imageLink;
+  final String? imageUrl;
   @override
   final String? discountCode;
   @override
@@ -194,16 +194,16 @@ class _$_ScanResponseModel implements _ScanResponseModel {
 
   @override
   String toString() {
-    return 'ScanResponseModel(imageLink: $imageLink, discountCode: $discountCode, name: $name, point: $point, pointId: $pointId)';
+    return 'ScanResponseModel(imageUrl: $imageUrl, discountCode: $discountCode, name: $name, point: $point, pointId: $pointId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ScanResponseModel &&
-            (identical(other.imageLink, imageLink) ||
+            (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageLink, imageLink)) &&
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.discountCode, discountCode) ||
                 const DeepCollectionEquality()
                     .equals(other.discountCode, discountCode)) &&
@@ -218,7 +218,7 @@ class _$_ScanResponseModel implements _ScanResponseModel {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageLink) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(discountCode) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(point) ^
@@ -237,7 +237,7 @@ class _$_ScanResponseModel implements _ScanResponseModel {
 
 abstract class _ScanResponseModel implements ScanResponseModel {
   factory _ScanResponseModel(
-      {String? imageLink,
+      {String? imageUrl,
       String? discountCode,
       String? name,
       int? point,
@@ -247,7 +247,7 @@ abstract class _ScanResponseModel implements ScanResponseModel {
       _$_ScanResponseModel.fromJson;
 
   @override
-  String? get imageLink => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
   String? get discountCode => throw _privateConstructorUsedError;
   @override

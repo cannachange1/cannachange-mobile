@@ -12,7 +12,7 @@ class DashboardRepository {
   Future<ScanResponseModel?> scanQr(String qr) async {
     try {
       final res = await dio.get(
-        'mobile/qrCode?code=$qr',
+        'mobile/qrCode?qrCode=$qr',
       );
       return ScanResponseModel.fromJson(res.data);
     } on DioError catch (e) {

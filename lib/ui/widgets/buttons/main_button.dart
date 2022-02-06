@@ -6,6 +6,7 @@ class MainButton extends StatelessWidget {
   final VoidCallback? callback;
   final EdgeInsets? padding;
   final IconData? icon;
+  final Color? color;
 
   const MainButton({
     Key? key,
@@ -13,6 +14,7 @@ class MainButton extends StatelessWidget {
     this.callback,
     this.padding,
     this.icon,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -23,10 +25,11 @@ class MainButton extends StatelessWidget {
         onPressed: callback,
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary: AppColors.secondAccent,
+          primary: color ?? AppColors.secondAccent,
         ),
         child: Padding(
-          padding: padding ?? const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
+          padding: padding ??
+              const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -90,15 +90,14 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryStartHours(String value) {
     if (value.isNotEmpty) {
-       dispensaryModel = dispensaryModel!.copyWith(startHour: value);
+      dispensaryModel = dispensaryModel!.copyWith(startHour: value);
     }
   }
-
 
   @action
   void setDispensaryEndHours(String value) {
     if (value.isNotEmpty) {
-       dispensaryModel = dispensaryModel!.copyWith(endHour: value);
+      dispensaryModel = dispensaryModel!.copyWith(endHour: value);
     }
   }
 
@@ -209,8 +208,6 @@ abstract class _PersonalDataState with Store {
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());
-
-      // rethrow;
     }
   }
 
@@ -219,33 +216,33 @@ abstract class _PersonalDataState with Store {
     try {
       storeState.changeState(StoreStates.loading);
       final res = await personalDataRepository.redeemPoints(id);
+      storeState.changeState(StoreStates.success);
       return res;
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());
-
-      // rethrow;
     }
   }
-
 
   @action
   Future<void> addPoints(int points, String code) async {
     try {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.addPoints(points, code);
+      storeState.setSuccessMessage('$points points added successfully');
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
       storeState.setErrorMessage(e.toString());
     }
   }
 
-
   @action
   Future<void> approvePointsRedeem(int id) async {
     try {
       storeState.changeState(StoreStates.loading);
       final res = await personalDataRepository.approvePointsRedeem(id);
+      storeState.setSuccessMessage('25 points redeemed successfully');
+      storeState.changeState(StoreStates.success);
       return res;
     } on Exception catch (e) {
       storeState.changeState(StoreStates.error);
@@ -254,8 +251,6 @@ abstract class _PersonalDataState with Store {
       // rethrow;
     }
   }
-
-
 
   @action
   Future<void> changePassword(String oldPassword, String newPassword) async {

@@ -1,3 +1,4 @@
+import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/store/dashboard/dashboard_state.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
@@ -5,6 +6,7 @@ import 'package:cannachange/ui/widgets/avatar_widget.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
@@ -49,6 +51,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AvatarWidget(
@@ -65,13 +68,28 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                       const SizedBox(
                         height: 40,
                       ),
-                      const Text(
-                        'Points Earned',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: AppColors.darkGrey,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          const Text(
+                            'Points Earned',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: AppColors.darkGrey,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: GestureDetector(
+                                onTap: () => personalDataState.getPoints(),
+                                child: const Icon(
+                                  Icons.refresh,
+                                  size: 50,
+                                )),
+                          ),
+                        ],
                       ),
                       const Divider(
                         color: AppColors.secondAccent,
@@ -115,15 +133,17 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Expanded(
-                                          flex: 1,
+                                        SizedBox(
+                                          width: screenWidth(context) * .2,
                                           child: Text(
                                             personalDataState
                                                 .consumerPointList[index].name!,
                                             style: const TextStyle(
-                                                fontSize: 22.0,
+                                                fontSize: 18,
                                                 color:
                                                     AppColors.lightGrayColor),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
                                         if (personalDataState
@@ -135,12 +155,16 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                                     .point! >=
                                                 25)
                                           MainButton(
-                                            callback: () => personalDataState
-                                                .redeemPoints(
-                                                    personalDataState
-                                                        .consumerPointList[
-                                                            index]
-                                                        .id!),
+                                            callback: () async {
+                                              await personalDataState
+                                                  .redeemPoints(
+                                                      personalDataState
+                                                          .consumerPointList[
+                                                              index]
+                                                          .id!);
+                                              personalDataState.getPoints();
+                                            },
+                                            color: AppColors.mainLogoColor,
                                             label: 'Redeem Points',
                                           ),
                                         if (personalDataState
@@ -156,34 +180,31 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                                 .consumerPointList[index]
                                                 .discountCode!,
                                             style: const TextStyle(
-                                              overflow: TextOverflow.ellipsis,
-                                                color:
-                                                    AppColors.lightGrayColor,
+                                                overflow: TextOverflow.ellipsis,
+                                                color: AppColors.lightGrayColor,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 18),
                                           ),
-                                        Stack(
+                                        Row(
                                           children: [
-                                            const Icon(
-                                              Icons.filter_none,
-                                              size: 50,
-                                              color: AppColors.lightGrayColor,
+                                            Text(
+                                              personalDataState
+                                                  .consumerPointList[index]
+                                                  .point!
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 18,
+                                                  color: Colors.white),
                                             ),
-                                            Positioned(
-                                              child: Text(
-                                                personalDataState
-                                                    .consumerPointList[index]
-                                                    .point!
-                                                    .toString(),
-                                                style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w800,
-                                                    fontSize: 18,
-                                                    color: Colors.white),
-                                              ),
-                                              right: 8,
-                                              top: 10,
-                                            )
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            const FaIcon(
+                                              FontAwesomeIcons.coins,
+                                              color: AppColors.lightGrayColor,
+                                              size: 30,
+                                            ),
                                           ],
                                         ),
                                       ],
