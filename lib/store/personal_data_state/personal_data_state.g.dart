@@ -251,6 +251,22 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     return _$redeemPointsAsyncAction.run(() => super.redeemPoints(id));
   }
 
+  final _$addPointsAsyncAction = AsyncAction('_PersonalDataState.addPoints');
+
+  @override
+  Future<void> addPoints(int points, String code) {
+    return _$addPointsAsyncAction.run(() => super.addPoints(points, code));
+  }
+
+  final _$approvePointsRedeemAsyncAction =
+      AsyncAction('_PersonalDataState.approvePointsRedeem');
+
+  @override
+  Future<void> approvePointsRedeem(int id) {
+    return _$approvePointsRedeemAsyncAction
+        .run(() => super.approvePointsRedeem(id));
+  }
+
   final _$changePasswordAsyncAction =
       AsyncAction('_PersonalDataState.changePassword');
 
@@ -304,11 +320,22 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   }
 
   @override
-  void setDispensaryHours(String value) {
+  void setDispensaryStartHours(String value) {
     final _$actionInfo = _$_PersonalDataStateActionController.startAction(
-        name: '_PersonalDataState.setDispensaryHours');
+        name: '_PersonalDataState.setDispensaryStartHours');
     try {
-      return super.setDispensaryHours(value);
+      return super.setDispensaryStartHours(value);
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDispensaryEndHours(String value) {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.setDispensaryEndHours');
+    try {
+      return super.setDispensaryEndHours(value);
     } finally {
       _$_PersonalDataStateActionController.endAction(_$actionInfo);
     }

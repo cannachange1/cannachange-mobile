@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
-import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:cannachange/ui/widgets/search_box.dart';
 import 'package:cannachange/values/values.dart';
@@ -15,7 +14,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../helpers/overlay_helper.dart';
 import '../../../../store/search/search_state.dart';
 import '../../../widgets/dialogs/retailer_description_dialog.dart';
-import '../../../widgets/loading.dart';
 
 class SearchDispensaryPage extends StatefulWidget {
   const SearchDispensaryPage({Key? key}) : super(key: key);

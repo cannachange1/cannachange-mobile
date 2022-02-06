@@ -11,6 +11,7 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i17;
+import 'package:flutter/foundation.dart' as _i19;
 import 'package:flutter/material.dart' as _i18;
 
 import 'ui/pages/authentication/authorization_page.dart' as _i2;
@@ -252,7 +253,7 @@ class WelcomeRoute extends _i17.PageRouteInfo<void> {
 /// generated route for
 /// [_i13.VerifyOtpCodePage]
 class VerifyOtpCodeRoute extends _i17.PageRouteInfo<VerifyOtpCodeRouteArgs> {
-  VerifyOtpCodeRoute({_i18.Key? key, bool isDispensary = false})
+  VerifyOtpCodeRoute({_i19.Key? key, bool isDispensary = false})
       : super(VerifyOtpCodeRoute.name,
             path: '/verify-otp-code-page',
             args: VerifyOtpCodeRouteArgs(key: key, isDispensary: isDispensary));
@@ -263,7 +264,7 @@ class VerifyOtpCodeRoute extends _i17.PageRouteInfo<VerifyOtpCodeRouteArgs> {
 class VerifyOtpCodeRouteArgs {
   const VerifyOtpCodeRouteArgs({this.key, this.isDispensary = false});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final bool isDispensary;
 

@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Text(
-                    personalDataState.dispensaryName,
+                    personalDataState.dispensaryModel!.businessName!,
                     style: const TextStyle(
                       fontSize: 16,
                       color: AppColors.secondAccent,
@@ -66,7 +66,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Text(
-                    personalDataState.dispensaryAddress,
+                    personalDataState.dispensaryModel!.address1! +
+                        ' ' +
+                        personalDataState.dispensaryModel!.address2!,
                     style: const TextStyle(
                       fontSize: 16,
                       color: AppColors.secondAccent,
@@ -89,7 +91,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Text(
-                    personalDataState.dispensaryWorkingHours!,
+                    personalDataState.dispensaryModel!.startHour! +
+                        ' - ' +
+                        personalDataState.dispensaryModel!.endHour!,
                     style: const TextStyle(
                       fontSize: 16,
                       color: AppColors.secondAccent,
@@ -115,8 +119,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () =>
-                    AutoRouter.of(context).push(const QrScannerView()),
+                onTap: () => AutoRouter.of(context).push(const QrScannerView()),
                 child: Center(
                   child: Icon(
                     Icons.qr_code_scanner_rounded,
