@@ -1,13 +1,25 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/helpers/screen_size_accessor.dart';
 import 'package:cannachange/helpers/storage_helper.dart';
+import 'package:cannachange/model/push_notification/push_notification_model.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
 import 'package:cannachange/values/values.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:cannachange/router.gr.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

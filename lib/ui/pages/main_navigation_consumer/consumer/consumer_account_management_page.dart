@@ -94,29 +94,29 @@ class _ConsumerAccountManagementPageState
                               fontWeight: FontWeight.bold),
                         ),
                       )),
-                  Card(
-                      elevation: 3,
-                      child: ListTile(
-                        trailing: CupertinoSwitch(
-                          activeColor: AppColors.secondAccent,
-                          trackColor: AppColors.secondAccent,
-                          value: pushNotifications,
-                          onChanged: (value) {
-                            setState(() {
-                              showCustomOverlayNotification(
-                                  color: AppColors.secondAccent,
-                                  text:
-                                      'Location access is${pushNotifications == true ? ' activated' : ' off'}');
-                            });
-                          },
-                        ),
-                        title: const Text(
-                          'Location Services',
-                          style: TextStyle(
-                              color: AppColors.darkGrey,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )),
+                  // Card(
+                  //     elevation: 3,
+                  //     child: ListTile(
+                  //       trailing: CupertinoSwitch(
+                  //         activeColor: AppColors.secondAccent,
+                  //         trackColor: AppColors.secondAccent,
+                  //         value: pushNotifications,
+                  //         onChanged: (value) {
+                  //           setState(() {
+                  //             showCustomOverlayNotification(
+                  //                 color: AppColors.secondAccent,
+                  //                 text:
+                  //                     'Location access is${pushNotifications == true ? ' activated' : ' off'}');
+                  //           });
+                  //         },
+                  //       ),
+                  //       title: const Text(
+                  //         'Location Services',
+                  //         style: TextStyle(
+                  //             color: AppColors.darkGrey,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //     )),
                   Card(
                     elevation: 3,
                     color: AppColors.mainLogoColor,

@@ -170,7 +170,7 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                         if (personalDataState
                                                     .consumerPointList[index]
                                                     .point! >=
-                                                25 &&
+                                                25 ||
                                             personalDataState
                                                     .consumerPointList[index]
                                                     .discountCode !=

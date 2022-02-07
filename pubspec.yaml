@@ -56,6 +56,7 @@ dependencies:
   qr_code_scanner: ^0.6.1
   qr_flutter: ^4.0.0
   font_awesome_flutter: ^9.2.0
+  flutter_local_notifications: ^9.2.0
 
 
 

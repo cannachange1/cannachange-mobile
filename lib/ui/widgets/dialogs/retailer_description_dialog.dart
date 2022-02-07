@@ -64,12 +64,12 @@ class _DispensaryDescriptionDialogState
   Future<void> _addMarker(tmp_lat, tmp_lng) async {
     const markerIdVal = 'pin';
     const markerId = MarkerId(markerIdVal);
-    final markerIcon =
-        await getBytesFromAsset('assets/icons/ic_map_pin.png', 200);
+    // final markerIcon =
+    //     await getBytesFromAsset('assets/icons/ic_map_pin.png', 200);
 
     // creating a new MARKER
     final marker = Marker(
-      icon: BitmapDescriptor.fromBytes(markerIcon),
+     // icon: BitmapDescriptor.fromBytes(markerIcon),
       markerId: markerId,
       position: LatLng(tmp_lat, tmp_lng),
       // infoWindow: InfoWindow(
