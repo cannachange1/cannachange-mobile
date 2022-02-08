@@ -22,7 +22,7 @@ class _$AeroPayModelTearOff {
   const _$AeroPayModelTearOff();
 
   _AeroPayModel call(
-      {String? token, String? username, String? fastlinkURL, String? success}) {
+      {String? token, String? username, String? fastlinkURL, bool? success}) {
     return _AeroPayModel(
       token: token,
       username: username,
@@ -44,7 +44,7 @@ mixin _$AeroPayModel {
   String? get token => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get fastlinkURL => throw _privateConstructorUsedError;
-  String? get success => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +58,7 @@ abstract class $AeroPayModelCopyWith<$Res> {
           AeroPayModel value, $Res Function(AeroPayModel) then) =
       _$AeroPayModelCopyWithImpl<$Res>;
   $Res call(
-      {String? token, String? username, String? fastlinkURL, String? success});
+      {String? token, String? username, String? fastlinkURL, bool? success});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class _$AeroPayModelCopyWithImpl<$Res> implements $AeroPayModelCopyWith<$Res> {
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 }
@@ -105,7 +105,7 @@ abstract class _$AeroPayModelCopyWith<$Res>
       __$AeroPayModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? token, String? username, String? fastlinkURL, String? success});
+      {String? token, String? username, String? fastlinkURL, bool? success});
 }
 
 /// @nodoc
@@ -141,7 +141,7 @@ class __$AeroPayModelCopyWithImpl<$Res> extends _$AeroPayModelCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 }
@@ -161,7 +161,7 @@ class _$_AeroPayModel implements _AeroPayModel {
   @override
   final String? fastlinkURL;
   @override
-  final String? success;
+  final bool? success;
 
   @override
   String toString() {
@@ -208,7 +208,7 @@ abstract class _AeroPayModel implements AeroPayModel {
       {String? token,
       String? username,
       String? fastlinkURL,
-      String? success}) = _$_AeroPayModel;
+      bool? success}) = _$_AeroPayModel;
 
   factory _AeroPayModel.fromJson(Map<String, dynamic> json) =
       _$_AeroPayModel.fromJson;
@@ -220,7 +220,7 @@ abstract class _AeroPayModel implements AeroPayModel {
   @override
   String? get fastlinkURL => throw _privateConstructorUsedError;
   @override
-  String? get success => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AeroPayModelCopyWith<_AeroPayModel> get copyWith =>

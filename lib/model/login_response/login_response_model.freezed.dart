@@ -26,6 +26,7 @@ class _$LoginResponseModelTearOff {
       String? role,
       DispensaryModel? dispensary,
       ClientModel? consumer,
+      AeroPayModel? aeropay,
       MemberResponseModel? member,
       List<PointModel>? points}) {
     return _LoginResponseModel(
@@ -33,6 +34,7 @@ class _$LoginResponseModelTearOff {
       role: role,
       dispensary: dispensary,
       consumer: consumer,
+      aeropay: aeropay,
       member: member,
       points: points,
     );
@@ -52,6 +54,7 @@ mixin _$LoginResponseModel {
   String? get role => throw _privateConstructorUsedError;
   DispensaryModel? get dispensary => throw _privateConstructorUsedError;
   ClientModel? get consumer => throw _privateConstructorUsedError;
+  AeroPayModel? get aeropay => throw _privateConstructorUsedError;
   MemberResponseModel? get member => throw _privateConstructorUsedError;
   List<PointModel>? get points => throw _privateConstructorUsedError;
 
@@ -71,11 +74,13 @@ abstract class $LoginResponseModelCopyWith<$Res> {
       String? role,
       DispensaryModel? dispensary,
       ClientModel? consumer,
+      AeroPayModel? aeropay,
       MemberResponseModel? member,
       List<PointModel>? points});
 
   $DispensaryModelCopyWith<$Res>? get dispensary;
   $ClientModelCopyWith<$Res>? get consumer;
+  $AeroPayModelCopyWith<$Res>? get aeropay;
   $MemberResponseModelCopyWith<$Res>? get member;
 }
 
@@ -94,6 +99,7 @@ class _$LoginResponseModelCopyWithImpl<$Res>
     Object? role = freezed,
     Object? dispensary = freezed,
     Object? consumer = freezed,
+    Object? aeropay = freezed,
     Object? member = freezed,
     Object? points = freezed,
   }) {
@@ -114,6 +120,10 @@ class _$LoginResponseModelCopyWithImpl<$Res>
           ? _value.consumer
           : consumer // ignore: cast_nullable_to_non_nullable
               as ClientModel?,
+      aeropay: aeropay == freezed
+          ? _value.aeropay
+          : aeropay // ignore: cast_nullable_to_non_nullable
+              as AeroPayModel?,
       member: member == freezed
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
@@ -148,6 +158,17 @@ class _$LoginResponseModelCopyWithImpl<$Res>
   }
 
   @override
+  $AeroPayModelCopyWith<$Res>? get aeropay {
+    if (_value.aeropay == null) {
+      return null;
+    }
+
+    return $AeroPayModelCopyWith<$Res>(_value.aeropay!, (value) {
+      return _then(_value.copyWith(aeropay: value));
+    });
+  }
+
+  @override
   $MemberResponseModelCopyWith<$Res>? get member {
     if (_value.member == null) {
       return null;
@@ -171,6 +192,7 @@ abstract class _$LoginResponseModelCopyWith<$Res>
       String? role,
       DispensaryModel? dispensary,
       ClientModel? consumer,
+      AeroPayModel? aeropay,
       MemberResponseModel? member,
       List<PointModel>? points});
 
@@ -178,6 +200,8 @@ abstract class _$LoginResponseModelCopyWith<$Res>
   $DispensaryModelCopyWith<$Res>? get dispensary;
   @override
   $ClientModelCopyWith<$Res>? get consumer;
+  @override
+  $AeroPayModelCopyWith<$Res>? get aeropay;
   @override
   $MemberResponseModelCopyWith<$Res>? get member;
 }
@@ -199,6 +223,7 @@ class __$LoginResponseModelCopyWithImpl<$Res>
     Object? role = freezed,
     Object? dispensary = freezed,
     Object? consumer = freezed,
+    Object? aeropay = freezed,
     Object? member = freezed,
     Object? points = freezed,
   }) {
@@ -219,6 +244,10 @@ class __$LoginResponseModelCopyWithImpl<$Res>
           ? _value.consumer
           : consumer // ignore: cast_nullable_to_non_nullable
               as ClientModel?,
+      aeropay: aeropay == freezed
+          ? _value.aeropay
+          : aeropay // ignore: cast_nullable_to_non_nullable
+              as AeroPayModel?,
       member: member == freezed
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
@@ -239,6 +268,7 @@ class _$_LoginResponseModel implements _LoginResponseModel {
       this.role,
       this.dispensary,
       this.consumer,
+      this.aeropay,
       this.member,
       this.points});
 
@@ -254,13 +284,15 @@ class _$_LoginResponseModel implements _LoginResponseModel {
   @override
   final ClientModel? consumer;
   @override
+  final AeroPayModel? aeropay;
+  @override
   final MemberResponseModel? member;
   @override
   final List<PointModel>? points;
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, member: $member, points: $points)';
+    return 'LoginResponseModel(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, aeropay: $aeropay, member: $member, points: $points)';
   }
 
   @override
@@ -277,6 +309,9 @@ class _$_LoginResponseModel implements _LoginResponseModel {
             (identical(other.consumer, consumer) ||
                 const DeepCollectionEquality()
                     .equals(other.consumer, consumer)) &&
+            (identical(other.aeropay, aeropay) ||
+                const DeepCollectionEquality()
+                    .equals(other.aeropay, aeropay)) &&
             (identical(other.member, member) ||
                 const DeepCollectionEquality().equals(other.member, member)) &&
             (identical(other.points, points) ||
@@ -290,6 +325,7 @@ class _$_LoginResponseModel implements _LoginResponseModel {
       const DeepCollectionEquality().hash(role) ^
       const DeepCollectionEquality().hash(dispensary) ^
       const DeepCollectionEquality().hash(consumer) ^
+      const DeepCollectionEquality().hash(aeropay) ^
       const DeepCollectionEquality().hash(member) ^
       const DeepCollectionEquality().hash(points);
 
@@ -310,6 +346,7 @@ abstract class _LoginResponseModel implements LoginResponseModel {
       String? role,
       DispensaryModel? dispensary,
       ClientModel? consumer,
+      AeroPayModel? aeropay,
       MemberResponseModel? member,
       List<PointModel>? points}) = _$_LoginResponseModel;
 
@@ -324,6 +361,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   DispensaryModel? get dispensary => throw _privateConstructorUsedError;
   @override
   ClientModel? get consumer => throw _privateConstructorUsedError;
+  @override
+  AeroPayModel? get aeropay => throw _privateConstructorUsedError;
   @override
   MemberResponseModel? get member => throw _privateConstructorUsedError;
   @override

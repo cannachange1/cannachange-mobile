@@ -96,7 +96,7 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                       OtpCodeFields(
                         controller: textEditingController,
                         appContext: context,
-                       // errorAnimationController: errorController,
+                        // errorAnimationController: errorController,
                         pastedTextStyle: const TextStyle(
                           color: AppColors.secondAccent,
                           fontWeight: FontWeight.bold,
@@ -107,8 +107,10 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
                         onCompleted: (_) async {
-                         final res = await registrationState.activateAccount(widget.isDispensary,
-                              context, textEditingController.text);
+                          final res = await registrationState.activateAccount(
+                              widget.isDispensary,
+                              context,
+                              textEditingController.text);
                           // textEditingController.clear();
                           // AutoRouter.of(context)
                           //     .replace(const AuthorizationRoute());

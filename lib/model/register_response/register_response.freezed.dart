@@ -27,6 +27,7 @@ class _$RegisterResponseTearOff {
       DispensaryModel? dispensary,
       ClientModel? consumer,
       MemberResponseModel? member,
+      AeroPayModel? aeropay,
       List<PointModel>? points}) {
     return _RegisterResponse(
       token: token,
@@ -34,6 +35,7 @@ class _$RegisterResponseTearOff {
       dispensary: dispensary,
       consumer: consumer,
       member: member,
+      aeropay: aeropay,
       points: points,
     );
   }
@@ -53,6 +55,7 @@ mixin _$RegisterResponse {
   DispensaryModel? get dispensary => throw _privateConstructorUsedError;
   ClientModel? get consumer => throw _privateConstructorUsedError;
   MemberResponseModel? get member => throw _privateConstructorUsedError;
+  AeroPayModel? get aeropay => throw _privateConstructorUsedError;
   List<PointModel>? get points => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -72,11 +75,13 @@ abstract class $RegisterResponseCopyWith<$Res> {
       DispensaryModel? dispensary,
       ClientModel? consumer,
       MemberResponseModel? member,
+      AeroPayModel? aeropay,
       List<PointModel>? points});
 
   $DispensaryModelCopyWith<$Res>? get dispensary;
   $ClientModelCopyWith<$Res>? get consumer;
   $MemberResponseModelCopyWith<$Res>? get member;
+  $AeroPayModelCopyWith<$Res>? get aeropay;
 }
 
 /// @nodoc
@@ -95,6 +100,7 @@ class _$RegisterResponseCopyWithImpl<$Res>
     Object? dispensary = freezed,
     Object? consumer = freezed,
     Object? member = freezed,
+    Object? aeropay = freezed,
     Object? points = freezed,
   }) {
     return _then(_value.copyWith(
@@ -118,6 +124,10 @@ class _$RegisterResponseCopyWithImpl<$Res>
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as MemberResponseModel?,
+      aeropay: aeropay == freezed
+          ? _value.aeropay
+          : aeropay // ignore: cast_nullable_to_non_nullable
+              as AeroPayModel?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -157,6 +167,17 @@ class _$RegisterResponseCopyWithImpl<$Res>
       return _then(_value.copyWith(member: value));
     });
   }
+
+  @override
+  $AeroPayModelCopyWith<$Res>? get aeropay {
+    if (_value.aeropay == null) {
+      return null;
+    }
+
+    return $AeroPayModelCopyWith<$Res>(_value.aeropay!, (value) {
+      return _then(_value.copyWith(aeropay: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -172,6 +193,7 @@ abstract class _$RegisterResponseCopyWith<$Res>
       DispensaryModel? dispensary,
       ClientModel? consumer,
       MemberResponseModel? member,
+      AeroPayModel? aeropay,
       List<PointModel>? points});
 
   @override
@@ -180,6 +202,8 @@ abstract class _$RegisterResponseCopyWith<$Res>
   $ClientModelCopyWith<$Res>? get consumer;
   @override
   $MemberResponseModelCopyWith<$Res>? get member;
+  @override
+  $AeroPayModelCopyWith<$Res>? get aeropay;
 }
 
 /// @nodoc
@@ -200,6 +224,7 @@ class __$RegisterResponseCopyWithImpl<$Res>
     Object? dispensary = freezed,
     Object? consumer = freezed,
     Object? member = freezed,
+    Object? aeropay = freezed,
     Object? points = freezed,
   }) {
     return _then(_RegisterResponse(
@@ -223,6 +248,10 @@ class __$RegisterResponseCopyWithImpl<$Res>
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
               as MemberResponseModel?,
+      aeropay: aeropay == freezed
+          ? _value.aeropay
+          : aeropay // ignore: cast_nullable_to_non_nullable
+              as AeroPayModel?,
       points: points == freezed
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
@@ -240,6 +269,7 @@ class _$_RegisterResponse implements _RegisterResponse {
       this.dispensary,
       this.consumer,
       this.member,
+      this.aeropay,
       this.points});
 
   factory _$_RegisterResponse.fromJson(Map<String, dynamic> json) =>
@@ -256,11 +286,13 @@ class _$_RegisterResponse implements _RegisterResponse {
   @override
   final MemberResponseModel? member;
   @override
+  final AeroPayModel? aeropay;
+  @override
   final List<PointModel>? points;
 
   @override
   String toString() {
-    return 'RegisterResponse(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, member: $member, points: $points)';
+    return 'RegisterResponse(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, member: $member, aeropay: $aeropay, points: $points)';
   }
 
   @override
@@ -279,6 +311,9 @@ class _$_RegisterResponse implements _RegisterResponse {
                     .equals(other.consumer, consumer)) &&
             (identical(other.member, member) ||
                 const DeepCollectionEquality().equals(other.member, member)) &&
+            (identical(other.aeropay, aeropay) ||
+                const DeepCollectionEquality()
+                    .equals(other.aeropay, aeropay)) &&
             (identical(other.points, points) ||
                 const DeepCollectionEquality().equals(other.points, points)));
   }
@@ -291,6 +326,7 @@ class _$_RegisterResponse implements _RegisterResponse {
       const DeepCollectionEquality().hash(dispensary) ^
       const DeepCollectionEquality().hash(consumer) ^
       const DeepCollectionEquality().hash(member) ^
+      const DeepCollectionEquality().hash(aeropay) ^
       const DeepCollectionEquality().hash(points);
 
   @JsonKey(ignore: true)
@@ -311,6 +347,7 @@ abstract class _RegisterResponse implements RegisterResponse {
       DispensaryModel? dispensary,
       ClientModel? consumer,
       MemberResponseModel? member,
+      AeroPayModel? aeropay,
       List<PointModel>? points}) = _$_RegisterResponse;
 
   factory _RegisterResponse.fromJson(Map<String, dynamic> json) =
@@ -326,6 +363,8 @@ abstract class _RegisterResponse implements RegisterResponse {
   ClientModel? get consumer => throw _privateConstructorUsedError;
   @override
   MemberResponseModel? get member => throw _privateConstructorUsedError;
+  @override
+  AeroPayModel? get aeropay => throw _privateConstructorUsedError;
   @override
   List<PointModel>? get points => throw _privateConstructorUsedError;
   @override

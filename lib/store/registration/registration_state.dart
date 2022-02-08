@@ -125,7 +125,8 @@ abstract class _RegistrationState with Store {
       StorageHelper.setToken(res!.token);
       if (isDispensary) {
         personalDataState.dispensaryModel = res.dispensary;
-        AutoRouter.of(context).push(const DashboardRoute());
+        personalDataState.aeroPayModel = res.aeropay;
+        AutoRouter.of(context).push(const PaymentRoute());
       } else {
         personalDataState.clientModel = res.consumer;
         AutoRouter.of(context).push(const ConsumerDashboardRoute());

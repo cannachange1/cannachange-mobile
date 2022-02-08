@@ -18,6 +18,9 @@ _$_LoginResponseModel _$$_LoginResponseModelFromJson(
       consumer: json['consumer'] == null
           ? null
           : ClientModel.fromJson(json['consumer'] as Map<String, dynamic>),
+      aeropay: json['aeropay'] == null
+          ? null
+          : AeroPayModel.fromJson(json['aeropay'] as Map<String, dynamic>),
       member: json['member'] == null
           ? null
           : MemberResponseModel.fromJson(
@@ -34,6 +37,7 @@ Map<String, dynamic> _$$_LoginResponseModelToJson(
       'role': instance.role,
       'dispensary': instance.dispensary,
       'consumer': instance.consumer,
+      'aeropay': instance.aeropay,
       'member': instance.member,
       'points': instance.points,
     };
