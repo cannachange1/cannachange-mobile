@@ -51,7 +51,6 @@ Future<void> main() async {
   //   }
   // });
 
-  await PushNotificationService().setupInteractedMessage();
   runApp(MyApp());
 }
 

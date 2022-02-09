@@ -33,7 +33,7 @@ import '../store/dashboard/dashboard_state.dart';
 class PushNotificationService {
   final dashboardState = GetIt.I<DashboardState>();
 
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  //final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   // It is assumed that all messages contain a data field with the key 'type'
   Future<void> setupInteractedMessage() async {
@@ -119,15 +119,15 @@ class PushNotificationService {
   }
 
   enableIOSNotifications() async {
-    await _firebaseMessaging.setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance
+        ..setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
       badge: true,
       sound: true,
-    );
-    _firebaseMessaging.getToken().then((token) {
+    )..getToken().then((token) {
       print('FCM TTTTOOOKKKEEENNNNN $token');
       dashboardState.sendToken(token!);
-      StorageHelper.setToken(token);// Print the Token in Console
+      StorageHelper.setFCMToken(token);// Print the Token in Console
     });
   }
 

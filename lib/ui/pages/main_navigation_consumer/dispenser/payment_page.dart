@@ -39,9 +39,9 @@ class _PaymentPageState extends State<PaymentPage> {
     extraParams = "configName=Aggregation&intentUrl=yodlee://backtofastlink";
 
     return Scaffold(
-      appBar: CustomAppBar(
-        showBackButton: true,
-      ),
+      // appBar: CustomAppBar(
+      //   showBackButton: true,
+      // ),
       body: WebView(
         initialUrl: 'about:blank',
         javascriptMode: JavascriptMode.unrestricted,

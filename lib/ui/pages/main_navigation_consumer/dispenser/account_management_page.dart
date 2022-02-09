@@ -68,9 +68,8 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
                     color: AppColors.mainLogoColor,
                     child: ListTile(
                       onTap: () async {
-                        String? token = await StorageHelper.getToken();
+                        String? token = await StorageHelper.getFCMToken();
                         personalDataState.deleteAccount(token);
-                        personalDataState.deleteAccount('');
                       },
                       leading: const Icon(
                         Icons.delete,

@@ -14,6 +14,7 @@ class Preferences {
   static const email = 'email';
   static const password = 'password';
   static const biometrics = 'biometrics';
+  static const fcmToken = 'fcm';
 }
 
 class StorageHelper {
@@ -43,6 +44,10 @@ class StorageHelper {
     return await storage.read(Preferences.phone);
   }
 
+  static Future<String> getFCMToken() async {
+    return await storage.read(Preferences.fcmToken);
+  }
+
   static Future<bool> getBiometrics() async {
     return await storage.read(Preferences.biometrics) ?? false;
   }
@@ -67,6 +72,9 @@ class StorageHelper {
 
   static Future<void> setToken(String token) async =>
       storage.write(Preferences.authToken, token);
+
+  static Future<void> setFCMToken(String token) async =>
+      storage.write(Preferences.fcmToken, token);
 
   static Future<void> removeAccessToken() async {
     await storage.remove(Preferences.authToken);

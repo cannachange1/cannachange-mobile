@@ -15,6 +15,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../helpers/overlay_helper.dart';
 import '../../../../helpers/storage_helper.dart';
 import '../../../../router.gr.dart';
+import '../../../../store/dashboard/dashboard_state.dart';
 
 class ConsumerAccountManagementPage extends StatefulWidget {
   const ConsumerAccountManagementPage({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class ConsumerAccountManagementPage extends StatefulWidget {
 class _ConsumerAccountManagementPageState
     extends State<ConsumerAccountManagementPage> {
   final personalDataState = GetIt.I<PersonalDataState>();
+  final dashboardState = GetIt.I<DashboardState>();
+
   bool pushNotifications = false;
 
   @override
@@ -78,9 +81,9 @@ class _ConsumerAccountManagementPageState
                           trackColor: AppColors.secondAccent,
                           value: pushNotifications,
                           onChanged: (value) {
-                            setState(() {
-                              // isBiometricsOnn = value;
-                              // StorageHelper.setBiometrics(value);
+                            setState(() async {
+                              final token = await StorageHelper.getFCMToken();
+                              dashboardState.deleteToken(token);
                               showCustomOverlayNotification(
                                   color: AppColors.secondAccent,
                                   text:
@@ -123,8 +126,7 @@ class _ConsumerAccountManagementPageState
                     color: AppColors.mainLogoColor,
                     child: ListTile(
                       onTap: () async {
-                        String? token = await StorageHelper
-                            .getToken();
+                        String? token = await StorageHelper.getFCMToken();
                         personalDataState.deleteAccount(token);
                       },
                       leading: const Icon(

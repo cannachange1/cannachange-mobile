@@ -26,7 +26,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void initState() {
-    _getLocation;
+    _getLocation();
     super.initState();
   }
 

@@ -21,6 +21,7 @@ abstract class _MapState with Store {
     try {
       storeState.changeState(StoreStates.loading);
       final res = await mapRepository.getAllDispensaries();
+      print('aaaaassaaaa $res');
       storeState.changeState(StoreStates.success);
       return res!;
     } on DioError catch (e) {
