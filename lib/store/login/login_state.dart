@@ -112,15 +112,14 @@ abstract class _LoginState with Store {
         if (res.role == 'DISPENSARY') {
           print('aaaaaaaa ${res.dispensary.toString()}');
           personalDataState.dispensaryModel = res.dispensary!;
-          personalDataState.aeroPayModel = res.aeropay!;
+          // personalDataState.aeroPayModel = res.aeropay!;
           print('aaaaaaa ${personalDataState.dispensaryModel.toString()}');
           //personalDataState.dispensaryName = res.dispensary!.name!;
           // personalDataState.dispensaryAddress =
           //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
           // personalDataState.dispensaryWorkingHours =
           //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
-          await AutoRouter.of(cont).replace(const PaymentRoute());
-         // await AutoRouter.of(cont).replace(const DashboardRoute());
+          await AutoRouter.of(cont).replace(const DashboardRoute());
         } else {
           personalDataState.clientModel = res.consumer;
           personalDataState.consumerPointList.clear();

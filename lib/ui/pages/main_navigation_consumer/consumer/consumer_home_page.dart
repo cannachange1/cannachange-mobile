@@ -129,85 +129,88 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 8, horizontal: 20),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: screenWidth(context) * .2,
-                                          child: Text(
-                                            personalDataState
-                                                .consumerPointList[index].name!,
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                color:
-                                                    AppColors.lightGrayColor),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
+                                    child: SizedBox(
+                                      height: 40,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: screenWidth(context) * .2,
+                                            child: Text(
+                                              personalDataState
+                                                  .consumerPointList[index].name!,
+                                              style: const TextStyle(
+                                                  fontSize: 18,
+                                                  color:
+                                                      AppColors.lightGrayColor),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                           ),
-                                        ),
-                                        if (personalDataState
-                                                    .consumerPointList[index]
-                                                    .discountCode ==
-                                                null &&
-                                            personalDataState
-                                                    .consumerPointList[index]
-                                                    .point! >=
-                                                25)
-                                          MainButton(
-                                            callback: () async {
-                                              await personalDataState
-                                                  .redeemPoints(
-                                                      personalDataState
-                                                          .consumerPointList[
-                                                              index]
-                                                          .id!);
-                                              personalDataState.getPoints();
-                                            },
-                                            color: AppColors.mainLogoColor,
-                                            label: 'Redeem Points',
-                                          ),
-                                        if (personalDataState
-                                                    .consumerPointList[index]
-                                                    .point! >=
-                                                25 ||
-                                            personalDataState
-                                                    .consumerPointList[index]
-                                                    .discountCode !=
-                                                null)
-                                          Text(
-                                            personalDataState
-                                                .consumerPointList[index]
-                                                .discountCode!,
-                                            style: const TextStyle(
-                                                overflow: TextOverflow.ellipsis,
-                                                color: AppColors.lightGrayColor,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 18),
-                                          ),
-                                        Row(
-                                          children: [
+                                          if (personalDataState
+                                                      .consumerPointList[index]
+                                                      .discountCode ==
+                                                  null &&
+                                              personalDataState
+                                                      .consumerPointList[index]
+                                                      .point! >=
+                                                  25)
+                                            MainButton(
+                                              callback: () async {
+                                                await personalDataState
+                                                    .redeemPoints(
+                                                        personalDataState
+                                                            .consumerPointList[
+                                                                index]
+                                                            .id!);
+                                                personalDataState.getPoints();
+                                              },
+                                              color: AppColors.mainLogoColor,
+                                              label: 'Redeem',
+                                            ),
+                                          if (personalDataState
+                                                      .consumerPointList[index]
+                                                      .point! >=
+                                                  25 &&
+                                              personalDataState
+                                                      .consumerPointList[index]
+                                                      .discountCode !=
+                                                  null)
                                             Text(
                                               personalDataState
                                                   .consumerPointList[index]
-                                                  .point!
-                                                  .toString(),
+                                                  .discountCode!,
                                               style: const TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 18,
-                                                  color: Colors.white),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  color: AppColors.lightGrayColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 18),
                                             ),
-                                            const SizedBox(
-                                              width: 3,
-                                            ),
-                                            const FaIcon(
-                                              FontAwesomeIcons.coins,
-                                              color: AppColors.lightGrayColor,
-                                              size: 30,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                          Row(
+                                            children: [
+                                              Text(
+                                                personalDataState
+                                                    .consumerPointList[index]
+                                                    .point!
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: 18,
+                                                    color: Colors.white),
+                                              ),
+                                              const SizedBox(
+                                                width: 3,
+                                              ),
+                                              const FaIcon(
+                                                FontAwesomeIcons.coins,
+                                                color: AppColors.lightGrayColor,
+                                                size: 30,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -77,10 +79,10 @@ class _PaymentPageState extends State<PaymentPage> {
         .toString());
   }
 
-  _handleEventsFromJS(message) {
+  _handleEventsFromJS(message) async {
     Map<String, dynamic> eventData = jsonDecode(message);
 
-    print(eventData);
+    print('asdasdasdasd       $eventData');
     EventsInfoMap.add(eventData);
     if (eventData["type"] == "OPEN_EXTERNAL_URL") {
       String url = eventData["data"]["url"];
@@ -96,6 +98,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
       if (action == "exit") {
         print('exaaaaaaaaavvvvvv $EventsInfoMap');
+        await AutoRouter.of(context).replace(const DashboardRoute());
       }
     }
   }

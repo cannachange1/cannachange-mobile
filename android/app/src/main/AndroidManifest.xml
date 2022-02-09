@@ -17,12 +17,12 @@
         <activity
             android:name="com.yodlee.fastlink.InAppBrowserActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
+            android:label="cannachange"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <data
-                    android:host="<domainname>"
-                    android:scheme="<protocol>" />
+                    android:host="backtofastlink"
+                    android:scheme="yodlee" />
 
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />

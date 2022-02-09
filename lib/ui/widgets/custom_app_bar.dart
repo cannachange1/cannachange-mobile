@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   CustomAppBar({
     Key? key,
     this.showBackButton = true,
-  })  : preferredSize = const Size.fromHeight(66.0),
+  })  : preferredSize = const Size.fromHeight(60.0),
         super(key: key);
 
   @override
@@ -20,6 +20,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 2,
       foregroundColor: AppColors.secondAccent,
       automaticallyImplyLeading: showBackButton,
+      centerTitle: true,
       backgroundColor: AppColors.lightGrayColor,
       title: SvgPicture.asset(
         'assets/images/ic_logo.svg',
