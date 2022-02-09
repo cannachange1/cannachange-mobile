@@ -139,7 +139,8 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                             width: screenWidth(context) * .2,
                                             child: Text(
                                               personalDataState
-                                                  .consumerPointList[index].name!,
+                                                  .consumerPointList[index]
+                                                  .name!,
                                               style: const TextStyle(
                                                   fontSize: 18,
                                                   color:
@@ -170,20 +171,18 @@ class _ConsumerHomePageState extends State<ConsumerHomePage> {
                                               label: 'Redeem',
                                             ),
                                           if (personalDataState
-                                                      .consumerPointList[index]
-                                                      .point! >=
-                                                  25 &&
-                                              personalDataState
-                                                      .consumerPointList[index]
-                                                      .discountCode !=
-                                                  null)
+                                                  .consumerPointList[index]
+                                                  .discountCode !=
+                                              null)
                                             Text(
                                               personalDataState
                                                   .consumerPointList[index]
                                                   .discountCode!,
                                               style: const TextStyle(
-                                                  overflow: TextOverflow.ellipsis,
-                                                  color: AppColors.lightGrayColor,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  color:
+                                                      AppColors.lightGrayColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 18),
                                             ),
