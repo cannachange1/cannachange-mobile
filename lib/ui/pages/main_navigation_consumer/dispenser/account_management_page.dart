@@ -10,6 +10,7 @@ import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../helpers/storage_helper.dart';
 import '../../../../router.gr.dart';
 
 class AccountManagementPage extends StatefulWidget {
@@ -66,8 +67,9 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
                   Card(
                     color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () {
-                        //TODO please add push notif token
+                      onTap: () async {
+                        String? token = await StorageHelper.getToken();
+                        personalDataState.deleteAccount(token);
                         personalDataState.deleteAccount('');
                       },
                       leading: const Icon(

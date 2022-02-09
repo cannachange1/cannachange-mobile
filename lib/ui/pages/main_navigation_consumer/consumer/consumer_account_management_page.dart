@@ -13,6 +13,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../helpers/overlay_helper.dart';
+import '../../../../helpers/storage_helper.dart';
 import '../../../../router.gr.dart';
 
 class ConsumerAccountManagementPage extends StatefulWidget {
@@ -121,9 +122,10 @@ class _ConsumerAccountManagementPageState
                     elevation: 3,
                     color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () {
-                        //TODO please add push notif token
-                        personalDataState.deleteAccount('');
+                      onTap: () async {
+                        String? token = await StorageHelper
+                            .getToken();
+                        personalDataState.deleteAccount(token);
                       },
                       leading: const Icon(
                         Icons.delete,

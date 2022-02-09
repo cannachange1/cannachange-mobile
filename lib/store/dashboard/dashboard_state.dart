@@ -41,4 +41,26 @@ abstract class _DashboardState with Store {
       storeState.setErrorMessage(e.toString());
     }
   }
+
+  @action
+  Future<void> sendToken(String token) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      dashboardRepo.sendToken(token);
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+    }
+  }
+
+  @action
+  Future<void> deleteToken(String token) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      dashboardRepo.deleteToken(token);
+    } on Exception catch (e) {
+      storeState.changeState(StoreStates.error);
+      storeState.setErrorMessage(e.toString());
+    }
+  }
 }

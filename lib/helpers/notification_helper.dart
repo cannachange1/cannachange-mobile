@@ -1,6 +1,10 @@
+import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get_it/get_it.dart';
+
+import '../store/dashboard/dashboard_state.dart';
 
 // ignore: slash_for_doc_comments
 /**
@@ -27,6 +31,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
  *
  * */
 class PushNotificationService {
+  final dashboardState = GetIt.I<DashboardState>();
+
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
   // It is assumed that all messages contain a data field with the key 'type'
   Future<void> setupInteractedMessage() async {
     await Firebase.initializeApp(
@@ -36,7 +44,7 @@ class PushNotificationService {
         messagingSenderId: "809933482581",
         projectId: "cannachange",
       ),
-    );// Get any messages which caused the application to open from a terminated state.
+    ); // Get any messages which caused the application to open from a terminated state.
     // If you want to handle a notification click when the app is terminated, you can use `getInitialMessage`
     // to get the initial message, and depending in the remoteMessage, you can decide to handle the click
     // This function can be called from anywhere in your app, there is an example in main file.
@@ -111,13 +119,20 @@ class PushNotificationService {
   }
 
   enableIOSNotifications() async {
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await _firebaseMessaging.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
       badge: true,
       sound: true,
     );
+    _firebaseMessaging.getToken().then((token) {
+      print('FCM TTTTOOOKKKEEENNNNN $token');
+      dashboardState.sendToken(token!);
+      StorageHelper.setToken(token);// Print the Token in Console
+    });
   }
+
+
+
 
   androidNotificationChannel() => const AndroidNotificationChannel(
         'high_importance_channel', // id
