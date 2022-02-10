@@ -28,7 +28,6 @@ class VerifyOtpCodePage extends StatefulWidget {
 class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
     with TickerProviderStateMixin {
   final registrationState = GetIt.I<RegistrationState>();
-  TextEditingController textEditingController = TextEditingController();
   late StreamController<ErrorAnimationType> errorController;
   final personalDataState = GetIt.I<PersonalDataState>();
 
@@ -96,7 +95,8 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         controller: TextEditingController(),
                         appContext: context,
                         errorAnimationController:
-                        StreamController<ErrorAnimationType>(),                        pastedTextStyle: const TextStyle(
+                            StreamController<ErrorAnimationType>(),
+                        pastedTextStyle: const TextStyle(
                           color: AppColors.secondAccent,
                           fontWeight: FontWeight.bold,
                         ),
@@ -105,11 +105,9 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         cursorColor: AppColors.darkGrey,
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
-                        onCompleted: (_)  {
-                          registrationState.activateAccount(
-                              widget.isDispensary,
-                              context,
-                              textEditingController.text);
+                        onCompleted: (_) {
+                          registrationState.activateAccount(widget.isDispensary,
+                              context, registrationState.otp!);
                           // textEditingController.clear();
                           // AutoRouter.of(context)
                           //     .replace(const AuthorizationRoute());
