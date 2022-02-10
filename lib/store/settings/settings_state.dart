@@ -18,15 +18,7 @@ abstract class _SettingsState with Store {
   final dashboardState = GetIt.I<PersonalDataRepository>();
 
   final storage = GetStorage();
-  //final loading = LoadingState();
 
   @observable
   UserModel? user;
-
-
-  // Future<void> logOut(BuildContext context) async {
-  //   loading.startLoading();
-  //   await storage.erase();
-  //   await AutoRouter.of(context).replace(const AuthorizationRoute());
-  // }
 }

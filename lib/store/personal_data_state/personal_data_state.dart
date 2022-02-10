@@ -349,4 +349,12 @@ abstract class _PersonalDataState with Store {
       storeState.changeState(StoreStates.error);
     }
   }
+
+  @action
+  void resetValues() {
+    clientModel = ClientModel();
+    dispensaryModel = DispensaryModel();
+    clientSelectedImage = null;
+    dispensarySelectedImage = null;
+  }
 }
