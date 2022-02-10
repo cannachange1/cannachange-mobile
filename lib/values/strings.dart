@@ -21,7 +21,7 @@ class StringConst {
   static const String forgotPassword = 'Forgot Your Password?';
   static const String viewDocs = 'View Docs';
   static const String uploadDocs = 'Upload Docs';
-  static const String welcomeText = 'Hi there! nice to see you again';
+  static const String welcomeText = 'Hi there! Nice to see you again';
   static const String myProfile = 'My Profile';
   static const String MAP_STYLE = '''
     [
