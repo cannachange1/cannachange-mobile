@@ -97,6 +97,12 @@ abstract class _RegistrationState with Store {
   @observable
   bool agreeToTerms = false;
 
+
+  @action
+  void setOtpCode(String value) {
+    otp = value;
+  }
+
   @action
   void setAgreedToDispensaryTermsAndConditions() {
     agreedToDispensaryTermsAndConditions =

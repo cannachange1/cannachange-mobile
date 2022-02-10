@@ -93,10 +93,10 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                       ),
                       const Spacer(),
                       OtpCodeFields(
-                        controller: textEditingController,
+                        controller: TextEditingController(),
                         appContext: context,
-                        // errorAnimationController: errorController,
-                        pastedTextStyle: const TextStyle(
+                        errorAnimationController:
+                        StreamController<ErrorAnimationType>(),                        pastedTextStyle: const TextStyle(
                           color: AppColors.secondAccent,
                           fontWeight: FontWeight.bold,
                         ),
@@ -105,8 +105,8 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         cursorColor: AppColors.darkGrey,
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
-                        onCompleted: (_) async {
-                          final res = await registrationState.activateAccount(
+                        onCompleted: (_)  {
+                          registrationState.activateAccount(
                               widget.isDispensary,
                               context,
                               textEditingController.text);
@@ -114,7 +114,9 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                           // AutoRouter.of(context)
                           //     .replace(const AuthorizationRoute());
                         },
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          registrationState.setOtpCode(value);
+                        },
                         beforeTextPaste: (text) {
                           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                           //but you can show anything you want here, like your pop up saying wrong paste format or etc

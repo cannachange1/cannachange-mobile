@@ -411,6 +411,13 @@ mixin _$RegistrationState on _RegistrationState, Store {
         .run(() => super.registerConsumer(context));
   }
 
+  final _$resendCodeAsyncAction = AsyncAction('_RegistrationState.resendCode');
+
+  @override
+  Future<void> resendCode(bool isDispensary) {
+    return _$resendCodeAsyncAction.run(() => super.resendCode(isDispensary));
+  }
+
   final _$resetDispensaryValidationErrorsAsyncAction =
       AsyncAction('_RegistrationState.resetDispensaryValidationErrors');
 
@@ -431,6 +438,17 @@ mixin _$RegistrationState on _RegistrationState, Store {
 
   final _$_RegistrationStateActionController =
       ActionController(name: '_RegistrationState');
+
+  @override
+  void setOtpCode(String value) {
+    final _$actionInfo = _$_RegistrationStateActionController.startAction(
+        name: '_RegistrationState.setOtpCode');
+    try {
+      return super.setOtpCode(value);
+    } finally {
+      _$_RegistrationStateActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setAgreedToDispensaryTermsAndConditions() {
