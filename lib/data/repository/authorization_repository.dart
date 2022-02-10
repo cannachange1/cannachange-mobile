@@ -26,7 +26,6 @@ class AuthenticationRepo {
   Future<void> registerConsumer(Map<String, String> signUpRequestModel) async {
     try {
       await dio.post('mobile/consumer?sendSMS=true', data: signUpRequestModel);
-
     } on DioError catch (e) {
       handleError(e);
     }
@@ -50,6 +49,16 @@ class AuthenticationRepo {
       return RegisterResponse.fromJson(res.data);
     } on DioError catch (e) {
       handleError(e);
-    } 
+    }
+  }
+
+  Future<void> resendCode(String phoneNumber) async {
+    try {
+      await dio.put('mobile/resend?sendSMS=true', data: {
+        "phoneNumber": phoneNumber,
+      });
+    } on DioError catch (e) {
+      handleError(e);
+    }
   }
 }

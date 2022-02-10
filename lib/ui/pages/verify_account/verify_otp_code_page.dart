@@ -84,9 +84,8 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () => widget.isDispensary
-                            ? registrationState.registerDispensary(context)
-                            : registrationState.registerConsumer(context),
+                        onTap: () =>
+                            registrationState.resendCode(widget.isDispensary),
                         child: const Text(
                           'Resend SMS',
                           textAlign: TextAlign.center,

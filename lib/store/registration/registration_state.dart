@@ -189,8 +189,20 @@ abstract class _RegistrationState with Store {
       });
 
       storeState.changeState(StoreStates.success);
-      // resetDispensaryValidationErrors();
       AutoRouter.of(context).replace(VerifyOtpCodeRoute());
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  @action
+  Future<void> resendCode(bool isDispensary) async {
+    storeState.changeState(StoreStates.loading);
+    try {
+      await authorizationRepo.resendCode(
+          isDispensary ? dispensaryPhoneNumber! : consumerPhoneNumber!);
+      storeState.changeState(StoreStates.success);
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
