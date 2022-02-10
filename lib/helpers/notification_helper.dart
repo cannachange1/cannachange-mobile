@@ -78,7 +78,7 @@ class PushNotificationService {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
-    var androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var androidSettings = AndroidInitializationSettings('@mipmap/launcher_icon');
     var iOSSettings = IOSInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
@@ -109,7 +109,7 @@ class PushNotificationService {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: '@mipmap/launcher_icon',
+              icon: '@mipmap/ic_icon',
               playSound: true,
             ),
           ),
