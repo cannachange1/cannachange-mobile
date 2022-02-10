@@ -7,6 +7,7 @@ import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_
 import 'package:cannachange/ui/pages/main_navigation_consumer/consumer/consumer_personal_details_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_details_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_management_page.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/aeropay_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/home_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/payment_page.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/settings_page.dart';
@@ -36,6 +37,7 @@ import 'ui/pages/verify_account/verify_otp_code_page.dart';
     AutoRoute(page: VerifyOtpCodePage),
     AutoRoute(page: QrScannerView),
     AutoRoute(page: MapPage),
+    AutoRoute(page: AeropayPage),
     AutoRoute(page: ConsumerAccountManagementPage),
     AutoRoute(page: ConsumerPersonalDetailsPage),
   ],

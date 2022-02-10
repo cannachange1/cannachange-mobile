@@ -401,6 +401,17 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   }
 
   @override
+  void resetValues() {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.resetValues');
+    try {
+      return super.resetValues();
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 clientModel: ${clientModel},

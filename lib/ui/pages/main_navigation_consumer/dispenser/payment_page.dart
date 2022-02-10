@@ -98,6 +98,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
       if (action == "exit") {
         print('exaaaaaaaaavvvvvv $EventsInfoMap');
+        //TODO send to back-end, get ink
         await AutoRouter.of(context).replace(const DashboardRoute());
       }
     }
