@@ -38,12 +38,12 @@ class PushNotificationService {
   // It is assumed that all messages contain a data field with the key 'type'
   Future<void> setupInteractedMessage() async {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyCLc_WDGVrhDl2QjoCyjpv16RxUju0EMow",
-        appId: "1:809933482581:ios:05d7fa283c9f6cc5d542dc",
-        messagingSenderId: "809933482581",
-        projectId: "cannachange",
-      ),
+      // options: const FirebaseOptions(
+      //   apiKey: "AIzaSyCLc_WDGVrhDl2QjoCyjpv16RxUju0EMow",
+      //   appId: "1:809933482581:ios:05d7fa283c9f6cc5d542dc",
+      //   messagingSenderId: "809933482581",
+      //   projectId: "cannachange",
+      // ),
     ); // Get any messages which caused the application to open from a terminated state.
     // If you want to handle a notification click when the app is terminated, you can use `getInitialMessage`
     // to get the initial message, and depending in the remoteMessage, you can decide to handle the click
@@ -78,7 +78,7 @@ class PushNotificationService {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
-    var androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var androidSettings = AndroidInitializationSettings('@mipmap/launcher_icon');
     var iOSSettings = IOSInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
@@ -109,7 +109,7 @@ class PushNotificationService {
               channel.id,
               channel.name,
               channelDescription: channel.description,
-              icon: android.smallIcon,
+              icon: '@mipmap/ic_icon',
               playSound: true,
             ),
           ),

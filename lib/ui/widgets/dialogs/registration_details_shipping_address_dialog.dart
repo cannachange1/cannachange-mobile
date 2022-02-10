@@ -32,12 +32,13 @@ class _RegistrationDetailsShippingAddressDialogState
         borderRadius: BorderRadius.circular(20),
       ),
       child: SizedBox(
-        height: 380,
+        height: 340,
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 20,
+              height: 14,
             ),
             Padding(
               padding: const EdgeInsets.only(right: 40, left: 40, bottom: 10),
@@ -52,7 +53,7 @@ class _RegistrationDetailsShippingAddressDialogState
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  right: 40, left: 40, bottom: 10, top: 20),
+                  right: 40, left: 40, bottom: 10, top: 0),
               child: Align(
                 child: Text(
                   StringConst.shippingAddress,
@@ -72,7 +73,7 @@ class _RegistrationDetailsShippingAddressDialogState
               hintText: StringConst.line1,
             ),
             const SizedBox(
-              height: 10,
+              height: 4,
             ),
             TextInput(
               hasLightWeight: true,
@@ -120,7 +121,7 @@ class _RegistrationDetailsShippingAddressDialogState
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 4,
             ),
             Observer(
               builder: (_) => MainButton(

@@ -65,7 +65,7 @@ class _SignUpSectionState extends State<SignUpSection> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 40, left: 40, bottom: 10),
+              padding: const EdgeInsets.only(right: 40, left: 40, bottom: 0),
               child: Align(
                 child: Text(
                   StringConst.dispensaryAddress,
@@ -82,7 +82,7 @@ class _SignUpSectionState extends State<SignUpSection> {
                 Observer(
                   builder: (_) => SizedBox(
                     width: screenWidth(context) * .5,
-                    height: 43,
+                    height: 48,
                     child: TextInput(
                       hasLightWeight: true,
                       controller: dispensaryAddress1TextController,
@@ -91,13 +91,13 @@ class _SignUpSectionState extends State<SignUpSection> {
                       textInputAction: TextInputAction.next,
                       hintText: StringConst.line1,
                       errorText:
-                          registrationState.errors.dispensaryAddress ?? '\n',
+                          registrationState.errors.dispensaryAddress ?? '',
                     ),
                   ),
                 ),
                 SizedBox(
                   width: screenWidth(context) * .5,
-                  height: 43,
+                  height: 48,
                   child: TextInput(
                     hasLightWeight: true,
                     controller: dispensaryAddress2TextController,
@@ -105,7 +105,7 @@ class _SignUpSectionState extends State<SignUpSection> {
                         registrationState.dispensaryAddress2 = value,
                     textInputAction: TextInputAction.next,
                     hintText: StringConst.line2,
-                    errorText: '\n',
+                    errorText: '',
 
                     //errorText: registrationState.errors.dispensaryAddress,
                   ),

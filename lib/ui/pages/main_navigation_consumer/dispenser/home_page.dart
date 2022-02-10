@@ -65,14 +65,16 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Text(
-                    personalDataState.dispensaryModel!.address1! +
-                        ' ' +
-                        personalDataState.dispensaryModel!.address2!,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: AppColors.secondAccent,
-                      fontWeight: FontWeight.w700,
+                  Expanded(
+                    child: Text(
+                      personalDataState.dispensaryModel!.address1! +
+                          ' ' +
+                          personalDataState.dispensaryModel!.address2!,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: AppColors.secondAccent,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ],
