@@ -38,10 +38,11 @@ class _PaymentPageState extends State<PaymentPage> {
     accessToken = personalDataState.aeroPayModel!.token!;
     extraParams = "configName=Aggregation&intentUrl=yodlee://backtofastlink";
 
+
     return Scaffold(
-      // appBar: CustomAppBar(
-      //   showBackButton: true,
-      // ),
+      appBar: CustomAppBar(
+        showBackButton: true,
+      ),
       body: WebView(
         initialUrl: 'about:blank',
         javascriptMode: JavascriptMode.unrestricted,
@@ -98,9 +99,10 @@ class _PaymentPageState extends State<PaymentPage> {
 
       if (action == "exit") {
         print('exaaaaaaaaavvvvvv $EventsInfoMap');
-        //TODO send to back-end, get ink
         await AutoRouter.of(context).replace(const DashboardRoute());
       }
+      print('exaaaaaaaaa $EventsInfoMap');
+
     }
   }
 
