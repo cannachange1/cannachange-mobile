@@ -24,6 +24,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.lightGrayColor,
         body: SafeArea(
           child: Padding(
