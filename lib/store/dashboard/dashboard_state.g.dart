@@ -69,6 +69,20 @@ mixin _$DashboardState on _DashboardState, Store {
     return _$scanQrAsyncAction.run(() => super.scanQr(qr));
   }
 
+  final _$sendTokenAsyncAction = AsyncAction('_DashboardState.sendToken');
+
+  @override
+  Future<void> sendToken(String token) {
+    return _$sendTokenAsyncAction.run(() => super.sendToken(token));
+  }
+
+  final _$deleteTokenAsyncAction = AsyncAction('_DashboardState.deleteToken');
+
+  @override
+  Future<void> deleteToken(String token) {
+    return _$deleteTokenAsyncAction.run(() => super.deleteToken(token));
+  }
+
   @override
   String toString() {
     return '''

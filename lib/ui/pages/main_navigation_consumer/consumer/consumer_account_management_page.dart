@@ -13,7 +13,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../helpers/overlay_helper.dart';
+import '../../../../helpers/storage_helper.dart';
 import '../../../../router.gr.dart';
+import '../../../../store/dashboard/dashboard_state.dart';
 
 class ConsumerAccountManagementPage extends StatefulWidget {
   const ConsumerAccountManagementPage({Key? key}) : super(key: key);
@@ -26,6 +28,8 @@ class ConsumerAccountManagementPage extends StatefulWidget {
 class _ConsumerAccountManagementPageState
     extends State<ConsumerAccountManagementPage> {
   final personalDataState = GetIt.I<PersonalDataState>();
+  final dashboardState = GetIt.I<DashboardState>();
+
   bool pushNotifications = false;
 
   @override
@@ -77,9 +81,9 @@ class _ConsumerAccountManagementPageState
                           trackColor: AppColors.secondAccent,
                           value: pushNotifications,
                           onChanged: (value) {
-                            setState(() {
-                              // isBiometricsOnn = value;
-                              // StorageHelper.setBiometrics(value);
+                            setState(() async {
+                              final token = await StorageHelper.getFCMToken();
+                              dashboardState.deleteToken(token);
                               showCustomOverlayNotification(
                                   color: AppColors.secondAccent,
                                   text:
@@ -94,36 +98,36 @@ class _ConsumerAccountManagementPageState
                               fontWeight: FontWeight.bold),
                         ),
                       )),
-                  Card(
-                      elevation: 3,
-                      child: ListTile(
-                        trailing: CupertinoSwitch(
-                          activeColor: AppColors.secondAccent,
-                          trackColor: AppColors.secondAccent,
-                          value: pushNotifications,
-                          onChanged: (value) {
-                            setState(() {
-                              showCustomOverlayNotification(
-                                  color: AppColors.secondAccent,
-                                  text:
-                                      'Location access is${pushNotifications == true ? ' activated' : ' off'}');
-                            });
-                          },
-                        ),
-                        title: const Text(
-                          'Location Services',
-                          style: TextStyle(
-                              color: AppColors.darkGrey,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )),
+                  // Card(
+                  //     elevation: 3,
+                  //     child: ListTile(
+                  //       trailing: CupertinoSwitch(
+                  //         activeColor: AppColors.secondAccent,
+                  //         trackColor: AppColors.secondAccent,
+                  //         value: pushNotifications,
+                  //         onChanged: (value) {
+                  //           setState(() {
+                  //             showCustomOverlayNotification(
+                  //                 color: AppColors.secondAccent,
+                  //                 text:
+                  //                     'Location access is${pushNotifications == true ? ' activated' : ' off'}');
+                  //           });
+                  //         },
+                  //       ),
+                  //       title: const Text(
+                  //         'Location Services',
+                  //         style: TextStyle(
+                  //             color: AppColors.darkGrey,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //     )),
                   Card(
                     elevation: 3,
                     color: AppColors.mainLogoColor,
                     child: ListTile(
-                      onTap: () {
-                        //TODO please add push notif token
-                        personalDataState.deleteAccount('');
+                      onTap: () async {
+                        String? token = await StorageHelper.getFCMToken();
+                        personalDataState.deleteAccount(token);
                       },
                       leading: const Icon(
                         Icons.delete,

@@ -1,3 +1,4 @@
+import 'package:cannachange/model/aeropay_model/aeropay_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../client/client_model.dart';
@@ -17,6 +18,7 @@ class RegisterResponse with _$RegisterResponse {
     DispensaryModel? dispensary,
     ClientModel? consumer,
     MemberResponseModel? member,
+    AeroPayModel? aeropay,
     List<PointModel>? points,
   }) = _RegisterResponse;
 

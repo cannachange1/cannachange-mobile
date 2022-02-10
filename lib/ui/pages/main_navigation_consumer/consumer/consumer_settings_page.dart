@@ -24,36 +24,12 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
   TextEditingController openingHours = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  // TextEditingController phoneNumberController = TextEditingController();
-
   PersonalDataState personalDataState = PersonalDataState();
 
   @override
   void initState() {
     super.initState();
-    //getUserInfo();
   }
-
-  // Future<void> getUserInfo() async {
-  //   // await personalDataState.getUser();
-  //   // _updateTextController(personalDataState.user!);
-  // }
-  //
-  // _updateTextController(DispensaryModel user) {
-  //   nameController.text = user.firstName;
-  //   lastNameController.text = user.lastName;
-  //   phoneNumberController.text = user.phone;
-  //
-  //   if (user.email != null) {
-  //     emailController.text = user.email!;
-  //   }
-  //   if (user.country != null) {
-  //     countryController.text = user.country!;
-  //   }
-  //   if (user.city != null) {
-  //     cityController.text = user.city!;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +89,7 @@ class _ConsumerSettingsPageState extends State<ConsumerSettingsPage> {
                     elevation: 3,
                     child: ListTile(
                       onTap: () {
+                        personalDataState.resetValues();
                         AutoRouter.of(context)
                             .replace(const ClientAuthorizationRoute());
                       },

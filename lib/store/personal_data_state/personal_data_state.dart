@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../helpers/overlay_helper.dart';
+import '../../model/aeropay_model/aeropay_model.dart';
 
 part 'personal_data_state.g.dart';
 
@@ -26,6 +27,9 @@ abstract class _PersonalDataState with Store {
 
   @observable
   ClientModel? clientModel;
+
+  @observable
+  AeroPayModel? aeroPayModel;
 
   @observable
   DispensaryModel? dispensaryModel = DispensaryModel(id: 2);
@@ -344,5 +348,13 @@ abstract class _PersonalDataState with Store {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
     }
+  }
+
+  @action
+  void resetValues() {
+    clientModel = ClientModel();
+    dispensaryModel = DispensaryModel();
+    clientSelectedImage = null;
+    dispensarySelectedImage = null;
   }
 }

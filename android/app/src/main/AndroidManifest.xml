@@ -1,14 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cannachange.cannachange">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:label="cannachange">
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD_ZZoiuzsjTNW4sYfhis0DLYQt9KhCKjA"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD_ZZoiuzsjTNW4sYfhis0DLYQt9KhCKjA" />
 
         <meta-data
             android:name="flutter_deeplinking_enabled"
@@ -17,14 +21,15 @@
         <activity
             android:name="com.yodlee.fastlink.InAppBrowserActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
+            android:label="cannachange"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <data
-                    android:host="<domainname>"
-                    android:scheme="<protocol>" />
+                    android:host="backtofastlink"
+                    android:scheme="yodlee" />
 
                 <action android:name="android.intent.action.VIEW" />
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />

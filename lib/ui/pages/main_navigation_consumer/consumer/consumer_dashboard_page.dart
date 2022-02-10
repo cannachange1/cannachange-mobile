@@ -6,6 +6,8 @@ import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../helpers/notification_helper.dart';
+
 class ConsumerDashboardPage extends StatefulWidget {
   const ConsumerDashboardPage({Key? key}) : super(key: key);
 
@@ -21,6 +23,8 @@ class _ConsumerDashboardPageState extends State<ConsumerDashboardPage>
   @override
   void initState() {
     super.initState();
+    setUpNotifications();
+
     _controller = TabController(length: 3, vsync: this);
   }
 
@@ -67,5 +71,9 @@ class _ConsumerDashboardPageState extends State<ConsumerDashboardPage>
         ],
       ),
     );
+  }
+
+  setUpNotifications() async {
+    await PushNotificationService().setupInteractedMessage();
   }
 }

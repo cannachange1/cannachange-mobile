@@ -28,7 +28,6 @@ class VerifyOtpCodePage extends StatefulWidget {
 class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
     with TickerProviderStateMixin {
   final registrationState = GetIt.I<RegistrationState>();
-  TextEditingController textEditingController = TextEditingController();
   late StreamController<ErrorAnimationType> errorController;
   final personalDataState = GetIt.I<PersonalDataState>();
 
@@ -84,9 +83,8 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         height: 20,
                       ),
                       InkWell(
-                        onTap: () => widget.isDispensary
-                            ? registrationState.registerDispensary(context)
-                            : registrationState.registerConsumer(context),
+                        onTap: () =>
+                            registrationState.resendCode(widget.isDispensary),
                         child: const Text(
                           'Resend SMS',
                           textAlign: TextAlign.center,
@@ -94,9 +92,10 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                       ),
                       const Spacer(),
                       OtpCodeFields(
-                        controller: textEditingController,
+                        controller: TextEditingController(),
                         appContext: context,
-                       // errorAnimationController: errorController,
+                        errorAnimationController:
+                            StreamController<ErrorAnimationType>(),
                         pastedTextStyle: const TextStyle(
                           color: AppColors.secondAccent,
                           fontWeight: FontWeight.bold,
@@ -106,14 +105,16 @@ class _VerifyOtpCodePageState extends State<VerifyOtpCodePage>
                         cursorColor: AppColors.darkGrey,
                         animationDuration: const Duration(milliseconds: 300),
                         keyboardType: TextInputType.number,
-                        onCompleted: (_) async {
-                         final res = await registrationState.activateAccount(widget.isDispensary,
-                              context, textEditingController.text);
+                        onCompleted: (_) {
+                          registrationState.activateAccount(widget.isDispensary,
+                              context, registrationState.otp!);
                           // textEditingController.clear();
                           // AutoRouter.of(context)
                           //     .replace(const AuthorizationRoute());
                         },
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          registrationState.setOtpCode(value);
+                        },
                         beforeTextPaste: (text) {
                           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
                           //but you can show anything you want here, like your pop up saying wrong paste format or etc

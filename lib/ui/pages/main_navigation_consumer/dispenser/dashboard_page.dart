@@ -5,6 +5,8 @@ import 'package:cannachange/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../helpers/notification_helper.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class _DashboardPageState extends State<DashboardPage>
   @override
   void initState() {
     super.initState();
+    setUpNotifications();
     _controller = TabController(length: 2, vsync: this);
   }
 
@@ -60,5 +63,8 @@ class _DashboardPageState extends State<DashboardPage>
       ),
     );
   }
-}
 
+  setUpNotifications() async {
+    await PushNotificationService().setupInteractedMessage();
+  }
+}

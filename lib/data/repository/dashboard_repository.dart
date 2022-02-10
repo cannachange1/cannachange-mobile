@@ -21,4 +21,23 @@ class DashboardRepository {
   }
 
 ///////////**********/////////////
+
+  Future<void> sendToken(String token) async {
+    try {
+      await dio.post('mobile/token', data: {"token": token});
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+///////////**********/////////////
+
+
+  Future<void> deleteToken(String token) async {
+    try {
+      await dio.delete('mobile/token', data: {"token": token});
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
 }

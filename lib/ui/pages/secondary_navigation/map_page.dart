@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:cannachange/store/map/map_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 import '../../widgets/custom_app_bar.dart';
 
@@ -13,37 +15,54 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _controller = Completer();
+  //final Completer<GoogleMapController> _controller = Completer();
+  MapState mapState = MapState();
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  LatLng _initialcameraposition = const LatLng(20.5937, 78.9629);
+  GoogleMapController? _controller;
+  Location _location = Location();
 
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  Set<Marker> setmarkers = {};
 
-  Map<MarkerId, Marker> setmarkers = {};
-  List listMarkerIds = [];
-
-  //TODO get all latlng without pagination and put on map;
+  @override
+  void initState() {
+    _getLocation();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(showBackButton: true),
       body: GoogleMap(
+        initialCameraPosition: CameraPosition(target: _initialcameraposition),
+        mapType: MapType.normal,
+        onMapCreated: _onMapCreated,
         myLocationEnabled: true,
-        myLocationButtonEnabled: true,
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+        markers: setmarkers,
       ),
     );
+  }
+
+  void _getLocation() async {
+    final res = await mapState.getAllDispensaries();
+    for (int i = 0; i < res.length; i++) {
+      Marker marker = Marker(
+          markerId: MarkerId(i.toString()),
+          position: LatLng(res[i].latitude, res[i].longitude));
+      setmarkers.add(marker);
+    }
+    setState(() {});
+  }
+
+  void _onMapCreated(GoogleMapController _cntlr) {
+    _controller = _cntlr;
+    _location.onLocationChanged.listen((l) {
+      _controller!.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 15),
+        ),
+      );
+    });
   }
 }

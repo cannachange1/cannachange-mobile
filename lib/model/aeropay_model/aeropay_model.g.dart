@@ -11,7 +11,7 @@ _$_AeroPayModel _$$_AeroPayModelFromJson(Map<String, dynamic> json) =>
       token: json['token'] as String?,
       username: json['username'] as String?,
       fastlinkURL: json['fastlinkURL'] as String?,
-      success: json['success'] as String?,
+      success: json['success'] as bool?,
     );
 
 Map<String, dynamic> _$$_AeroPayModelToJson(_$_AeroPayModel instance) =>

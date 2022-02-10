@@ -32,6 +32,21 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
+  final _$aeroPayModelAtom = Atom(name: '_PersonalDataState.aeroPayModel');
+
+  @override
+  AeroPayModel? get aeroPayModel {
+    _$aeroPayModelAtom.reportRead();
+    return super.aeroPayModel;
+  }
+
+  @override
+  set aeroPayModel(AeroPayModel? value) {
+    _$aeroPayModelAtom.reportWrite(value, super.aeroPayModel, () {
+      super.aeroPayModel = value;
+    });
+  }
+
   final _$dispensaryModelAtom =
       Atom(name: '_PersonalDataState.dispensaryModel');
 
@@ -386,9 +401,21 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   }
 
   @override
+  void resetValues() {
+    final _$actionInfo = _$_PersonalDataStateActionController.startAction(
+        name: '_PersonalDataState.resetValues');
+    try {
+      return super.resetValues();
+    } finally {
+      _$_PersonalDataStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 clientModel: ${clientModel},
+aeroPayModel: ${aeroPayModel},
 dispensaryModel: ${dispensaryModel},
 dispensaryName: ${dispensaryName},
 dispensaryAddress: ${dispensaryAddress},

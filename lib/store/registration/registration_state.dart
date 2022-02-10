@@ -97,6 +97,12 @@ abstract class _RegistrationState with Store {
   @observable
   bool agreeToTerms = false;
 
+
+  @action
+  void setOtpCode(String value) {
+    otp = value;
+  }
+
   @action
   void setAgreedToDispensaryTermsAndConditions() {
     agreedToDispensaryTermsAndConditions =
@@ -125,7 +131,8 @@ abstract class _RegistrationState with Store {
       StorageHelper.setToken(res!.token);
       if (isDispensary) {
         personalDataState.dispensaryModel = res.dispensary;
-        AutoRouter.of(context).push(const DashboardRoute());
+        personalDataState.aeroPayModel = res.aeropay;
+        AutoRouter.of(context).push(const PaymentRoute());
       } else {
         personalDataState.clientModel = res.consumer;
         AutoRouter.of(context).push(const ConsumerDashboardRoute());
@@ -188,8 +195,20 @@ abstract class _RegistrationState with Store {
       });
 
       storeState.changeState(StoreStates.success);
-      // resetDispensaryValidationErrors();
       AutoRouter.of(context).replace(VerifyOtpCodeRoute());
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
+
+  @action
+  Future<void> resendCode(bool isDispensary) async {
+    storeState.changeState(StoreStates.loading);
+    try {
+      await authorizationRepo.resendCode(
+          isDispensary ? dispensaryPhoneNumber! : consumerPhoneNumber!);
+      storeState.changeState(StoreStates.success);
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);

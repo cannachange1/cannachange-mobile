@@ -98,6 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Card(
                     child: ListTile(
                       onTap: () {
+                        personalDataState.resetValues();
                         AutoRouter.of(context)
                             .replace(const AuthorizationRoute());
                       },

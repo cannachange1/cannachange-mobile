@@ -9,7 +9,7 @@ class AeroPayModel with _$AeroPayModel {
     String? token,
     String? username,
     String? fastlinkURL,
-    String? success,
+    bool? success,
   }) = _AeroPayModel;
 
   factory AeroPayModel.fromJson(Map<String, dynamic> json) =>
