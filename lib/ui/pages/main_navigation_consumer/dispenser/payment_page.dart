@@ -42,7 +42,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
     fastLinkURL = personalDataState.aeroPayModel!.fastlinkURL!;
     accessToken = personalDataState.aeroPayModel!.token!;
-    extraParams = "configName=Aggregation&intentUrl=yodlee://backtofastlink";
+    extraParams = "configName=Verification";
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -103,13 +103,12 @@ class _PaymentPageState extends State<PaymentPage> {
       String action = eventData["data"]["action"];
 
       if (action == "exit") {
-        print('exaaaaaaaaavvvvvv $EventsInfoMap');
-        //TODO check values
-        // sendRetrievedInfo(eventData["data"]["action"]],
-        //     EventsInfoMap.last[eventData["data"]["providerAccountId"]]);
-        await AutoRouter.of(context).replace(const DashboardRoute());
+       final res = eventData["data"]["sites"];
+       final map = res[0];
+        sendRetrievedInfo(
+            map["providerId"].toString(), map["accountId"].toString(), map["providerAccountId"].toString());
+       await AutoRouter.of(context).replace(const DashboardRoute());
       }
-      print('exaaaaaaaaa $EventsInfoMap');
     }
   }
 
@@ -128,11 +127,12 @@ class _PaymentPageState extends State<PaymentPage> {
   ///////////**********/////////////
 
   Future<void> sendRetrievedInfo(
-      String accountId, String providerAccountId) async {
+      String providerId, String accountId, String providerAccountId) async {
     try {
       await dio.post('mobile/pay', data: {
         "token": personalDataState.aeroPayModel!.token,
         "accountId": accountId,
+        "providerId": providerId,
         "username": personalDataState.aeroPayModel!.username!,
         "providerAccountId": providerAccountId,
       });

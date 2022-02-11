@@ -6,28 +6,16 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>cannachange</string>
-	<key>CFBundleNSLocationAlwaysUsageDescription Executable</key>
-	<string>$cannachange needs you location to show nearest dispensary</string>
-	<key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        <key>NSAllowsArbitraryLoadsInWebContent</key>
-        <true/>
-    </dict>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleNSLocationAlwaysUsageDescription Executable</key>
+	<string>$cannachange needs you location to show nearest dispensary</string>
 	<key>CFBundleName</key>
 	<string>cannachange</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>https</string>
-      <string>http</string>
-    </array>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
@@ -44,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>
@@ -52,10 +40,19 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs camera access to scan QR codes to add points to customers</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to find the nearest dispensary</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>$cannachange uses photos to upload avatar for profile</string>
+	<string>$cannachange uses photos to upload avatar for profile</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -65,12 +62,9 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs your location to find the nearest dispensary</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
