@@ -105,7 +105,8 @@ class _PaymentPageState extends State<PaymentPage> {
       if (action == "exit") {
         print('exaaaaaaaaavvvvvv $EventsInfoMap');
         //TODO check values
-        sendRetrievedInfo(EventsInfoMap.last['providerId'], EventsInfoMap.last['providerAccountId']);
+        // sendRetrievedInfo(eventData["data"]["action"]],
+        //     EventsInfoMap.last[eventData["data"]["providerAccountId"]]);
         await AutoRouter.of(context).replace(const DashboardRoute());
       }
       print('exaaaaaaaaa $EventsInfoMap');

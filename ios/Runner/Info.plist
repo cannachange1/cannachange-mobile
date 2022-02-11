@@ -6,8 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>cannachange</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleNSLocationAlwaysUsageDescription Executable</key>
+	<string>$cannachange needs you location to show nearest dispensary</string>
 	<key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
@@ -54,6 +54,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs camera access to scan QR codes to add points to customers</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>$cannachange uses photos to upload avatar for profile</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
