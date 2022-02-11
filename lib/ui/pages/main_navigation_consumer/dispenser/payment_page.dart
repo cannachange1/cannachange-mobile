@@ -3,12 +3,17 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../../data/exceptions/general_exceptions.dart';
+import '../../../../helpers/overlay_helper.dart';
 import '../../../../store/personal_data_state/personal_data_state.dart';
+import '../../../../values/values.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -21,6 +26,7 @@ class _PaymentPageState extends State<PaymentPage> {
   final personalDataState = GetIt.I<PersonalDataState>();
   WebViewController? _controller;
   BuildContext? fastlinkViewContext;
+  final dio = GetIt.I<Dio>();
 
   String fastLinkURL = "";
   String accessToken = "";
@@ -36,8 +42,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
     fastLinkURL = personalDataState.aeroPayModel!.fastlinkURL!;
     accessToken = personalDataState.aeroPayModel!.token!;
-    extraParams = "configName=Aggregation&intentUrl=yodlee://backtofastlink";
-
+    extraParams = "configName=Verification";
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -98,11 +103,12 @@ class _PaymentPageState extends State<PaymentPage> {
       String action = eventData["data"]["action"];
 
       if (action == "exit") {
-        print('exaaaaaaaaavvvvvv $EventsInfoMap');
-        await AutoRouter.of(context).replace(const DashboardRoute());
+       final res = eventData["data"]["sites"];
+       final map = res[0];
+        sendRetrievedInfo(
+            map["providerId"].toString(), map["accountId"].toString(), map["providerAccountId"].toString());
+       await AutoRouter.of(context).replace(const DashboardRoute());
       }
-      print('exaaaaaaaaa $EventsInfoMap');
-
     }
   }
 
@@ -115,6 +121,25 @@ class _PaymentPageState extends State<PaymentPage> {
       );
     } else {
       print('Could not launch $url');
+    }
+  }
+
+  ///////////**********/////////////
+
+  Future<void> sendRetrievedInfo(
+      String providerId, String accountId, String providerAccountId) async {
+    try {
+      await dio.post('mobile/pay', data: {
+        "token": personalDataState.aeroPayModel!.token,
+        "accountId": accountId,
+        "providerId": providerId,
+        "username": personalDataState.aeroPayModel!.username!,
+        "providerAccountId": providerAccountId,
+      });
+    } on DioError catch (e) {
+      final Map<String, dynamic> map = jsonDecode(e.response!.data);
+      showCustomOverlayNotification(
+          color: AppColors.errorRed, text: map['title']);
     }
   }
 }
