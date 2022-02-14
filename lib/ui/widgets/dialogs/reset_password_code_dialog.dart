@@ -64,6 +64,7 @@ class _ResetPasswordCodeDialogState extends State<ResetPasswordCodeDialog> {
                         TextInput(
                           controller: newPasswordTextController,
                           hintText: 'Please enter new password',
+                          hasSuffix: true,
                         ),
                         const SizedBox(
                           height: 20,
