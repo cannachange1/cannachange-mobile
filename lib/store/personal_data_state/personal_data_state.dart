@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/data/repository/personal_data_repository.dart';
+import 'package:cannachange/helpers/storage_helper.dart';
 import 'package:cannachange/model/client/client_model.dart';
 import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/model/point_model/point_model.dart';
@@ -16,6 +17,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../helpers/overlay_helper.dart';
 import '../../model/aeropay_model/aeropay_model.dart';
+import '../../router.gr.dart';
 
 part 'personal_data_state.g.dart';
 
@@ -318,11 +320,14 @@ abstract class _PersonalDataState with Store {
     }
   }
 
-  Future<void> deleteAccount(String? token) async {
+  Future<void> deleteAccount(String? token,  BuildContext context) async {
     try {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.deleteUser(token);
+      StorageHelper.removeAccessToken();
       storeState.changeState(StoreStates.success);
+      AutoRouter.of(context).replace(const AuthorizationRoute());
+
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);

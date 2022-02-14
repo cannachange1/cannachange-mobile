@@ -127,7 +127,7 @@ class _ConsumerAccountManagementPageState
                     child: ListTile(
                       onTap: () async {
                         String? token = await StorageHelper.getFCMToken();
-                        personalDataState.deleteAccount(token);
+                        personalDataState.deleteAccount(token, context);
                       },
                       leading: const Icon(
                         Icons.delete,
