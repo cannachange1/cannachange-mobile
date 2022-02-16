@@ -99,7 +99,10 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
                           Card(
                             color: AppColors.mainLogoColor,
                             child: ListTile(
-                              onTap: () {},
+                              onTap: () {
+                                personalDataState.cancelSubscription(context);
+
+                              },
                               leading: const Icon(
                                 Icons.cancel_rounded,
                                 color: AppColors.lightGrayColor,

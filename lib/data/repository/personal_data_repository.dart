@@ -99,6 +99,18 @@ class PersonalDataRepository {
 
   ///////////**********/////////////
 
+  Future<void> cancelSubscription() async {
+    try {
+      await dio.put(
+        'mobile/cancel',
+      );
+    } on DioError catch (e) {
+      handleError(e);
+    }
+  }
+
+  ///////////**********/////////////
+
   Future<void> redeemPoints(
     int id,
   ) async {

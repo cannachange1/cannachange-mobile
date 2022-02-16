@@ -24,6 +24,7 @@ class _$LoginResponseModelTearOff {
   _LoginResponseModel call(
       {required String token,
       String? role,
+      String? status,
       DispensaryModel? dispensary,
       ClientModel? consumer,
       AeroPayModel? aeropay,
@@ -32,6 +33,7 @@ class _$LoginResponseModelTearOff {
     return _LoginResponseModel(
       token: token,
       role: role,
+      status: status,
       dispensary: dispensary,
       consumer: consumer,
       aeropay: aeropay,
@@ -52,6 +54,7 @@ const $LoginResponseModel = _$LoginResponseModelTearOff();
 mixin _$LoginResponseModel {
   String get token => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   DispensaryModel? get dispensary => throw _privateConstructorUsedError;
   ClientModel? get consumer => throw _privateConstructorUsedError;
   AeroPayModel? get aeropay => throw _privateConstructorUsedError;
@@ -72,6 +75,7 @@ abstract class $LoginResponseModelCopyWith<$Res> {
   $Res call(
       {String token,
       String? role,
+      String? status,
       DispensaryModel? dispensary,
       ClientModel? consumer,
       AeroPayModel? aeropay,
@@ -97,6 +101,7 @@ class _$LoginResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? token = freezed,
     Object? role = freezed,
+    Object? status = freezed,
     Object? dispensary = freezed,
     Object? consumer = freezed,
     Object? aeropay = freezed,
@@ -111,6 +116,10 @@ class _$LoginResponseModelCopyWithImpl<$Res>
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       dispensary: dispensary == freezed
           ? _value.dispensary
@@ -190,6 +199,7 @@ abstract class _$LoginResponseModelCopyWith<$Res>
   $Res call(
       {String token,
       String? role,
+      String? status,
       DispensaryModel? dispensary,
       ClientModel? consumer,
       AeroPayModel? aeropay,
@@ -221,6 +231,7 @@ class __$LoginResponseModelCopyWithImpl<$Res>
   $Res call({
     Object? token = freezed,
     Object? role = freezed,
+    Object? status = freezed,
     Object? dispensary = freezed,
     Object? consumer = freezed,
     Object? aeropay = freezed,
@@ -235,6 +246,10 @@ class __$LoginResponseModelCopyWithImpl<$Res>
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       dispensary: dispensary == freezed
           ? _value.dispensary
@@ -266,6 +281,7 @@ class _$_LoginResponseModel implements _LoginResponseModel {
   _$_LoginResponseModel(
       {required this.token,
       this.role,
+      this.status,
       this.dispensary,
       this.consumer,
       this.aeropay,
@@ -280,6 +296,8 @@ class _$_LoginResponseModel implements _LoginResponseModel {
   @override
   final String? role;
   @override
+  final String? status;
+  @override
   final DispensaryModel? dispensary;
   @override
   final ClientModel? consumer;
@@ -292,7 +310,7 @@ class _$_LoginResponseModel implements _LoginResponseModel {
 
   @override
   String toString() {
-    return 'LoginResponseModel(token: $token, role: $role, dispensary: $dispensary, consumer: $consumer, aeropay: $aeropay, member: $member, points: $points)';
+    return 'LoginResponseModel(token: $token, role: $role, status: $status, dispensary: $dispensary, consumer: $consumer, aeropay: $aeropay, member: $member, points: $points)';
   }
 
   @override
@@ -303,6 +321,8 @@ class _$_LoginResponseModel implements _LoginResponseModel {
                 const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.role, role) ||
                 const DeepCollectionEquality().equals(other.role, role)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.dispensary, dispensary) ||
                 const DeepCollectionEquality()
                     .equals(other.dispensary, dispensary)) &&
@@ -323,6 +343,7 @@ class _$_LoginResponseModel implements _LoginResponseModel {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(role) ^
+      const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(dispensary) ^
       const DeepCollectionEquality().hash(consumer) ^
       const DeepCollectionEquality().hash(aeropay) ^
@@ -344,6 +365,7 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   factory _LoginResponseModel(
       {required String token,
       String? role,
+      String? status,
       DispensaryModel? dispensary,
       ClientModel? consumer,
       AeroPayModel? aeropay,
@@ -357,6 +379,8 @@ abstract class _LoginResponseModel implements LoginResponseModel {
   String get token => throw _privateConstructorUsedError;
   @override
   String? get role => throw _privateConstructorUsedError;
+  @override
+  String? get status => throw _privateConstructorUsedError;
   @override
   DispensaryModel? get dispensary => throw _privateConstructorUsedError;
   @override

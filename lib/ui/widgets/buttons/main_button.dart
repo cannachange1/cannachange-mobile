@@ -29,7 +29,7 @@ class MainButton extends StatelessWidget {
         ),
         child: Padding(
           padding: padding ??
-              const EdgeInsets.symmetric(horizontal: 2, vertical: 12),
+              const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -11,6 +11,7 @@ _$_LoginResponseModel _$$_LoginResponseModelFromJson(
     _$_LoginResponseModel(
       token: json['token'] as String,
       role: json['role'] as String?,
+      status: json['status'] as String?,
       dispensary: json['dispensary'] == null
           ? null
           : DispensaryModel.fromJson(
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$_LoginResponseModelToJson(
     <String, dynamic>{
       'token': instance.token,
       'role': instance.role,
+      'status': instance.status,
       'dispensary': instance.dispensary,
       'consumer': instance.consumer,
       'aeropay': instance.aeropay,

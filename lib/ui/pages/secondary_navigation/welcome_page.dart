@@ -19,6 +19,9 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
+    print('aaaa ${DateTime.now()}');
+    print('aaaa ${DateTime.now()}');
+
   }
 
   @override

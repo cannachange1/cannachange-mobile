@@ -117,7 +117,7 @@ abstract class _PersonalDataState with Store {
   @action
   void setDispensaryAddressLine2(String value) {
     if (value.isNotEmpty) {
-      dispensaryModel = dispensaryModel!.copyWith(address1: value);
+      dispensaryModel = dispensaryModel!.copyWith(address2: value);
     }
   }
 
@@ -285,25 +285,6 @@ abstract class _PersonalDataState with Store {
     }
   }
 
-// @action
-// Future<void> getUser() async {
-//   try {
-//     loadingState.startLoading();
-//     user = await userRepository.getUser();
-//     if (user != null) {
-//       StorageHelper.setUserName(user!.firstName);
-//       StorageHelper.setUseSurname(user!.lastName);
-//       StorageHelper.setPhoneNumber(user!.login);
-//       StorageHelper.setEmail(user!.email);
-//     }
-//     loadingState.stopLoading();
-//   } on DioError catch (e) {
-//     final Map<String, dynamic> map = jsonDecode(e.response!.data);
-//     showCustomOverlayNotification(color: Colors.red, text: map['title']);
-//   } finally {
-//     loadingState.stopLoading();
-//   }
-// }
 
   Future<void> updateConsumer() async {
     try {
@@ -320,14 +301,26 @@ abstract class _PersonalDataState with Store {
     }
   }
 
-  Future<void> deleteAccount(String? token,  BuildContext context) async {
+  Future<void> deleteAccount(String? token, BuildContext context) async {
     try {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.deleteUser(token);
       StorageHelper.removeAccessToken();
       storeState.changeState(StoreStates.success);
       AutoRouter.of(context).replace(const AuthorizationRoute());
+    } on Exception catch (e) {
+      storeState.setErrorMessage(e.toString());
+      storeState.changeState(StoreStates.error);
+    }
+  }
 
+  Future<void> cancelSubscription( BuildContext context) async {
+    try {
+      storeState.changeState(StoreStates.loading);
+      await personalDataRepository.cancelSubscription();
+      StorageHelper.removeAccessToken();
+      storeState.changeState(StoreStates.success);
+      AutoRouter.of(context).replace(const AuthorizationRoute());
     } on Exception catch (e) {
       storeState.setErrorMessage(e.toString());
       storeState.changeState(StoreStates.error);
@@ -339,7 +332,7 @@ abstract class _PersonalDataState with Store {
       storeState.changeState(StoreStates.loading);
       await personalDataRepository.updateUser(
         false,
-        name: dispensaryModel!.name,
+        name: dispensaryModel!.businessName,
         email: dispensaryModel!.email,
         address1: dispensaryModel!.address1,
         address2: dispensaryModel!.address2,
