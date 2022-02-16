@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cannachange/data/exceptions/general_exceptions.dart';
+import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:cannachange/model/point_model/point_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -12,15 +13,16 @@ class MapRepository {
 
   ///////////**********/////////////
 
-  Future<List<LatLng>?> getAllDispensaries() async {
+  Future<List<DispensaryModel>?> getAllDispensaries() async {
     try {
       final res = await dio.get(
         'mobile/dispensaries/all',
       );
-      final List<LatLng> list = res.data
-          .map((i) => LatLng.fromJson(i))
-          .toList()
-          .cast<LatLng>();
+
+      final List<DispensaryModel> list = res.data.map((i) => DispensaryModel.fromJson(i))
+          .toList().cast<DispensaryModel>();
+      print('aaaaassaaaa $list');
+
       return list;
     } on DioError catch (e) {
       handleError(e);

@@ -14,6 +14,7 @@ class LoginResponseModel with _$LoginResponseModel {
   factory LoginResponseModel({
     required String token,
     String? role,
+    String? status,
     DispensaryModel? dispensary,
     ClientModel? consumer,
     AeroPayModel? aeropay,

@@ -56,16 +56,20 @@ class _AddPointsDialogState extends State<AddPointsDialog> {
             const SizedBox(
               height: 8,
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 40),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(80),
-                  child: Image.network(
-                    dashboardState.scannedUser!.imageUrl!,
-                    fit: BoxFit.cover,
-                    height: 90,
-                    width: 90,
-                  )),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(80),
+                child: Image.network(
+                  dashboardState.scannedUser!.imageUrl!,
+                  fit: BoxFit.cover,
+                  height: 90,
+                  width: 90,
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(dashboardState.scannedUser!.name!, style: const TextStyle(fontSize: 16),),
+            const SizedBox(
+              height: 40,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),

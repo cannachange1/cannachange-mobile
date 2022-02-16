@@ -37,8 +37,6 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     fastlinkViewContext = context;
-    // final FastLinkViewArguments routeParams =
-    //     ModalRoute.of(context).settings.arguments as FastLinkViewArguments;
 
     fastLinkURL = personalDataState.aeroPayModel!.fastlinkURL!;
     accessToken = personalDataState.aeroPayModel!.token!;

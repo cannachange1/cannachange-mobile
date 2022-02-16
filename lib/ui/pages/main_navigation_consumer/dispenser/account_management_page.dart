@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
+import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/account_details_page.dart';
 import 'package:cannachange/ui/widgets/buttons/common_button.dart';
 import 'package:cannachange/ui/widgets/buttons/main_button.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../helpers/storage_helper.dart';
 import '../../../../router.gr.dart';
+import '../../../widgets/loading.dart';
 
 class AccountManagementPage extends StatefulWidget {
   const AccountManagementPage({Key? key}) : super(key: key);
@@ -54,79 +56,92 @@ class _AccountManagementPageState extends State<AccountManagementPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar(),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Card(
-                    color: AppColors.mainLogoColor,
-                    child: ListTile(
-                      onTap: () async {
-                        String? token = await StorageHelper.getFCMToken();
-                        personalDataState.deleteAccount(token);
-                      },
-                      leading: const Icon(
-                        Icons.delete,
-                        color: AppColors.lightGrayColor,
-                      ),
-                      title: const Text(
-                        'Delete account',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.lightGrayColor),
+        body: Observer(
+          builder: (_) => personalDataState.storeState.state ==
+                  StoreStates.loading
+              ? const Loading(
+                  color: Colors.transparent,
+                )
+              : SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 18,
+                          ),
+                          Card(
+                            color: AppColors.mainLogoColor,
+                            child: ListTile(
+                              onTap: () async {
+                                String? token =
+                                    await StorageHelper.getFCMToken();
+                                personalDataState.deleteAccount(token, context);
+                              },
+                              leading: const Icon(
+                                Icons.delete,
+                                color: AppColors.lightGrayColor,
+                              ),
+                              title: const Text(
+                                'Delete account',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.lightGrayColor),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Card(
+                            color: AppColors.mainLogoColor,
+                            child: ListTile(
+                              onTap: () {
+                                personalDataState.cancelSubscription(context);
+
+                              },
+                              leading: const Icon(
+                                Icons.cancel_rounded,
+                                color: AppColors.lightGrayColor,
+                              ),
+                              title: const Text(
+                                'Cancel subscription',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.lightGrayColor),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            color: AppColors.mainLogoColor,
+                            child: ListTile(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    useRootNavigator: false,
+                                    builder: (context) =>
+                                        const ChangePasswordDialog());
+                              },
+                              leading: const Icon(
+                                Icons.password,
+                                color: AppColors.lightGrayColor,
+                              ),
+                              title: const Text(
+                                'Change password',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.lightGrayColor),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Card(
-                    color: AppColors.mainLogoColor,
-                    child: ListTile(
-                      onTap: () {},
-                      leading: const Icon(
-                        Icons.cancel_rounded,
-                        color: AppColors.lightGrayColor,
-                      ),
-                      title: const Text(
-                        'Cancel subscription',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.lightGrayColor),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    color: AppColors.mainLogoColor,
-                    child: ListTile(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            useRootNavigator: false,
-                            builder: (context) => const ChangePasswordDialog());
-                      },
-                      leading: const Icon(
-                        Icons.password,
-                        color: AppColors.lightGrayColor,
-                      ),
-                      title: const Text(
-                        'Change password',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.lightGrayColor),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
         ));
   }
 }

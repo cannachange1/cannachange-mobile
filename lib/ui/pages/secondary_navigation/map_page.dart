@@ -47,10 +47,12 @@ class _MapPageState extends State<MapPage> {
   void _getLocation() async {
     final res = await mapState.getAllDispensaries();
     for (int i = 0; i < res.length; i++) {
-      Marker marker = Marker(
-          markerId: MarkerId(i.toString()),
-          position: LatLng(res[i].latitude, res[i].longitude));
-      setmarkers.add(marker);
+      if (res[i].latitude != null || res[i].latitude != 0) {
+        Marker marker = Marker(
+            markerId: MarkerId(i.toString()),
+            position: LatLng(res[i].latitude!, res[i].longitude!));
+        setmarkers.add(marker);
+      }
     }
     setState(() {});
   }

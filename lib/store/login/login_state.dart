@@ -4,6 +4,7 @@ import 'package:cannachange/data/repository/authorization_repository.dart';
 import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
+import 'package:cannachange/ui/pages/main_navigation_consumer/dispenser/payment_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -112,14 +113,11 @@ abstract class _LoginState with Store {
         if (res.role == 'DISPENSARY') {
           print('aaaaaaaa ${res.dispensary.toString()}');
           personalDataState.dispensaryModel = res.dispensary!;
-          // personalDataState.aeroPayModel = res.aeropay!;
-          print('aaaaaaa ${personalDataState.dispensaryModel.toString()}');
-          //personalDataState.dispensaryName = res.dispensary!.name!;
-          // personalDataState.dispensaryAddress =
-          //     res.dispensary!.address1! + ' ' + res.dispensary!.address2!;
-          // personalDataState.dispensaryWorkingHours =
-          //     res.dispensary!.startHour! + ' - ' + res.dispensary!.endHour!;
-          await AutoRouter.of(cont).replace(const DashboardRoute());
+          if (res.status != 'PAID' || res.status != 'TRIAL') {
+            await AutoRouter.of(cont).replace(const DashboardRoute());
+          } else {
+            await AutoRouter.of(cont).replace(const PaymentRoute());
+          }
         } else {
           personalDataState.clientModel = res.consumer;
           personalDataState.consumerPointList.clear();
