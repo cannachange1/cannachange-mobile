@@ -28,7 +28,7 @@ mixin _$MapState on _MapState, Store {
       AsyncAction('_MapState.getAllDispensaries');
 
   @override
-  Future<List<LatLng>> getAllDispensaries() {
+  Future<List<DispensaryModel>> getAllDispensaries() {
     return _$getAllDispensariesAsyncAction
         .run(() => super.getAllDispensaries());
   }

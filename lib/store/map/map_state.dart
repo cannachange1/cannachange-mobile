@@ -1,4 +1,5 @@
 import 'package:cannachange/data/repository/map_repository.dart';
+import 'package:cannachange/model/dispensary/dispensary_model.dart';
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
@@ -17,7 +18,7 @@ abstract class _MapState with Store {
   ObservableList<LatLng> latlngList = <LatLng>[].asObservable();
 
   @action
-  Future<List<LatLng>> getAllDispensaries() async {
+  Future<List<DispensaryModel>> getAllDispensaries() async {
     try {
       storeState.changeState(StoreStates.loading);
       final res = await mapRepository.getAllDispensaries();
