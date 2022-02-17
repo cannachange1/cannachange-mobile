@@ -5,6 +5,7 @@ import 'package:cannachange/router.gr.dart';
 import 'package:cannachange/ui/widgets/custom_app_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,6 +13,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../data/exceptions/general_exceptions.dart';
 import '../../../../helpers/overlay_helper.dart';
+import '../../../../helpers/screen_size_accessor.dart';
 import '../../../../store/personal_data_state/personal_data_state.dart';
 import '../../../../values/values.dart';
 
@@ -43,8 +45,19 @@ class _PaymentPageState extends State<PaymentPage> {
     extraParams = "configName=Verification";
 
     return Scaffold(
-      appBar: CustomAppBar(
-        showBackButton: true,
+      appBar: AppBar(
+        elevation: 2,
+        foregroundColor: AppColors.secondAccent,
+        leading: GestureDetector(
+            child: const Icon(Icons.arrow_back_ios),
+            onTap: () =>
+                AutoRouter.of(context).replace(const AuthorizationRoute())),
+        centerTitle: true,
+        backgroundColor: AppColors.lightGrayColor,
+        title: SvgPicture.asset(
+          'assets/images/ic_logo.svg',
+          width: screenWidth(context) * .5,
+        ),
       ),
       body: WebView(
         initialUrl: 'about:blank',
@@ -103,16 +116,19 @@ class _PaymentPageState extends State<PaymentPage> {
       if (action == "exit") {
         final res = eventData["data"]["sites"];
         final map = res[0];
-        await sendRetrievedInfo(map["providerId"].toString(),
+        final response = await sendRetrievedInfo(map["providerId"].toString(),
             map["accountId"].toString(), map["providerAccountId"].toString());
-        await AutoRouter.of(context).replace(const AuthorizationRoute());
-
-        // if (response!=null && response.statusCode == 200) {
-        //   await AutoRouter.of(context).replace(const DashboardRoute());
-        // } else {
-        //   await AutoRouter.of(context).replace(const AuthorizationRoute());
-        // }
-       }
+        if (response != null && response.statusCode == 200) {
+          showCustomOverlayNotification(
+              color: AppColors.mainLogoColor, text: 'Payment was successful');
+          await AutoRouter.of(context).replace(const DashboardRoute());
+        } else {
+          showCustomOverlayNotification(
+              color: AppColors.mainLogoColor,
+              text: "OOPS, payment didn't went through");
+          await AutoRouter.of(context).replace(const AuthorizationRoute());
+        }
+      }
     }
   }
 
@@ -130,7 +146,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
   ///////////**********/////////////
 
-  Future<void> sendRetrievedInfo(
+  Future<Response?> sendRetrievedInfo(
       String providerId, String accountId, String providerAccountId) async {
     try {
       final res = await dio.post('mobile/pay', data: {
@@ -140,6 +156,7 @@ class _PaymentPageState extends State<PaymentPage> {
         "username": personalDataState.aeroPayModel!.username!,
         "providerAccountId": providerAccountId,
       });
+      return res;
     } on DioError catch (e) {
       final Map<String, dynamic> map = jsonDecode(e.response!.data);
       showCustomOverlayNotification(
