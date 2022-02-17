@@ -186,7 +186,7 @@ class PersonalDataRepository {
       } else {
         data = {
           "email": email,
-          "name": name,
+          "businessName": name,
           "address1": address1,
           "address2": address2,
           "startHour": startHour,
