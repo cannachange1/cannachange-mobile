@@ -42,7 +42,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
     fastLinkURL = personalDataState.aeroPayModel!.fastlinkURL!;
     accessToken = personalDataState.aeroPayModel!.token!;
-    extraParams = "configName=Verification";
+    extraParams = "configName=Verification&intentUrl=customScheme://cannachange/";
 
     return Scaffold(
       appBar: AppBar(

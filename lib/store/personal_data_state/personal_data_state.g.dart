@@ -32,6 +32,22 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
     });
   }
 
+  final _$isActivePushNotifAtom =
+      Atom(name: '_PersonalDataState.isActivePushNotif');
+
+  @override
+  bool get isActivePushNotif {
+    _$isActivePushNotifAtom.reportRead();
+    return super.isActivePushNotif;
+  }
+
+  @override
+  set isActivePushNotif(bool value) {
+    _$isActivePushNotifAtom.reportWrite(value, super.isActivePushNotif, () {
+      super.isActivePushNotif = value;
+    });
+  }
+
   final _$aeroPayModelAtom = Atom(name: '_PersonalDataState.aeroPayModel');
 
   @override
@@ -415,6 +431,7 @@ mixin _$PersonalDataState on _PersonalDataState, Store {
   String toString() {
     return '''
 clientModel: ${clientModel},
+isActivePushNotif: ${isActivePushNotif},
 aeroPayModel: ${aeroPayModel},
 dispensaryModel: ${dispensaryModel},
 dispensaryName: ${dispensaryName},

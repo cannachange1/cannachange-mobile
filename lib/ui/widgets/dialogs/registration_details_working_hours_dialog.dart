@@ -7,7 +7,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
-
 class RegistrationDetailsWorkingHoursDialog extends StatefulWidget {
   const RegistrationDetailsWorkingHoursDialog({
     Key? key,
@@ -93,7 +92,6 @@ class _RegistrationDetailsWorkingHoursDialogState
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               callback: () async {
                 await registrationState.registerDispensary(context);
-
               },
               label: 'DONE',
             ),
@@ -108,9 +106,14 @@ class _RegistrationDetailsWorkingHoursDialogState
 
   Future<void> _selectTime(BuildContext context, bool isStartingDate) async {
     final TimeOfDay? response = await showTimePicker(
-      context: context,
-      initialTime: pickedTime,
-    );
+        context: context,
+        initialTime: pickedTime,
+        builder: (context, child) {
+          return MediaQuery(
+              data:
+                  MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child!);
+        });
     if (response != null) {
       if (isStartingDate) {
         registrationState.dispensaryStartHours = response.format(context);
