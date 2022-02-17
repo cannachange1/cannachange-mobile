@@ -101,12 +101,18 @@ class _PaymentPageState extends State<PaymentPage> {
       String action = eventData["data"]["action"];
 
       if (action == "exit") {
-       final res = eventData["data"]["sites"];
-       final map = res[0];
-        sendRetrievedInfo(
-            map["providerId"].toString(), map["accountId"].toString(), map["providerAccountId"].toString());
-       await AutoRouter.of(context).replace(const DashboardRoute());
-      }
+        final res = eventData["data"]["sites"];
+        final map = res[0];
+        await sendRetrievedInfo(map["providerId"].toString(),
+            map["accountId"].toString(), map["providerAccountId"].toString());
+        await AutoRouter.of(context).replace(const AuthorizationRoute());
+
+        // if (response!=null && response.statusCode == 200) {
+        //   await AutoRouter.of(context).replace(const DashboardRoute());
+        // } else {
+        //   await AutoRouter.of(context).replace(const AuthorizationRoute());
+        // }
+       }
     }
   }
 
@@ -127,7 +133,7 @@ class _PaymentPageState extends State<PaymentPage> {
   Future<void> sendRetrievedInfo(
       String providerId, String accountId, String providerAccountId) async {
     try {
-      await dio.post('mobile/pay', data: {
+      final res = await dio.post('mobile/pay', data: {
         "token": personalDataState.aeroPayModel!.token,
         "accountId": accountId,
         "providerId": providerId,

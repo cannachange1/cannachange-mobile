@@ -90,6 +90,7 @@ class _ConsumerAccountManagementPageState
                                   trackColor: AppColors.secondAccent,
                                   value: pushNotifications,
                                   onChanged: (value) {
+                                    pushNotifications = true;
                                     setState(() async {
                                       final token =
                                           await StorageHelper.getFCMToken();
