@@ -113,10 +113,11 @@ abstract class _LoginState with Store {
         if (res.role == 'DISPENSARY') {
           print('aaaaaaaa ${res.dispensary.toString()}');
           personalDataState.dispensaryModel = res.dispensary!;
+          personalDataState.aeroPayModel = res.aeropay;
           if (res.status != 'PAID' || res.status != 'TRIAL') {
-            await AutoRouter.of(cont).replace(const DashboardRoute());
+            await AutoRouter.of(cont).push(const PaymentRoute());
           } else {
-            await AutoRouter.of(cont).replace(const PaymentRoute());
+            await AutoRouter.of(cont).push(const DashboardRoute());
           }
         } else {
           personalDataState.clientModel = res.consumer;

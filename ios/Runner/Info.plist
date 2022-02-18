@@ -26,10 +26,10 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>protocol://aeropay.com</string>
+			<string>customScheme://cannachange/</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>protocol</string>
+				<string>customScheme</string>
 			</array>
 		</dict>
 	</array>

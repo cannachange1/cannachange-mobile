@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cannachange/store/login/login_state.dart';
+import 'package:cannachange/store/personal_data_state/personal_data_state.dart';
 import 'package:cannachange/store/registration/registration_state.dart';
 import 'package:cannachange/store/store_state/store_state.dart';
 import 'package:cannachange/ui/widgets/client_signup_section.dart';
@@ -28,6 +29,7 @@ class ClientAuthorizationPage extends StatefulWidget {
 
 class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
   DashboardState dashboardState = GetIt.I<DashboardState>();
+  PersonalDataState personalDataState = GetIt.I<PersonalDataState>();
   final registrationState = GetIt.I<RegistrationState>();
   LoginState loginState = LoginState();
 
@@ -38,6 +40,8 @@ class _ClientAuthorizationPageState extends State<ClientAuthorizationPage> {
   @override
   void initState() {
     super.initState();
+    personalDataState.resetValues();
+
     loginState.setupValidations();
     registrationState.setupConsumerValidations();
     _controller.addListener(() => setState(() {}));

@@ -32,8 +32,6 @@ class _ConsumerAccountManagementPageState
   final personalDataState = GetIt.I<PersonalDataState>();
   final dashboardState = GetIt.I<DashboardState>();
 
-  bool pushNotifications = false;
-
   @override
   void initState() {
     super.initState();
@@ -84,28 +82,36 @@ class _ConsumerAccountManagementPageState
                           ),
                           Card(
                               elevation: 3,
-                              child: ListTile(
-                                trailing: CupertinoSwitch(
-                                  activeColor: AppColors.secondAccent,
-                                  trackColor: AppColors.secondAccent,
-                                  value: pushNotifications,
-                                  onChanged: (value) {
-                                    setState(() async {
+                              child: Observer(
+                                builder: (_) => ListTile(
+                                  trailing: CupertinoSwitch(
+                                    thumbColor: AppColors.lightGrayColor,
+                                    activeColor: AppColors.secondAccent,
+                                    trackColor: AppColors.primaryColor,
+                                    value: personalDataState.isActivePushNotif,
+                                    onChanged: (value) async {
+                                      personalDataState.isActivePushNotif =
+                                          value;
                                       final token =
                                           await StorageHelper.getFCMToken();
-                                      dashboardState.deleteToken(token);
+                                      if (value == false) {
+                                        dashboardState.deleteToken(token);
+                                      } else {
+                                        dashboardState.sendToken(token);
+                                      }
+
                                       showCustomOverlayNotification(
                                           color: AppColors.secondAccent,
                                           text:
-                                              'Push notifications are ${pushNotifications == true ? ' activated' : ' off'}');
-                                    });
-                                  },
-                                ),
-                                title: const Text(
-                                  'Push Notifications',
-                                  style: TextStyle(
-                                      color: AppColors.darkGrey,
-                                      fontWeight: FontWeight.bold),
+                                              'Push notifications are ${personalDataState.isActivePushNotif == true ? ' activated' : ' off'}');
+                                    },
+                                  ),
+                                  title: const Text(
+                                    'Push Notifications',
+                                    style: TextStyle(
+                                        color: AppColors.darkGrey,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               )),
                           // Card(

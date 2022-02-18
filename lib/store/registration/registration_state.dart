@@ -132,10 +132,10 @@ abstract class _RegistrationState with Store {
       if (isDispensary) {
         personalDataState.dispensaryModel = res.dispensary;
         personalDataState.aeroPayModel = res.aeropay;
-        AutoRouter.of(context).push(const PaymentRoute());
+        AutoRouter.of(context).replace(const PaymentRoute());
       } else {
         personalDataState.clientModel = res.consumer;
-        AutoRouter.of(context).push(const ConsumerDashboardRoute());
+        AutoRouter.of(context).replace(const ConsumerDashboardRoute());
       }
       storeState.changeState(StoreStates.success);
     } on Exception catch (e) {

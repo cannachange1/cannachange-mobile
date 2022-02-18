@@ -31,6 +31,9 @@ abstract class _PersonalDataState with Store {
   ClientModel? clientModel;
 
   @observable
+  bool isActivePushNotif = true;
+
+  @observable
   AeroPayModel? aeroPayModel;
 
   @observable
